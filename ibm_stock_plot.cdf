@@ -20,10 +20,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       835,         17]
-NotebookDataLength[    279588,       4857]
-NotebookOptionsPosition[    279504,       4837]
-NotebookOutlinePosition[    279847,       4852]
-CellTagsIndexPosition[    279804,       4849]
+NotebookDataLength[    278079,       4804]
+NotebookOptionsPosition[    277997,       4784]
+NotebookOutlinePosition[    278340,       4799]
+CellTagsIndexPosition[    278297,       4796]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -4291,7 +4291,7 @@ Cell[BoxData[
          DynamicBox[ToBoxes[
            FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
            StandardForm],
-          ImageSizeCache->{299., {3., 9.}}],
+          ImageSizeCache->{394., {4., 12.}}],
          StripOnInput->False,
          DynamicUpdating->True], "Panel",
         StripOnInput->False,
@@ -4386,7 +4386,7 @@ Cell[BoxData[
            DynamicBox[ToBoxes[
              FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
              StandardForm],
-            ImageSizeCache->{54., {1., 9.}}],
+            ImageSizeCache->{73., {1., 12.}}],
            StripOnInput->False,
            DynamicUpdating->True], "Panel",
           StripOnInput->False,
@@ -4403,7 +4403,7 @@ Cell[BoxData[
            DynamicBox[ToBoxes[
              FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
              StandardForm],
-            ImageSizeCache->{60., {1., 9.}}],
+            ImageSizeCache->{80., {1., 12.}}],
            StripOnInput->False,
            DynamicUpdating->True], "Panel",
           StripOnInput->False,
@@ -4420,7 +4420,7 @@ Cell[BoxData[
            DynamicBox[ToBoxes[
              FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
              StandardForm],
-            ImageSizeCache->{92., {3., 9.}}],
+            ImageSizeCache->{121., {4., 12.}}],
            StripOnInput->False,
            DynamicUpdating->True], "Panel",
           StripOnInput->False,
@@ -4437,7 +4437,7 @@ Cell[BoxData[
            DynamicBox[ToBoxes[
              FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
              StandardForm],
-            ImageSizeCache->{78., {1., 9.}}],
+            ImageSizeCache->{102., {1., 12.}}],
            StripOnInput->False,
            DynamicUpdating->True], "Panel",
           StripOnInput->False,
@@ -4669,152 +4669,99 @@ Cell[BoxData[{
   3.5295879494414988`*^9}}],
 
 Cell[BoxData[
- GraphicsBox[GraphicsComplexBox[CompressedData["
-1:eJxTTMoPSmViYGAQA2IQDQQN09xfOS4psOW6HpzuAORvOADkg2UUwPwHr2Dy
-zmC+gKjHK0eu64sLbKPAfAd7IF8zpv/Q1wtg/oW9QH61yDr3h0FgPsMLIP/s
-GSCISQPxDYQ8XzmCpKt0wPwEG0+ofRpg/oQ0IB9knMYWMF/hKUz+BJgfwO/1
-yvFN4A651m4wv8ESyAc5h2s/mL8h2Quq3wbi/l4gPw0E8sD8Ah5vqLwImL/A
-DMg3BoHVYP0XEoB8W5AH/4L5DN1A/qyZQJAJVm+wFabfB8wHhx/YfQJpcHkY
-HwCtSHb8
-   "], {{{}, 
-     {Hue[0.67, 0.6, 0.6], Opacity[0.2], EdgeForm[None], 
-      GraphicsGroupBox[
-       PolygonBox[{{1, 21, 22, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 
-        8, 7, 6, 5, 4, 3, 2}}]]}, {}, {}}, {{}, {}, 
-     {Hue[0.67, 0.6, 0.6], 
-      LineBox[{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 
-       19, 20}]}}}],
+ GraphicsBox[{{}, GraphicsComplexBox[CompressedData["
+1:eJxTTMoPSmViYGAQBWIQDQQJbYdeOba+Dtwh9zfVAcj/wHL4lePZM0DAkwbi
+K+jD+EvA/IBIIH+d+8MqkTQwv6EZyAeb5AHmb1gL5Bfacl1fDOE76Bx55Ri0
+Q671dSaYXxB2BGqeDJi/oOEIinkXVh2BmtcA5jNcBfI9gNLr6sH8CcFHXznG
+9B/6qnEHzD9QC+QDbSuwfQTmf1gO5M+aCQQfIe6/BOTLgzx4DOL+P0eh9j0D
+8x9UHXvlCNLOxZ8O4gssPQa1XwPMdzh/DKpeDcwv+HkMaj8Lgg8LPwCHnYl0
+
+    "], {{{}, 
+      {Hue[0.67, 0.6, 0.6], Opacity[0.2], EdgeForm[None], 
+       GraphicsGroupBox[
+        PolygonBox[{{1, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 
+         7, 6, 5, 4, 3, 2}}]]}, {}, {}}, {{}, {}, 
+      {RGBColor[0.24720000000000014`, 0.24, 0.6], 
+       LineBox[{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+         19, 20}]}}}], {}},
   AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
-  AxesOrigin->NCache[{3527193600, 176.5}, {3.5271936*^9, 176.5}],
+  AxesOrigin->{3591648000, 176.},
   Frame->True,
-  FrameTicks->{{Automatic, Automatic}, {{{
-       NCache[3527193600, 3.5271936*^9], 
-       FormBox["\"Oct 10\"", TraditionalForm]}, {
-       NCache[3527798400, 3.5277984*^9], 
-       FormBox["\"Oct 17\"", TraditionalForm]}, {
-       NCache[3528403200, 3.5284032*^9], 
-       FormBox["\"Oct 24\"", TraditionalForm]}, {
-       NCache[3529008000, 3.529008*^9], 
-       FormBox["\"Oct 31\"", TraditionalForm]}, {
-       NCache[3529612800, 3.5296128*^9], 
-       FormBox["\"Nov 07\"", TraditionalForm]}, {
-       NCache[3527280000, 3.52728*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527366400, 3.5273664*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527452800, 3.5274528*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527539200, 3.5275392*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527625600, 3.5276256*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527712000, 3.527712*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527884800, 3.5278848*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527971200, 3.5279712*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528057600, 3.5280576*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528144000, 3.528144*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528230400, 3.5282304*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528316800, 3.5283168*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528489600, 3.5284896*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528576000, 3.528576*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528662400, 3.5286624*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528748800, 3.5287488*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528835200, 3.5288352*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528921600, 3.5289216*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3529094400, 3.5290944*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3529180800, 3.5291808*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3529267200, 3.5292672*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3529353600, 3.5293536*^9], 
-       FormBox["\"\"", TraditionalForm]}}, {{
-       NCache[3527193600, 3.5271936*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527798400, 3.5277984*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528403200, 3.5284032*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3529008000, 3.529008*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3529612800, 3.5296128*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527280000, 3.52728*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527366400, 3.5273664*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527452800, 3.5274528*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527539200, 3.5275392*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527625600, 3.5276256*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527712000, 3.527712*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527884800, 3.5278848*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3527971200, 3.5279712*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528057600, 3.5280576*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528144000, 3.528144*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528230400, 3.5282304*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528316800, 3.5283168*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528489600, 3.5284896*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528576000, 3.528576*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528662400, 3.5286624*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528748800, 3.5287488*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528835200, 3.5288352*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3528921600, 3.5289216*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3529094400, 3.5290944*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3529180800, 3.5291808*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3529267200, 3.5292672*^9], 
-       FormBox["\"\"", TraditionalForm]}, {
-       NCache[3529353600, 3.5293536*^9], 
+  FrameLabel->{None, None},
+  FrameTicks->{{Automatic, Automatic}, {{{3591907200, 
+       FormBox["\"Oct 28\"", TraditionalForm]}, {3592512000, 
+       FormBox["\"Nov 04\"", TraditionalForm]}, {3593116800, 
+       FormBox["\"Nov 11\"", TraditionalForm]}, {3593721600, 
+       FormBox["\"Nov 18\"", TraditionalForm]}, {3594326400, 
+       FormBox["\"Nov 25\"", TraditionalForm]}, {3591648000, 
+       FormBox["\"\"", TraditionalForm]}, {3591734400, 
+       FormBox["\"\"", TraditionalForm]}, {3591820800, 
+       FormBox["\"\"", TraditionalForm]}, {3591993600, 
+       FormBox["\"\"", TraditionalForm]}, {3592080000, 
+       FormBox["\"\"", TraditionalForm]}, {3592166400, 
+       FormBox["\"\"", TraditionalForm]}, {3592252800, 
+       FormBox["\"\"", TraditionalForm]}, {3592339200, 
+       FormBox["\"\"", TraditionalForm]}, {3592425600, 
+       FormBox["\"\"", TraditionalForm]}, {3592598400, 
+       FormBox["\"\"", TraditionalForm]}, {3592684800, 
+       FormBox["\"\"", TraditionalForm]}, {3592771200, 
+       FormBox["\"\"", TraditionalForm]}, {3592857600, 
+       FormBox["\"\"", TraditionalForm]}, {3592944000, 
+       FormBox["\"\"", TraditionalForm]}, {3593030400, 
+       FormBox["\"\"", TraditionalForm]}, {3593203200, 
+       FormBox["\"\"", TraditionalForm]}, {3593289600, 
+       FormBox["\"\"", TraditionalForm]}, {3593376000, 
+       FormBox["\"\"", TraditionalForm]}, {3593462400, 
+       FormBox["\"\"", TraditionalForm]}, {3593548800, 
+       FormBox["\"\"", TraditionalForm]}, {3593635200, 
+       FormBox["\"\"", TraditionalForm]}, {3593808000, 
+       FormBox["\"\"", TraditionalForm]}, {3593894400, 
+       FormBox["\"\"", TraditionalForm]}, {3593980800, 
+       FormBox["\"\"", TraditionalForm]}}, {{3591907200, 
+       FormBox["\"\"", TraditionalForm]}, {3592512000, 
+       FormBox["\"\"", TraditionalForm]}, {3593116800, 
+       FormBox["\"\"", TraditionalForm]}, {3593721600, 
+       FormBox["\"\"", TraditionalForm]}, {3594326400, 
+       FormBox["\"\"", TraditionalForm]}, {3591648000, 
+       FormBox["\"\"", TraditionalForm]}, {3591734400, 
+       FormBox["\"\"", TraditionalForm]}, {3591820800, 
+       FormBox["\"\"", TraditionalForm]}, {3591993600, 
+       FormBox["\"\"", TraditionalForm]}, {3592080000, 
+       FormBox["\"\"", TraditionalForm]}, {3592166400, 
+       FormBox["\"\"", TraditionalForm]}, {3592252800, 
+       FormBox["\"\"", TraditionalForm]}, {3592339200, 
+       FormBox["\"\"", TraditionalForm]}, {3592425600, 
+       FormBox["\"\"", TraditionalForm]}, {3592598400, 
+       FormBox["\"\"", TraditionalForm]}, {3592684800, 
+       FormBox["\"\"", TraditionalForm]}, {3592771200, 
+       FormBox["\"\"", TraditionalForm]}, {3592857600, 
+       FormBox["\"\"", TraditionalForm]}, {3592944000, 
+       FormBox["\"\"", TraditionalForm]}, {3593030400, 
+       FormBox["\"\"", TraditionalForm]}, {3593203200, 
+       FormBox["\"\"", TraditionalForm]}, {3593289600, 
+       FormBox["\"\"", TraditionalForm]}, {3593376000, 
+       FormBox["\"\"", TraditionalForm]}, {3593462400, 
+       FormBox["\"\"", TraditionalForm]}, {3593548800, 
+       FormBox["\"\"", TraditionalForm]}, {3593635200, 
+       FormBox["\"\"", TraditionalForm]}, {3593808000, 
+       FormBox["\"\"", TraditionalForm]}, {3593894400, 
+       FormBox["\"\"", TraditionalForm]}, {3593980800, 
        FormBox["\"\"", TraditionalForm]}}}},
-  GridLines->NCache[{{{3527193600, 
-       GrayLevel[0.8]}, {3527798400, 
-       GrayLevel[0.8]}, {3528403200, 
-       GrayLevel[0.8]}, {3529008000, 
-       GrayLevel[0.8]}, {3529612800, 
-       GrayLevel[0.8]}}, None}, {{{3.5271936*^9, 
-       GrayLevel[0.8]}, {3.5277984*^9, 
-       GrayLevel[0.8]}, {3.5284032*^9, 
-       GrayLevel[0.8]}, {3.529008*^9, 
-       GrayLevel[0.8]}, {3.5296128*^9, 
-       GrayLevel[0.8]}}, None}],
+  GridLines->{{{3591907200, 
+      GrayLevel[0.8]}, {3592512000, 
+      GrayLevel[0.8]}, {3593116800, 
+      GrayLevel[0.8]}, {3593721600, 
+      GrayLevel[0.8]}, {3594326400, 
+      GrayLevel[0.8]}}, None},
+  Method->{},
   PlotLabel->FormBox["\"IBM\"", TraditionalForm],
-  PlotRange->{{3.5271936*^9, 3.5293536*^9}, {176.5, 190.53}},
+  PlotRange->{{3591648000, 3.5939808*^9}, {175.91, 185.25}},
   PlotRangeClipping->True,
-  PlotRangePadding->{
-    Scaled[0.02], 
-    Scaled[0.02]},
+  PlotRangePadding->{{46656., 46656.}, {0.18680000000000008`, 
+   0.18680000000000008`}},
   Ticks->None]], "Output",
- CellChangeTimes->{3.529587870293972*^9, 3.529587950410554*^9}]
+ CellChangeTimes->{3.529587870293972*^9, 3.529587950410554*^9, 
+  3.594155770524375*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4835,9 +4782,9 @@ Cell[BoxData[
  CellChangeTimes->{{3.5295880756577177`*^9, 3.529588083446163*^9}}]
 }, Open  ]]
 },
-WindowSize->{707, 637},
-WindowMargins->{{24, Automatic}, {Automatic, 30}},
-FrontEndVersion->"8.0 for Microsoft Windows (64-bit) (October 6, 2011)",
+WindowSize->{1584, 765},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -4851,23 +4798,23 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[1235, 30, 207, 4, 47, "Text"],
+Cell[1235, 30, 207, 4, 40, "Text"],
 Cell[CellGroupData[{
-Cell[1467, 38, 1369, 31, 112, "Input"],
-Cell[2839, 71, 252478, 4199, 439, "Output"]
+Cell[1467, 38, 1369, 31, 66, "Input"],
+Cell[2839, 71, 252478, 4199, 586, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[255354, 4275, 231, 6, 31, "Input"],
-Cell[255588, 4283, 6653, 191, 194, "Output"],
-Cell[262244, 4476, 9119, 162, 272, "Output"]
+Cell[255354, 4275, 231, 6, 39, "Input"],
+Cell[255588, 4283, 6660, 191, 207, "Output"],
+Cell[262251, 4476, 9119, 162, 360, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[271400, 4643, 1109, 25, 112, "Input"],
-Cell[272512, 4670, 6304, 146, 272, "Output"]
+Cell[271407, 4643, 1109, 25, 116, "Input"],
+Cell[272519, 4670, 4790, 93, 360, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[278853, 4821, 184, 3, 31, "Input"],
-Cell[279040, 4826, 448, 8, 50, "Output"]
+Cell[277346, 4768, 184, 3, 39, "Input"],
+Cell[277533, 4773, 448, 8, 40, "Output"]
 }, Open  ]]
 }
 ]
@@ -4875,4 +4822,4 @@ Cell[279040, 4826, 448, 8, 50, "Output"]
 
 (* End of internal cache information *)
 
-(* NotebookSignature 1vTMoxw1UnlTwA1kIy18iJ20 *)
+(* NotebookSignature @v0S5To2qZWECBgPR#fENE4l *)
