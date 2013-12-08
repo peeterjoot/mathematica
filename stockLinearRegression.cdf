@@ -23,10 +23,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[      1063,         20]
-NotebookDataLength[     62663,       1259]
-NotebookOptionsPosition[     63124,       1252]
-NotebookOutlinePosition[     63467,       1267]
-CellTagsIndexPosition[     63424,       1264]
+NotebookDataLength[     60126,       1199]
+NotebookOptionsPosition[     60547,       1191]
+NotebookOutlinePosition[     60890,       1206]
+CellTagsIndexPosition[     60847,       1203]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -733,7 +733,7 @@ Cell[BoxData[
     1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`o$$], -0.5, "offset from linear fit"}, -32., 32.}, {{
        Hold[$CellContext`h$$], 117., "price horizon"}, 102., 
-      144.66666666666666`}}, Typeset`size$$ = {480., {166., 174.}}, 
+      144.66666666666666`}}, Typeset`size$$ = {1370., {2055., 15.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
     True, $CellContext`o$11994$$ = 0, $CellContext`h$11995$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
@@ -991,7 +991,7 @@ $CellContext`x, $CellContext`x]], Pattern[$CellContext`a,
          "Labeled"}, {{$CellContext`h$$, 117., "price horizon"}, 102., 
          144.66666666666666`, Appearance -> "Labeled"}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{543., {245., 252.}},
+     ImageSizeCache->{1433., {1110., 1117.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1136,81 +1136,15 @@ Cell[BoxData[
   "ssys", $CellContext`dw$$ = Dynamic[$CellContext`nw$$], $CellContext`ds$$ = 
   Dynamic[$CellContext`symbol$$], $CellContext`o$$ = -0.5, $CellContext`h$$, \
 $CellContext`do$$ = Dynamic[$CellContext`o$$], $CellContext`dh$$ = 
-  Dynamic[$CellContext`h$$], $CellContext`data$$ = {
-  "company" -> FinancialData["", "Company"], "symbol" -> "", "dMin" -> {{
-      Part[
-      "", 1], -LinearModelFit[{{
-          0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-          0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x] + 
-      Part["", 2]}, {
-      Part[
-      "Low", 1], -
-       LinearModelFit[{{
-          0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-          0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x] + 
-      Part["Low", 2]}, {
-     2013, 12 - LinearModelFit[{{
-        0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-        0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x]}}, 
-   "dMax" -> {{
-      Part[
-      "", 1], -LinearModelFit[{{
-          0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-          0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x] + 
-      Part["", 2]}, {
-      Part[
-      "High", 1], -
-       LinearModelFit[{{
-          0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-          0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x] + 
-      Part["High", 2]}, {
-     2013, 12 - LinearModelFit[{{
-        0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-        0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x]}}, 
-   "dClose" -> {{
-      Part[
-      "", 1], -LinearModelFit[{{
-          0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-          0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x] + 
-      Part["", 2]}, {
-     2013, 12 - LinearModelFit[{{
-        0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-        0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x]}}, 
-   "dZero" -> {{
-      Part["", 1], 0}, {
-      Part["Low", 1], 0}, {2013, 0}}, "min" -> 
-   FinancialData[
-    "", "Low", {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}], "max" -> 
-   FinancialData[
-    "", "High", {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}], 
-   "close" -> FinancialData[
-    "", {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}], 
-   "model" -> {{"", 
-      LinearModelFit[{{
-        0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-        0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x]}, {"", 
-      LinearModelFit[{{
-        0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-        0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x]}, {"", 
-      LinearModelFit[{{
-        0, {2013, 12, 7, -1331, 5, 33.6649227`9.279752520747596}}, {
-        0, "High"}, {0, "Low"}}, $CellContext`x, $CellContext`x]}}, 
-   "lm" -> (ReplaceAll[
-     Normal[
-      LinearModelFit[$CellContext`secondsFormData$22989, $CellContext`x, \
-$CellContext`x]], Pattern[$CellContext`a, 
-        Blank[]] + Pattern[$CellContext`b, 
-         Blank[]] $CellContext`x -> $CellContext`a + $CellContext`b #]& ), 
-   "nweeks" -> 8, "len" -> 3, "vMin" -> Min[12, 
-     Part["", 2], 
-     Part["Low", 2]], "vMax" -> Max[12, 
-     Part["", 2], 
-     Part["High", 2]]}, $CellContext`plotIf$$ = 
-  "... waiting for stock ticker symbol ...", $CellContext`vMin$$ = Min[12, 
-   Part["", 2], 
-   Part["Low", 2]], $CellContext`vMax$$ = Max[12, 
-   Part["", 2], 
-   Part["High", 2]], $CellContext`v$$}, 
+  Dynamic[$CellContext`h$$], $CellContext`data$$ = \
+$CellContext`fDataAndLinearModel[
+  "ssys", 8], $CellContext`plotIf$$ = $CellContext`plotDistAgainstLinearModel[
+   $CellContext`fDataAndLinearModel["ssys", 8], 
+   Dynamic[$CellContext`o$$], 
+   Dynamic[$CellContext`h$$]], $CellContext`vMin$$ = ReplaceAll["vMin", 
+   $CellContext`fDataAndLinearModel["ssys", 8]], $CellContext`vMax$$ = 
+  ReplaceAll["vMax", 
+   $CellContext`fDataAndLinearModel["ssys", 8]], $CellContext`v$$}, 
   TemplateBox[{TagBox[
      GridBox[{{
         TemplateBox[{"\"Number of Weeks:\"", 
@@ -1228,7 +1162,7 @@ $CellContext`x]], Pattern[$CellContext`a,
        "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Column"],
     DynamicBox[
      ToBoxes[$CellContext`plotIf$$, StandardForm], 
-     ImageSizeCache -> {390., {3., 12.}}]},
+     ImageSizeCache -> {709., {3., 12.}}]},
    "RowDefault"],
   DynamicModuleValues:>{{DownValues[$CellContext`v$$] = {HoldPattern[
          $CellContext`v$$[
@@ -1248,7 +1182,12 @@ $CellContext`do$$, $CellContext`dh$$],
        "... waiting for stock ticker symbol ..."]; Null}]], "Output",
  CellChangeTimes->{{3.59542828045988*^9, 3.5954283025791445`*^9}, 
    3.5954283336639223`*^9}]
-}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData["\n"], "Input",
+ CellChangeTimes->{{3.595501678976596*^9, 3.5955017024559393`*^9}, {
+   3.5955023346020956`*^9, 3.5955023874281173`*^9}, {3.595502432972722*^9, 
+   3.595502433271739*^9}, 3.5955034303627696`*^9}]
 },
 WindowSize->{1584, 765},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -1268,16 +1207,17 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[1485, 35, 31855, 689, 4316, "Input"],
-Cell[33343, 726, 18861, 284, 519, "Output"]
+Cell[33343, 726, 18865, 284, 2249, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[52241, 1015, 5597, 116, 966, "Input"],
-Cell[57841, 1133, 5267, 116, 84, "Output"]
-}, Open  ]]
+Cell[52245, 1015, 5597, 116, 966, "Input"],
+Cell[57845, 1133, 2459, 50, 84, "Output"]
+}, Open  ]],
+Cell[60319, 1186, 224, 3, 66, "Input"]
 }
 ]
 *)
 
 (* End of internal cache information *)
 
-(* NotebookSignature jvpScqupXipGADwY3LY@JHLv *)
+(* NotebookSignature EvDI3Lce@ST3gB1T9sA4qAEl *)
