@@ -1,0 +1,3657 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    153039,       3648]
+NotebookOptionsPosition[    152315,       3622]
+NotebookOutlinePosition[    152735,       3638]
+CellTagsIndexPosition[    152692,       3635]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+This notebook generalizes the notebook for \[OpenCurlyQuote]problem set 6, \
+problem 1\[CloseCurlyQuote], which had a Fermi energy/temperature calculation.
+
+Lookup physical constants, and element/chemical data for Potassium and Copper.\
+\>", "Text",
+ CellChangeTimes->{{3.594910972100995*^9, 3.59491100033961*^9}, {
+  3.59493698270087*^9, 3.5949370182299023`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", " ", "physicalConstants", " ", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"physicalConstants", "::", "usage"}], " ", "=", " ", 
+   "\"\<Lookup of: 1amu, \!\(\*SubscriptBox[\(m\), \(e\)]\), \[HBar], \
+\!\(\*SubscriptBox[\(k\), \(B\)]\), \!\(\*SuperscriptBox[\(e\), \
+\(-\)]\)\>\""}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"physicalConstants", " ", "=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "amu", ",", " ", "massOfElectronInGrams", ",", " ", "hbar", ",", " ", 
+       "kb", ",", " ", "chargeOfElectronInCoulombs"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"amu", " ", "=", " ", 
+       RowBox[{"WolframAlpha", "[", 
+        RowBox[{"\"\<1 amu in grams\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"\"\<Result\>\"", ",", "1"}], "}"}], ",", 
+           "\"\<ComputableData\>\""}], "}"}]}], "]"}]}], "  ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"massOfElectronInGrams", " ", "=", " ", 
+       RowBox[{"WolframAlpha", "[", 
+        RowBox[{"\"\<mass of electron in grams\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"\"\<Result\>\"", ",", "1"}], "}"}], ",", 
+           "\"\<ComputableData\>\""}], "}"}]}], "]"}]}], "  ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"chargeOfElectronInCoulombs", "  ", "=", " ", 
+       RowBox[{"WolframAlpha", "[", 
+        RowBox[{"\"\<charge of electron in Coulombs\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"\"\<Result\>\"", ",", "1"}], "}"}], ",", 
+           "\"\<ComputableData\>\""}], "}"}]}], "]"}]}], " ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"hbar", " ", "=", " ", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"Quantity", "[", " ", "\"\<hbar\>\"", " ", "]"}], " ", ";"}],
+         "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"WolframAlpha", "[", 
+        RowBox[{"\"\<hbar in erg seconds\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"\"\<Result\>\"", ",", "1"}], "}"}], ",", 
+           "\"\<ComputableData\>\""}], "}"}]}], "]"}]}], "  ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"kb", " ", "=", " ", 
+       RowBox[{"WolframAlpha", "[", 
+        RowBox[{"\"\<Boltzmann constant in ergs per kelvin\>\"", ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"\"\<Result\>\"", ",", "1"}], "}"}], ",", 
+           "\"\<ComputableData\>\""}], "}"}]}], "]"}]}], " ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+       "amu", ",", " ", "massOfElectronInGrams", ",", " ", "hbar", ",", " ", 
+        "kb", ",", " ", "chargeOfElectronInCoulombs"}], "}"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"physicalConstantLabels", " ", "=", " ", 
+    RowBox[{"{", " ", "\[IndentingNewLine]", 
+     RowBox[{
+     "\"\<1 amu\>\"", ",", " ", "\[IndentingNewLine]", 
+      "\"\<\!\(\*SubscriptBox[\(m\), \(e\)]\) (mass of electron)\>\"", ",", 
+      " ", "\[IndentingNewLine]", 
+      RowBox[{"Quantity", "[", " ", "\"\<hbar\>\"", " ", "]"}], ",", " ", 
+      "\[IndentingNewLine]", "\"\<\!\(\*SubscriptBox[\(k\), \(B\)]\)\>\"", 
+      ",", " ", "\[IndentingNewLine]", 
+      "\"\<\!\(\*SuperscriptBox[\(e\), \(-\)]\)\>\""}], "\[IndentingNewLine]",
+      "}"}]}], " ", ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"ClearAll", "[", " ", "elementData", " ", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"elementData", "::", "usage"}], " ", "=", " ", 
+   "\"\<{elementName, density, atomicWeight, numberOfFreeValenceElectrons}.  \
+Types: {string,KilogramsPerCubicMeter,AtomicMassUnits, integer}\>\""}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"elementData", "[", " ", 
+    RowBox[{"elementName_", " ", ",", " ", "zE_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"{", " ", 
+    RowBox[{"elementName", ",", " ", 
+     RowBox[{"ChemicalData", "[", " ", 
+      RowBox[{"elementName", " ", ",", " ", "\"\<Density\>\""}], " ", "]"}], 
+     " ", ",", " ", 
+     RowBox[{"ElementData", "[", " ", 
+      RowBox[{"elementName", ",", " ", "\"\<AtomicWeight\>\""}], " ", "]"}], 
+     ",", " ", "zE"}], "}"}]}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"{", " ", 
+    RowBox[{
+     RowBox[{"ChemicalData", "[", " ", 
+      RowBox[{
+      "\"\<Copper\>\"", " ", ",", " ", "\"\<Density\>\"", ",", " ", 
+       "\"\<Units\>\""}], " ", "]"}], " ", ",", " ", 
+     RowBox[{"ElementData", "[", " ", 
+      RowBox[{
+      "\"\<Copper\>\"", ",", " ", "\"\<AtomicWeight\>\"", ",", " ", 
+       "\"\<Units\>\""}], " ", "]"}]}], "}"}], "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", " ", 
+  RowBox[{"kI", ",", " ", "cuI"}], " ", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"kI", " ", "=", " ", 
+   RowBox[{"elementData", "[", " ", 
+    RowBox[{"\"\<Potassium\>\"", ",", " ", "1"}], " ", "]"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"cuI", " ", "=", " ", 
+    RowBox[{"elementData", "[", " ", 
+     RowBox[{"\"\<Copper\>\"", ",", " ", "1"}], " ", "]"}]}], " ", ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"{", 
+    RowBox[{"kI", ",", " ", "cuI"}], "}"}], "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.594901173487317*^9, 3.5949012174558315`*^9}, {
+   3.5949017116230965`*^9, 3.5949017183654823`*^9}, {3.5949017767858233`*^9, 
+   3.59490178214813*^9}, {3.594901832902033*^9, 3.5949018492049656`*^9}, {
+   3.5949019574641576`*^9, 3.5949019757342024`*^9}, {3.5949020075610228`*^9, 
+   3.5949020079530454`*^9}, {3.594902257622326*^9, 3.5949022620925813`*^9}, {
+   3.594902447346177*^9, 3.5949024861994*^9}, {3.5949025171641703`*^9, 
+   3.5949026287275515`*^9}, {3.594902724287017*^9, 3.59490287573168*^9}, {
+   3.5949029160009828`*^9, 3.594902917317058*^9}, 3.5949030531408267`*^9, {
+   3.5949036890301976`*^9, 3.594903692320386*^9}, {3.5949037598202467`*^9, 
+   3.5949038523655396`*^9}, {3.594903900358285*^9, 3.5949041627232914`*^9}, {
+   3.594904257764727*^9, 3.594904342379567*^9}, {3.594904392928458*^9, 
+   3.594904500223595*^9}, {3.59490455992301*^9, 3.594904597549162*^9}, {
+   3.594904649318123*^9, 3.594904740695349*^9}, 3.594904771910135*^9, {
+   3.594904831432539*^9, 3.594904837285874*^9}, {3.5949048730789213`*^9, 
+   3.594905133523818*^9}, {3.594908567174441*^9, 3.594908687935348*^9}, {
+   3.594908737402177*^9, 3.594908841793148*^9}, {3.594908914754321*^9, 
+   3.5949089823471875`*^9}, {3.5949090512181263`*^9, 
+   3.5949091009059687`*^9}, {3.5949097666060443`*^9, 
+   3.5949098014350367`*^9}, {3.594910196322623*^9, 3.5949101976086965`*^9}, 
+   3.594910525675461*^9, {3.594910591246211*^9, 3.5949106260342007`*^9}, {
+   3.5949107300331492`*^9, 3.5949107301091537`*^9}, {3.5949107654361744`*^9, 
+   3.594910770290452*^9}, {3.5949108492859697`*^9, 3.5949108725323*^9}, {
+   3.59491162590339*^9, 3.5949117070650325`*^9}, {3.594912135474536*^9, 
+   3.5949121626850924`*^9}, {3.594912351134871*^9, 3.5949123683868575`*^9}, {
+   3.594912408017124*^9, 3.594912412202364*^9}, {3.5949125092599154`*^9, 
+   3.5949125096899395`*^9}, {3.594933587640684*^9, 3.5949335884587307`*^9}}],
+
+Cell["\<\
+Calculation and display helper functions.\
+\>", "Text",
+ CellChangeTimes->{{3.5949110089061003`*^9, 3.594911030096312*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", " ", "tableOfPhysicalConstants", " ", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"tableOfPhysicalConstants", "=", " ", 
+    RowBox[{"Table", "[", " ", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"physicalConstantLabels", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], ",", " ", 
+        RowBox[{"physicalConstants", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", " ", 
+        RowBox[{"Length", "[", "physicalConstants", "]"}]}], "}"}]}], " ", 
+     "]"}]}], " ", ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"ClearAll", "[", " ", "fermiInfo", " ", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fermiInfo", "::", "usage"}], " ", "=", " ", 
+   "\"\<calculate Fermi energy, temperature, velocity\>\""}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fermiInfo", "[", 
+    RowBox[{"physicalConstants_", ",", "  ", "eInfo_"}], "]"}], " ", ":=", 
+   " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "amu", ",", "massOfAtom", ",", "numberDensityOfFreeElectronsInAtom", 
+       ",", "kF", ",", "massOfElectronInGrams", ",", "hbar", ",", "kb", ",", 
+       "eF", ",", " ", "tF", ",", " ", "rho", ",", "kgPerM3ToGperCM3", ",", 
+       "gramsPerCm3", ",", " ", "vF", ",", " ", 
+       "elementDensityKilogramsPerCubicMeter", ",", " ", "atomicWeightAMU", 
+       ",", " ", "elementName", ",", " ", "numberOfFreeValenceElectrons", ",",
+        " ", "chargeOfElectronInCoulombs"}], "}"}], ",", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "amu", ",", " ", "massOfElectronInGrams", ",", " ", "hbar", ",", " ", 
+         "kb", ",", " ", "chargeOfElectronInCoulombs"}], "}"}], " ", "=", " ",
+        "physicalConstants"}], " ", ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "elementName", ",", " ", "elementDensityKilogramsPerCubicMeter", ",", 
+         " ", "atomicWeightAMU", ",", " ", "numberOfFreeValenceElectrons"}], 
+        "}"}], " ", "=", " ", "eInfo"}], " ", ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"=", 
+        RowBox[{
+         RowBox[{">", " ", 
+          RowBox[{"kg", "/", 
+           RowBox[{"m", "^", "3"}]}]}], " ", ":"}]}], " ", "*)"}], " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"kgPerM3ToGperCM3", " ", "=", " ", 
+       RowBox[{"1", "/", "1000"}]}], " ", ";", "\[IndentingNewLine]", 
+      RowBox[{"gramsPerCm3", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"Quantity", "[", " ", "\"\<Grams\>\"", " ", "]"}], " ", "/", 
+        RowBox[{
+         RowBox[{"Quantity", "[", " ", "\"\<Centimeter\>\"", " ", "]"}], "^", 
+         "3"}]}]}], " ", ";", "\[IndentingNewLine]", 
+      RowBox[{"rho", " ", "=", " ", 
+       RowBox[{
+       "elementDensityKilogramsPerCubicMeter", "  ", "*", " ", 
+        "kgPerM3ToGperCM3", "  ", "gramsPerCm3"}]}], "  ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"massOfAtom", " ", "=", " ", 
+       RowBox[{"atomicWeightAMU", " ", "*", " ", "amu"}]}], "  ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"numberDensityOfFreeElectronsInAtom", " ", "=", " ", 
+       RowBox[{"numberOfFreeValenceElectrons", " ", 
+        RowBox[{"rho", " ", "/", " ", "massOfAtom"}]}]}], " ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"kF", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"3", " ", 
+          RowBox[{"Pi", "^", "2"}], " ", 
+          "numberDensityOfFreeElectronsInAtom"}], ")"}], "^", 
+        RowBox[{"(", 
+         RowBox[{"1", "/", "3"}], ")"}]}]}], "  ", ";", "\[IndentingNewLine]",
+       "\[IndentingNewLine]", 
+      RowBox[{"eF", "=", " ", 
+       RowBox[{"UnitConvert", "[", " ", 
+        RowBox[{
+         RowBox[{"UnitSimplify", "[", " ", 
+          RowBox[{
+           RowBox[{"hbar", "^", "2"}], " ", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"kF", "^", "2"}], "/", "2"}], " ", "/", " ", 
+            "massOfElectronInGrams"}]}], "  ", "]"}], ",", " ", 
+         "\"\<Erg\>\""}], " ", "]"}]}], " ", ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"tF", " ", "=", " ", 
+       RowBox[{"eF", " ", "/", " ", "kb"}]}], " ", ";", "\[IndentingNewLine]",
+       "\[IndentingNewLine]", 
+      RowBox[{"vF", " ", "=", " ", 
+       RowBox[{"UnitConvert", "[", " ", 
+        RowBox[{
+         RowBox[{"UnitSimplify", "[", " ", 
+          RowBox[{"hbar", " ", 
+           RowBox[{"kF", " ", "/", " ", "massOfElectronInGrams"}]}], " ", 
+          "]"}], ",", " ", 
+         RowBox[{"Quantity", "[", "\"\<cm/s\>\"", "]"}]}], " ", "]"}]}], " ", 
+      ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+       "rho", ",", "massOfAtom", ",", "numberDensityOfFreeElectronsInAtom", 
+        ",", "kF", ",", "eF", ",", "tF", ",", " ", "vF"}], "}"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"ClearAll", "[", " ", "resistivityCalculations", " ", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"resistivityCalculations", "::", "usage"}], " ", "=", " ", 
+   "\"\<mean free path and mean scattering time based on Fermi wave number \
+and resistivity.\>\""}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"resistivityCalculations", "[", 
+    RowBox[{"fi_", ",", " ", "physicalConstants_", ",", "resistivity_"}], 
+    "]"}], " ", ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "rho", ",", "massOfAtom", ",", "numberDensityOfFreeElectronsInAtom", 
+       ",", "kF", ",", "eF", ",", "tF", ",", " ", "vF", ",", " ", 
+       "meanFreePath", ",", " ", "meanScatteringTime"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "rho", ",", "massOfAtom", ",", "numberDensityOfFreeElectronsInAtom", 
+         ",", "kF", ",", "eF", ",", "tF", ",", " ", "vF"}], "}"}], "=", " ", 
+       "fi"}], " ", ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "amu", ",", " ", "massOfElectronInGrams", ",", " ", "hbar", ",", " ", 
+         "kb", ",", " ", "chargeOfElectronInCoulombs"}], "}"}], " ", "=", " ",
+        "physicalConstants"}], " ", ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"meanFreePath", " ", "=", " ", 
+       RowBox[{"3", " ", "hbar", " ", 
+        RowBox[{
+         RowBox[{"Pi", "^", "2"}], " ", "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"kF", "^", "2"}], "  ", 
+           RowBox[{"chargeOfElectronInCoulombs", "^", "2"}], " ", 
+           "resistivity"}], " ", ")"}]}]}]}], "  ", ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"meanScatteringTime", " ", "=", " ", 
+       RowBox[{"meanFreePath", " ", "/", " ", "vF"}]}], " ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"{", " ", 
+         RowBox[{"\"\<\[Rho], resistivity\>\"", ",", "resistivity"}], " ", 
+         "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", " ", 
+         RowBox[{
+         "\"\<\!\(\*SubscriptBox[\(l\), \(0\)]\) = 3 \[HBar] \
+\!\(\*SuperscriptBox[\(\[Pi]\), \(2\)]\)/((\!\(\*SubscriptBox[\(k\), \(F\)]\) \
+\!\(\*SuperscriptBox[\(e\), \(-\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\) \
+\[Rho]), mean free path\>\"", ",", " ", 
+          RowBox[{"UnitConvert", "[", " ", 
+           RowBox[{
+            RowBox[{"UnitSimplify", "[", " ", "meanFreePath", " ", "]"}], ",",
+             " ", 
+            RowBox[{"Quantity", "[", "\"\<cm\>\"", "]"}]}], "]"}]}], " ", 
+         "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", " ", 
+         RowBox[{
+         "\"\<\[Tau] = \!\(\*SubscriptBox[\(l\), \(0\)]\)/\!\(\*SubscriptBox[\
+\(v\), \(F\)]\), mean scattering time\>\"", ",", 
+          RowBox[{
+          "UnitSimplify", "[", " ", "meanScatteringTime", " ", "]"}]}], " ", 
+         "}"}]}], "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"ClearAll", "[", " ", "tableOfFermiInfo", " ", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"tableOfFermiInfo", "::", "usage"}], " ", "=", " ", 
+   "\"\<Take lookups and computations from fermiInfo[], and physicalConstants \
+and display them in a table.\>\""}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tableOfFermiInfo", "[", 
+   RowBox[{"fi_", ",", " ", "eInfo_"}], "]"}], " ", ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "rho", ",", "atomicWeightAMU", ",", "massOfAtom", ",", 
+      "numberDensityOfFreeElectronsInAtom", ",", "kF", ",", "eF", ",", "tF", 
+      ",", " ", "vF", ",", " ", "elementDensityKilogramsPerCubicMeter", ",", 
+      "  ", "elementName", ",", " ", "numberOfFreeValenceElectrons"}], "}"}], 
+    ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "rho", ",", "massOfAtom", ",", "numberDensityOfFreeElectronsInAtom", 
+        ",", "kF", ",", "eF", ",", "tF", ",", " ", "vF"}], "}"}], "=", " ", 
+      "fi"}], " ", ";", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "elementName", ",", " ", "elementDensityKilogramsPerCubicMeter", ",", 
+        " ", "atomicWeightAMU", ",", " ", "numberOfFreeValenceElectrons"}], 
+       "}"}], " ", "=", " ", "eInfo"}], " ", ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\"\<ElementName\>\"", ",", " ", "elementName"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", " ", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(\[Rho]\), \(m\)]\), density of element\>\"",
+          ",", " ", "rho"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<atomic mass\>\"", ",", " ", "atomicWeightAMU"}], " ", 
+        "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(Z\), \(v\)]\), the number of free valence \
+electrons\>\"", ",", " ", "numberOfFreeValenceElectrons"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<m, the mass of 1 atom = atomic mass * 1 amu\>\"", " ", ",", " ", 
+         "massOfAtom"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<n = \!\(\*SubscriptBox[\(Z\), \(v\)]\) \!\(\*SubscriptBox[\(\
+\[Rho]\), \(m\)]\)/ m, number density of free electrons\>\"", ",", " ", 
+         "numberDensityOfFreeElectronsInAtom"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(k\), \(F\)]\) = (3 \!\(\*SuperscriptBox[\(\
+\[Pi]\), \(2\)]\) n\!\(\*SuperscriptBox[\()\), \((1/3)\)]\)\>\"", ",", " ", 
+         "kF"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(E\), \(F\)]\) = \
+\!\(\*TemplateBox[{SuperscriptBox[\"\\\"\\\\!\\\\(\\\\*SubscriptBox[\\\\(k\\\\\
+), \\\\(F\\\\)]\\\\)\\\"\", \"2\"]},
+\"QuantityUnit\",
+DisplayFunction->(TooltipBox[
+StyleBox[
+RowBox[{#, \"\[InvisibleSpace]\", 
+StyleBox[
+RowBox[{\" \", 
+RowBox[{
+SuperscriptBox[\"\\\"\[HBar]\\\"\", \"2\"]}]}], \
+\"QuantityUnitTraditionalLabel\"]}], ShowStringCharacters -> False], \"Unit: \
+reduced Planck constants squared\"]& ),
+InterpretationFunction->(RowBox[{\"Quantity\", \"[\", 
+RowBox[{#, \",\", 
+SuperscriptBox[\"\\\"ReducedPlanckConstant\\\"\", \"2\"]}], \"]\"}]& )]\)/(2 \
+\!\(\*SubscriptBox[\(m\), \(e\)]\))\>\"", ",", " ", "eF"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", " ", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(T\), \(F\)]\) = \!\(\*SubscriptBox[\(E\), \
+\(F\)]\)/\!\(\*SubscriptBox[\(k\), \(B\)]\)\>\"", ",", " ", "tF"}], "}"}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"{", " ", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(v\), \(F\)]\) = \[HBar] \!\(\*SubscriptBox[\
+\(k\), \(F\)]\)/\!\(\*SubscriptBox[\(m\), \(e\)]\)\>\"", ",", " ", "vF"}], 
+        "}"}]}], "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwd0FsogwEABeBdWktLTGjCTPNCc0ktl6lRkshiitomf8tIaZNbtvK25QEv
+syiLtJaatdW2LPKAKbf9ZZkXGSkSyyW31vaA//wPp+/h1Hk4xVqDUsdiMBiF
+VKCwT2HbO4k3lUpDS/DJ+LACneXXdtjc+eqFoRdLAO6Y+NtweqCElkhUH8Ei
+VUOY7q2yKAwsPN/AX27tPfwmJmnr5at/sPF4k71P+fHm50JWf2Ua5ETy0+Gg
++DQXtr57pTCkTrZBp7+uF4pvBQQ0sD06qIj4aCVWUg9b3Iuj8NN3OQOr7N1m
+GJHY5ul9zRbt9gW5Djcylt0wJRj3Q1MyM0jvtMTuzihtu8ZHGOJp43BqjJuA
+B+ZDfphSlB3LguREjggOV5yXQZc8JYOSEU87zHQMKWGw44p2jum2QuInzwV5
+Ip2YxB/MrxJICqM1MMbi1EKHRaOCnJ4uNVzTzw7D+nCBAf4DHPAO4A==
+  "]],
+
+Cell["\<\
+Do the calculations and display the results.\
+\>", "Text",
+ CellChangeTimes->{{3.5949110711216583`*^9, 3.59491107760903*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"tableOfPhysicalConstants", " ", "//", " ", "TableForm"}], "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"Clear", "[", " ", "kInfo", " ", "]"}], "\[IndentingNewLine]", 
+      "kInfo"}], " ", "=", " ", 
+     RowBox[{"fermiInfo", "[", " ", 
+      RowBox[{"physicalConstants", ",", " ", "kI"}], " ", "]"}]}], " ", ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"tableOfFermiInfo", "[", " ", 
+      RowBox[{"kInfo", ",", " ", "kI"}], " ", "]"}], "  ", "//", " ", 
+     "TableForm"}]}], "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Clear", "[", " ", 
+    RowBox[{"cuInfo", ",", " ", "tCu", ",", " ", "meanValuesCu"}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"cuInfo", " ", "=", " ", 
+     RowBox[{"fermiInfo", "[", " ", 
+      RowBox[{"physicalConstants", ",", " ", "cuI"}], " ", "]"}]}], " ", 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tCu", " ", "=", " ", 
+     RowBox[{"tableOfFermiInfo", "[", " ", 
+      RowBox[{"cuInfo", ",", " ", "cuI"}], " ", "]"}]}], " ", ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"meanValuesCu", " ", "=", " ", 
+     RowBox[{"resistivityCalculations", "[", 
+      RowBox[{"cuInfo", ",", " ", "physicalConstants", ",", 
+       RowBox[{"Quantity", "[", " ", 
+        RowBox[{
+         RowBox[{"1.0", " ", 
+          RowBox[{"10", "^", 
+           RowBox[{"(", 
+            RowBox[{"-", "8"}], ")"}]}]}], ",", "\"\<Ohm meter\>\""}], " ", 
+        "]"}]}], " ", "]"}]}], " ", ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"PrependTo", "[", " ", 
+      RowBox[{"tCu", ",", " ", "tableOfPhysicalConstants"}], " ", "]"}], " ", 
+     ";"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"AppendTo", "[", " ", 
+      RowBox[{"tCu", ",", " ", "meanValuesCu"}], " ", "]"}], " ", ";"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Flatten", "[", " ", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "tableOfPhysicalConstants", ",", " ", "tCu", ",", " ", 
+        "meanValuesCu"}], "}"}], ",", " ", "1"}], "]"}], " ", "//", " ", 
+    "TableForm"}], "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.594910033313299*^9, 3.594910094047773*^9}, {
+   3.5949101798866825`*^9, 3.5949101842389317`*^9}, {3.5949102512807665`*^9, 
+   3.59491030328174*^9}, {3.5949105401682897`*^9, 3.5949105420943995`*^9}, {
+   3.59491066868164*^9, 3.594910668696641*^9}, {3.594910701106495*^9, 
+   3.594910711266076*^9}, {3.594911347262453*^9, 3.5949113518177133`*^9}, {
+   3.5949114832542315`*^9, 3.594911496050963*^9}, {3.5949115731243715`*^9, 
+   3.5949115770105934`*^9}, {3.594912527361951*^9, 3.5949125331842833`*^9}, {
+   3.594912661156603*^9, 3.5949126704791365`*^9}, {3.5949131359617605`*^9, 
+   3.594913139131942*^9}, {3.5949342188087845`*^9, 3.5949342278403015`*^9}, 
+   3.5949342864356527`*^9, {3.594934433811082*^9, 3.5949344934334917`*^9}, {
+   3.594934719684433*^9, 3.5949347272998686`*^9}, {3.5949348973985977`*^9, 
+   3.594934906860139*^9}, {3.59493664264542*^9, 3.594936686213912*^9}, {
+   3.5949374194998536`*^9, 3.594937468331647*^9}, {3.5949375059657993`*^9, 
+   3.594937589802594*^9}, {3.5949376205343523`*^9, 3.5949377104754963`*^9}, {
+   3.594940577261467*^9, 3.594940577874502*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"1 amu\"\>", 
+     TemplateBox[{"1.66`*^-24"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", "\"g\""}], "QuantityUnitTraditionalLabel"]}], 
+         ShowStringCharacters -> False], "Unit: grams"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", "\"Grams\""}], "]"}]& )]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(m\\), \\(e\\)]\\) (mass of electron)\"\>", 
+     TemplateBox[{"9.109000000000002`*^-28"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", "\"g\""}], "QuantityUnitTraditionalLabel"]}], 
+         ShowStringCharacters -> False], "Unit: grams"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", "\"Grams\""}], "]"}]& )]},
+    {
+     TemplateBox[{"1"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", "\"\[HBar]\""}], "QuantityUnitTraditionalLabel"]}], 
+         ShowStringCharacters -> False], "Unit: reduced Planck constants"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", "\"ReducedPlanckConstant\""}], "]"}]& )], 
+     TemplateBox[{"1.055`*^-27"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", 
+              RowBox[{"\"s\"", "\[ThinSpace]", "\"ergs\""}]}], 
+            "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False],
+         "Unit: second ergs"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", 
+           RowBox[{"\"Ergs\"", " ", "\"Seconds\""}]}], "]"}]& )]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(B\\)]\\)\"\>", 
+     TemplateBox[{"1.381`*^-16"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", 
+              
+              RowBox[{"\"ergs\"", "\[InvisibleSpace]", "\"/\"", 
+                "\[InvisibleSpace]", "\"K\""}]}], 
+            "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False],
+         "Unit: ergs per kelvin"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", 
+           FractionBox["\"Ergs\"", "\"Kelvins\""]}], "]"}]& )]},
+    {"\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(-\\)]\\)\"\>", 
+     TemplateBox[{RowBox[{"-", "1.6021766`*^-19"}]},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", "\"C\""}], "QuantityUnitTraditionalLabel"]}], 
+         ShowStringCharacters -> False], "Unit: coulombs"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", "\"Coulombs\""}], "]"}]& )]},
+    {"\<\"ElementName\"\>", "\<\"Copper\"\>"},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(\[Rho]\\), \\(m\\)]\\), density of element\
+\"\>", 
+     TemplateBox[{"8.96`4."},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", 
+              
+              RowBox[{"\"g\"", "\[InvisibleSpace]", "\"/\"", 
+                "\[InvisibleSpace]", 
+                SuperscriptBox["\"cm\"", "3"]}]}], 
+            "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False],
+         "Unit: grams per centimeter cubed"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", 
+           FractionBox["\"Grams\"", 
+            SuperscriptBox["\"Centimeters\"", "3"]]}], "]"}]& )]},
+    {"\<\"atomic mass\"\>", "63.546`5."},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(Z\\), \\(v\\)]\\), the number of free \
+valence electrons\"\>", "1"},
+    {"\<\"m, the mass of 1 atom = atomic mass * 1 amu\"\>", 
+     TemplateBox[{"1.0548636`*^-22"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", "\"g\""}], "QuantityUnitTraditionalLabel"]}], 
+         ShowStringCharacters -> False], "Unit: grams"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", "\"Grams\""}], "]"}]& )]},
+    {"\<\"n = \\!\\(\\*SubscriptBox[\\(Z\\), \\(v\\)]\\) \
+\\!\\(\\*SubscriptBox[\\(\[Rho]\\), \\(m\\)]\\)/ m, number density of free \
+electrons\"\>", 
+     TemplateBox[{"8.493989175472544`*^22"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"\"/\"", "\[InvisibleSpace]", 
+              SuperscriptBox["\"cm\"", "3"]}], 
+            "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False],
+         "Unit: per centimeters cubed"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", 
+           FractionBox["1", 
+            SuperscriptBox["\"Centimeters\"", "3"]]}], "]"}]& )]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(F\\)]\\) = (3 \
+\\!\\(\\*SuperscriptBox[\\(\[Pi]\\), \\(2\\)]\\) \
+n\\!\\(\\*SuperscriptBox[\\()\\), \\((1/3)\\)]\\)\"\>", 
+     TemplateBox[{"1.3599122976301152`*^8"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"\"/\"", "\[InvisibleSpace]", "\"cm\""}], 
+            "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False],
+         "Unit: reciprocal centimeters"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", 
+           FractionBox["1", "\"Centimeters\""]}], "]"}]& )]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(E\\), \\(F\\)]\\) = \
+\\!\\(\\*TemplateBox[{SuperscriptBox[\\\"\\\\\\\"\\\\\\\\!\\\\\\\\(\\\\\\\\*\
+SubscriptBox[\\\\\\\\(k\\\\\\\\), \\\\\\\\(F\\\\\\\\)]\\\\\\\\)\\\\\\\"\\\", \
+\\\"2\\\"]},\\n\\\"QuantityUnit\\\",\\nDisplayFunction->(TooltipBox[StyleBox[\
+RowBox[{#, \\\"\[InvisibleSpace]\\\", StyleBox[RowBox[{\\\" \\\", \
+RowBox[{SuperscriptBox[\\\"\\\\\\\"\[HBar]\\\\\\\"\\\", \\\"2\\\"]}]}], \
+\\\"QuantityUnitTraditionalLabel\\\"]}], ShowStringCharacters -> False], \
+\\\"Unit: reduced Planck constants squared\\\"]& \
+),\\nInterpretationFunction->(RowBox[{\\\"Quantity\\\", \\\"[\\\", RowBox[{#, \
+\\\",\\\", SuperscriptBox[\\\"\\\\\\\"ReducedPlanckConstant\\\\\\\"\\\", \
+\\\"2\\\"]}], \\\"]\\\"}]& )]\\)/(2 \\!\\(\\*SubscriptBox[\\(m\\), \
+\\(e\\)]\\))\"\>", 
+     TemplateBox[{"1.1298636161767507`*^-11"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", "\"ergs\""}], "QuantityUnitTraditionalLabel"]}], 
+         ShowStringCharacters -> False], "Unit: ergs"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", "\"Ergs\""}], "]"}]& )]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(T\\), \\(F\\)]\\) = \\!\\(\\*SubscriptBox[\
+\\(E\\), \\(F\\)]\\)/\\!\\(\\*SubscriptBox[\\(k\\), \\(B\\)]\\)\"\>", 
+     TemplateBox[{"81814.88893387045`"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", "\"K\""}], "QuantityUnitTraditionalLabel"]}], 
+         ShowStringCharacters -> False], "Unit: kelvins"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", "\"Kelvins\""}], "]"}]& )]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(v\\), \\(F\\)]\\) = \[HBar] \
+\\!\\(\\*SubscriptBox[\\(k\\), \\(F\\)]\\)/\\!\\(\\*SubscriptBox[\\(m\\), \
+\\(e\\)]\\)\"\>", 
+     TemplateBox[{"1.575043884070448`*^8"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", 
+              
+              RowBox[{"\"cm\"", "\[InvisibleSpace]", "\"/\"", 
+                "\[InvisibleSpace]", "\"s\""}]}], 
+            "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False],
+         "Unit: centimeters per second"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", 
+           FractionBox["\"Centimeters\"", "\"Seconds\""]}], "]"}]& )]},
+    {"\<\"\[Rho], resistivity\"\>", 
+     TemplateBox[{"1.`*^-8"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", 
+              RowBox[{"\"m\"", "\[ThinSpace]", "\"\[CapitalOmega]\""}]}], 
+            "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False],
+         "Unit: meter ohms"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", 
+           RowBox[{"\"Meters\"", " ", "\"Ohms\""}]}], "]"}]& )]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(l\\), \\(0\\)]\\) = 3 \[HBar] \
+\\!\\(\\*SuperscriptBox[\\(\[Pi]\\), \\(2\\)]\\)/((\\!\\(\\*SubscriptBox[\\(k\
+\\), \\(F\\)]\\) \\!\\(\\*SuperscriptBox[\\(e\\), \
+\\(-\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\) \[Rho]), mean free \
+path\"\>", 
+     TemplateBox[{"6.58007567797542`*^-6"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", "\"cm\""}], "QuantityUnitTraditionalLabel"]}], 
+         ShowStringCharacters -> False], "Unit: centimeters"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", "\"Centimeters\""}], "]"}]& )]},
+    {"\<\"\[Tau] = \\!\\(\\*SubscriptBox[\\(l\\), \
+\\(0\\)]\\)/\\!\\(\\*SubscriptBox[\\(v\\), \\(F\\)]\\), mean scattering \
+time\"\>", 
+     TemplateBox[{"4.177709424178247`*^-14"},
+      "QuantityUnit",
+      DisplayFunction->(TooltipBox[
+        StyleBox[
+         RowBox[{#, "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{" ", "\"s\""}], "QuantityUnitTraditionalLabel"]}], 
+         ShowStringCharacters -> False], "Unit: seconds"]& ),
+      InterpretationFunction->(RowBox[{"Quantity", "[", 
+         RowBox[{#, ",", "\"Seconds\""}], "]"}]& )]}
+   },
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}, "RowsIndexed" -> {}}],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{
+  3.5949103102881413`*^9, {3.5949103786680527`*^9, 3.594910401775374*^9}, 
+   3.594910448421042*^9, {3.5949104870652523`*^9, 3.5949104998389826`*^9}, 
+   3.594910544476536*^9, 3.594910714787277*^9, 3.5949107512963657`*^9, {
+   3.594911144943881*^9, 3.594911174842591*^9}, 3.5949113523237424`*^9, {
+   3.5949114964569864`*^9, 3.5949115422886076`*^9}, 3.5949118636509886`*^9, {
+   3.5949119115307274`*^9, 3.5949119318368883`*^9}, 3.5949125341183367`*^9, 
+   3.594912566503189*^9, 3.5949126721772337`*^9, {3.5949131224159856`*^9, 
+   3.594913139887985*^9}, {3.594913180619315*^9, 3.5949132038876457`*^9}, {
+   3.594934293687067*^9, 3.5949343007514715`*^9}, {3.594934435213162*^9, 
+   3.594934458968521*^9}, 3.594934494300542*^9, 3.5949349088412523`*^9, 
+   3.5949349432132177`*^9, {3.5949366568272314`*^9, 3.5949367163476353`*^9}, 
+   3.594937111464235*^9, 3.5949372316581097`*^9, 3.5949375947788787`*^9, 
+   3.59493762679171*^9, {3.5949377024530373`*^9, 3.594937713801687*^9}, 
+   3.5949405813407*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["atomic radius of copper", "WolframAlphaLong",
+ CellChangeTimes->{{3.5949414870385036`*^9, 3.59494149711008*^9}, {
+  3.5949424003507423`*^9, 3.59494240468899*^9}}],
+
+Cell[BoxData[
+ NamespaceBox["WolframAlphaQueryResults",
+  DynamicModuleBox[{Typeset`q$$ = "atomic radius of copper", 
+   Typeset`opts$$ = {
+   AppearanceElements -> {
+     "Warnings", "Assumptions", "Brand", "Pods", "PodMenus", "Unsuccessful", 
+      "Sources"}, Asynchronous -> All, 
+    TimeConstraint -> {30, Automatic, Automatic, Automatic}, 
+    Method -> {
+     "Formats" -> {"cell", "minput", "msound", "dataformats"}, "Server" -> 
+      "http://api.wolframalpha.com/v1/"}}, Typeset`elements$$ = {
+   "Warnings", "Assumptions", "Brand", "Pods", "PodMenus", "Unsuccessful", 
+    "Sources"}, Typeset`pod1$$ = XMLElement[
+   "pod", {"title" -> "Input interpretation", "scanner" -> "Identity", "id" -> 
+     "Input", "position" -> "100", "error" -> "false", "numsubpods" -> "1"}, {
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            TagBox[
+             FormBox[
+              TagBox[
+               GridBox[{{
+                  PaneBox[
+                   StyleBox[
+                    TagBox[
+                    GridBox[{{
+                    StyleBox[
+                    TagBox[
+                    TagBox["\"copper\"", 
+                    $CellContext`TagBoxWrapper[
+                    "Entity" -> {ElementData, "Copper"}]], Identity], {
+                    LineIndent -> 0, LineSpacing -> {0.9, 0, 1.5}}], 
+                    "\"atomic radius\""}}, GridBoxBackground -> {"Columns" -> {
+                    GrayLevel[0.949], None}, "Rows" -> {{None}}}, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    ColumnsEqual -> False, RowsEqual -> False, 
+                    GridBoxDividers -> {"Columns" -> {
+                    GrayLevel[0.84], 
+                    GrayLevel[0.84], 
+                    GrayLevel[0.84]}, "Rows" -> {{
+                    GrayLevel[0.84]}}, 
+                    "RowsIndexed" -> {
+                    1 -> GrayLevel[0.84], -1 -> GrayLevel[0.84]}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {1, 1, 1}, "Rows" -> {{0.3}}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}, 
+                    AllowScriptLevelChange -> False, BaselinePosition -> 1], 
+                    $CellContext`TagBoxWrapper["Separator" -> " | "]], 
+                    LineSpacing -> {1, 0, 1.5}, LineIndent -> 0], 
+                   BaselinePosition -> Center]}}, 
+                GridBoxItemSize -> {
+                 "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                ColumnsEqual -> False, RowsEqual -> False, 
+                GridBoxSpacings -> {"Columns" -> {{
+                    AbsoluteThickness[-1]}}, "Rows" -> {{0}}}, 
+                AllowScriptLevelChange -> False], 
+               $CellContext`TagBoxWrapper["Separator" -> " | "]], 
+              TraditionalForm], 
+             PolynomialForm[#, TraditionalOrder -> False]& ], 
+            TraditionalForm]], "Output"]}], 
+       XMLElement[
+       "dataformats", {}, {"plaintext,computabledata,formatteddata"}]}]}], 
+   Typeset`pod2$$ = XMLElement[
+   "pod", {"title" -> "Result", "scanner" -> "Data", "id" -> "Result", 
+     "position" -> "200", "error" -> "false", "numsubpods" -> "1", "primary" -> 
+     "true"}, {
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              RowBox[{
+                TagBox[
+                 TagBox[
+                  RowBox[{
+                    TagBox["135", 
+                    $CellContext`TagBoxWrapper["StringBoxes" -> "135"]], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    "\"pm\"", FontFamily -> "Helvetica", FontSize -> 
+                    Smaller]}], Identity], #& , SyntaxForm -> Dot], "  ", 
+                StyleBox[
+                 
+                 RowBox[{
+                  "\"(\"", "\[NoBreak]", "\"picometers\"", "\[NoBreak]", 
+                   "\")\""}], {
+                 FontFamily :> $CellContext`$UnitFontFamily, FontSize -> 
+                  Smaller, 
+                  GrayLevel[0.6], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+                   LineIndent -> 0}, StripOnInput -> False]}], "Unit", 
+              SyntaxForm -> Dot], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+              LineIndent -> 0, ZeroWidthTimes -> False], TraditionalForm]], 
+          "Output"]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,moutput,computabledata,formatteddata,numberdata,\
+quantitydata"}]}]}], Typeset`pod3$$ = XMLElement[
+   "pod", {"title" -> "Periodic table location", "scanner" -> "Data", "id" -> 
+     "PeriodicTableLocation:ElementData", "position" -> "300", "error" -> 
+     "false", "numsubpods" -> "1"}, {
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> True, "string" -> False}, {
+         Cell[
+          BoxData[
+           FormBox[
+            GraphicsBox[{{
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8954131, 0.9421699, 0.9124216]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{0.5, 9.55}, {1.5, 10.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"H\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {1, 10}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8408287, 0.8760175, 1.]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{17.5, 9.55}, {18.5, 10.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"He\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {18, 10}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8274798999999999, 1., 0.8913802]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{0.5, 8.55}, {1.5, 9.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Li\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {1, 9}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8089815999999999, 0.9456991, 0.7752939999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{1.5, 8.55}, {2.5, 9.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Be\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {2, 9}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9400594, 0.9470586999999999, 0.866665]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{12.5, 8.55}, {13.5, 9.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"B\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {13, 9}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{13.5, 8.55}, {14.5, 9.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"C\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {14, 9}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{14.5, 8.55}, {15.5, 9.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"N\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {15, 9}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{15.5, 8.55}, {16.5, 9.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"O\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {16, 9}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{16.5, 8.55}, {17.5, 9.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"F\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {17, 9}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8408287, 0.8760175, 1.]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{17.5, 8.55}, {18.5, 9.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ne\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {18, 9}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8274798999999999, 1., 0.8913802]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{0.5, 7.55}, {1.5, 8.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Na\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {1, 8}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8089815999999999, 0.9456991, 0.7752939999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{1.5, 7.55}, {2.5, 8.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Mg\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {2, 8}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{12.5, 7.55}, {13.5, 8.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Al\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {13, 8}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9400594, 0.9470586999999999, 0.866665]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{13.5, 7.55}, {14.5, 8.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Si\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {14, 8}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{14.5, 7.55}, {15.5, 8.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"P\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {15, 8}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{15.5, 7.55}, {16.5, 8.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"S\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {16, 8}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{16.5, 7.55}, {17.5, 8.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Cl\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {17, 8}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8408287, 0.8760175, 1.]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{17.5, 7.55}, {18.5, 8.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ar\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {18, 8}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8274798999999999, 1., 0.8913802]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{0.5, 6.55}, {1.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"K\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {1, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8089815999999999, 0.9456991, 0.7752939999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{1.5, 6.55}, {2.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ca\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {2, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{2.5, 6.55}, {3.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Sc\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {3, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{3.5, 6.55}, {4.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ti\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {4, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{4.5, 6.55}, {5.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"V\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {5, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{5.5, 6.55}, {6.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Cr\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {6, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{6.5, 6.55}, {7.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Mn\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {7, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{7.5, 6.55}, {8.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Fe\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {8, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{8.5, 6.55}, {9.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Co\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {9, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{9.5, 6.55}, {10.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ni\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {10, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[1, 0.7, 0.4]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{10.5, 6.55}, {11.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Cu\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0]}, StripOnInput -> False], 
+                  TraditionalForm]], {11, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{11.5, 6.55}, {12.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Zn\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {12, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{12.5, 6.55}, {13.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ga\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {13, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9400594, 0.9470586999999999, 0.866665]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{13.5, 6.55}, {14.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ge\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {14, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9400594, 0.9470586999999999, 0.866665]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{14.5, 6.55}, {15.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"As\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {15, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{15.5, 6.55}, {16.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Se\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {16, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{16.5, 6.55}, {17.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Br\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {17, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8408287, 0.8760175, 1.]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{17.5, 6.55}, {18.5, 7.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Kr\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {18, 7}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8274798999999999, 1., 0.8913802]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{0.5, 5.55}, {1.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Rb\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {1, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8089815999999999, 0.9456991, 0.7752939999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{1.5, 5.55}, {2.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Sr\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {2, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{2.5, 5.55}, {3.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Y\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {3, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{3.5, 5.55}, {4.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Zr\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {4, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{4.5, 5.55}, {5.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Nb\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {5, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{5.5, 5.55}, {6.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Mo\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {6, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{6.5, 5.55}, {7.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Tc\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {7, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{7.5, 5.55}, {8.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ru\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {8, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{8.5, 5.55}, {9.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Rh\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {9, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{9.5, 5.55}, {10.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Pd\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {10, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{10.5, 5.55}, {11.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ag\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {11, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{11.5, 5.55}, {12.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Cd\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {12, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{12.5, 5.55}, {13.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"In\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {13, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{13.5, 5.55}, {14.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Sn\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {14, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9400594, 0.9470586999999999, 0.866665]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{14.5, 5.55}, {15.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Sb\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {15, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9400594, 0.9470586999999999, 0.866665]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{15.5, 5.55}, {16.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Te\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {16, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{16.5, 5.55}, {17.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"I\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {17, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8408287, 0.8760175, 1.]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{17.5, 5.55}, {18.5, 6.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Xe\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {18, 6}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8274798999999999, 1., 0.8913802]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{0.5, 4.55}, {1.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Cs\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {1, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8089815999999999, 0.9456991, 0.7752939999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{1.5, 4.55}, {2.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ba\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {2, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{3.5, 4.55}, {4.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Hf\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {4, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{4.5, 4.55}, {5.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ta\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {5, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{5.5, 4.55}, {6.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"W\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {6, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{6.5, 4.55}, {7.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Re\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {7, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{7.5, 4.55}, {8.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Os\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {8, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{8.5, 4.55}, {9.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ir\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {9, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{9.5, 4.55}, {10.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Pt\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {10, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{10.5, 4.55}, {11.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Au\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {11, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{11.5, 4.55}, {12.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Hg\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {12, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{12.5, 4.55}, {13.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Tl\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {13, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{13.5, 4.55}, {14.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Pb\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {14, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{14.5, 4.55}, {15.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Bi\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {15, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9400594, 0.9470586999999999, 0.866665]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{15.5, 4.55}, {16.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Po\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {16, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{16.5, 4.55}, {17.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"At\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {17, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8408287, 0.8760175, 1.]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{17.5, 4.55}, {18.5, 5.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Rn\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {18, 5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8274798999999999, 1., 0.8913802]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{0.5, 3.55}, {1.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Fr\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {1, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8089815999999999, 0.9456991, 0.7752939999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{1.5, 3.55}, {2.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ra\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {2, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{3.5, 3.55}, {4.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Rf\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {4, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{4.5, 3.55}, {5.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Db\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {5, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{5.5, 3.55}, {6.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Sg\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {6, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{6.5, 3.55}, {7.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Bh\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {7, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{7.5, 3.55}, {8.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Hs\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {8, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{8.5, 3.55}, {9.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Mt\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {9, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{9.5, 3.55}, {10.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ds\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {10, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{10.5, 3.55}, {11.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Rg\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {11, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8968321, 0.8952529, 0.8905057000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{11.5, 3.55}, {12.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Cn\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {12, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{12.5, 3.55}, {13.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Uut\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {13, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{13.5, 3.55}, {14.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Fl\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {14, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{14.5, 3.55}, {15.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Uup\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {15, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.7634791, 0.9082033, 0.9280522]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{15.5, 3.55}, {16.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Lv\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {16, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9633463, 0.8843398, 0.9334629999999999]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{16.5, 3.55}, {17.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Uus\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {17, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.8408287, 0.8760175, 1.]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{17.5, 3.55}, {18.5, 4.55}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Uuo\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {18, 4}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{2.5, 2.05}, {3.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"La\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {3, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{3.5, 2.05}, {4.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ce\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {4, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{4.5, 2.05}, {5.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Pr\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {5, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{5.5, 2.05}, {6.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Nd\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {6, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{6.5, 2.05}, {7.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Pm\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {7, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{7.5, 2.05}, {8.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Sm\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {8, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{8.5, 2.05}, {9.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Eu\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {9, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{9.5, 2.05}, {10.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Gd\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {10, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{10.5, 2.05}, {11.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Tb\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {11, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{11.5, 2.05}, {12.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Dy\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {12, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{12.5, 2.05}, {13.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ho\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {13, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{13.5, 2.05}, {14.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Er\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {14, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{14.5, 2.05}, {15.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Tm\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {15, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{15.5, 2.05}, {16.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Yb\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {16, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.9932113, 0.9091141, 0.8601832]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{16.5, 2.05}, {17.5, 3.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Lu\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {17, 2.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{2.5, 1.05}, {3.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Ac\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {3, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{3.5, 1.05}, {4.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Th\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {4, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{4.5, 1.05}, {5.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Pa\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {5, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{5.5, 1.05}, {6.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"U\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {6, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{6.5, 1.05}, {7.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Np\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {7, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{7.5, 1.05}, {8.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Pu\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {8, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{8.5, 1.05}, {9.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Am\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {9, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{9.5, 1.05}, {10.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Cm\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {10, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{10.5, 1.05}, {11.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Bk\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {11, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{11.5, 1.05}, {12.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Cf\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {12, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{12.5, 1.05}, {13.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Es\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {13, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{13.5, 1.05}, {14.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Fm\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {14, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{14.5, 1.05}, {15.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Md\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {15, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{15.5, 1.05}, {16.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"No\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {16, 1.5}, {0, 0}]}, {
+               Opacity[0.65], 
+               FaceForm[
+                RGBColor[0.970135, 0.8920486, 0.7827832000000001]], 
+               EdgeForm[
+                GrayLevel[0.8]], 
+               RectangleBox[{16.5, 1.05}, {17.5, 2.05}], 
+               Opacity[1.], 
+               InsetBox[
+                BoxData[
+                 FormBox[
+                  StyleBox[
+                   StyleBox[
+                   "\"Lr\"", {
+                    FontSize -> Scaled[0.024], FontFamily -> 
+                    "Bitstream Vera Sans", FontWeight -> Plain}, StripOnInput -> 
+                    False], {
+                    GrayLevel[0], 
+                    GrayLevel[0.6]}, StripOnInput -> False], 
+                  TraditionalForm]], {17, 1.5}, {0, 0}]}}, ImageSize -> 320, 
+             AspectRatio -> 0.75, ImagePadding -> 0], TraditionalForm]], 
+          "Output"]}], 
+       XMLElement["dataformats", {}, {}]}], 
+     XMLElement["states", {"count" -> "1"}, {
+       XMLElement[
+       "state", {
+        "name" -> "Larger", "input" -> 
+         "PeriodicTableLocation:ElementData__Larger"}, {}]}]}], 
+   Typeset`pod4$$ = XMLElement[
+   "pod", {"title" -> "Atomic radii properties", "scanner" -> "Data", "id" -> 
+     "RadiiProperties:ElementData", "position" -> "400", "error" -> "false", 
+     "numsubpods" -> "1"}, {
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> True, "string" -> False}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              GridBox[{{
+                 TagBox[
+                  PaneBox[
+                   TemplateBox[{"\"atomic radius \"", 
+                    StyleBox[
+                    
+                    RowBox[{
+                    "\"(\"", "\[NoBreak]", "\"empirical\"", "\[NoBreak]", 
+                    "\")\""}], {FontFamily -> "Verdana", FontSize -> 10, 
+                    GrayLevel[0.5], 
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0}, StripOnInput -> False]}, "RowDefault"], 
+                   BaseStyle -> {{
+                    BaselinePosition -> Baseline, FontColor -> 
+                    GrayLevel[0.3]}, LineSpacing -> {0.9, 0, 1.5}, 
+                    LinebreakAdjustments -> {1, 10, 10000, 0, 100}, 
+                    TextAlignment -> Left}, BaselinePosition -> Baseline], 
+                  $CellContext`TagBoxWrapper["Label"]], 
+                 StyleBox[
+                  TagBox[
+                   TagBox[
+                    TagBox[
+                    RowBox[{
+                    TagBox["135", 
+                    $CellContext`TagBoxWrapper["StringBoxes" -> "135"]], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    "\"pm\"", FontFamily -> "Helvetica", FontSize -> 
+                    Smaller]}], Identity], #& , SyntaxForm -> Dot], "Unit", 
+                   SyntaxForm -> Dot], 
+                  LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                  0, ZeroWidthTimes -> False]}, {
+                 TagBox[
+                  PaneBox[
+                   TemplateBox[{"\"atomic radius \"", 
+                    StyleBox[
+                    
+                    RowBox[{
+                    "\"(\"", "\[NoBreak]", "\"calculated\"", "\[NoBreak]", 
+                    "\")\""}], {FontFamily -> "Verdana", FontSize -> 10, 
+                    GrayLevel[0.5], 
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0}, StripOnInput -> False]}, "RowDefault"], 
+                   BaseStyle -> {{
+                    BaselinePosition -> Baseline, FontColor -> 
+                    GrayLevel[0.3]}, LineSpacing -> {0.9, 0, 1.5}, 
+                    LinebreakAdjustments -> {1, 10, 10000, 0, 100}, 
+                    TextAlignment -> Left}, BaselinePosition -> Baseline], 
+                  $CellContext`TagBoxWrapper["Label"]], 
+                 StyleBox[
+                  TagBox[
+                   TagBox[
+                    TagBox[
+                    RowBox[{
+                    TagBox["145", 
+                    $CellContext`TagBoxWrapper["StringBoxes" -> "145"]], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    "\"pm\"", FontFamily -> "Helvetica", FontSize -> 
+                    Smaller]}], Identity], #& , SyntaxForm -> Dot], "Unit", 
+                   SyntaxForm -> Dot], 
+                  LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                  0, ZeroWidthTimes -> False]}, {
+                 TagBox[
+                  PaneBox[
+                   TagBox[
+                    TagBox["\"covalent radius\"", 
+                    $CellContext`TagBoxWrapper[
+                    "Property" -> {ElementData, "CovalentRadius"}]], 
+                    Identity], 
+                   BaseStyle -> {{
+                    BaselinePosition -> Baseline, FontColor -> 
+                    GrayLevel[0.3]}, LineSpacing -> {0.9, 0, 1.5}, 
+                    LinebreakAdjustments -> {1, 10, 10000, 0, 100}, 
+                    TextAlignment -> Left}, BaselinePosition -> Baseline], 
+                  $CellContext`TagBoxWrapper["Label"]], 
+                 StyleBox[
+                  TagBox[
+                   TagBox[
+                    TagBox[
+                    RowBox[{
+                    TagBox["132", 
+                    $CellContext`TagBoxWrapper["StringBoxes" -> "132"]], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    "\"pm\"", FontFamily -> "Helvetica", FontSize -> 
+                    Smaller]}], Identity], #& , SyntaxForm -> Dot], "Unit", 
+                   SyntaxForm -> Dot], 
+                  LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                  0, ZeroWidthTimes -> False]}, {
+                 TagBox[
+                  PaneBox[
+                   TagBox["\"van der Waals radius\"", Identity], 
+                   BaseStyle -> {{
+                    BaselinePosition -> Baseline, FontColor -> 
+                    GrayLevel[0.3]}, LineSpacing -> {0.9, 0, 1.5}, 
+                    LinebreakAdjustments -> {1, 10, 10000, 0, 100}, 
+                    TextAlignment -> Left}, BaselinePosition -> Baseline], 
+                  $CellContext`TagBoxWrapper["Label"]], 
+                 StyleBox[
+                  TagBox[
+                   TagBox[
+                    TagBox[
+                    RowBox[{
+                    TagBox["140", 
+                    $CellContext`TagBoxWrapper["StringBoxes" -> "140"]], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    "\"pm\"", FontFamily -> "Helvetica", FontSize -> 
+                    Smaller]}], Identity], #& , SyntaxForm -> Dot], "Unit", 
+                   SyntaxForm -> Dot], 
+                  LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                  0, ZeroWidthTimes -> False]}}, 
+               GridBoxAlignment -> {
+                "Columns" -> {Left, Right}, "Rows" -> {{Baseline}}}, 
+               AutoDelete -> False, 
+               GridBoxBackground -> {"Columns" -> {None, None}}, 
+               GridBoxFrame -> {"Columns" -> {{True}}, "Rows" -> {{True}}}, 
+               GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {"Columns" -> {{1.5}, 2}, "Rows" -> {{1}}}, 
+               FrameStyle -> GrayLevel[0.84], BaselinePosition -> Automatic, 
+               AllowScriptLevelChange -> False], "Grid"], 
+             LineSpacing -> {0.9, 0, 1.5}, LineIndent -> 0, StripOnInput -> 
+             False], TraditionalForm]], "Output"]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,computabledata,formatteddata,numberdata,quantitydata"}]}], 
+     XMLElement["infos", {"count" -> "1"}, {
+       XMLElement["info", {}, {
+         XMLElement["units", {"count" -> "1"}, {
+           XMLElement["unit", {"short" -> "pm", "long" -> "picometers"}, {}], 
+           XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+             Cell[
+              BoxData[
+               FormBox[
+                StyleBox[
+                 TagBox[
+                  GridBox[{{
+                    StyleBox[
+                    StyleBox[
+                    TagBox[
+                    RowBox[{
+                    StyleBox[
+                    "\"pm\"", FontFamily -> "Helvetica", FontSize -> 
+                    Smaller]}], Identity], 
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0, ZeroWidthTimes -> False], 10, StripOnInput -> False], 
+                    StyleBox[
+                    "\"picometers\"", FontSize -> 10, 
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0, {FontFamily :> $CellContext`$UnitFontFamily, FontSize -> 
+                    Smaller}, 
+                    GrayLevel[0.6], StripOnInput -> False]}}, 
+                   GridBoxAlignment -> {
+                    "Columns" -> {Left, Left}, "Rows" -> {{Baseline}}}, 
+                   AutoDelete -> False, 
+                   GridBoxBackground -> {"Columns" -> {{None}}}, 
+                   GridBoxFrame -> {
+                    "Columns" -> {{True}}, "Rows" -> {{True}}}, 
+                   GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                   GridBoxSpacings -> {
+                    "Columns" -> {{1.5}}, "Rows" -> {{0.5}}}, FrameStyle -> 
+                   GrayLevel[0.84], BaselinePosition -> Automatic, 
+                   AllowScriptLevelChange -> False], "Grid"], 
+                 LineSpacing -> {0.9, 0, 1.5}, LineIndent -> 0, StripOnInput -> 
+                 False], TraditionalForm]], "Output"]}]}]}]}]}], 
+   Typeset`pod5$$ = XMLElement[
+   "pod", {"title" -> "Unit conversions", "scanner" -> "Unit", "id" -> 
+     "UnitConversion", "position" -> "500", "error" -> "false", "numsubpods" -> 
+     "4"}, {
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              RowBox[{
+                TagBox[
+                 TagBox[
+                  RowBox[{
+                    TagBox["0.135", 
+                    $CellContext`TagBoxWrapper["StringBoxes" -> "0.135"]], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    "\"nm\"", FontFamily -> "Helvetica", FontSize -> 
+                    Smaller]}], Identity], #& , SyntaxForm -> Dot], "  ", 
+                StyleBox[
+                 
+                 RowBox[{
+                  "\"(\"", "\[NoBreak]", "\"nanometers\"", "\[NoBreak]", 
+                   "\")\""}], {
+                 FontFamily :> $CellContext`$UnitFontFamily, FontSize -> 
+                  Smaller, 
+                  GrayLevel[0.6], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+                   LineIndent -> 0}, StripOnInput -> False]}], "Unit", 
+              SyntaxForm -> Dot], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+              LineIndent -> 0, ZeroWidthTimes -> False], TraditionalForm]], 
+          "Output"]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,computabledata,formatteddata,numberdata,quantitydata"}]}], 
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              TagBox[
+               TagBox[
+                RowBox[{
+                  TagBox[
+                   RowBox[{"1.35", 
+                    StyleBox["\[Times]", 
+                    GrayLevel[0.5]], 
+                    SuperscriptBox["10", "-10"]}], 
+                   $CellContext`TagBoxWrapper[
+                   "StringBoxes" -> RowBox[{"1.35", "\[Times]", 
+                    SuperscriptBox["10", "-10"]}]], SyntaxForm -> CenterDot], 
+                  "\[InvisibleSpace]", " ", 
+                  StyleBox[
+                  "\"meters\"", LinebreakAdjustments -> {1, 100, 1, 0, 100}, 
+                   LineIndent -> 0, {
+                   FontFamily :> $CellContext`$UnitFontFamily, FontSize -> 
+                    Smaller}, StripOnInput -> False]}], Identity], #& , 
+               SyntaxForm -> Dot], "Unit", SyntaxForm -> Dot], 
+             LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 0, 
+             ZeroWidthTimes -> False], TraditionalForm]], "Output"]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,computabledata,formatteddata,numberdata,quantitydata"}]}], 
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              TagBox[
+               TagBox[
+                RowBox[{
+                  TagBox[
+                   RowBox[{"5.31", 
+                    StyleBox["\[Times]", 
+                    GrayLevel[0.5]], 
+                    SuperscriptBox["10", "-9"]}], 
+                   $CellContext`TagBoxWrapper[
+                   "StringBoxes" -> RowBox[{"5.31", "\[Times]", 
+                    SuperscriptBox["10", "-9"]}]], SyntaxForm -> CenterDot], 
+                  "\[InvisibleSpace]", " ", 
+                  StyleBox[
+                  "\"inches\"", LinebreakAdjustments -> {1, 100, 1, 0, 100}, 
+                   LineIndent -> 0, {
+                   FontFamily :> $CellContext`$UnitFontFamily, FontSize -> 
+                    Smaller}, StripOnInput -> False]}], Identity], #& , 
+               SyntaxForm -> Dot], "Unit", SyntaxForm -> Dot], 
+             LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 0, 
+             ZeroWidthTimes -> False], TraditionalForm]], "Output"]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,computabledata,formatteddata,numberdata,quantitydata"}]}], 
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            TagBox[
+             GridBox[{{
+                StyleBox[
+                 TagBox[
+                  RowBox[{
+                    TagBox[
+                    TagBox[
+                    RowBox[{
+                    TagBox["1.35", 
+                    $CellContext`TagBoxWrapper["StringBoxes" -> "1.35"]], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    "\"\[CapitalARing]\"", FontFamily -> "Helvetica", 
+                    FontSize -> Smaller]}], Identity], #& , SyntaxForm -> 
+                    Dot], "  ", 
+                    StyleBox[
+                    
+                    RowBox[{
+                    "\"(\"", "\[NoBreak]", "\"\[ARing]ngstr\[ODoubleDot]ms\"",
+                     "\[NoBreak]", "\")\""}], {
+                    FontFamily :> $CellContext`$UnitFontFamily, FontSize -> 
+                    Smaller, 
+                    GrayLevel[0.6], 
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0}, StripOnInput -> False]}], "Unit", SyntaxForm -> Dot], 
+                 LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 0,
+                  ZeroWidthTimes -> False]}, {
+                TemplateBox[{"\" \"", 
+                  StyleBox[
+                   
+                   RowBox[{
+                    "\"(\"", "\[NoBreak]", "\"unit officially deprecated\"", 
+                    "\[NoBreak]", "\")\""}], {
+                   FontFamily -> "Verdana", FontSize -> 10, 
+                    GrayLevel[0.5], 
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0}, StripOnInput -> False]}, "RowDefault"]}}, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+              AllowScriptLevelChange -> False, DefaultBaseStyle -> "Column", 
+              GridBoxItemSize -> {
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+              GridBoxSpacings -> {
+               "Columns" -> {{Automatic}}, "Rows" -> {{0}}}], "Column"], 
+            TraditionalForm]], "Output"]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,computabledata,formatteddata,numberdata,quantitydata"}]}]}]\
+, Typeset`aux1$$ = {True, False, {False}, True}, Typeset`aux2$$ = {
+   True, False, {False}, True}, Typeset`aux3$$ = {True, False, {False}, True},
+    Typeset`aux4$$ = {True, False, {False}, True}, Typeset`aux5$$ = {
+   True, False, {False, False, False, False}, True}, Typeset`asyncpods$$ = {},
+    Typeset`nonpods$$ = {
+    XMLElement["sources", {"count" -> "1"}, {
+      XMLElement[
+      "source", {
+       "url" -> 
+        "http://www.wolframalpha.com/sources/\
+ElementDataSourceInformationNotes.html", "text" -> "Element data"}, {}]}]}, 
+   Typeset`initdone$$ = True, Typeset`queryinfo$$ = {
+   "success" -> "true", "error" -> "false", "numpods" -> "5", "datatypes" -> 
+    "Element", "timedout" -> "", "timedoutpods" -> "", "timing" -> "1.104", 
+    "parsetiming" -> "0.315", "parsetimedout" -> "false", "recalculate" -> "",
+     "id" -> "MSPa9141f4196964i75f0h900003idf53d429bga4ce", "host" -> 
+    "http://www4a.wolframalpha.com", "server" -> "55", "related" -> 
+    "http://www4a.wolframalpha.com/api/v2/relatedQueries.jsp?id=\
+MSPa9151f4196964i75f0h900001a02ie2545314ddi&s=55", "version" -> "2.6"}, 
+   Typeset`sessioninfo$$ = {
+   "TimeZone" -> -5., 
+    "Date" -> {2013, 12, 1, 22, 6, 46.733107`9.422199519275988}, "Line" -> 
+    238, "SessionID" -> 32366802643902275031}, Typeset`showpods$$ = {1, 2, 3, 
+   4, 5}, Typeset`failedpods$$ = {}, Typeset`chosen$$ = {}, Typeset`open$$ = 
+   False, Typeset`newq$$ = "atomic radius of copper"}, 
+   DynamicBox[ToBoxes[
+     AlphaIntegration`FormatAlphaResults[
+      Dynamic[{
+       1, {Typeset`pod1$$, Typeset`pod2$$, Typeset`pod3$$, Typeset`pod4$$, 
+         Typeset`pod5$$}, {
+        Typeset`aux1$$, Typeset`aux2$$, Typeset`aux3$$, Typeset`aux4$$, 
+         Typeset`aux5$$}, Typeset`chosen$$, Typeset`open$$, 
+        Typeset`elements$$, Typeset`q$$, Typeset`opts$$, Typeset`nonpods$$, 
+        Typeset`queryinfo$$, Typeset`sessioninfo$$, Typeset`showpods$$, 
+        Typeset`failedpods$$, Typeset`newq$$}]], StandardForm],
+    ImageSizeCache->{1504., {498., 505.}},
+    TrackedSymbols:>{Typeset`showpods$$, Typeset`failedpods$$}],
+   DynamicModuleValues:>{},
+   Initialization:>If[
+     Not[Typeset`initdone$$], Null; WolframAlphaClient`Private`doAsyncUpdates[
+       Hold[{
+        Typeset`pod1$$, Typeset`pod2$$, Typeset`pod3$$, Typeset`pod4$$, 
+         Typeset`pod5$$}], Typeset`asyncpods$$, 
+       Dynamic[Typeset`failedpods$$]]; Typeset`asyncpods$$ = {}; 
+     Typeset`initdone$$ = True],
+   SynchronousInitialization->False],
+  BaseStyle->{Deployed -> True},
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True]], "Print",
+ CellMargins->{{20, 10}, {Inherited, Inherited}},
+ CellChangeTimes->{3.594942406753108*^9}]
+}, Open  ]]
+},
+WindowSize->{1583, 765},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 374, 7, 92, "Text"],
+Cell[934, 29, 7564, 160, 903, "Input"],
+Cell[8501, 191, 133, 3, 40, "Text"],
+Cell[8637, 196, 13045, 298, 1871, "Input"],
+Cell[21685, 496, 135, 3, 40, "Text"],
+Cell[CellGroupData[{
+Cell[21845, 503, 3420, 75, 378, "Input"],
+Cell[25268, 580, 11900, 262, 480, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37205, 847, 168, 2, 53, "WolframAlphaLong"],
+Cell[37376, 851, 114923, 2768, 1015, "Print"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,668 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     25842,        659]
+NotebookOptionsPosition[     25143,        630]
+NotebookOutlinePosition[     25486,        645]
+CellTagsIndexPosition[     25443,        642]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+Generate plots of melting points vs. Z for various interesting ranges of \
+elements\
+\>", "Subsection",
+ CellChangeTimes->{{3.589150663355337*^9, 3.5891506836054955`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"<<", "peeters`"}]], "Input",
+ CellChangeTimes->{3.589151448975272*^9, 3.589234718445281*^9}],
+
+Cell[BoxData["\<\"peeters`\"\>"], "Output",
+ CellChangeTimes->{3.589151449744316*^9, 3.5892316679478025`*^9, 
+  3.589234719639349*^9, 3.5892358190792336`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{
+   "e", ",", " ", "alkaliMetals", ",", " ", "nobleGases", ",", " ", 
+    "boronAndCarbon", ",", " ", "oxygenAndNitrogen", ",", " ", 
+    "transitionMetals4", ",", " ", "transitionMetals5", ",", 
+    "transitionMetals6", ",", "meltPlot", ",", " ", "period1"}], "]"}], " ", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"alkaliMetals", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+    "3", ",", " ", "11", ",", " ", "19", ",", " ", "37", ",", " ", "55"}], 
+    RowBox[{"(*", 
+     RowBox[{",", " ", "87"}], "*)"}], "}"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nobleGases", " ", "=", " ", 
+   RowBox[{"{", " ", 
+    RowBox[{"(*", 
+     RowBox[{"2", ","}], "*)"}], " ", 
+    RowBox[{
+    "10", ",", " ", "18", ",", " ", "36", ",", " ", "54", ",", " ", "86"}], 
+    " ", "}"}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"period1", " ", "=", " ", 
+   RowBox[{"Range", "[", " ", 
+    RowBox[{"5", ",", " ", "8"}], " ", "]"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"boronAndCarbon", " ", "=", " ", 
+   RowBox[{"{", " ", 
+    RowBox[{"5", ",", " ", "6"}], " ", "}"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"oxygenAndNitrogen", "  ", "=", " ", 
+   RowBox[{"{", " ", 
+    RowBox[{"7", ",", " ", "8"}], " ", "}"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"transitionMetals4", " ", "=", " ", 
+   RowBox[{"Range", "[", " ", 
+    RowBox[{"21", ",", " ", "30"}], "]"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"transitionMetals5", " ", "=", " ", 
+    RowBox[{"Range", "[", " ", 
+     RowBox[{"39", ",", " ", "48"}], " ", "]"}]}], " ", ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"transitionMetals6", " ", "=", " ", 
+     RowBox[{"Flatten", "[", " ", 
+      RowBox[{"{", 
+       RowBox[{"57", ",", " ", 
+        RowBox[{"Range", "[", " ", 
+         RowBox[{"72", ",", " ", "79"}], " ", "]"}]}], " ", "}"}], "]"}]}], 
+    " ", ";"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"transitionMetals6", " ", "=", " ", 
+    RowBox[{"Range", "[", " ", 
+     RowBox[{"57", ",", " ", "80"}], " ", "]"}]}], "  ", ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**"}],
+    "*****)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   ButtonBox[
+    RowBox[{
+     RowBox[{
+     "how", "-", "to", "-", "position", "-", "text", "-", "labels", "-", 
+      "automatically", "-", "to", "-", "not", "-", "overlap", "-", "other", 
+      "-", "graphics", "-", 
+      RowBox[{"elements", "/", 
+       RowBox[{"33064", "?", "noredirect"}]}]}], "=", 
+     RowBox[{"1", "#33064"}]}],
+    BaseStyle->"Hyperlink",
+    ButtonData->{
+      URL[
+      "http://mathematica.stackexchange.com/questions/33006/how-to-position-\
+text-labels-automatically-to-not-overlap-other-graphics-elements/33064?\
+noredirect=1#33064"], None},
+    ButtonNote->
+     "http://mathematica.stackexchange.com/questions/33006/how-to-position-\
+text-labels-automatically-to-not-overlap-other-graphics-elements/33064?\
+noredirect=1#33064"], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"positionlabel", ",", " ", "addlabels"}], "]"}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"positionlabel", "[", 
+    RowBox[{"g_Graphics", ",", 
+     RowBox[{"{", 
+      RowBox[{"label_", ",", "x_"}], "}"}]}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "p", ",", "b", ",", "bd", ",", "xi", ",", "m", ",", "ivp", ",", "sc"}], 
+      "}"}], ",", 
+     RowBox[{
+      RowBox[{"p", "=", 
+       RowBox[{"PlotRange", "[", "g", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"b", "=", 
+       RowBox[{"ImagePad", "[", 
+        RowBox[{
+         RowBox[{"ImagePad", "[", 
+          RowBox[{
+           RowBox[{"Binarize", "@", 
+            RowBox[{"Show", "[", 
+             RowBox[{"g", ",", 
+              RowBox[{"ImagePadding", "\[Rule]", "0"}]}], "]"}]}], ",", 
+           RowBox[{"-", "1"}]}], "]"}], ",", "1", ",", "Black"}], "]"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"bd", "=", 
+       RowBox[{"ImageDimensions", "[", "b", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"xi", "=", 
+       RowBox[{"bd", " ", 
+        RowBox[{"MapThread", "[", 
+         RowBox[{"Rescale", ",", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "p"}], "}"}]}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"m", "=", 
+       RowBox[{"MinFilter", "[", 
+        RowBox[{"b", ",", 
+         RowBox[{"1", "+", 
+          RowBox[{"Reverse", "[", 
+           RowBox[{
+            RowBox[{"Rasterize", "[", 
+             RowBox[{
+              RowBox[{"TraditionalForm", "@", "label"}], ",", 
+              "\"\<RasterSize\>\""}], "]"}], "/", "2"}], "]"}]}]}], "]"}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"ivp", "=", 
+       RowBox[{"ImageValuePositions", "[", 
+        RowBox[{"m", ",", "1"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"sc", "=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"ivp", "\[Equal]", 
+          RowBox[{"{", "}"}]}], ",", "x", ",", 
+         RowBox[{"Scaled", "[", 
+          RowBox[{
+           RowBox[{"First", "[", 
+            RowBox[{"Nearest", "[", 
+             RowBox[{"ivp", ",", "xi"}], "]"}], "]"}], "/", "bd"}], "]"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Graphics", "@", 
+       RowBox[{"Inset", "[", 
+        RowBox[{"label", ",", "sc", ",", "Center"}], "]"}]}]}]}], "]"}]}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"addlabels", "[", 
+    RowBox[{"g_Graphics", ",", "labels_"}], "]"}], ":=", 
+   RowBox[{"Fold", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Show", "[", 
+       RowBox[{"#1", ",", 
+        RowBox[{"positionlabel", "[", "##", "]"}]}], "]"}], "&"}], ",", "g", 
+     ",", "labels"}], "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "The", " ", "labels", " ", "must", " ", "be", " ", "supplied", " ", "as",
+       " ", "a", " ", "list", " ", "like", " ", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<label1\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{"x1", ",", "y1"}], "}"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\"\<label2\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{"x2", ",", "y2"}], "}"}]}], "}"}], ",", "..."}], "}"}], 
+       ".", 
+       RowBox[{"Here", "'"}]}], "s", " ", "an", " ", 
+      RowBox[{"example", ":", "g"}]}], "=", 
+     RowBox[{"Plot", "[", 
+      RowBox[{
+       RowBox[{"Sin", "[", "x", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "0", ",", "10"}], "}"}], ",", 
+       RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+       RowBox[{"Epilog", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"PointSize", "[", "Large", "]"}], ",", 
+          RowBox[{"Point", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"#", ",", 
+               RowBox[{"Sin", "[", "#", "]"}]}], "}"}], "&"}], "/@", 
+            RowBox[{"Range", "[", 
+             RowBox[{"0", ",", "10"}], "]"}]}], "]"}]}], "}"}]}]}], "]"}]}], 
+    ";", "\n", "\[IndentingNewLine]", 
+    RowBox[{"labels", "=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          RowBox[{"#", ",", "20"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"#", ",", 
+           RowBox[{"Sin", "[", "#", "]"}]}], "}"}]}], "}"}], "&"}], "/@", 
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", "10"}], "]"}]}]}], ";", "\n", "\[IndentingNewLine]", 
+    RowBox[{"addlabels", "[", 
+     RowBox[{"g", ",", "labels"}], "]"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**"}],
+    "*****)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"meltPlot", "[", "e_", "]"}], " ", ":=", " ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"meltingPoints", ",", " ", "symbols"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"meltingPoints", " ", "=", " ", 
+         RowBox[{"Map", "[", " ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{"#", ",", " ", 
+               RowBox[{
+                RowBox[{"ElementData", "[", 
+                 RowBox[{"#", ",", "\"\<MeltingPoint\>\""}], "]"}], " ", "+", 
+                " ", "273.2"}]}], 
+              "\[NoBreak]\[InvisibleSpace]\[ThickSpace]\[InvisibleSpace] ", 
+              "}"}], "}"}], "&"}], ",", "e"}], "]"}]}], " ", ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"symbols", " ", "=", " ", 
+         RowBox[{"Map", "[", " ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"ElementData", "[", 
+             RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], "]"}], " ", "&"}], 
+           ",", "e"}], "]"}]}], " ", ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ListPlot", "[", " ", 
+         RowBox[{"meltingPoints", ",", " ", 
+          RowBox[{"PlotMarkers", "\[Rule]", "  ", "symbols"}], ",", " ", 
+          RowBox[{"AxesLabel", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Z\>\"", ",", " ", "\"\<m.p. (K)\>\""}], "}"}]}]}], 
+         " ", 
+         RowBox[{"(*", 
+          RowBox[{",", " ", 
+           RowBox[{"PlotRange", " ", "\[Rule]", " ", "All"}]}], "*)"}], 
+         "]"}]}]}], "\[IndentingNewLine]", "]"}]}], " ", ";"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"meltPlot", "[", "#", "]"}], " ", "&"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+      "alkaliMetals", ",", " ", "nobleGases", ",", " ", "boronAndCarbon", ",",
+        " ", "oxygenAndNitrogen"}], 
+      RowBox[{"(*", 
+       RowBox[{",", " ", "transitionMetals"}], "*)"}], "}"}]}], " ", "]"}], 
+   " ", "*)"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"meltPlot", "[", "e_", "]"}], " ", ":=", " ", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"meltingPoints", ",", " ", "symbols", ",", " ", "g"}], "}"}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"meltingPoints", " ", "=", " ", 
+       RowBox[{"Map", "[", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"#", ",", " ", 
+            RowBox[{
+             RowBox[{"ElementData", "[", 
+              RowBox[{"#", ",", "\"\<MeltingPoint\>\""}], "]"}], " ", "+", 
+             " ", "273.2"}]}], 
+           "\[NoBreak]\[InvisibleSpace]\[ThickSpace]\[InvisibleSpace] ", 
+           "}"}], "&"}], ",", "e"}], "]"}]}], " ", ";", "\[IndentingNewLine]", 
+      RowBox[{"symbols", " ", "=", " ", 
+       RowBox[{"Map", "[", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"ElementData", "[", 
+               RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], "]"}], ",", " ", 
+              "15"}], "]"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"#", ",", " ", 
+              RowBox[{
+               RowBox[{"ElementData", "[", 
+                RowBox[{"#", ",", "\"\<MeltingPoint\>\""}], "]"}], " ", "+", 
+               " ", "273.2"}]}], 
+             "\[NoBreak]\[InvisibleSpace]\[ThickSpace]\[InvisibleSpace] ", 
+             "}"}]}], "}"}], " ", "&"}], ",", "e"}], "]"}]}], " ", ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"meltingPoints", " ", "=", " ", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], "}"}], " ", "&"}], "/@", " ", 
+          "symbols"}], ",", " ", "1"}], "]"}]}], " ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", "symbols", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"g", "=", " ", 
+       RowBox[{"ListLinePlot", "[", " ", 
+        RowBox[{"meltingPoints", "\[IndentingNewLine]", ",", " ", 
+         RowBox[{"AxesLabel", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Z\>\"", ",", " ", "\"\<m.p. (K)\>\""}], "}"}]}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{",", " ", 
+           RowBox[{"Frame", "\[Rule]", "True"}]}], "*)"}], 
+         "\[IndentingNewLine]", ",", 
+         RowBox[{"Epilog", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"PointSize", "[", "Large", "]"}], ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Point", "[", "#", " ", "]"}], "&"}], "/@", 
+             "meltingPoints"}]}], "}"}]}]}], "]"}]}], " ", ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", "peeters`", "*)"}], 
+      RowBox[{"addlabels", "[", 
+       RowBox[{"g", ",", "symbols"}], "]"}]}]}], "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", "]"}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"meltPlot", "[", " ", "alkaliMetals", " ", "]"}], " ", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"meltPlot", "[", " ", "nobleGases", " ", "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"meltPlot", "[", " ", "boronAndCarbon", " ", "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"meltPlot", "[", " ", "oxygenAndNitrogen", " ", "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"meltPlot", "[", " ", "period1", " ", "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"meltPlot", "[", " ", "transitionMetals4", " ", "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"meltPlot", "[", " ", "transitionMetals5", " ", "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"meltPlot", "[", " ", "transitionMetals6", " ", "]"}]}], "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.5891481145925565`*^9, 3.589148152453722*^9}, {
+   3.589148197769314*^9, 3.5891482028986073`*^9}, {3.5891484586652365`*^9, 
+   3.5891486733475156`*^9}, {3.58914882570323*^9, 3.5891489636941223`*^9}, {
+   3.58914908061681*^9, 3.5891490810798364`*^9}, {3.5891491197190466`*^9, 
+   3.5891491360869827`*^9}, {3.5891492004336634`*^9, 3.589149213527412*^9}, {
+   3.589149294833062*^9, 3.5891493164602995`*^9}, {3.589149393730719*^9, 
+   3.589149422613371*^9}, 3.5891494915793157`*^9, {3.5891496254679737`*^9, 
+   3.5891497598096576`*^9}, {3.589149826030445*^9, 3.5891499466873465`*^9}, {
+   3.589150027841988*^9, 3.5891500353804193`*^9}, 3.5892316584222574`*^9, {
+   3.5892317002746515`*^9, 3.589231851319291*^9}, {3.5892318836371393`*^9, 
+   3.5892320899159374`*^9}, {3.589232130178241*^9, 3.5892323485627317`*^9}, {
+   3.5892335971361456`*^9, 3.5892336047215796`*^9}, {3.589233680449911*^9, 
+   3.5892336916005487`*^9}, {3.5892339605629325`*^9, 3.589233975007759*^9}, {
+   3.5892340389404154`*^9, 3.5892340623737555`*^9}, {3.5892341401682053`*^9, 
+   3.58923414042622*^9}, {3.5892341763602753`*^9, 3.5892342877106447`*^9}, {
+   3.5892343204005136`*^9, 3.589234437046186*^9}, {3.58923446806896*^9, 
+   3.589234548619568*^9}, {3.5892346329093885`*^9, 3.589234639943791*^9}, {
+   3.5892348455755525`*^9, 3.5892348767293344`*^9}, {3.5892352156907215`*^9, 
+   3.589235229592517*^9}, {3.5892354024584045`*^9, 3.5892354277698517`*^9}, {
+   3.589235831323934*^9, 3.58923585851849*^9}, {3.589235906012206*^9, 
+   3.5892359149137154`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{{{{{{}, {{}, {}, 
+         {RGBColor[0.24720000000000014`, 0.24, 0.6], 
+          LineBox[{{3., 453.74}, {11., 370.91999999999996`}, {19., 336.58}, {
+           37., 312.51}, {55., 301.64}}]}}, {}}, InsetBox[
+        StyleBox["\<\"Li\"\>",
+         StripOnInput->False,
+         FontSize->15], Scaled[{0.05694444444444444, 0.9031531531531531}], 
+        Center]}, InsetBox[
+       StyleBox["\<\"Na\"\>",
+        StripOnInput->False,
+        FontSize->15], Scaled[{0.1736111111111111, 0.44819819819819817`}], 
+       Center]}, InsetBox[
+      StyleBox["\<\"K\"\>",
+       StripOnInput->False,
+       FontSize->15], Scaled[{0.3236111111111111, 0.20045045045045046`}], 
+      Center]}, InsetBox[
+     StyleBox["\<\"Rb\"\>",
+      StripOnInput->False,
+      FontSize->15], Scaled[{0.6736111111111112, 0.1463963963963964}], 
+     Center]}, InsetBox[
+    StyleBox["\<\"Cs\"\>",
+     StripOnInput->False,
+     FontSize->15], Scaled[{0.9708333333333333, 0.07882882882882883}], 
+    Center]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesLabel->{
+    FormBox["\"Z\"", TraditionalForm], 
+    FormBox["\"m.p. (K)\"", TraditionalForm]},
+  AxesOrigin->{0, 301.64},
+  Epilog->{
+    PointSize[Large], {
+     PointBox[{3, 453.74}], 
+     PointBox[{11, 370.91999999999996`}], 
+     PointBox[{19, 336.58}], 
+     PointBox[{37, 312.51}], 
+     PointBox[{55, 301.64}]}},
+  Method->{},
+  PlotRange->{{0, 55.}, {301.64, 453.74}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{1.1, 1.1}, {3.0420000000000007`, 
+   3.0420000000000007`}}]], "Output",
+ CellChangeTimes->{3.5892348692349052`*^9, 3.589235867300992*^9, 
+  3.5892359238502264`*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "SetDirectory", "[", " ", 
+   "\"\<C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\\\\\
+blogit\>\"", " ", "]"}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{"plots", ",", " ", "names"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"plots", " ", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"meltPlot", "[", " ", "alkaliMetals", " ", "]"}], " ", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"meltPlot", "[", " ", "nobleGases", " ", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"meltPlot", "[", " ", "boronAndCarbon", " ", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"meltPlot", "[", " ", "oxygenAndNitrogen", " ", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"meltPlot", "[", " ", "period1", " ", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"meltPlot", "[", " ", "transitionMetals4", " ", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"meltPlot", "[", " ", "transitionMetals5", " ", "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"meltPlot", "[", " ", "transitionMetals6", " ", "]"}]}], "}"}]}],
+   " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"names", " ", "=", " ", 
+    RowBox[{"{", " ", 
+     RowBox[{
+     "\"\<meltingPointsAlkaliMetalsFig1\>\"", ",", "\[IndentingNewLine]", 
+      "\"\<meltingPointsNobleGasesFig2\>\"", ",", 
+      "\"\<meltingPointsBoronAndCarbonFig2\>\"", ",", 
+      "\"\<meltingPointsOxygenAndNitrogenFig3\>\"", ",", 
+      "\"\<meltingPointsPeriod1Fig4\>\"", ",", 
+      "\"\<meltingPointsTransitionMetalsPeriod4Fig5\>\"", ",", 
+      "\"\<meltingPointsTransitionMetalsPeriod5Fig6\>\"", ",", 
+      "\"\<meltingPointsTransitionMetalsPeriod6Fig7\>\""}], " ", "}"}]}], " ",
+    ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", "plots", "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.589150055004542*^9, 3.5891500568916492`*^9}, {
+  3.589150092012658*^9, 3.589150176331481*^9}, {3.589150412582994*^9, 
+  3.5891504429917336`*^9}, {3.5891504870592537`*^9, 3.589150494191662*^9}, {
+  3.5891505260744853`*^9, 3.5891505602584405`*^9}, {3.589150626110207*^9, 
+  3.589150630520459*^9}, {3.5891507086219263`*^9, 3.5891507257709074`*^9}, {
+  3.589151470073479*^9, 3.5891514992571487`*^9}, {3.5891515352472067`*^9, 
+  3.5891515898193283`*^9}, {3.5892339393367186`*^9, 3.589233954499586*^9}, {
+  3.589233990656654*^9, 3.5892339913146915`*^9}, {3.5892346077669506`*^9, 
+  3.589234611737178*^9}}],
+
+Cell[BoxData["\[IndentingNewLine]"], "Input",
+ CellChangeTimes->{{3.5892319118277516`*^9, 3.5892319131908293`*^9}, 
+   3.589234622169774*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"For", "[", " ", 
+    RowBox[{
+     RowBox[{"i", " ", "=", " ", "1"}], ",", " ", 
+     RowBox[{"i", " ", "\[LessEqual]", " ", "8"}], ",", " ", 
+     RowBox[{"i", "++"}], ",", " ", 
+     RowBox[{"Export", "[", " ", 
+      RowBox[{
+       RowBox[{"names", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], ",", " ", 
+       RowBox[{"plots", "[", 
+        RowBox[{"[", "i", "]"}], " ", "]"}]}], "]"}]}], " ", "]"}], "*)"}], 
+  "\n", 
+  RowBox[{
+   RowBox[{"Map", "[", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"peeters`exportForLatex", "[", " ", 
+       RowBox[{
+        RowBox[{"names", "[", 
+         RowBox[{"[", "#", "]"}], "]"}], ",", " ", 
+        RowBox[{"plots", "[", 
+         RowBox[{"[", "#", "]"}], "]"}]}], "]"}], " ", "&"}], ",", " ", 
+     RowBox[{"Range", "[", "8", "]"}]}], " ", "]"}], " ", 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.5892346583278427`*^9, 3.589234665010225*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\
+\\\\blogit/meltingPointsAlkaliMetalsFig1.eps\"\>", 
+     ",", "\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\\\
+\\blogit/meltingPointsAlkaliMetalsFig1pn.png\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\
+\\\\blogit/meltingPointsNobleGasesFig2.eps\"\>", 
+     ",", "\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\\\
+\\blogit/meltingPointsNobleGasesFig2pn.png\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\
+\\\\blogit/meltingPointsBoronAndCarbonFig2.eps\"\>", 
+     ",", "\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\\\
+\\blogit/meltingPointsBoronAndCarbonFig2pn.png\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\
+\\\\blogit/meltingPointsOxygenAndNitrogenFig3.eps\"\>", 
+     ",", "\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\\\
+\\blogit/meltingPointsOxygenAndNitrogenFig3pn.png\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\
+\\\\blogit/meltingPointsPeriod1Fig4.eps\"\>", 
+     ",", "\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\\\
+\\blogit/meltingPointsPeriod1Fig4pn.png\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\
+\\\\blogit/meltingPointsTransitionMetalsPeriod4Fig5.eps\"\>", 
+     ",", "\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\\\
+\\blogit/meltingPointsTransitionMetalsPeriod4Fig5pn.png\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\
+\\\\blogit/meltingPointsTransitionMetalsPeriod5Fig6.eps\"\>", 
+     ",", "\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\\\
+\\blogit/meltingPointsTransitionMetalsPeriod5Fig6pn.png\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\
+\\\\blogit/meltingPointsTransitionMetalsPeriod6Fig7.eps\"\>", 
+     ",", "\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\notes\\\
+\\blogit/meltingPointsTransitionMetalsPeriod6Fig7pn.png\"\>"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.5892346702525244`*^9, 3.5892347449237957`*^9, 
+  3.589234931145447*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1584, 765},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 181, 4, 58, "Subsection"],
+Cell[CellGroupData[{
+Cell[785, 30, 116, 2, 39, "Input"],
+Cell[904, 34, 158, 2, 40, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1099, 41, 16092, 402, 1816, "Input"],
+Cell[17194, 445, 1686, 44, 334, "Output"]
+}, Open  ]],
+Cell[18895, 492, 2523, 52, 416, "Input"],
+Cell[21421, 546, 141, 2, 66, "Input"],
+Cell[CellGroupData[{
+Cell[21587, 552, 966, 27, 91, "Input"],
+Cell[22556, 581, 2559, 45, 416, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

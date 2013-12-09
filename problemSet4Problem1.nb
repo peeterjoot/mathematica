@@ -1,0 +1,775 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     31756,        766]
+NotebookOptionsPosition[     30554,        725]
+NotebookOutlinePosition[     30896,        740]
+CellTagsIndexPosition[     30853,        737]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "h", ",", "  ", "kb", ",", " ", "meter", ",", " ", "nA", ",", " ", "gram", 
+   ",", " ", "hydrogenMassInAmu", ",", " ", "gramsPerAmu", ",", " ", 
+   "eVinJoules", ",", " ", "angstrom", ",", " ", "cm"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"h", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1", ",", "\"\<PlanckConstant\>\""}], "]"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"meter", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1", ",", "\"\<Meters\>\""}], "]"}]}], "  ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"cm", " ", "=", " ", 
+   RowBox[{"0.01", " ", "meter"}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"gram", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1", ",", "\"\<Grams\>\""}], "]"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"liter", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1", ",", "\"\<Liters\>\""}], "]"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nA", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1", ",", "\"\<AvogadroNumber\>\""}], "]"}]}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{"amus", " ", "=", " ", 
+  RowBox[{"{", " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ElementData", "[", 
+     RowBox[{"\"\<Hydrogen\>\"", ",", " ", "\"\<AtomicWeight\>\""}], "]"}], 
+    " ", ",", " ", 
+    RowBox[{"ElementData", "[", 
+     RowBox[{"\"\<Helium\>\"", ",", " ", "\"\<AtomicWeight\>\""}], "]"}], " ",
+     ",", "\[IndentingNewLine]", 
+    RowBox[{"ElementData", "[", 
+     RowBox[{"\"\<Neon\>\"", ",", " ", "\"\<AtomicWeight\>\""}], "]"}]}], " ",
+    "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"hydrogenMassInAmu", " ", "=", " ", 
+   RowBox[{"amus", "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"kb", " ", "=", " ", 
+    RowBox[{"Quantity", "[", 
+     RowBox[{"1", ",", "\"\<BoltzmannConstant\>\""}], "]"}]}], " ", ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"eVinJoules", " ", "=", " ", 
+   RowBox[{"(*", 
+    RowBox[{"WolframAlpha", "[", 
+     RowBox[{"\"\<convert 1 electron volt to SI units\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<Result\>\"", ",", "1"}], "}"}], ",", 
+        "\"\<ComputableData\>\""}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1.602*^-19", ",", "\"\<Joules\>\""}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"gramsPerAmu", " ", "=", " ", 
+   RowBox[{"gram", "/", "nA"}]}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"masses", " ", "=", " ", 
+   RowBox[{"amus", " ", "gramsPerAmu"}]}], "  "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"massOfHydrogenAtom", " ", "=", " ", 
+   RowBox[{"masses", "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}], " "}], "\[IndentingNewLine]", 
+ RowBox[{"angstrom", " ", "=", " ", 
+  RowBox[{"Quantity", "[", 
+   RowBox[{"1", ",", "\"\<Angstroms\>\""}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"bohrRadius", " ", "=", " ", 
+  RowBox[{"Quantity", "[", 
+   RowBox[{"1", ",", "\"\<BohrRadius\>\""}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"hydrogenVolume", " ", "=", " ", 
+   RowBox[{"4", " ", "Pi", " ", 
+    RowBox[{
+     RowBox[{"bohrRadius", "^", "3"}], " ", "/", "3"}]}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bps", " ", "=", " ", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"WolframAlpha", "[", 
+      RowBox[{"\"\<hydrogen boiling point kelvin\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<Result\>\"", ",", "1"}], "}"}], ",", 
+         "\"\<ComputableData\>\""}], "}"}], ",", 
+       RowBox[{"PodStates", "\[Rule]", 
+        RowBox[{"{", "\"\<Result__Show details\>\"", "}"}]}]}], "]"}], 
+     "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+     RowBox[{"WolframAlpha", "[", 
+      RowBox[{"\"\<helium boiling point kelvin\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<Result\>\"", ",", "1"}], "}"}], ",", 
+         "\"\<ComputableData\>\""}], "}"}], ",", 
+       RowBox[{"PodStates", "\[Rule]", 
+        RowBox[{"{", "\"\<Result__Show details\>\"", "}"}]}]}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"WolframAlpha", "[", 
+      RowBox[{"\"\<neon boiling point kelvin\>\"", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<Result\>\"", ",", "1"}], "}"}], ",", 
+         "\"\<ComputableData\>\""}], "}"}], ",", 
+       RowBox[{"PodStates", "\[Rule]", 
+        RowBox[{"{", "\"\<Result__Show details\>\"", "}"}]}]}], "]"}]}], 
+    "}"}]}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"hydrogenBoilingPoint", " ", "=", "   ", 
+   RowBox[{"bps", "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.5704044269887147`*^9, 3.5704044833379383`*^9}, {
+   3.570404735348352*^9, 3.570404815781953*^9}, {3.5704049041030045`*^9, 
+   3.570404905895107*^9}, {3.5704049465184307`*^9, 3.5704050435769815`*^9}, {
+   3.57040549059755*^9, 3.5704055089115973`*^9}, {3.570405558488433*^9, 
+   3.570405560778564*^9}, {3.570405823556594*^9, 3.570405897320813*^9}, {
+   3.5704059417683554`*^9, 3.5704059598603897`*^9}, {3.570406071558779*^9, 
+   3.5704060738589106`*^9}, {3.5704061139962063`*^9, 
+   3.5704061408317413`*^9}, {3.570406340374154*^9, 3.5704063546449704`*^9}, {
+   3.5704063866598015`*^9, 3.5704064128512993`*^9}, {3.5704064494263916`*^9, 
+   3.5704064907157536`*^9}, {3.5704066559352036`*^9, 
+   3.5704067079521785`*^9}, {3.570407016854847*^9, 3.5704070458515053`*^9}, {
+   3.5704070776943264`*^9, 3.570407088792961*^9}, 3.5704071513175373`*^9, {
+   3.5704071843814287`*^9, 3.5704071902377634`*^9}, {3.5704072514782667`*^9, 
+   3.570407252139304*^9}, {3.5704075405177984`*^9, 3.5704075877454996`*^9}, {
+   3.5704079412257175`*^9, 3.570407983466134*^9}, {3.570408071028142*^9, 
+   3.5704080779215364`*^9}, {3.570408187141783*^9, 3.570408237322654*^9}, {
+   3.5704086341363497`*^9, 3.5704086926316957`*^9}, {3.570667721982849*^9, 
+   3.5706677376717463`*^9}, {3.5706678355533447`*^9, 
+   3.5706679495248632`*^9}, {3.5706681874894743`*^9, 3.57066819405785*^9}, {
+   3.5706682265127068`*^9, 3.5706683785154004`*^9}, {3.5706685458529716`*^9, 
+   3.570668549757195*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"1"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", 
+          SubscriptBox[
+           StyleBox["\"N\"", Italic, StripOnInput -> False], 
+           StyleBox["\"A\"", Italic, StripOnInput -> False]]}], 
+        "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+    "Unit: Avogadro numbers"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"AvogadroNumber\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.5706685510782704`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1.00794`6.", ",", "4.002602`7.", ",", "20.1791`6."}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.5706685511082726`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"1.602`*^-19"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"J\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: joules"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Joules\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.570668551141274*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"1.660538921032189950616054329928118`7.047357180783782*^-24"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"g\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: grams"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Grams\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.570668551168276*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TemplateBox[{"1.673723600065185538823945801307747`5.962705363626098*^-24"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", "\"g\""}], "QuantityUnitTraditionalLabel"]}], 
+       ShowStringCharacters -> False], "Unit: grams"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", "\"Grams\""}], "]"}]& )], ",", 
+   TemplateBox[{"6.646476406401285560715720293078943`6.722003412593806*^-24"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", "\"g\""}], "QuantityUnitTraditionalLabel"]}], 
+       ShowStringCharacters -> False], "Unit: grams"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", "\"Grams\""}], "]"}]& )], ",", 
+   TemplateBox[{"3.3508180941400664232476421929052477`5.962705363626098*^-23"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", "\"g\""}], "QuantityUnitTraditionalLabel"]}], 
+       ShowStringCharacters -> False], "Unit: grams"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", "\"Grams\""}], "]"}]& )]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.570668551195277*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"1.673723600065185538823945801307747`5.962705363626098*^-24"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"g\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: grams"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Grams\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.5706685512242785`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"1"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"\[CapitalARing]\""}], 
+        "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+    "Unit: \[ARing]ngstr\[ODoubleDot]ms"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Angstroms\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.5706685512552805`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"1"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", 
+          SubscriptBox[
+           StyleBox["\"a\"", Italic, StripOnInput -> False], "0"]}], 
+        "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+    "Unit: Bohr radii"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"BohrRadius\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.5706685512882824`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{FractionBox[
+    RowBox[{"4", " ", "\[Pi]"}], "3"]},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", 
+          RowBox[{
+            SubsuperscriptBox[
+             StyleBox["\"a\"", Italic, StripOnInput -> False], "0", "3"]}]}], 
+        "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+    "Unit: Bohr radii cubed"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", 
+       SuperscriptBox["\"BohrRadius\"", "3"]}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.5706685513212843`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TemplateBox[{"20.28`"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", "\"K\""}], "QuantityUnitTraditionalLabel"]}], 
+       ShowStringCharacters -> False], "Unit: kelvins"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", "\"Kelvins\""}], "]"}]& )], ",", 
+   TemplateBox[{"4.22`"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", "\"K\""}], "QuantityUnitTraditionalLabel"]}], 
+       ShowStringCharacters -> False], "Unit: kelvins"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", "\"Kelvins\""}], "]"}]& )], ",", 
+   TemplateBox[{"27.07`"},
+    "QuantityUnit",
+    DisplayFunction->(TooltipBox[
+      StyleBox[
+       RowBox[{#, "\[InvisibleSpace]", 
+         StyleBox[
+          RowBox[{" ", "\"K\""}], "QuantityUnitTraditionalLabel"]}], 
+       ShowStringCharacters -> False], "Unit: kelvins"]& ),
+    InterpretationFunction->(RowBox[{"Quantity", "[", 
+       RowBox[{#, ",", "\"Kelvins\""}], "]"}]& )]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.570668555298512*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"20.28`"},
+  "QuantityUnit",
+  DisplayFunction->(TooltipBox[
+    StyleBox[
+     RowBox[{#, "\[InvisibleSpace]", 
+       StyleBox[
+        RowBox[{" ", "\"K\""}], "QuantityUnitTraditionalLabel"]}], 
+     ShowStringCharacters -> False], "Unit: kelvins"]& ),
+  InterpretationFunction->(RowBox[{"Quantity", "[", 
+     RowBox[{#, ",", "\"Kelvins\""}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.570408656881651*^9}, 3.5704087334320297`*^9, 
+   3.570667461429946*^9, 3.5706679756773596`*^9, 3.5706683800044856`*^9, 
+   3.570668555331514*^9}],
+
+Cell["", "Output",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{
+  3.5704044847790203`*^9, 3.5704048205202236`*^9, {3.570404977723215*^9, 
+   3.570405000785534*^9}, 3.5704059641006327`*^9, 3.5704060757480183`*^9, 
+   3.5704063559620457`*^9, 3.5704064138293557`*^9, 3.5704064547486963`*^9, 
+   3.5704064916148047`*^9, 3.5704067182187653`*^9, {3.570407031514685*^9, 
+   3.570407047571604*^9}, 3.570407095806362*^9, 3.5704071910518103`*^9, 
+   3.570407253311371*^9, 3.570407611910882*^9, 3.570407999995079*^9, {
+   3.570408642896851*^9, 3.5704086612969036`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"s", ",", " ", "emin"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"s", "[", 
+    RowBox[{"n_", ",", " ", "v_", ",", " ", "m_", ",", " ", "e_"}], "]"}], 
+   " ", "=", " ", 
+   RowBox[{"n", " ", "kb", "  ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Log", "[", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"v", "/", "n"}], ")"}], " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"4", " ", "Pi", " ", "m", " ", 
+           RowBox[{"e", "/", 
+            RowBox[{"(", 
+             RowBox[{"3", " ", "n", " ", 
+              RowBox[{"h", "^", "2"}]}], ")"}]}]}], ")"}], "^", 
+         RowBox[{"(", 
+          RowBox[{"3", "/", "2"}], ")"}]}]}], "]"}], " ", "+", " ", 
+      RowBox[{"5", "/", "2"}]}], ")"}]}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"emin", "[", 
+   RowBox[{"n_", ",", " ", "v_", ",", " ", "m_"}], "]"}], " ", "=", " ", 
+  RowBox[{"Solve", "[", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"s", "[", 
+      RowBox[{"n", ",", " ", "v", ",", "m", ",", "e"}], "]"}], " ", 
+     "\[Equal]", " ", "0"}], ",", " ", "e"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"emin", "[", 
+  RowBox[{"nA", ",", " ", 
+   RowBox[{"cm", "^", "3"}], ",", "massOfHydrogenAtom"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"emin", "[", 
+   RowBox[{"1", ",", " ", "hydrogenVolume", ",", "massOfHydrogenAtom"}], 
+   "]"}], " "}]}], "Input",
+ CellChangeTimes->{{3.570407594702898*^9, 3.5704076016702967`*^9}, {
+  3.570407633696128*^9, 3.570407660396655*^9}, {3.5704080064274473`*^9, 
+  3.57040801591599*^9}, {3.5704081740140324`*^9, 3.5704082021396413`*^9}, {
+  3.5704082508734283`*^9, 3.5704082606999903`*^9}, {3.5704086262298975`*^9, 
+  3.5704086283280177`*^9}, {3.570408722471402*^9, 3.5704087312279034`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"e", "\[Rule]", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["n", 
+       "1.66666666666666666666666666666666666666`8.46783483423576"], " ", 
+      RowBox[{"(", 
+       TemplateBox[{"1.9796993342199707558389742739`5.725109871795768*^-68"},
+        "QuantityUnit",
+        DisplayFunction->(TooltipBox[
+          StyleBox[
+           RowBox[{#, 
+             StyleBox[
+              RowBox[{
+                SuperscriptBox["\"kg\"", "2"], "\[InvisibleSpace]", 
+                SuperscriptBox["\"m\"", "4"], "\[NegativeMediumSpace]", 
+                "\"/\"", "\[InvisibleSpace]", 
+                SuperscriptBox["\"s\"", "2"]}], 
+              "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> 
+           False], "Unit: kilogram squared meters to the fourth per second \
+squared"]& ),
+        InterpretationFunction->(RowBox[{"Quantity", "[", 
+           RowBox[{#, ",", 
+             FractionBox[
+              RowBox[{
+                SuperscriptBox["\"Kilograms\"", "2"], " ", 
+                SuperscriptBox["\"Meters\"", "4"]}], 
+              SuperscriptBox["\"Seconds\"", "2"]]}], "]"}]& )], ")"}]}], 
+     RowBox[{"m", " ", 
+      SuperscriptBox["v", 
+       "0.66666666666666666666666666666666666666`8.342896097627461"]}]]}], 
+   "}"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.5704072656580777`*^9, {3.570407649677042*^9, 3.570407661915742*^9}, {
+   3.5704080079525347`*^9, 3.5704080169750504`*^9}, {3.570408256038724*^9, 
+   3.57040826173805*^9}, 3.5704087408244524`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"e", "\[Rule]", 
+    TemplateBox[{"1.1828113878198693`*^-34"},
+     "QuantityUnit",
+     DisplayFunction->(TooltipBox[
+       StyleBox[
+        RowBox[{#, 
+          StyleBox[
+           RowBox[{
+             SubsuperscriptBox[
+              StyleBox["\"N\"", Italic, StripOnInput -> False], 
+              StyleBox["\"A\"", Italic, StripOnInput -> False], 
+              "1.66666666666666666666666666666666666666`8.46783483423576"], 
+             "\[InvisibleSpace]", "\"g\"", "\[ThinSpace]", 
+             SuperscriptBox[
+             "\"m\"", 
+              "2.00000000000000000000000000000000000001`8.342896097627461"], 
+             "\[NegativeMediumSpace]", "\"/\"", "\[InvisibleSpace]", 
+             SuperscriptBox["\"s\"", "2"]}], 
+           "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+       "Unit: Avogadro number to the \
+1.66666666666666666666666666666666666666`8.46783483423576 gram meters to the \
+2.00000000000000000000000000000000000001`8.342896097627461 per second \
+squared"]& ),
+     InterpretationFunction->(RowBox[{"Quantity", "[", 
+        RowBox[{#, ",", 
+          FractionBox[
+           RowBox[{
+             SuperscriptBox[
+             "\"AvogadroNumber\"", 
+              "1.66666666666666666666666666666666666666`8.46783483423576"], 
+             " ", "\"Grams\"", " ", 
+             SuperscriptBox[
+             "\"Meters\"", 
+              "2.00000000000000000000000000000000000001`8.342896097627461"]}], 
+           SuperscriptBox["\"Seconds\"", "2"]]}], "]"}]& )]}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.5704072656580777`*^9, {3.570407649677042*^9, 3.570407661915742*^9}, {
+   3.5704080079525347`*^9, 3.5704080169750504`*^9}, {3.570408256038724*^9, 
+   3.57040826173805*^9}, 3.570408741523492*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"e", "\[Rule]", 
+    TemplateBox[{"0.58047727958785225743072906930627331643`5.442204452320756"},
+     "QuantityUnit",
+     DisplayFunction->(TooltipBox[
+       StyleBox[
+        RowBox[{#, 
+          StyleBox[
+           RowBox[{"\"kg\"", "\[ThinSpace]", 
+             SubsuperscriptBox[
+              StyleBox["\"a\"", Italic, StripOnInput -> False], "0", 
+              "2.00000000000000000000000000000000000001`8.342896097627461"], 
+             "\[NegativeMediumSpace]", "\"/\"", "\[InvisibleSpace]", 
+             SuperscriptBox["\"s\"", "2"]}], 
+           "QuantityUnitTraditionalLabel"]}], ShowStringCharacters -> False], 
+       "Unit: kilogram Bohr radii to the \
+2.00000000000000000000000000000000000001`8.342896097627461 per second \
+squared"]& ),
+     InterpretationFunction->(RowBox[{"Quantity", "[", 
+        RowBox[{#, ",", 
+          FractionBox[
+           RowBox[{
+             SuperscriptBox[
+             "\"BohrRadius\"", 
+              "2.00000000000000000000000000000000000001`8.342896097627461"], 
+             " ", "\"Kilograms\""}], 
+           SuperscriptBox["\"Seconds\"", "2"]]}], "]"}]& )]}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.5704072656580777`*^9, {3.570407649677042*^9, 3.570407661915742*^9}, {
+   3.5704080079525347`*^9, 3.5704080169750504`*^9}, {3.570408256038724*^9, 
+   3.57040826173805*^9}, 3.570408742098525*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  TemplateBox[{"0.58047727958785225743072906930627331643`5.442204452320756"},
+   "QuantityUnit",
+   DisplayFunction->(TooltipBox[
+     StyleBox[
+      RowBox[{#, 
+        StyleBox[
+         RowBox[{"\"kg\"", "\[ThinSpace]", 
+           SubsuperscriptBox[
+            StyleBox["\"a\"", Italic, StripOnInput -> False], "0", 
+            "2.00000000000000000000000000000000000001`8.342896097627461"], 
+           "\[NegativeMediumSpace]", "\"/\"", "\[InvisibleSpace]", 
+           SuperscriptBox["\"s\"", "2"]}], "QuantityUnitTraditionalLabel"]}], 
+      ShowStringCharacters -> False], 
+     "Unit: kilogram Bohr radii to the \
+2.00000000000000000000000000000000000001`8.342896097627461 per second \
+squared"]& ),
+   InterpretationFunction->(RowBox[{"Quantity", "[", 
+      RowBox[{#, ",", 
+        FractionBox[
+         RowBox[{
+           SuperscriptBox[
+           "\"BohrRadius\"", 
+            "2.00000000000000000000000000000000000001`8.342896097627461"], 
+           " ", "\"Kilograms\""}], 
+         SuperscriptBox["\"Seconds\"", "2"]]}], "]"}]& )], " ", "/", " ", 
+  "eVinJoules", " "}]], "Input",
+ CellChangeTimes->{
+  3.5704072033785152`*^9, {3.5704073158719497`*^9, 3.570407331144823*^9}, {
+   3.5704076910164065`*^9, 3.5704077094814625`*^9}, 3.5704087544382305`*^9}],
+
+Cell[BoxData["0.010146703734081091`"], "Output",
+ CellChangeTimes->{3.570407710398515*^9, 3.570408755911315*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Table", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", " ", "liter"}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"10", "^", "23"}], ")"}]}], " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", 
+         RowBox[{"2", " ", "Pi", " ", 
+          RowBox[{"masses", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], " ", "kb", " ", 
+          RowBox[{"bps", "[", 
+           RowBox[{"[", "i", "]"}], "]"}]}], "]"}], "/", "h"}], ")"}], "^", 
+      "3"}]}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", " ", "1", ",", " ", "3"}], "}"}]}], "]"}], 
+  " "}]], "Input",
+ CellChangeTimes->{{3.57066841452446*^9, 3.5706684455982375`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "173.6817529423472`", ",", "130.4615504525054`", ",", 
+   "23993.042289430705`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.5706679636656723`*^9, 3.570667981907716*^9}, 
+   3.570668449753475*^9, 3.5706685714614363`*^9}]
+}, Open  ]]
+},
+WindowSize->{707, 637},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 6594, 152, 832, "Input"],
+Cell[7176, 176, 1194, 24, 31, "Output"],
+Cell[8373, 202, 753, 13, 31, "Output"],
+Cell[9129, 217, 1036, 20, 31, "Output"],
+Cell[10168, 239, 1081, 20, 31, "Output"],
+Cell[11252, 261, 2029, 42, 33, "Output"],
+Cell[13284, 305, 1083, 20, 31, "Output"],
+Cell[14370, 327, 1075, 21, 31, "Output"],
+Cell[15448, 350, 1127, 23, 31, "Output"],
+Cell[16578, 375, 1244, 26, 46, "Output"],
+Cell[17825, 403, 1883, 42, 31, "Output"],
+Cell[19711, 447, 1033, 20, 31, "Output"],
+Cell[20747, 469, 583, 10, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21367, 484, 1834, 46, 112, "Input"],
+Cell[23204, 532, 1556, 37, 53, "Output"],
+Cell[24763, 571, 1828, 42, 33, "Output"],
+Cell[26594, 615, 1425, 33, 33, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28056, 653, 1301, 30, 54, "Input"],
+Cell[29360, 685, 112, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29509, 691, 766, 23, 72, "Input"],
+Cell[30278, 716, 260, 6, 31, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
