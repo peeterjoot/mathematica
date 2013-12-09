@@ -1,0 +1,4872 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    186076,       4863]
+NotebookOptionsPosition[    184645,       4808]
+NotebookOutlinePosition[    184988,       4823]
+CellTagsIndexPosition[    184945,       4820]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Export helper function import.", "Subsection",
+ CellChangeTimes->{{3.591193089424795*^9, 3.5911931039976287`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"<<", "peeters`"}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"peeters`setGitDir", "[", " ", "\"\<phy487/figures\>\"", " ", "]"}],
+   " "}]}], "Input",
+ CellChangeTimes->{{3.5911389596722693`*^9, 3.591138975017147*^9}}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\\
+notes\\\\phy487\\\\figures\"\>"], "Output",
+ CellChangeTimes->{
+  3.591012524741843*^9, 3.5910131668645706`*^9, 3.5910443616621532`*^9, 
+   3.591049442470759*^9, 3.591110212209618*^9, 3.5911381113227463`*^9, {
+   3.5911389681887565`*^9, 3.591138975682185*^9}, 3.5911411873916874`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Global variables and functions (closed)\
+\>", "Subsection",
+ CellChangeTimes->{{3.591192770943579*^9, 3.591192776486896*^9}, {
+  3.5911930679455667`*^9, 3.5911930766620655`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Clear", "[", "debyeTemperatures", "]"}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   ButtonBox[
+    RowBox[{
+    "bulk", "-", "initialization", "-", "of", "-", "associative", "-", 
+     "array", "-", "hash", "-", "implemented", "-", "with", "-", "function", 
+     "-", "pattern"}],
+    BaseStyle->"Hyperlink",
+    ButtonData->{
+      URL[
+      "http://mathematica.stackexchange.com/questions/34193/bulk-\
+initialization-of-associative-array-hash-implemented-with-function-pattern/\
+34195#34195"], None},
+    ButtonNote->
+     "http://mathematica.stackexchange.com/questions/34193/bulk-\
+initialization-of-associative-array-hash-implemented-with-function-pattern/\
+34195#34195"], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"debyeTemperatures", "=", 
+    RowBox[{"Dispatch", "[", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"IBach", " ", "and", " ", "Luth", " ", "4", "th", " ", 
+        RowBox[{"ed", "."}]}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"\"\<KCl\>\"", "\[Rule]", "235"}], ",", 
+       RowBox[{"\"\<NaCl\>\"", "\[Rule]", "321"}], ",", 
+       RowBox[{"\"\<LiCl\>\"", "\[Rule]", "422"}], ",", 
+       RowBox[{"\"\<LiF\>\"", "\[Rule]", "732"}], ",", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"data", " ", 
+         RowBox[{"from", ":", " ", 
+          ButtonBox[
+           RowBox[{
+            RowBox[{"http", ":"}], "//", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"www", ".", "knowledgedoor", ".", "com"}], "/", "2"}], 
+              "/", "elements_handbook"}], "/", 
+             RowBox[{"debye_temperature", ".", "html"}]}]}],
+           BaseStyle->"Hyperlink",
+           ButtonData->{
+             URL[
+             "http://www.knowledgedoor.com/2/elements_handbook/debye_\
+temperature.html"], None},
+           
+           ButtonNote->
+            "http://www.knowledgedoor.com/2/elements_handbook/debye_\
+temperature.html"]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"\"\<Aluminum\>\"", "\[Rule]", "433"}], ",", 
+       RowBox[{"\"\<Americium\>\"", "\[Rule]", "121"}], ",", 
+       RowBox[{"\"\<Antimony\>\"", "\[Rule]", "220"}], ",", 
+       RowBox[{"\"\<Argon\>\"", "\[Rule]", "92.0"}], ",", 
+       RowBox[{"\"\<Arsenic\>\"", "\[Rule]", "282"}], ",", 
+       RowBox[{"\"\<Barium\>\"", "\[Rule]", "111"}], ",", 
+       RowBox[{"\"\<Beryllium\>\"", "\[Rule]", "1481"}], ",", 
+       RowBox[{"\"\<Bismuth\>\"", "\[Rule]", "120"}], ",", 
+       RowBox[{"\"\<Boron\>\"", "\[Rule]", "1480"}], ",", 
+       RowBox[{"\"\<Cadmium\>\"", "\[Rule]", "210"}], ",", 
+       RowBox[{"\"\<Calcium\>\"", "\[Rule]", "229"}], ",", 
+       RowBox[{"\"\<Carbon\>\"", "\[Rule]", "2230"}], ",", 
+       RowBox[{"\"\<Carbon-diamond\>\"", "\[Rule]", "2230"}], ",", 
+       RowBox[{"\"\<Carbon-graphite\>\"", "\[Rule]", "413"}], ",", 
+       RowBox[{"\"\<Cerium\>\"", "\[Rule]", "179"}], ",", 
+       RowBox[{"\"\<Cesium\>\"", "\[Rule]", "40.5"}], ",", 
+       RowBox[{"\"\<Chromium\>\"", "\[Rule]", "606"}], ",", 
+       RowBox[{"\"\<Cobalt\>\"", "\[Rule]", "460"}], ",", 
+       RowBox[{"\"\<Copper\>\"", "\[Rule]", "347"}], ",", 
+       RowBox[{"\"\<Curium\>\"", "\[Rule]", "123"}], ",", 
+       RowBox[{"\"\<Dysprosium\>\"", "\[Rule]", "183"}], ",", 
+       RowBox[{"\"\<Erbium\>\"", "\[Rule]", "188"}], ",", 
+       RowBox[{"\"\<Europium\>\"", "\[Rule]", "118"}], ",", 
+       RowBox[{"\"\<Francium\>\"", "\[Rule]", "39"}], ",", 
+       RowBox[{"\"\<Gadolinium\>\"", "\[Rule]", "182"}], ",", 
+       RowBox[{"\"\<Gallium\>\"", "\[Rule]", "325"}], ",", 
+       RowBox[{"\"\<Germanium\>\"", "\[Rule]", "373"}], ",", 
+       RowBox[{"\"\<Gold\>\"", "\[Rule]", "162.3"}], ",", 
+       RowBox[{"\"\<Hafnium\>\"", "\[Rule]", "252"}], ",", 
+       RowBox[{"\"\<Holmium\>\"", "\[Rule]", "190"}], ",", 
+       RowBox[{"\"\<Hydrogen\>\"", "\[Rule]", "122"}], ",", 
+       RowBox[{"\"\<Indium\>\"", "\[Rule]", "112"}], ",", 
+       RowBox[{"\"\<Iodine\>\"", "\[Rule]", "109"}], ",", 
+       RowBox[{"\"\<Iridium\>\"", "\[Rule]", "420"}], ",", 
+       RowBox[{"\"\<Iron\>\"", "\[Rule]", "477"}], ",", 
+       RowBox[{"\"\<Krypton\>\"", "\[Rule]", "71.9"}], ",", 
+       RowBox[{"\"\<Lanthanum\>\"", "\[Rule]", "150"}], ",", 
+       RowBox[{"\"\<Lead\>\"", "\[Rule]", "105"}], ",", 
+       RowBox[{"\"\<Lithium\>\"", "\[Rule]", "344"}], ",", 
+       RowBox[{"\"\<Lutetium\>\"", "\[Rule]", "183"}], ",", 
+       RowBox[{"\"\<Magnesium\>\"", "\[Rule]", "403"}], ",", 
+       RowBox[{"\"\<Manganese\>\"", "\[Rule]", "409"}], ",", 
+       RowBox[{"\"\<Mercury\>\"", "\[Rule]", "72"}], ",", 
+       RowBox[{"\"\<Molybdenum\>\"", "\[Rule]", "423"}], ",", 
+       RowBox[{"\"\<Neodymium\>\"", "\[Rule]", "163"}], ",", 
+       RowBox[{"\"\<Neon\>\"", "\[Rule]", "74.6"}], ",", 
+       RowBox[{"\"\<Neptunium\>\"", "\[Rule]", "259"}], ",", 
+       RowBox[{"\"\<Nickel\>\"", "\[Rule]", "477"}], ",", 
+       RowBox[{"\"\<Niobium\>\"", "\[Rule]", "276"}], ",", 
+       RowBox[{"\"\<Osmium\>\"", "\[Rule]", "467"}], ",", 
+       RowBox[{"\"\<Palladium\>\"", "\[Rule]", "271"}], ",", 
+       RowBox[{"\"\<Platinum\>\"", "\[Rule]", "237"}], ",", 
+       RowBox[{"\"\<Plutonium\>\"", "\[Rule]", "206"}], ",", 
+       RowBox[{"\"\<Potassium\>\"", "\[Rule]", "91.1"}], ",", 
+       RowBox[{"\"\<Praseodymium\>\"", "\[Rule]", "152"}], ",", 
+       RowBox[{"\"\<Protactinium\>\"", "\[Rule]", "185"}], ",", 
+       RowBox[{"\"\<Radium\>\"", "\[Rule]", "89"}], ",", 
+       RowBox[{"\"\<Rhenium\>\"", "\[Rule]", "416"}], ",", 
+       RowBox[{"\"\<Rhodium\>\"", "\[Rule]", "512"}], ",", 
+       RowBox[{"\"\<Rubidium\>\"", "\[Rule]", "56.5"}], ",", 
+       RowBox[{"\"\<Ruthenium\>\"", "\[Rule]", "555"}], ",", 
+       RowBox[{"\"\<Samarium\>\"", "\[Rule]", "169"}], ",", 
+       RowBox[{"\"\<Scandium\>\"", "\[Rule]", "346"}], ",", 
+       RowBox[{"\"\<Selenium\>\"", "\[Rule]", "152.5"}], ",", 
+       RowBox[{"\"\<Silicon\>\"", "\[Rule]", "645"}], ",", 
+       RowBox[{"\"\<Silver\>\"", "\[Rule]", "227.3"}], ",", 
+       RowBox[{"\"\<Sodium\>\"", "\[Rule]", "156.5"}], ",", 
+       RowBox[{"\"\<Strontium\>\"", "\[Rule]", "147"}], ",", 
+       RowBox[{"\"\<Tantalum\>\"", "\[Rule]", "246"}], ",", 
+       RowBox[{"\"\<Technetium\>\"", "\[Rule]", "454"}], ",", 
+       RowBox[{"\"\<Tellurium\>\"", "\[Rule]", "152"}], ",", 
+       RowBox[{"\"\<Terbium\>\"", "\[Rule]", "176"}], ",", 
+       RowBox[{"\"\<Thallium\>\"", "\[Rule]", "78.5"}], ",", 
+       RowBox[{"\"\<Thorium\>\"", "\[Rule]", "160"}], ",", 
+       RowBox[{"\"\<Thulium\>\"", "\[Rule]", "200"}], ",", 
+       RowBox[{"\"\<Tin\>\"", "\[Rule]", "199"}], ",", 
+       RowBox[{"\"\<Titanium\>\"", "\[Rule]", "420"}], ",", 
+       RowBox[{"\"\<Tungsten\>\"", "\[Rule]", "383"}], ",", 
+       RowBox[{"\"\<Uranium\>\"", "\[Rule]", "248"}], ",", 
+       RowBox[{"\"\<Vanadium\>\"", "\[Rule]", "399"}], ",", 
+       RowBox[{"\"\<Xenon\>\"", "\[Rule]", "64.0"}], ",", 
+       RowBox[{"\"\<Ytterbium\>\"", "\[Rule]", "118"}], ",", 
+       RowBox[{"\"\<Yttrium\>\"", "\[Rule]", "248"}], ",", 
+       RowBox[{"\"\<Zinc\>\"", "\[Rule]", "329"}], ",", 
+       RowBox[{"\"\<Zirconium\>\"", "\[Rule]", "290"}], ",", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"\"\<Actinium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Astatine\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Berkelium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Bohrium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Bromine\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Californium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Chlorine\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Copernicium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Darmstadtium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Dubnium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Einsteinium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Fermium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Fluorine\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Hassium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Helium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Lawrencium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Meitnerium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Mendelevium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Nitrogen\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Nobelium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Oxygen\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Phosphorus\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Polonium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Promethium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Radon\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Roentgenium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Rutherfordium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Seaborgium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Sulfur\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Ununhexium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Ununoctium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Ununpentium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Ununquadium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Ununseptium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}], ",", 
+       RowBox[{"\"\<Ununtrium\>\"", "\[Rule]", 
+        RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}]}], 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{",", 
+        RowBox[{"_", "\[Rule]", " ", 
+         RowBox[{"Missing", "[", "\"\<NotAvailable\>\"", "]"}]}]}], "*)"}], 
+      "\[IndentingNewLine]", "}"}], " ", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{"Clear", "[", " ", "debyeElementKeys", " ", "]"}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"debyeElementKeys", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Aluminum\>\"", ",", "\"\<Americium\>\"", ",", "\"\<Antimony\>\"", 
+      ",", "\"\<Argon\>\"", ",", "\"\<Arsenic\>\"", ",", "\"\<Barium\>\"", 
+      ",", "\"\<Beryllium\>\"", ",", "\"\<Bismuth\>\"", ",", "\"\<Boron\>\"", 
+      ",", "\"\<Cadmium\>\"", ",", "\"\<Calcium\>\"", ",", "\"\<Carbon\>\"", 
+      ",", "\"\<Cerium\>\"", ",", "\"\<Cesium\>\"", ",", "\"\<Chromium\>\"", 
+      ",", "\"\<Cobalt\>\"", ",", "\"\<Copper\>\"", ",", "\"\<Curium\>\"", 
+      ",", "\"\<Dysprosium\>\"", ",", "\"\<Erbium\>\"", ",", 
+      "\"\<Europium\>\"", ",", "\"\<Francium\>\"", ",", "\"\<Gadolinium\>\"", 
+      ",", "\"\<Gallium\>\"", ",", "\"\<Germanium\>\"", ",", "\"\<Gold\>\"", 
+      ",", "\"\<Hafnium\>\"", ",", "\"\<Holmium\>\"", ",", "\"\<Hydrogen\>\"",
+       ",", "\"\<Indium\>\"", ",", "\"\<Iodine\>\"", ",", "\"\<Iridium\>\"", 
+      ",", "\"\<Iron\>\"", ",", "\"\<Krypton\>\"", ",", "\"\<Lanthanum\>\"", 
+      ",", "\"\<Lead\>\"", ",", "\"\<Lithium\>\"", ",", "\"\<Lutetium\>\"", 
+      ",", "\"\<Magnesium\>\"", ",", "\"\<Manganese\>\"", ",", 
+      "\"\<Mercury\>\"", ",", "\"\<Molybdenum\>\"", ",", "\"\<Neodymium\>\"", 
+      ",", "\"\<Neon\>\"", ",", "\"\<Neptunium\>\"", ",", "\"\<Nickel\>\"", 
+      ",", "\"\<Niobium\>\"", ",", "\"\<Osmium\>\"", ",", "\"\<Palladium\>\"",
+       ",", "\"\<Platinum\>\"", ",", "\"\<Plutonium\>\"", ",", 
+      "\"\<Potassium\>\"", ",", "\"\<Praseodymium\>\"", ",", 
+      "\"\<Protactinium\>\"", ",", "\"\<Radium\>\"", ",", "\"\<Rhenium\>\"", 
+      ",", "\"\<Rhodium\>\"", ",", "\"\<Rubidium\>\"", ",", 
+      "\"\<Ruthenium\>\"", ",", "\"\<Samarium\>\"", ",", "\"\<Scandium\>\"", 
+      ",", "\"\<Selenium\>\"", ",", "\"\<Silicon\>\"", ",", "\"\<Silver\>\"", 
+      ",", "\"\<Sodium\>\"", ",", "\"\<Strontium\>\"", ",", 
+      "\"\<Tantalum\>\"", ",", "\"\<Technetium\>\"", ",", "\"\<Tellurium\>\"",
+       ",", "\"\<Terbium\>\"", ",", "\"\<Thallium\>\"", ",", 
+      "\"\<Thorium\>\"", ",", "\"\<Thulium\>\"", ",", "\"\<Tin\>\"", ",", 
+      "\"\<Titanium\>\"", ",", "\"\<Tungsten\>\"", ",", "\"\<Uranium\>\"", 
+      ",", "\"\<Vanadium\>\"", ",", "\"\<Xenon\>\"", ",", "\"\<Ytterbium\>\"",
+       ",", "\"\<Yttrium\>\"", ",", "\"\<Zinc\>\"", ",", 
+      "\"\<Zirconium\>\""}], "}"}]}], " ", ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", "debyeTemperature", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"debyeTemperature", "[", "s_", "]"}], " ", ":=", " ", 
+    RowBox[{"s", "/.", " ", "debyeTemperatures"}]}], " ", ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", "debyePlot", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"debyePlot", "[", "e_", "]"}], " ", ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "points", ",", " ", "symbols", ",", " ", "g", ",", " ", 
+        "interestingMins", ",", " ", "interestingMaxes"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"interestingMaxes", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ElementData", "[", 
+           RowBox[{"#", ",", "\"\<AtomicNumber\>\""}], "]"}], " ", "&"}], "/@",
+          " ", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<C\>\"", ",", " ", "\"\<Si\>\"", ",", " ", "\"\<Cr\>\"", ",", 
+           " ", "\"\<Ru\>\"", ",", " ", "\"\<Os\>\"", ",", " ", 
+           "\"\<Np\>\""}], "}"}]}]}], " ", ";", "\[IndentingNewLine]", 
+       RowBox[{"interestingMins", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ElementData", "[", 
+           RowBox[{"#", ",", "\"\<AtomicNumber\>\""}], "]"}], " ", "&"}], "/@",
+          " ", 
+         RowBox[{"{", " ", 
+          RowBox[{
+          "\"\<H\>\"", ",", " ", "\"\<Ne\>\"", ",", " ", "\"\<K\>\"", ",", 
+           " ", "\"\<Rb\>\"", ",", " ", "\"\<In\>\"", ",", " ", "\"\<Cs\>\"", 
+           ",", " ", "\"\<Eu\>\"", ",", " ", "\"\<Yb\>\"", ",", " ", 
+           "\"\<Hg\>\"", ",", " ", "\"\<Fr\>\""}], "}"}]}]}], " ", ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"symbols", " ", "=", " ", 
+        RowBox[{"Map", "[", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{
+               RowBox[{"ElementData", "[", 
+                RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], "]"}], ",", " ", 
+               "15"}], "]"}], ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"#", ",", " ", 
+               RowBox[{"debyeTemperature", "[", 
+                RowBox[{"ElementData", "[", 
+                 RowBox[{"#", ",", " ", "\"\<StandardName\>\""}], "]"}], 
+                "]"}]}], 
+              "\[NoBreak]\[InvisibleSpace]\[ThickSpace]\[InvisibleSpace] ", 
+              "}"}]}], "}"}], " ", "&"}], ",", "e"}], "]"}]}], " ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"points", " ", "=", " ", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"#", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "}"}], " ", "&"}], "/@", " ", 
+           "symbols"}], ",", " ", "1"}], "]"}]}], " ", ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", "symbols", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"g", "=", " ", 
+        RowBox[{"ListLinePlot", "[", " ", 
+         RowBox[{"points", "\[IndentingNewLine]", ",", " ", 
+          RowBox[{"AxesLabel", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Z\>\"", ",", " ", "\"\<Debye temp (K)\>\""}], 
+            "}"}]}], "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{",", " ", 
+            RowBox[{"Frame", "\[Rule]", "True"}]}], "*)"}], 
+          "\[IndentingNewLine]", ",", 
+          RowBox[{"Epilog", "\[Rule]", 
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{"(*", 
+             RowBox[{
+              RowBox[{"PointSize", "[", "Large", "]"}], ","}], "*)"}], " ", 
+            RowBox[{"(*", " ", 
+             RowBox[{
+              RowBox[{
+              "good", " ", "for", " ", "Mathematica", " ", "display"}], ",", 
+              " ", 
+              RowBox[{
+              "but", " ", "not", " ", "when", " ", "saved", " ", "for", " ", 
+               "use", " ", "in", " ", "latex"}]}], " ", "*)"}], 
+            "\[IndentingNewLine]", 
+            RowBox[{"(*", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"Point", "[", "#", " ", "]"}], "&"}], "/@", 
+               "points"}], ","}], "*)"}], " ", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"orbi", "[", "#", "]"}], " ", "&"}], "/@", " ", 
+              "points"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"(*", " ", 
+              RowBox[{
+               RowBox[{
+               "Style", " ", "15", " ", "modification", " ", "of", " ", 
+                "text", " ", "also", " ", "good", " ", "for", " ", 
+                "Mathematica", " ", "display"}], ",", " ", 
+               RowBox[{"but", " ", "not", " ", "for", " ", 
+                RowBox[{"generated", " ", ".", "eps"}]}]}], " ", "*)"}], 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Text", "[", " ", 
+                RowBox[{
+                 RowBox[{"ElementData", "[", 
+                  RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], "]"}], 
+                 RowBox[{"(*", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{",", " ", "15"}], "]"}], "*)"}], ",", " ", 
+                 RowBox[{"{", 
+                  RowBox[{"#", ",", " ", 
+                   RowBox[{"75", " ", "+", " ", 
+                    RowBox[{"debyeTemperature", "[", 
+                    RowBox[{"ElementData", "[", 
+                    RowBox[{"#", ",", " ", "\"\<StandardName\>\""}], "]"}], 
+                    "]"}]}]}], "}"}]}], "]"}], " ", "&"}], "/@", " ", 
+              "interestingMaxes"}], ",", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Text", "[", " ", 
+                RowBox[{
+                 RowBox[{"ElementData", "[", 
+                  RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], "]"}], 
+                 RowBox[{"(*", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{",", " ", "15"}], "]"}], "*)"}], ",", "  ", 
+                 RowBox[{"{", 
+                  RowBox[{"#", ",", " ", 
+                   RowBox[{
+                    RowBox[{"-", "75"}], " ", "+", 
+                    RowBox[{"debyeTemperature", "[", 
+                    RowBox[{"ElementData", "[", 
+                    RowBox[{"#", ",", " ", "\"\<StandardName\>\""}], "]"}], 
+                    "]"}]}]}], "}"}]}], "]"}], " ", "&"}], "/@", " ", 
+              "interestingMins"}]}], "\[IndentingNewLine]", "}"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PlotRange", " ", "\[Rule]", " ", 
+           RowBox[{"{", 
+            RowBox[{"Full", ",", " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "100"}], ",", " ", "2500"}], "}"}]}], "}"}]}]}], 
+         "]"}]}], " ", ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "g"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}], " ", 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", "orbitalColors", "]"}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"orbitalColors", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"{", " ", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"#", "\[Rule]", " ", 
+           RowBox[{"Darker", "[", "Yellow", "]"}]}], " ", 
+          RowBox[{"(*", "s", "*)"}], "}"}], "&"}], "/@", 
+        RowBox[{"{", 
+         RowBox[{
+         "1", ",", " ", "2", ",", " ", "3", ",", " ", "4", ",", " ", "11", 
+          ",", " ", "12", ",", " ", "19", ",", " ", "20", ",", " ", "37", ",",
+           " ", "38", ",", " ", "55", ",", " ", "56", ",", " ", "87", ",", 
+          " ", "88"}], " ", "}"}]}], " ", ",", " ", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"#", "\[Rule]", " ", 
+           RowBox[{"Darker", "[", "Green", "]"}]}], " ", 
+          RowBox[{"(*", "p", "*)"}], "}"}], "&"}], "/@", " ", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{"5", ",", " ", "10"}], "]"}], ",", " ", 
+           RowBox[{"Range", "[", " ", 
+            RowBox[{"13", ",", " ", "18"}], "]"}], ",", " ", 
+           RowBox[{"Range", "[", " ", 
+            RowBox[{"31", ",", " ", "36"}], "]"}], ",", " ", 
+           RowBox[{"Range", "[", " ", 
+            RowBox[{"49", ",", " ", "54"}], "]"}], ",", " ", 
+           RowBox[{"Range", "[", 
+            RowBox[{"81", ",", " ", "86"}], "]"}]}], "}"}], "]"}]}], " ", ",",
+        "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"#", "\[Rule]", " ", 
+           RowBox[{"Darker", "[", "Blue", "]"}]}], 
+          RowBox[{"(*", "d", "*)"}], "}"}], "&"}], "/@", " ", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{"21", ",", " ", "30"}], "]"}], ",", " ", 
+           RowBox[{"Range", "[", 
+            RowBox[{"39", ",", " ", "48"}], "]"}], ",", " ", "57", ",", " ", 
+           RowBox[{"Range", "[", 
+            RowBox[{"72", ",", " ", "80"}], "]"}], ",", " ", "89", ",", " ", 
+           RowBox[{"Range", "[", 
+            RowBox[{"104", ",", " ", "106"}], "]"}]}], "}"}], "]"}]}], " ", 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"#", "\[Rule]", " ", 
+           RowBox[{"Darker", "[", "Orange", "]"}]}], " ", 
+          RowBox[{"(*", "f", "*)"}], "}"}], "&"}], "/@", " ", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{"58", ",", " ", "71"}], "]"}], ",", " ", 
+           RowBox[{"Range", "[", 
+            RowBox[{"90", ",", " ", "103"}], "]"}]}], "}"}], "]"}]}]}], " ", 
+      "\[IndentingNewLine]", "}"}], " ", "//", " ", "Flatten"}]}], " ", ";"}],
+   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", "orbi", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"orbi", "[", "s_", 
+     RowBox[{"(*", 
+      RowBox[{",", " ", 
+       RowBox[{"scale_", " ", ":", " ", "1"}]}], "*)"}], "]"}], " ", ":=", 
+    " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"s", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], " ", "/.", " ", "orbitalColors"}], 
+      ",", " ", 
+      RowBox[{"Point", "[", "s", "]"}]}], 
+     RowBox[{"(*", 
+      RowBox[{"Point", "[", 
+       RowBox[{
+        RowBox[{"s", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+        RowBox[{
+         RowBox[{"s", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "/", "scale"}]}], "]"}], "*)"}], 
+     "}"}]}], " ", ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Attributes", "[", "orb", "]"}], "=", 
+     RowBox[{"{", "Listable", "}"}]}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"orbi", "[", 
+    RowBox[{"{", 
+     RowBox[{"3", ",", " ", "5"}], "}"}], "]"}], "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", "radialPlot", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"radialPlot", "[", "e_", "]"}], " ", ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "points", ",", " ", "symbols", ",", " ", "g", ",", " ", 
+        "interestingMins", ",", " ", "interestingMaxes"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"interestingMins", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ElementData", "[", 
+           RowBox[{"#", ",", "\"\<AtomicNumber\>\""}], "]"}], " ", "&"}], "/@",
+          " ", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<H\>\"", ",", "\"\<C\>\"", ",", " ", "\"\<Si\>\"", ",", " ", 
+           "\"\<Cr\>\"", ",", " ", "\"\<Ru\>\"", ",", " ", "\"\<Os\>\"", ",", 
+           " ", "\"\<Ne\>\"", ",", " ", "\"\<Cl\>\"", ",", " ", "\"\<Br\>\"", 
+           ",", " ", "\"\<I\>\""}], "}"}]}]}], " ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"interestingMaxes", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ElementData", "[", 
+           RowBox[{"#", ",", "\"\<AtomicNumber\>\""}], "]"}], " ", "&"}], "/@",
+          " ", 
+         RowBox[{"{", "  ", 
+          RowBox[{
+          "\"\<K\>\"", ",", " ", "\"\<Rb\>\"", ",", " ", "\"\<In\>\"", ",", 
+           " ", "\"\<Cs\>\"", ",", " ", "\"\<Eu\>\"", ",", " ", "\"\<Yb\>\"", 
+           ",", " ", "\"\<Hg\>\"", ",", " ", "\"\<Li\>\"", ",", " ", 
+           "\"\<Na\>\""}], "}"}]}]}], " ", ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"symbols", " ", "=", " ", 
+        RowBox[{"Map", "[", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{
+               RowBox[{"ElementData", "[", 
+                RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], "]"}], ",", " ", 
+               "15"}], "]"}], ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"#", ",", " ", 
+               RowBox[{"ElementData", "[", 
+                RowBox[{"#", ",", " ", "\"\<AtomicRadius\>\""}], "]"}]}], 
+              "\[NoBreak]\[InvisibleSpace]\[ThickSpace]\[InvisibleSpace] ", 
+              "}"}]}], "}"}], " ", "&"}], ",", "e"}], "]"}]}], " ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"points", " ", "=", " ", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"#", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "}"}], " ", "&"}], "/@", " ", 
+           "symbols"}], ",", " ", "1"}], "]"}]}], " ", ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", "symbols", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"g", "=", " ", 
+        RowBox[{"ListLinePlot", "[", " ", 
+         RowBox[{"points", "\[IndentingNewLine]", ",", " ", 
+          RowBox[{"AxesLabel", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Z\>\"", ",", " ", "\"\<Atomic Radius\>\""}], "}"}]}],
+           "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{",", " ", 
+            RowBox[{"Frame", "\[Rule]", "True"}]}], "*)"}], 
+          "\[IndentingNewLine]", ",", 
+          RowBox[{"Epilog", "\[Rule]", 
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{"(*", 
+             RowBox[{
+              RowBox[{"PointSize", "[", "Large", "]"}], ","}], "*)"}], " ", 
+            RowBox[{"(*", " ", 
+             RowBox[{
+              RowBox[{
+              "good", " ", "for", " ", "Mathematica", " ", "display"}], ",", 
+              " ", 
+              RowBox[{
+              "but", " ", "not", " ", "when", " ", "saved", " ", "for", " ", 
+               "use", " ", "in", " ", "latex"}]}], " ", "*)"}], 
+            "\[IndentingNewLine]", 
+            RowBox[{"(*", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"Point", "[", "#", " ", "]"}], "&"}], "/@", 
+               "points"}], ","}], "*)"}], " ", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"orbi", "[", "#", "]"}], " ", "&"}], "/@", " ", 
+              "points"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+             RowBox[{"(*", " ", 
+              RowBox[{
+               RowBox[{
+               "Style", " ", "15", " ", "modification", " ", "of", " ", 
+                "text", " ", "also", " ", "good", " ", "for", " ", 
+                "Mathematica", " ", "display"}], ",", " ", 
+               RowBox[{"but", " ", "not", " ", "for", " ", 
+                RowBox[{"generated", " ", ".", "eps"}]}]}], " ", "*)"}], 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Text", "[", " ", 
+                RowBox[{
+                 RowBox[{"ElementData", "[", 
+                  RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], "]"}], 
+                 RowBox[{"(*", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{",", " ", "15"}], "]"}], "*)"}], ",", " ", 
+                 RowBox[{"{", 
+                  RowBox[{"#", ",", " ", 
+                   RowBox[{"15", " ", "+", " ", 
+                    RowBox[{"ElementData", "[", 
+                    RowBox[{"#", ",", " ", "\"\<AtomicRadius\>\""}], 
+                    "]"}]}]}], "}"}]}], "]"}], " ", "&"}], "/@", " ", 
+              "interestingMaxes"}], ",", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Text", "[", " ", 
+                RowBox[{
+                 RowBox[{"ElementData", "[", 
+                  RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], "]"}], 
+                 RowBox[{"(*", 
+                  RowBox[{"Style", "[", 
+                   RowBox[{",", " ", "15"}], "]"}], "*)"}], ",", "  ", 
+                 RowBox[{"{", 
+                  RowBox[{"#", ",", " ", 
+                   RowBox[{
+                    RowBox[{"-", "15"}], " ", "+", 
+                    RowBox[{"ElementData", "[", 
+                    RowBox[{"#", ",", " ", "\"\<AtomicRadius\>\""}], 
+                    "]"}]}]}], "}"}]}], "]"}], " ", "&"}], "/@", " ", 
+              "interestingMins"}]}], "\[IndentingNewLine]", "}"}]}], 
+          "\[IndentingNewLine]", ",", " ", 
+          RowBox[{"PlotRange", " ", "\[Rule]", " ", 
+           RowBox[{"{", 
+            RowBox[{"Full", ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", " ", "320"}], "}"}]}], "}"}]}]}], 
+         "\[IndentingNewLine]", "]"}]}], " ", ";", "\[IndentingNewLine]", 
+       "g"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}], " ", 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Clear", "[", " ", "radialElementKeys", " ", "]"}], " ", ";", 
+   RowBox[{"radialElementKeys", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Aluminum\>\"", ",", "\"\<Antimony\>\"", ",", "\"\<Argon\>\"", ",", 
+      "\"\<Arsenic\>\"", ",", "\"\<Barium\>\"", ",", "\"\<Beryllium\>\"", 
+      ",", "\"\<Bismuth\>\"", ",", "\"\<Boron\>\"", ",", "\"\<Cadmium\>\"", 
+      ",", "\"\<Calcium\>\"", ",", "\"\<Carbon\>\"", ",", "\"\<Cesium\>\"", 
+      ",", "\"\<Chromium\>\"", ",", "\"\<Cobalt\>\"", ",", "\"\<Copper\>\"", 
+      ",", "\"\<Dysprosium\>\"", ",", "\"\<Erbium\>\"", ",", 
+      "\"\<Europium\>\"", ",", "\"\<Gadolinium\>\"", ",", "\"\<Gallium\>\"", 
+      ",", "\"\<Germanium\>\"", ",", "\"\<Gold\>\"", ",", "\"\<Hafnium\>\"", 
+      ",", "\"\<Holmium\>\"", ",", "\"\<Hydrogen\>\"", ",", "\"\<Indium\>\"", 
+      ",", "\"\<Iodine\>\"", ",", "\"\<Iridium\>\"", ",", "\"\<Iron\>\"", 
+      ",", "\"\<Krypton\>\"", ",", "\"\<Lead\>\"", ",", "\"\<Lithium\>\"", 
+      ",", "\"\<Lutetium\>\"", ",", "\"\<Magnesium\>\"", ",", 
+      "\"\<Manganese\>\"", ",", "\"\<Mercury\>\"", ",", "\"\<Molybdenum\>\"", 
+      ",", "\"\<Neodymium\>\"", ",", "\"\<Neon\>\"", ",", "\"\<Nickel\>\"", 
+      ",", "\"\<Niobium\>\"", ",", "\"\<Osmium\>\"", ",", "\"\<Palladium\>\"",
+       ",", "\"\<Platinum\>\"", ",", "\"\<Potassium\>\"", ",", 
+      "\"\<Praseodymium\>\"", ",", "\"\<Rhenium\>\"", ",", "\"\<Rhodium\>\"", 
+      ",", "\"\<Rubidium\>\"", ",", "\"\<Ruthenium\>\"", ",", 
+      "\"\<Samarium\>\"", ",", "\"\<Scandium\>\"", ",", "\"\<Selenium\>\"", 
+      ",", "\"\<Silicon\>\"", ",", "\"\<Silver\>\"", ",", "\"\<Sodium\>\"", 
+      ",", "\"\<Strontium\>\"", ",", "\"\<Tantalum\>\"", ",", 
+      "\"\<Technetium\>\"", ",", "\"\<Tellurium\>\"", ",", "\"\<Terbium\>\"", 
+      ",", "\"\<Thallium\>\"", ",", "\"\<Thulium\>\"", ",", "\"\<Tin\>\"", 
+      ",", "\"\<Titanium\>\"", ",", "\"\<Tungsten\>\"", ",", 
+      "\"\<Vanadium\>\"", ",", "\"\<Xenon\>\"", ",", "\"\<Ytterbium\>\"", 
+      ",", "\"\<Yttrium\>\"", ",", "\"\<Zinc\>\"", ",", "\"\<Zirconium\>\""}],
+      " ", "}"}]}], " ", ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{"mergePlots", ",", " ", "maxR", ",", " ", "maxD"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"maxR", " ", "=", " ", 
+   RowBox[{"ElementData", "[", " ", 
+    RowBox[{"\"\<Cesium\>\"", ",", " ", "\"\<AtomicRadius\>\""}], " ", 
+    "]"}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"maxD", " ", "=", " ", 
+   RowBox[{"\"\<Carbon\>\"", "  ", "/.", " ", "debyeTemperatures"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mergePlots", "[", "r_", "]"}], " ", ":=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "info", ",", " ", "i", ",", "j", ",", "tips", ",", " ", "scaleD"}], 
+     "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"scaleD", " ", "=", " ", "5."}], " ", ";", "\[IndentingNewLine]", 
+     RowBox[{"info", " ", "=", " ", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"#", ",", " ", 
+          RowBox[{"ElementData", "[", " ", 
+           RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], " ", "]"}], ",", " ", 
+          RowBox[{"ElementData", "[", " ", 
+           RowBox[{"#", ",", " ", "\"\<AtomicRadius\>\""}], " ", "]"}], ",", 
+          " ", 
+          RowBox[{
+           RowBox[{"ElementData", "[", 
+            RowBox[{"#", ",", " ", "\"\<StandardName\>\""}], "]"}], " ", "/.",
+            " ", "debyeTemperatures"}]}], " ", "}"}], " ", "&"}], " ", "/@", 
+       " ", "r"}]}], " ", ";", "\[IndentingNewLine]", 
+     RowBox[{"iRadius", " ", "=", "  ", 
+      RowBox[{"DeleteCases", "[", " ", 
+       RowBox[{"info", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"_", ",", " ", "_", ",", " ", 
+          RowBox[{"Missing", "[", "_", "]"}], ",", " ", "_"}], "}"}]}], 
+       "]"}]}], " ", ";", "\[IndentingNewLine]", 
+     RowBox[{"iDebye", " ", "=", "  ", 
+      RowBox[{"DeleteCases", "[", " ", 
+       RowBox[{"info", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"_", ",", " ", "_", ",", " ", "_", ",", " ", 
+          RowBox[{"Missing", "[", "_", "]"}]}], "}"}]}], "]"}]}], " ", ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"tRadius", " ", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Tooltip", "[", " ", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+            RowBox[{"maxR", " ", "/", 
+             RowBox[{"#", "[", 
+              RowBox[{"[", "3", "]"}], "]"}]}]}], "}"}], ",", " ", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], ",", "\"\<, r = \>\"", ",", 
+             RowBox[{"#", "[", 
+              RowBox[{"[", "3", "]"}], "]"}], ",", " ", "\"\< pm\>\""}], 
+            "}"}], "]"}]}], " ", "]"}], " ", "&"}], " ", "/@", " ", 
+       "iRadius"}]}], "  ", ";", "\[IndentingNewLine]", 
+     RowBox[{"pRadius", " ", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], " ", "/.", " ", "orbitalColors"}],
+           ",", " ", 
+          RowBox[{"Point", "[", "  ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+             RowBox[{"maxR", "/", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", "3", "]"}], "]"}]}]}], "}"}], " ", "]"}]}], "}"}],
+         "&"}], "  ", "/@", " ", "iRadius"}]}], " ", ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"tDebye", " ", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Tooltip", "[", " ", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+            RowBox[{"scaleD", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "4", "]"}], "]"}], "/", "maxD"}], ")"}]}]}], 
+           "}"}], ",", " ", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], ",", "\"\<, dT = \>\"", ",", 
+             RowBox[{"#", "[", 
+              RowBox[{"[", "4", "]"}], "]"}], ",", " ", "\"\< K\>\""}], "}"}],
+            "]"}]}], " ", "]"}], " ", "&"}], " ", "/@", " ", "iDebye"}]}], 
+     "  ", ";", "\[IndentingNewLine]", 
+     RowBox[{"pDebye", " ", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"#", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], " ", "/.", " ", "orbitalColors"}],
+           ",", " ", 
+          RowBox[{"Point", "[", "  ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+             RowBox[{"scaleD", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"#", "[", 
+                 RowBox[{"[", "4", "]"}], "]"}], "/", "maxD"}], ")"}]}]}], 
+            "}"}], " ", "]"}]}], "}"}], "&"}], "  ", "/@", " ", "iDebye"}]}], 
+     " ", ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"ListLinePlot", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"tRadius", ",", " ", "tDebye"}], "}"}], "\[IndentingNewLine]",
+        ",", 
+       RowBox[{"PlotMarkers", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", 
+          RowBox[{"1", "/", "10"}]}], "}"}]}], "\[IndentingNewLine]", ",", 
+       RowBox[{"AxesLabel", "\[Rule]", 
+        RowBox[{"{", "\"\<Z\>\"", 
+         RowBox[{"(*", 
+          RowBox[{",", " ", "\"\<Atomic Radius\>\""}], "*)"}], "}"}]}], 
+       "\[IndentingNewLine]", ",", 
+       RowBox[{"Epilog", "\[Rule]", 
+        RowBox[{"{", " ", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"PointSize", "[", "Small", "]"}], ","}], "*)"}], 
+         RowBox[{"pRadius", ",", " ", "pDebye"}], "  ", "}"}]}], 
+       "\[IndentingNewLine]", ",", " ", 
+       RowBox[{"Ticks", " ", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", " ", "None"}], "}"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"PlotRange", " ", "\[Rule]", " ", "Full"}]}], 
+      "\[IndentingNewLine]", "]"}]}]}], " ", "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",
+ CellOpen->False,
+ InitializationCell->True,
+ CellChangeTimes->{{3.591006295630559*^9, 3.5910063058691444`*^9}, {
+   3.5910066074493933`*^9, 3.591006668977913*^9}, {3.591007291197502*^9, 
+   3.591007302254134*^9}, {3.591007957775628*^9, 3.5910080619365854`*^9}, 
+   3.591008108541251*^9, {3.5910082446700373`*^9, 3.5910082881385236`*^9}, {
+   3.5910083639548597`*^9, 3.591008412711649*^9}, {3.591009093504588*^9, 
+   3.591009104222201*^9}, {3.591009299799387*^9, 3.591009328577033*^9}, {
+   3.5911102780993867`*^9, 3.5911103252340827`*^9}, {3.5911121497344384`*^9, 
+   3.591112194463997*^9}, 3.5911197450349216`*^9, {3.591132791809488*^9, 
+   3.591132798294859*^9}, {3.591132872880125*^9, 3.5911328732921486`*^9}, {
+   3.5911329084581594`*^9, 3.5911329154315586`*^9}, {3.591133481156916*^9, 
+   3.591133492487564*^9}, {3.5911338974387264`*^9, 3.5911339199410133`*^9}, {
+   3.5911360622155447`*^9, 3.591136078586481*^9}, {3.5911941462242403`*^9, 
+   3.591194150250471*^9}, {3.591194184781446*^9, 3.5911941868825665`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["First two plots", "Subsection",
+ CellChangeTimes->{{3.5911929090914807`*^9, 3.5911929111876006`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", "p", "]"}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"p", " ", "=", " ", 
+   RowBox[{"debyePlot", "[", " ", 
+    RowBox[{"Sort", "[", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ElementData", "[", " ", 
+        RowBox[{"#", ",", " ", "\"\<AtomicNumber\>\""}], " ", "]"}], " ", 
+       "&"}], "/@", " ", "debyeElementKeys"}], " ", "]"}], "]"}]}], "  ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", "p2", "]"}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"p2", " ", "=", " ", 
+   RowBox[{"radialPlot", "[", " ", 
+    RowBox[{"Sort", "[", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ElementData", "[", " ", 
+        RowBox[{"#", ",", " ", "\"\<AtomicNumber\>\""}], " ", "]"}], " ", 
+       "&"}], "/@", " ", "radialElementKeys"}], " ", "]"}], "]"}]}], "  ", 
+  ";"}], "\[IndentingNewLine]", "p2", "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.5910097488340707`*^9, 3.591009750677176*^9}, {
+   3.5910097871732635`*^9, 3.5910098055333138`*^9}, {3.5910098601364365`*^9, 
+   3.5910098888420787`*^9}, {3.591009925846195*^9, 3.5910099282633333`*^9}, {
+   3.5910099612842216`*^9, 3.5910099813653708`*^9}, {3.591010065908206*^9, 
+   3.5910100786229334`*^9}, 3.5910101231874824`*^9, {3.5910101782276306`*^9, 
+   3.59101018223686*^9}, {3.5910102556070566`*^9, 3.591010272105*^9}, {
+   3.5910103552517557`*^9, 3.5910103636552362`*^9}, {3.5910103956390657`*^9, 
+   3.591010487539322*^9}, {3.59101055656627*^9, 3.591010584412863*^9}, {
+   3.59101067964931*^9, 3.5910107229997897`*^9}, {3.5910107545865965`*^9, 
+   3.591010839481452*^9}, {3.591010934925911*^9, 3.5910110185916967`*^9}, 
+   3.5910112040793056`*^9, {3.5910115355572653`*^9, 3.5910115439167433`*^9}, {
+   3.591011573966462*^9, 3.5910115815748973`*^9}, {3.591011643370432*^9, 
+   3.591011661816487*^9}, {3.5910116989946136`*^9, 3.5910117274582415`*^9}, {
+   3.5910117633162923`*^9, 3.591011946313759*^9}, {3.5910120067382154`*^9, 
+   3.591012007486258*^9}, 3.5910120619493732`*^9, {3.5910121040537815`*^9, 
+   3.591012125947034*^9}, {3.5910121575078387`*^9, 3.591012168699479*^9}, {
+   3.591012198882205*^9, 3.591012211816945*^9}, {3.59101232554745*^9, 
+   3.5910124047369795`*^9}, {3.591012452266698*^9, 3.591012453784785*^9}, {
+   3.5910124869936843`*^9, 3.591012487045687*^9}, {3.5910125545785503`*^9, 
+   3.591012586949402*^9}, {3.5910132462381105`*^9, 3.5910132708395176`*^9}, 
+   3.591013416308838*^9, {3.591013466974736*^9, 3.591013472796069*^9}, {
+   3.5910136380595217`*^9, 3.5910136899354887`*^9}, {3.5910442312346935`*^9, 
+   3.5910442439874225`*^9}, {3.5910442869618807`*^9, 3.5910442990255704`*^9}, 
+   3.5910443484873996`*^9, {3.591044622784088*^9, 3.5910446233161187`*^9}, 
+   3.5911102745811853`*^9, {3.5911103382318263`*^9, 3.591110338698853*^9}, 
+   3.5911929022520895`*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, {}, 
+    {RGBColor[0.24720000000000014`, 0.24, 0.6], LineBox[CompressedData["
+1:eJxdlLlKQ0EUhgcryxQWlhFEglgE993jvi9J3HAjRI37iuIOo/gAdqJVbKx9
+hKmsfYQ8Qlo7o+c7Rbxw+fjmnzvrnanKHCU3y5xzqeL7S30KPX/wa6JervTn
+eERZ/YxXKKPmlcr9N7xasr/PexKvUT6t4zFl/AqvVUZu8Dpl7BGvhwuwQdv/
+nMcblbl9vAm38Tcr5RpvURYu8Vb8AW9jvDa+duXXHd6hDLd457+8S/lh/XfT
+3hneo5wxF/xC6fHcCXmvMmLr1yevL8XnO0H9PuY3Qd6vTGfIcXcEB5TRU3Jc
+rL9B5THr5fG0zXdIuXhPjhcHrhxWFo7Jh3W8O7Y/I/S3S467FTiqzG+T436P
+fAyyHh6XZcrH4Qw5LszTsU6B+t48Qz6pTGfJJ0v7c1PkG/i0MrpJfdyvlo4j
+0J7gztrH83iw+lvUs33GBXc7lFtOfyFR2p7jHHr2X/BwSDle4P8Ldm7tvKSU
+cf5vwe08eTx3wPcp3e9RW5/Z0nEInuM7j8sS31t97qMwRz37jzn3Ar3dA/QX
+8Kitn90bNn88bv8nHljPgIvdh4uUr8kPb5Cl7g==
+      "]]}}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesLabel->{
+    FormBox["\"Z\"", TraditionalForm], 
+    FormBox["\"Debye temp (K)\"", TraditionalForm]},
+  AxesOrigin->{0, 0},
+  Epilog->{{{
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{1, 122}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{3, 344}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{4, 1481}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{5, 1480}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{6, 2230}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{10, 74.6}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{11, 156.5}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{12, 403}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{13, 433}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{14, 645}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{18, 92.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{19, 91.1}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{20, 229}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{21, 346}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{22, 420}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{23, 399}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{24, 606}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{25, 409}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{26, 477}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{27, 460}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{28, 477}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{29, 347}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{30, 329}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{31, 325}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{32, 373}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{33, 282}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{34, 152.5}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{36, 71.9}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{37, 56.5}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{38, 147}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{39, 248}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{40, 290}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{41, 276}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{42, 423}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{43, 454}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{44, 555}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{45, 512}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{46, 271}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{47, 227.3}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{48, 210}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{49, 112}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{50, 199}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{51, 220}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{52, 152}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{53, 109}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{54, 64.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{55, 40.5}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{56, 111}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{57, 150}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{58, 179}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{59, 152}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{60, 163}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{62, 169}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{63, 118}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{64, 182}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{65, 176}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{66, 183}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{67, 190}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{68, 188}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{69, 200}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{70, 118}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{71, 183}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{72, 252}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{73, 246}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{74, 383}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{75, 416}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{76, 467}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{77, 420}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{78, 237}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{79, 162.3}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{80, 72}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{81, 78.5}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{82, 105}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{83, 120}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{87, 39}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{88, 89}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{90, 160}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{91, 185}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{92, 248}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{93, 259}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{94, 206}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{95, 121}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{96, 123}]}}, {
+     InsetBox[
+      FormBox["\"C\"", TraditionalForm], {6, 2305}], 
+     InsetBox[
+      FormBox["\"Si\"", TraditionalForm], {14, 720}], 
+     InsetBox[
+      FormBox["\"Cr\"", TraditionalForm], {24, 681}], 
+     InsetBox[
+      FormBox["\"Ru\"", TraditionalForm], {44, 630}], 
+     InsetBox[
+      FormBox["\"Os\"", TraditionalForm], {76, 542}], 
+     InsetBox[
+      FormBox["\"Np\"", TraditionalForm], {93, 334}]}, {
+     InsetBox[
+      FormBox["\"H\"", TraditionalForm], {1, 47}], 
+     InsetBox[
+      FormBox["\"Ne\"", TraditionalForm], {10, -0.4000000000000057}], 
+     InsetBox[
+      FormBox["\"K\"", TraditionalForm], {19, 16.099999999999994`}], 
+     InsetBox[
+      FormBox["\"Rb\"", TraditionalForm], {37, -18.5}], 
+     InsetBox[
+      FormBox["\"In\"", TraditionalForm], {49, 37}], 
+     InsetBox[
+      FormBox["\"Cs\"", TraditionalForm], {55, -34.5}], 
+     InsetBox[
+      FormBox["\"Eu\"", TraditionalForm], {63, 43}], 
+     InsetBox[
+      FormBox["\"Yb\"", TraditionalForm], {70, 43}], 
+     InsetBox[
+      FormBox["\"Hg\"", TraditionalForm], {80, -3}], 
+     InsetBox[
+      FormBox["\"Fr\"", TraditionalForm], {87, -36}]}},
+  ImageSize->{889.5, Automatic},
+  Method->{},
+  PlotRange->{{1., 96.}, {-100, 2500}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{
+    Scaled[0.02], Automatic}]], "Output",
+ CellChangeTimes->{{3.5910100687493687`*^9, 3.5910100805370426`*^9}, 
+   3.5910101529301834`*^9, 3.591010220211032*^9, {3.5910102600603113`*^9, 
+   3.5910102726890335`*^9}, 3.5910104996260138`*^9, 3.591010603154935*^9, 
+   3.591010768164373*^9, 3.5910108406435184`*^9, 3.591010959608323*^9, {
+   3.5910109931552415`*^9, 3.5910110192357335`*^9}, 3.5910112052763743`*^9, 
+   3.5910115445607805`*^9, 3.59101160154904*^9, {3.5910116534200068`*^9, 
+   3.591011662425522*^9}, 3.59101190034613*^9, 3.591011947686838*^9, 
+   3.5910120666846437`*^9, 3.5910121276881332`*^9, {3.591012162021097*^9, 
+   3.591012169309514*^9}, {3.5910122012413406`*^9, 3.5910122128210025`*^9}, 
+   3.591012407666147*^9, 3.5910124879367385`*^9, 3.591012591075638*^9, 
+   3.5910132777939157`*^9, 3.591013357450472*^9, 3.5910134175749106`*^9, 
+   3.5910134734161043`*^9, 3.591044253756981*^9, 3.5910443031558065`*^9, 
+   3.591110341746027*^9, 3.5911339311486545`*^9, 3.591136287250416*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, {}, 
+    {RGBColor[0.24720000000000014`, 0.24, 0.6], LineBox[CompressedData["
+1:eJxd00lKA0EUxvHGlUsXLlx2QETElRpnzVOjxtnEAcSp0xpnjXiCdwSP0Eep
+o/QRPIJD/T9BA+HjV6+H6ldVlbzb6vQkSdL4+n9n/H3UfsI3Lbo3ZnmN+8gz
+sj9mOMIDeB8PkivkEPVbPBwzzfFITD/Ho1x/isdwE4/HzF7wREy7w1VS75sk
+b8gp7u/gaZ6v751hfvIs87vCc6Q8H7PQ9yxwv7zI89u4RsrG/C95D3b1e4n7
+T/Ayecx1+P2VcfqePVLH/kC9zvPuGZfVv1VM/xyX6t8a88WOC/VzPWaKHRfq
+Z4M6dvzb3w3qOeO4yKizT8MFdVn92iLZP46LN8a3cZf6Dt+n/bTL8+hPsoef
+uR6XT9TZ9yl1k6k7dqxzYrq/+deGg9bvn3UOUpy0SNbXZK0vTlnfgF3n44A6
+NuxaX9VxwEHrfRhT58mw1tOx4YDLtn0CJgaC/A==
+      "]]}}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesLabel->{
+    FormBox["\"Z\"", TraditionalForm], 
+    FormBox["\"Atomic Radius\"", TraditionalForm]},
+  AxesOrigin->{0, 0},
+  Epilog->{{{
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{1, 53.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{3, 167.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{4, 112.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{5, 87.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{6, 67.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{10, 38.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{11, 190.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{12, 145.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{13, 118.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{14, 111.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{18, 71.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{19, 243.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{20, 194.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{21, 184.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{22, 176.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{23, 171.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{24, 166.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{25, 161.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{26, 156.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{27, 152.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{28, 149.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{29, 145.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{30, 142.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{31, 136.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{32, 125.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{33, 114.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{34, 103.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{36, 88.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{37, 265.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{38, 219.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{39, 212.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{40, 206.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{41, 198.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{42, 190.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{43, 183.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{44, 178.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{45, 173.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{46, 169.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{47, 165.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{48, 161.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{49, 156.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{50, 145.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{51, 133.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{52, 123.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{53, 115.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{54, 108.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{55, 298.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{56, 253.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{59, 247.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{60, 206.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{62, 238.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{63, 231.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{64, 233.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{65, 225.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{66, 228.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{67, 226.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{68, 226.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{69, 222.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{70, 222.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{71, 217.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{72, 208.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{73, 200.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{74, 193.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{75, 188.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{76, 185.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{77, 180.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{78, 177.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{79, 174.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{80, 171.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{81, 156.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{82, 154.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{83, 143.}]}}, {
+     InsetBox[
+      FormBox["\"K\"", TraditionalForm], {19, 258.}], 
+     InsetBox[
+      FormBox["\"Rb\"", TraditionalForm], {37, 280.}], 
+     InsetBox[
+      FormBox["\"In\"", TraditionalForm], {49, 171.}], 
+     InsetBox[
+      FormBox["\"Cs\"", TraditionalForm], {55, 313.}], 
+     InsetBox[
+      FormBox["\"Eu\"", TraditionalForm], {63, 246.}], 
+     InsetBox[
+      FormBox["\"Yb\"", TraditionalForm], {70, 237.}], 
+     InsetBox[
+      FormBox["\"Hg\"", TraditionalForm], {80, 186.}], 
+     InsetBox[
+      FormBox["\"Li\"", TraditionalForm], {3, 182.}], 
+     InsetBox[
+      FormBox["\"Na\"", TraditionalForm], {11, 205.}]}, {
+     InsetBox[
+      FormBox["\"H\"", TraditionalForm], {1, 38.}], 
+     InsetBox[
+      FormBox["\"C\"", TraditionalForm], {6, 52.}], 
+     InsetBox[
+      FormBox["\"Si\"", TraditionalForm], {14, 96.}], 
+     InsetBox[
+      FormBox["\"Cr\"", TraditionalForm], {24, 151.}], 
+     InsetBox[
+      FormBox["\"Ru\"", TraditionalForm], {44, 163.}], 
+     InsetBox[
+      FormBox["\"Os\"", TraditionalForm], {76, 170.}], 
+     InsetBox[
+      FormBox["\"Ne\"", TraditionalForm], {10, 23.}], 
+     InsetBox[
+      FormBox["\"Cl\"", TraditionalForm], {17, 64.}], 
+     InsetBox[
+      FormBox["\"Br\"", TraditionalForm], {35, 79.}], 
+     InsetBox[
+      FormBox["\"I\"", TraditionalForm], {53, 100.}]}},
+  ImageSize->{889.5, Automatic},
+  Method->{},
+  PlotRange->{{1., 83.}, {0, 320}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{
+    Scaled[0.02], Automatic}]], "Output",
+ CellChangeTimes->{{3.5910100687493687`*^9, 3.5910100805370426`*^9}, 
+   3.5910101529301834`*^9, 3.591010220211032*^9, {3.5910102600603113`*^9, 
+   3.5910102726890335`*^9}, 3.5910104996260138`*^9, 3.591010603154935*^9, 
+   3.591010768164373*^9, 3.5910108406435184`*^9, 3.591010959608323*^9, {
+   3.5910109931552415`*^9, 3.5910110192357335`*^9}, 3.5910112052763743`*^9, 
+   3.5910115445607805`*^9, 3.59101160154904*^9, {3.5910116534200068`*^9, 
+   3.591011662425522*^9}, 3.59101190034613*^9, 3.591011947686838*^9, 
+   3.5910120666846437`*^9, 3.5910121276881332`*^9, {3.591012162021097*^9, 
+   3.591012169309514*^9}, {3.5910122012413406`*^9, 3.5910122128210025`*^9}, 
+   3.591012407666147*^9, 3.5910124879367385`*^9, 3.591012591075638*^9, 
+   3.5910132777939157`*^9, 3.591013357450472*^9, 3.5910134175749106`*^9, 
+   3.5910134734161043`*^9, 3.591044253756981*^9, 3.5910443031558065`*^9, 
+   3.591110341746027*^9, 3.5911339311486545`*^9, 3.59113628732442*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Merge plots (getting fancy)", "Subsection",
+ CellChangeTimes->{{3.5911930195708*^9, 3.591193026463194*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "r", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"r", " ", "=", " ", 
+    RowBox[{"DeleteCases", "[", " ", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"#", ",", " ", 
+          RowBox[{"ElementData", "[", " ", 
+           RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], " ", "]"}], ",", " ", 
+          RowBox[{"ElementData", "[", " ", 
+           RowBox[{"#", ",", " ", "\"\<AtomicRadius\>\""}], " ", "]"}]}], 
+         "}"}], " ", "&"}], " ", "/@", " ", 
+       RowBox[{"Range", "[", "20", "]"}]}], "\[IndentingNewLine]", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"_", ",", " ", "_", ",", " ", 
+        RowBox[{"Missing", "[", "_", "]"}]}], "}"}]}], " ", "]"}]}], " ", 
+   ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"/.", " ", 
+     RowBox[{
+      RowBox[{"Missing", "[", "_", "]"}], " ", "\[Rule]", " ", 
+      RowBox[{"-", "1"}]}]}], " ", ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Cases", "[", 
+     RowBox[{"r", ",", 
+      RowBox[{
+       RowBox[{"{", " ", 
+        RowBox[{"a_", ",", " ", "b_", ",", "d_", ",", " ", "c_"}], "}"}], "/;", 
+       RowBox[{"c", " ", ">", " ", "0"}]}]}], " ", "]"}], " ", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "2", ",", "3", ",", " ", "4"}], "}"}]}], "]"}], 
+    "]"}], " ", "*)"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", "t", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"t", " ", "=", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Tooltip", "[", " ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", "3", "]"}], "]"}]}], "}"}], ",", " ", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], " ", "]"}], " ", "&"}], " ", "/@", 
+     " ", "r"}]}], " ", ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "An", " ", "atomic", " ", "radius", " ", "plotting", " ", "function", " ", 
+    "that", " ", 
+    RowBox[{"isn", "'"}], "t", " ", "selective", " ", "for", " ", 
+    "labelling"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", " ", "radialPlot2", " ", "]"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"i", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Z", ",", " ", "Symbol", ",", " ", "Radii"}], "}"}], ",", " ", 
+      "..."}], "}"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"radialPlot2", "[", "i_", "]"}], " ", ":="}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "i", ",", " ", "e", ",", " ", "points", ",", " ", "t", ",", " ", "p", 
+      ",", " ", "tips"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"i", " ", "=", " ", 
+      RowBox[{"DeleteCases", "[", " ", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"#", ",", " ", 
+            RowBox[{"ElementData", "[", " ", 
+             RowBox[{"#", ",", " ", "\"\<Symbol\>\""}], " ", "]"}], ",", " ", 
+            RowBox[{"ElementData", "[", " ", 
+             RowBox[{"#", ",", " ", "\"\<AtomicRadius\>\""}], " ", "]"}]}], 
+           "}"}], " ", "&"}], " ", "/@", " ", 
+         RowBox[{"Range", "[", "20", "]"}]}], "\[IndentingNewLine]", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"_", ",", " ", "_", ",", " ", 
+          RowBox[{"Missing", "[", "_", "]"}]}], "}"}]}], " ", "]"}]}], " ", 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"e", " ", "=", " ", 
+      RowBox[{"i", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", " ", "1"}], "]"}], "]"}]}], " ", ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"points", " ", "=", " ", 
+      RowBox[{"i", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", 
+         RowBox[{"{", 
+          RowBox[{"1", ",", "3"}], "}"}]}], "]"}], "]"}]}], " ", ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"t", " ", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Text", "[", " ", 
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+            RowBox[{"15", " ", "+", " ", 
+             RowBox[{"#", "[", 
+              RowBox[{"[", "3", "]"}], "]"}]}]}], "}"}]}], "]"}], " ", "&"}], 
+       " ", "/@", " ", "i"}]}], " ", ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{"tips", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Tooltip", "[", " ", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"#", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", "3", "]"}], "]"}]}], "}"}], ",", " ", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "2", "]"}], "]"}]}], " ", "]"}], " ", "&"}], " ", "/@",
+          " ", "i"}]}], " ", ";"}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"orbi", "[", "#", "]"}], " ", "&"}], "/@", " ", "points"}]}], 
+     " ", ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"ListLinePlot", "[", " ", 
+      RowBox[{"points", " ", "\[IndentingNewLine]", ",", " ", 
+       RowBox[{"AxesLabel", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Z\>\"", ",", " ", "\"\<Atomic Radius\>\""}], "}"}]}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{",", " ", 
+         RowBox[{"Frame", "\[Rule]", "True"}]}], "*)"}], 
+       "\[IndentingNewLine]", ",", 
+       RowBox[{"Epilog", "\[Rule]", 
+        RowBox[{"{", " ", 
+         RowBox[{"p", " ", ",", " ", "t"}], " ", "}"}]}], 
+       "\[IndentingNewLine]", ",", 
+       RowBox[{"PlotRange", " ", "\[Rule]", " ", 
+        RowBox[{"{", 
+         RowBox[{"Full", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", " ", "320"}], "}"}]}], "}"}]}]}], 
+      "\[IndentingNewLine]", "]"}]}]}], " ", "\[IndentingNewLine]", "]"}], 
+  " ", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"radialPlot2", "[", " ", "r", " ", "]"}], 
+   "*)"}]}], "\[IndentingNewLine]"}], "Input",
+ CellOpen->False,
+ CellChangeTimes->{{3.591110149791048*^9, 3.5911101673830547`*^9}, {
+   3.5911104455109625`*^9, 3.5911104578186665`*^9}, 3.591110527559655*^9, {
+   3.5911108185022964`*^9, 3.591110833171135*^9}, {3.591111025834155*^9, 
+   3.591111049404503*^9}, {3.5911117106083217`*^9, 3.5911117106593246`*^9}, {
+   3.59111204136324*^9, 3.591112041685258*^9}, {3.5911120824925923`*^9, 
+   3.5911121403138995`*^9}, {3.5911197573096237`*^9, 3.591119800353086*^9}, {
+   3.5911199223660645`*^9, 3.5911199253922377`*^9}, {3.5911202522839346`*^9, 
+   3.591120299881657*^9}, {3.5911239351609163`*^9, 3.591123937757065*^9}, {
+   3.591124053539687*^9, 3.5911240563748493`*^9}, {3.591124107189756*^9, 
+   3.5911242060164084`*^9}, {3.5911242829978113`*^9, 
+   3.5911242863170013`*^9}, {3.591124386389725*^9, 3.591124485997422*^9}, {
+   3.5911245461788645`*^9, 3.591124735990721*^9}, {3.5911247670494976`*^9, 
+   3.5911247678175416`*^9}, {3.591129925610551*^9, 3.591129963222702*^9}, {
+   3.59113000969536*^9, 3.5911300392220488`*^9}, {3.5911300824885235`*^9, 
+   3.5911301104061203`*^9}, {3.591130147081218*^9, 3.5911301724186673`*^9}, {
+   3.591130271162315*^9, 3.5911303060363097`*^9}, {3.591130345775583*^9, 
+   3.591130372058086*^9}, {3.5911316656110725`*^9, 3.5911316702213364`*^9}, {
+   3.591132935275694*^9, 3.591132943623171*^9}, {3.5911340178736143`*^9, 
+   3.591134045521196*^9}, 3.5911360790425067`*^9, {3.5911361101632867`*^9, 
+   3.5911361102422915`*^9}, {3.5911930306794353`*^9, 3.5911930314954815`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, {}, 
+    {RGBColor[0.24720000000000014`, 0.24, 0.6], LineBox[CompressedData["
+1:eJwtzEEKgkAUgOGhlUsXLlq4sAiRiNBs70AEIi0ySQQNQpRa6RU8mkfxCB2h
+8v0Dw8c/83irur+1C6WU9bt/5XyimSHRPGCEhjg1tIkVWuJ4p5f0lbbxgg7G
+uMYzbvCELvtetCc6Nb0Vhwe9Y76k9/wXtI85Bsxn9IFO6VB8dvRR1G/9Bf8f
+HZY=
+      "]]}}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesLabel->{
+    FormBox["\"Z\"", TraditionalForm], 
+    FormBox["\"Atomic Radius\"", TraditionalForm]},
+  AxesOrigin->{5., 0},
+  Epilog->{{{
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{1, 53.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{2, 31.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{3, 167.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{4, 112.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{5, 87.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{6, 67.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{7, 56.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{8, 48.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{9, 42.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{10, 38.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{11, 190.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{12, 145.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{13, 118.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{14, 111.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{15, 98.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{16, 88.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{17, 79.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{18, 71.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{19, 243.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{20, 194.}]}}, {
+     InsetBox[
+      FormBox["\"H\"", TraditionalForm], {1, 68.}], 
+     InsetBox[
+      FormBox["\"He\"", TraditionalForm], {2, 46.}], 
+     InsetBox[
+      FormBox["\"Li\"", TraditionalForm], {3, 182.}], 
+     InsetBox[
+      FormBox["\"Be\"", TraditionalForm], {4, 127.}], 
+     InsetBox[
+      FormBox["\"B\"", TraditionalForm], {5, 102.}], 
+     InsetBox[
+      FormBox["\"C\"", TraditionalForm], {6, 82.}], 
+     InsetBox[
+      FormBox["\"N\"", TraditionalForm], {7, 71.}], 
+     InsetBox[
+      FormBox["\"O\"", TraditionalForm], {8, 63.}], 
+     InsetBox[
+      FormBox["\"F\"", TraditionalForm], {9, 57.}], 
+     InsetBox[
+      FormBox["\"Ne\"", TraditionalForm], {10, 53.}], 
+     InsetBox[
+      FormBox["\"Na\"", TraditionalForm], {11, 205.}], 
+     InsetBox[
+      FormBox["\"Mg\"", TraditionalForm], {12, 160.}], 
+     InsetBox[
+      FormBox["\"Al\"", TraditionalForm], {13, 133.}], 
+     InsetBox[
+      FormBox["\"Si\"", TraditionalForm], {14, 126.}], 
+     InsetBox[
+      FormBox["\"P\"", TraditionalForm], {15, 113.}], 
+     InsetBox[
+      FormBox["\"S\"", TraditionalForm], {16, 103.}], 
+     InsetBox[
+      FormBox["\"Cl\"", TraditionalForm], {17, 94.}], 
+     InsetBox[
+      FormBox["\"Ar\"", TraditionalForm], {18, 86.}], 
+     InsetBox[
+      FormBox["\"K\"", TraditionalForm], {19, 258.}], 
+     InsetBox[
+      FormBox["\"Ca\"", TraditionalForm], {20, 209.}]}},
+  Method->{},
+  PlotRange->{{1., 20.}, {0, 320}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{
+    Scaled[0.02], Automatic}]], "Output",
+ CellChangeTimes->{3.5911303730811443`*^9, 3.5911316555644984`*^9, 
+  3.5911339446634274`*^9, 3.5911340580299115`*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.5911110835614567`*^9, 3.591111103692608*^9}, {
+   3.591112045951502*^9, 3.591112048608654*^9}, 3.591194117333588*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Clear", "[", "p3", "]"}], "\[IndentingNewLine]", 
+   RowBox[{"p3", " ", "=", " ", 
+    RowBox[{"mergePlots", "[", 
+     RowBox[{"Range", "[", "103", "]"}], "]"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.591130411514343*^9, 3.5911304896328106`*^9}, {
+   3.591130521732647*^9, 3.5911307256953125`*^9}, {3.591130770889898*^9, 
+   3.5911307839216433`*^9}, {3.591130966588091*^9, 3.5911310495058336`*^9}, {
+   3.591131104391973*^9, 3.591131143117188*^9}, {3.5911312548435783`*^9, 
+   3.591131344225691*^9}, {3.591131377447591*^9, 3.5911314544249935`*^9}, {
+   3.5911314851897535`*^9, 3.591131564555293*^9}, {3.5911316164012585`*^9, 
+   3.591131617235306*^9}, {3.5911316857452245`*^9, 3.5911317103366313`*^9}, {
+   3.5911319130302243`*^9, 3.59113191330524*^9}, {3.5911322752569427`*^9, 
+   3.591132282660366*^9}, 3.591132354904498*^9, {3.5911323993170385`*^9, 
+   3.591132462754667*^9}, {3.591132507169207*^9, 3.5911325153056726`*^9}, {
+   3.591132680174103*^9, 3.5911327124339476`*^9}, {3.591132950106542*^9, 
+   3.591132951491621*^9}, {3.5911329919139333`*^9, 3.591133036753498*^9}, {
+   3.591133117479115*^9, 3.5911331557273026`*^9}, {3.5911331928974285`*^9, 
+   3.5911331956905885`*^9}, {3.5911332288714867`*^9, 
+   3.5911334464579315`*^9}, {3.591133593152322*^9, 3.5911337875804424`*^9}, {
+   3.5911338560753603`*^9, 3.59113385816848*^9}, 3.591133888311204*^9, {
+   3.591133981983562*^9, 3.591133984534708*^9}, {3.5911340794421363`*^9, 
+   3.591134153234357*^9}, {3.5911341900314617`*^9, 3.591134213484803*^9}, {
+   3.5911342491038404`*^9, 3.5911342750903263`*^9}, {3.591134313685534*^9, 
+   3.591134388545816*^9}, {3.591135017731803*^9, 3.591135129286184*^9}, {
+   3.5911354122823706`*^9, 3.5911354428101163`*^9}, {3.591135474006901*^9, 
+   3.5911355125821075`*^9}, {3.5911355756897163`*^9, 3.591135718783901*^9}, {
+   3.5911357591252084`*^9, 3.5911358387987657`*^9}, 3.5911358763359127`*^9, 
+   3.5911363827628784`*^9, {3.5911364138216553`*^9, 3.591136421409089*^9}, {
+   3.5911366594107018`*^9, 3.5911367305417705`*^9}, {3.5911367634306517`*^9, 
+   3.5911369015875535`*^9}, {3.591136986828429*^9, 3.591137251930592*^9}, 
+   3.591137295992112*^9, {3.591137585534673*^9, 3.5911375881938252`*^9}, {
+   3.5911377947826414`*^9, 3.5911378046442056`*^9}, {3.5911379335155764`*^9, 
+   3.591137947493376*^9}, {3.5911381248945227`*^9, 3.5911381704711294`*^9}, {
+   3.5911390336305*^9, 3.5911390534996357`*^9}, {3.591139105286598*^9, 
+   3.591139302312867*^9}, 3.5911393376268873`*^9, {3.5911412087879114`*^9, 
+   3.5911412600848455`*^9}, {3.591141297158966*^9, 3.5911413410874786`*^9}, {
+   3.591141371335209*^9, 3.591141371945244*^9}, {3.5911414087843504`*^9, 
+   3.591141445763466*^9}, 3.591141534324531*^9, 3.5911415925838633`*^9, 
+   3.591194128787243*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, GraphicsComplexBox[CompressedData["
+1:eJxdlAtUTVkYx/NIYUQpmkQeRdPU6KV3+he9U/f2bvIYYQxjPNOyGOaikaKE
+MWjymoi8LWRCumOqKY8QqiE1PTzSlRJ51sw59357r3U765x11v98Z+/97f/3
+7d+ouEWhc3pqaGgcFh7xrbpaPbZmfHN5x+ohoA9weZq5rMx5DGltODwcd1Qr
+9ZOHSg/CNlN/4dakuD7uLMrV6fy2P2lDFBgNblp7TZe0Mf1vQHokIsTrviHp
+0TDcMFO4jUmb4vGEXyol001Ij0Xi1oTjMHxP65ujcaCWW9diDYpbYPmMEbG6
+9r1JW+JgVHGH60qW31cwuJy5bmeYNmlrDJ0Wf8d7KMvXBrHVie+nWemQtoX7
+5wXTnpcOIm0HixKH3vr72ml9e5TaL3C8vv0d6QmofZ3tmN/E8nOg+T+SdsSo
+K+vf6dQz7YSsnPbvB+YxP51xvuzKxvl7Okm7QGteep956V2kXcmP/0i78Tqp
+Xu7d/JhI+TPtgY1J4tWDNFAbkrpzoV4vlZYBu8viXDY1Mf88kW9ZP9jPTIvi
+ntC0yVu3a2pfinup+yfzwuFVslm6XW2U3yTETJ21JLXojUrLJkHVXx0Un0zz
+v6X4ZBSE7q84pc/89Favt8wbuUuv2nUO+EBxH5yYbfZlTClpmQ9+uxuxN3kL
+89cXVnr3wjc6kL8yXzz5FFO27zHz20/db5lfN7/91f2U+ePGCOtVcgXzLwBx
+Y4Y7lM9k/gUgyMKkuPMi8y8Q4w/kJ3bo9aF4IH1vpfmDsGl9RWZy1Stafwqq
+7WN3XZrC+iu4mz/B8Ho7On68F2mNEDRmaAv3a4qHQC+9fGHvg6Q1JAg4n2WX
+k0AaElSbzD6isGb1kFC9KS6X4GKaNLPZkOIaUnUNKZ0nNr6blktxuqGyrfkd
+Gx+KomBFYbCC6o1QVGYtdu9XyfYTiiQjRdnsc1RveSj1Fzs/YZiemZRWV0Qa
+YSgft1q4Wb3D4PuTuenQVtLyMOIPq3+4+nlDuHp9ZeEYVuWa3aeDtDwc/s4j
+bauPsfMSgc1GXQ5FR6jeiMCZaMshm4p6Uj0jUPNIvHrxuupsdrn7x9o7tL42
+4ossfdecfMZ5+fPrCSGH0vvR//qYeW938YDNTBvy76q3KU7qJrcpviui8WOR
+Y5c6zHB5BeefdK6Ro/VzBWkLpKzwh5PuS9KWGP4+L+7XMaxfbCFmJ517jbQd
+0h1Tym3MmLbH0l5ZZfYL/+U8yxCyc7nL8nfA4LZtssWjWzjP+syJPnFhP1vf
+Cc1W5n/Nz2f1d0bh/HzNOdEvOM+elNwyOGvM+OAKzURxRnYe3LrF3WEluLfr
+MVt/Iqrcdnh9yHhK2gNKu6VMA0aRYgbPqb5AzYEXL8+4NlLcE3rj+2qPq79P
+2gunJnY2pP5eSP97IW+t6Kic8+vPI6Lh9zm/YtI+TbW5Xsf5FZ+9RHCskfNr
+wd6AUatvNnB+3Vja+DQlpoXzK6jn1eQV/my/PvCb0R7er6md80tp7/RXnF9p
+QrWzlzRwfnlvOW31MZjVx4/qUcP5tV0crneb82uZuHxaNcX9oUx/ay3FAyC6
+W3KL7S8AgrmHQ/1uUTyQ8rlK8UB8ENvJ4wLn14OuEZcmPaT/ZUGwPV4RK9nA
+/J2CNTfDvjh46h/ON7X1BL6ZCKNrZ1VynintQRXnWUJSbsHfLWw/Ery83fG2
+avgDzrP+105/vciTzS+Bfnml0CEPOM9GqBLkPFOGP7DxUojZGJxl/kjV1xN4
+pjafwLND6Vee5OjXc57Zi8cxu47zTLn7lc2cZyUtYsKs/8Og5bNnXrW8lfNM
+7TwJPBO706xHHeeZ4q5HjXkA8yccEmUChZxnbuc63ROSijnPVPOVcZ4p7XQi
+HskjMOSssUCEXJovEtHKBi2l8ZEQDvNnx94QX+SRxCe2/yj1/kcUjioNIj9k
+UfhRofPDT1se0fgoPEsRRzAeRpNfdzz+BzfTCDA=
+    "], {{{}, {}, 
+      {RGBColor[0.24720000000000014`, 0.24, 0.6], 
+       LineBox[{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+         19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 
+        36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 
+        53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 
+        70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84}]}, 
+      {RGBColor[0.6, 0.24, 0.4428931686004542], 
+       LineBox[{85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 
+        100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 
+        114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 
+        128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 
+        142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 
+        156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167}]}}, {
+      {RGBColor[0.24720000000000014`, 0.24, 0.6], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 1], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 2], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 3], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 4], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 5], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 6], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 7], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 8], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 9], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 10], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 11], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 12], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 13], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 14], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 15], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 16], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 17], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 18], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 19], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 20], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 21], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 22], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 23], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 24], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 25], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 26], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 27], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 28], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 29], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 30], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 31], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 32], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 33], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 34], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 35], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 36], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 37], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 38], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 39], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 40], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 41], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 42], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 43], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 44], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 45], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 46], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 47], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 48], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 49], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 50], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 51], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 52], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 53], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 54], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 55], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 56], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 57], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 58], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 59], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 60], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 61], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 62], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 63], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 64], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 65], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 66], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 67], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 68], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 69], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 70], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 71], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 72], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 73], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 74], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 75], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 76], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 77], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 78], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 79], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 80], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 81], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 82], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 83], InsetBox[
+        StyleBox["\<\"\[FilledCircle]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 84]}, 
+      {RGBColor[0.6, 0.24, 0.4428931686004542], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 85], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 86], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 87], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 88], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 89], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 90], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 91], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 92], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 93], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 94], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 95], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 96], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 97], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 98], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 99], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 100], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 101], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 102], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 103], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 104], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 105], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 106], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 107], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 108], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 109], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 110], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 111], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 112], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 113], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 114], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 115], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 116], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 117], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 118], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 119], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 120], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 121], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 122], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 123], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 124], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 125], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 126], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 127], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 128], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 129], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 130], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 131], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 132], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 133], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 134], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 135], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 136], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 137], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 138], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 139], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 140], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 141], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 142], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 143], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 144], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 145], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 146], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 147], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 148], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 149], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 150], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 151], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 152], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 153], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 154], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 155], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 156], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 157], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 158], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 159], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 160], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 161], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 162], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 163], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 164], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 165], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 166], InsetBox[
+        StyleBox["\<\"\[FilledSquare]\"\>",
+         StripOnInput->False,
+         FontSize->Rational[1, 10]], 167]}, {}}, {
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[1]},
+        TemplateBox[{"\"H\"", "\", r = \"", "53.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"H", ", r = ", 53.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[2]},
+        TemplateBox[{"\"He\"", "\", r = \"", "31.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"He", ", r = ", 31.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[3]},
+        TemplateBox[{"\"Li\"", "\", r = \"", "167.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Li", ", r = ", 167.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[4]},
+        TemplateBox[{"\"Be\"", "\", r = \"", "112.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Be", ", r = ", 112.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[5]},
+        TemplateBox[{"\"B\"", "\", r = \"", "87.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"B", ", r = ", 87.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[6]},
+        TemplateBox[{"\"C\"", "\", r = \"", "67.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"C", ", r = ", 67.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[7]},
+        TemplateBox[{"\"N\"", "\", r = \"", "56.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"N", ", r = ", 56.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[8]},
+        TemplateBox[{"\"O\"", "\", r = \"", "48.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"O", ", r = ", 48.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[9]},
+        TemplateBox[{"\"F\"", "\", r = \"", "42.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"F", ", r = ", 42.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[10]},
+        TemplateBox[{"\"Ne\"", "\", r = \"", "38.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ne", ", r = ", 38.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[11]},
+        TemplateBox[{"\"Na\"", "\", r = \"", "190.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Na", ", r = ", 190.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[12]},
+        TemplateBox[{"\"Mg\"", "\", r = \"", "145.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Mg", ", r = ", 145.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[13]},
+        TemplateBox[{"\"Al\"", "\", r = \"", "118.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Al", ", r = ", 118.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[14]},
+        TemplateBox[{"\"Si\"", "\", r = \"", "111.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Si", ", r = ", 111.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[15]},
+        TemplateBox[{"\"P\"", "\", r = \"", "98.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"P", ", r = ", 98.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[16]},
+        TemplateBox[{"\"S\"", "\", r = \"", "88.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"S", ", r = ", 88.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[17]},
+        TemplateBox[{"\"Cl\"", "\", r = \"", "79.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Cl", ", r = ", 79.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[18]},
+        TemplateBox[{"\"Ar\"", "\", r = \"", "71.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ar", ", r = ", 71.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[19]},
+        TemplateBox[{"\"K\"", "\", r = \"", "243.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"K", ", r = ", 243.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[20]},
+        TemplateBox[{"\"Ca\"", "\", r = \"", "194.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ca", ", r = ", 194.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[21]},
+        TemplateBox[{"\"Sc\"", "\", r = \"", "184.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Sc", ", r = ", 184.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[22]},
+        TemplateBox[{"\"Ti\"", "\", r = \"", "176.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ti", ", r = ", 176.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[23]},
+        TemplateBox[{"\"V\"", "\", r = \"", "171.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"V", ", r = ", 171.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[24]},
+        TemplateBox[{"\"Cr\"", "\", r = \"", "166.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Cr", ", r = ", 166.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[25]},
+        TemplateBox[{"\"Mn\"", "\", r = \"", "161.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Mn", ", r = ", 161.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[26]},
+        TemplateBox[{"\"Fe\"", "\", r = \"", "156.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Fe", ", r = ", 156.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[27]},
+        TemplateBox[{"\"Co\"", "\", r = \"", "152.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Co", ", r = ", 152.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[28]},
+        TemplateBox[{"\"Ni\"", "\", r = \"", "149.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ni", ", r = ", 149.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[29]},
+        TemplateBox[{"\"Cu\"", "\", r = \"", "145.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Cu", ", r = ", 145.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[30]},
+        TemplateBox[{"\"Zn\"", "\", r = \"", "142.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Zn", ", r = ", 142.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[31]},
+        TemplateBox[{"\"Ga\"", "\", r = \"", "136.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ga", ", r = ", 136.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[32]},
+        TemplateBox[{"\"Ge\"", "\", r = \"", "125.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ge", ", r = ", 125.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[33]},
+        TemplateBox[{"\"As\"", "\", r = \"", "114.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"As", ", r = ", 114.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[34]},
+        TemplateBox[{"\"Se\"", "\", r = \"", "103.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Se", ", r = ", 103.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[35]},
+        TemplateBox[{"\"Br\"", "\", r = \"", "94.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Br", ", r = ", 94.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[36]},
+        TemplateBox[{"\"Kr\"", "\", r = \"", "88.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Kr", ", r = ", 88.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[37]},
+        TemplateBox[{"\"Rb\"", "\", r = \"", "265.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Rb", ", r = ", 265.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[38]},
+        TemplateBox[{"\"Sr\"", "\", r = \"", "219.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Sr", ", r = ", 219.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[39]},
+        TemplateBox[{"\"Y\"", "\", r = \"", "212.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Y", ", r = ", 212.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[40]},
+        TemplateBox[{"\"Zr\"", "\", r = \"", "206.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Zr", ", r = ", 206.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[41]},
+        TemplateBox[{"\"Nb\"", "\", r = \"", "198.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Nb", ", r = ", 198.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[42]},
+        TemplateBox[{"\"Mo\"", "\", r = \"", "190.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Mo", ", r = ", 190.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[43]},
+        TemplateBox[{"\"Tc\"", "\", r = \"", "183.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Tc", ", r = ", 183.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[44]},
+        TemplateBox[{"\"Ru\"", "\", r = \"", "178.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ru", ", r = ", 178.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[45]},
+        TemplateBox[{"\"Rh\"", "\", r = \"", "173.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Rh", ", r = ", 173.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[46]},
+        TemplateBox[{"\"Pd\"", "\", r = \"", "169.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pd", ", r = ", 169.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[47]},
+        TemplateBox[{"\"Ag\"", "\", r = \"", "165.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ag", ", r = ", 165.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[48]},
+        TemplateBox[{"\"Cd\"", "\", r = \"", "161.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Cd", ", r = ", 161.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[49]},
+        TemplateBox[{"\"In\"", "\", r = \"", "156.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"In", ", r = ", 156.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[50]},
+        TemplateBox[{"\"Sn\"", "\", r = \"", "145.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Sn", ", r = ", 145.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[51]},
+        TemplateBox[{"\"Sb\"", "\", r = \"", "133.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Sb", ", r = ", 133.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[52]},
+        TemplateBox[{"\"Te\"", "\", r = \"", "123.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Te", ", r = ", 123.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[53]},
+        TemplateBox[{"\"I\"", "\", r = \"", "115.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"I", ", r = ", 115.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[54]},
+        TemplateBox[{"\"Xe\"", "\", r = \"", "108.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Xe", ", r = ", 108.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[55]},
+        TemplateBox[{"\"Cs\"", "\", r = \"", "298.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Cs", ", r = ", 298.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[56]},
+        TemplateBox[{"\"Ba\"", "\", r = \"", "253.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ba", ", r = ", 253.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[57]},
+        TemplateBox[{"\"Pr\"", "\", r = \"", "247.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pr", ", r = ", 247.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[58]},
+        TemplateBox[{"\"Nd\"", "\", r = \"", "206.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Nd", ", r = ", 206.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[59]},
+        TemplateBox[{"\"Pm\"", "\", r = \"", "205.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pm", ", r = ", 205.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[60]},
+        TemplateBox[{"\"Sm\"", "\", r = \"", "238.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Sm", ", r = ", 238.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[61]},
+        TemplateBox[{"\"Eu\"", "\", r = \"", "231.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Eu", ", r = ", 231.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[62]},
+        TemplateBox[{"\"Gd\"", "\", r = \"", "233.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Gd", ", r = ", 233.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[63]},
+        TemplateBox[{"\"Tb\"", "\", r = \"", "225.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Tb", ", r = ", 225.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[64]},
+        TemplateBox[{"\"Dy\"", "\", r = \"", "228.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Dy", ", r = ", 228.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[65]},
+        TemplateBox[{"\"Ho\"", "\", r = \"", "226.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ho", ", r = ", 226.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[66]},
+        TemplateBox[{"\"Er\"", "\", r = \"", "226.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Er", ", r = ", 226.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[67]},
+        TemplateBox[{"\"Tm\"", "\", r = \"", "222.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Tm", ", r = ", 222.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[68]},
+        TemplateBox[{"\"Yb\"", "\", r = \"", "222.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Yb", ", r = ", 222.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[69]},
+        TemplateBox[{"\"Lu\"", "\", r = \"", "217.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Lu", ", r = ", 217.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[70]},
+        TemplateBox[{"\"Hf\"", "\", r = \"", "208.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Hf", ", r = ", 208.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[71]},
+        TemplateBox[{"\"Ta\"", "\", r = \"", "200.`2.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ta", ", r = ", 200.`2., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[72]},
+        TemplateBox[{"\"W\"", "\", r = \"", "193.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"W", ", r = ", 193.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[73]},
+        TemplateBox[{"\"Re\"", "\", r = \"", "188.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Re", ", r = ", 188.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[74]},
+        TemplateBox[{"\"Os\"", "\", r = \"", "185.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Os", ", r = ", 185.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[75]},
+        TemplateBox[{"\"Ir\"", "\", r = \"", "180.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ir", ", r = ", 180.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[76]},
+        TemplateBox[{"\"Pt\"", "\", r = \"", "177.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pt", ", r = ", 177.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[77]},
+        TemplateBox[{"\"Au\"", "\", r = \"", "174.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Au", ", r = ", 174.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[78]},
+        TemplateBox[{"\"Hg\"", "\", r = \"", "171.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Hg", ", r = ", 171.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[79]},
+        TemplateBox[{"\"Tl\"", "\", r = \"", "156.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Tl", ", r = ", 156.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[80]},
+        TemplateBox[{"\"Pb\"", "\", r = \"", "154.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pb", ", r = ", 154.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[81]},
+        TemplateBox[{"\"Bi\"", "\", r = \"", "143.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Bi", ", r = ", 143.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[82]},
+        TemplateBox[{"\"Po\"", "\", r = \"", "135.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Po", ", r = ", 135.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[83]},
+        TemplateBox[{"\"At\"", "\", r = \"", "127.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"At", ", r = ", 127.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[84]},
+        TemplateBox[{"\"Rn\"", "\", r = \"", "120.`3.", "\" pm\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Rn", ", r = ", 120.`3., " pm"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[85]},
+        TemplateBox[{"\"H\"", "\", dT = \"", "122", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"H", ", dT = ", 122, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[86]},
+        TemplateBox[{"\"Li\"", "\", dT = \"", "344", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Li", ", dT = ", 344, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[87]},
+        TemplateBox[{"\"Be\"", "\", dT = \"", "1481", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Be", ", dT = ", 1481, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[88]},
+        TemplateBox[{"\"B\"", "\", dT = \"", "1480", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"B", ", dT = ", 1480, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[89]},
+        TemplateBox[{"\"C\"", "\", dT = \"", "2230", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"C", ", dT = ", 2230, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[90]},
+        TemplateBox[{"\"Ne\"", "\", dT = \"", "74.6`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ne", ", dT = ", 74.6, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[91]},
+        TemplateBox[{"\"Na\"", "\", dT = \"", "156.5`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Na", ", dT = ", 156.5, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[92]},
+        TemplateBox[{"\"Mg\"", "\", dT = \"", "403", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Mg", ", dT = ", 403, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[93]},
+        TemplateBox[{"\"Al\"", "\", dT = \"", "433", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Al", ", dT = ", 433, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[94]},
+        TemplateBox[{"\"Si\"", "\", dT = \"", "645", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Si", ", dT = ", 645, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[95]},
+        TemplateBox[{"\"Ar\"", "\", dT = \"", "92.`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ar", ", dT = ", 92., " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[96]},
+        TemplateBox[{"\"K\"", "\", dT = \"", "91.1`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"K", ", dT = ", 91.1, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[97]},
+        TemplateBox[{"\"Ca\"", "\", dT = \"", "229", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ca", ", dT = ", 229, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[98]},
+        TemplateBox[{"\"Sc\"", "\", dT = \"", "346", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Sc", ", dT = ", 346, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[99]},
+        TemplateBox[{"\"Ti\"", "\", dT = \"", "420", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ti", ", dT = ", 420, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[100]},
+        TemplateBox[{"\"V\"", "\", dT = \"", "399", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"V", ", dT = ", 399, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[101]},
+        TemplateBox[{"\"Cr\"", "\", dT = \"", "606", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Cr", ", dT = ", 606, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[102]},
+        TemplateBox[{"\"Mn\"", "\", dT = \"", "409", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Mn", ", dT = ", 409, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[103]},
+        TemplateBox[{"\"Fe\"", "\", dT = \"", "477", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Fe", ", dT = ", 477, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[104]},
+        TemplateBox[{"\"Co\"", "\", dT = \"", "460", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Co", ", dT = ", 460, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[105]},
+        TemplateBox[{"\"Ni\"", "\", dT = \"", "477", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ni", ", dT = ", 477, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[106]},
+        TemplateBox[{"\"Cu\"", "\", dT = \"", "347", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Cu", ", dT = ", 347, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[107]},
+        TemplateBox[{"\"Zn\"", "\", dT = \"", "329", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Zn", ", dT = ", 329, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[108]},
+        TemplateBox[{"\"Ga\"", "\", dT = \"", "325", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ga", ", dT = ", 325, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[109]},
+        TemplateBox[{"\"Ge\"", "\", dT = \"", "373", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ge", ", dT = ", 373, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[110]},
+        TemplateBox[{"\"As\"", "\", dT = \"", "282", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"As", ", dT = ", 282, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[111]},
+        TemplateBox[{"\"Se\"", "\", dT = \"", "152.5`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Se", ", dT = ", 152.5, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[112]},
+        TemplateBox[{"\"Kr\"", "\", dT = \"", "71.9`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Kr", ", dT = ", 71.9, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[113]},
+        TemplateBox[{"\"Rb\"", "\", dT = \"", "56.5`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Rb", ", dT = ", 56.5, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[114]},
+        TemplateBox[{"\"Sr\"", "\", dT = \"", "147", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Sr", ", dT = ", 147, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[115]},
+        TemplateBox[{"\"Y\"", "\", dT = \"", "248", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Y", ", dT = ", 248, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[116]},
+        TemplateBox[{"\"Zr\"", "\", dT = \"", "290", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Zr", ", dT = ", 290, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[117]},
+        TemplateBox[{"\"Nb\"", "\", dT = \"", "276", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Nb", ", dT = ", 276, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[118]},
+        TemplateBox[{"\"Mo\"", "\", dT = \"", "423", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Mo", ", dT = ", 423, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[119]},
+        TemplateBox[{"\"Tc\"", "\", dT = \"", "454", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Tc", ", dT = ", 454, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[120]},
+        TemplateBox[{"\"Ru\"", "\", dT = \"", "555", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ru", ", dT = ", 555, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[121]},
+        TemplateBox[{"\"Rh\"", "\", dT = \"", "512", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Rh", ", dT = ", 512, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[122]},
+        TemplateBox[{"\"Pd\"", "\", dT = \"", "271", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pd", ", dT = ", 271, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[123]},
+        TemplateBox[{"\"Ag\"", "\", dT = \"", "227.3`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ag", ", dT = ", 227.3, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[124]},
+        TemplateBox[{"\"Cd\"", "\", dT = \"", "210", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Cd", ", dT = ", 210, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[125]},
+        TemplateBox[{"\"In\"", "\", dT = \"", "112", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"In", ", dT = ", 112, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[126]},
+        TemplateBox[{"\"Sn\"", "\", dT = \"", "199", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Sn", ", dT = ", 199, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[127]},
+        TemplateBox[{"\"Sb\"", "\", dT = \"", "220", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Sb", ", dT = ", 220, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[128]},
+        TemplateBox[{"\"Te\"", "\", dT = \"", "152", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Te", ", dT = ", 152, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[129]},
+        TemplateBox[{"\"I\"", "\", dT = \"", "109", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"I", ", dT = ", 109, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[130]},
+        TemplateBox[{"\"Xe\"", "\", dT = \"", "64.`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Xe", ", dT = ", 64., " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[131]},
+        TemplateBox[{"\"Cs\"", "\", dT = \"", "40.5`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Cs", ", dT = ", 40.5, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[132]},
+        TemplateBox[{"\"Ba\"", "\", dT = \"", "111", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ba", ", dT = ", 111, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[133]},
+        TemplateBox[{"\"La\"", "\", dT = \"", "150", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"La", ", dT = ", 150, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[134]},
+        TemplateBox[{"\"Ce\"", "\", dT = \"", "179", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ce", ", dT = ", 179, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[135]},
+        TemplateBox[{"\"Pr\"", "\", dT = \"", "152", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pr", ", dT = ", 152, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[136]},
+        TemplateBox[{"\"Nd\"", "\", dT = \"", "163", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Nd", ", dT = ", 163, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[137]},
+        TemplateBox[{"\"Sm\"", "\", dT = \"", "169", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Sm", ", dT = ", 169, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[138]},
+        TemplateBox[{"\"Eu\"", "\", dT = \"", "118", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Eu", ", dT = ", 118, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[139]},
+        TemplateBox[{"\"Gd\"", "\", dT = \"", "182", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Gd", ", dT = ", 182, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[140]},
+        TemplateBox[{"\"Tb\"", "\", dT = \"", "176", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Tb", ", dT = ", 176, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[141]},
+        TemplateBox[{"\"Dy\"", "\", dT = \"", "183", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Dy", ", dT = ", 183, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[142]},
+        TemplateBox[{"\"Ho\"", "\", dT = \"", "190", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ho", ", dT = ", 190, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[143]},
+        TemplateBox[{"\"Er\"", "\", dT = \"", "188", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Er", ", dT = ", 188, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[144]},
+        TemplateBox[{"\"Tm\"", "\", dT = \"", "200", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Tm", ", dT = ", 200, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[145]},
+        TemplateBox[{"\"Yb\"", "\", dT = \"", "118", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Yb", ", dT = ", 118, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[146]},
+        TemplateBox[{"\"Lu\"", "\", dT = \"", "183", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Lu", ", dT = ", 183, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[147]},
+        TemplateBox[{"\"Hf\"", "\", dT = \"", "252", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Hf", ", dT = ", 252, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[148]},
+        TemplateBox[{"\"Ta\"", "\", dT = \"", "246", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ta", ", dT = ", 246, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[149]},
+        TemplateBox[{"\"W\"", "\", dT = \"", "383", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"W", ", dT = ", 383, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[150]},
+        TemplateBox[{"\"Re\"", "\", dT = \"", "416", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Re", ", dT = ", 416, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[151]},
+        TemplateBox[{"\"Os\"", "\", dT = \"", "467", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Os", ", dT = ", 467, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[152]},
+        TemplateBox[{"\"Ir\"", "\", dT = \"", "420", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ir", ", dT = ", 420, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[153]},
+        TemplateBox[{"\"Pt\"", "\", dT = \"", "237", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pt", ", dT = ", 237, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[154]},
+        TemplateBox[{"\"Au\"", "\", dT = \"", "162.3`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Au", ", dT = ", 162.3, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[155]},
+        TemplateBox[{"\"Hg\"", "\", dT = \"", "72", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Hg", ", dT = ", 72, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[156]},
+        TemplateBox[{"\"Tl\"", "\", dT = \"", "78.5`", "\" K\""}, 
+         "RowDefault"]],
+       Annotation[#, 
+        Row[{"Tl", ", dT = ", 78.5, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[157]},
+        TemplateBox[{"\"Pb\"", "\", dT = \"", "105", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pb", ", dT = ", 105, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[158]},
+        TemplateBox[{"\"Bi\"", "\", dT = \"", "120", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Bi", ", dT = ", 120, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[159]},
+        TemplateBox[{"\"Fr\"", "\", dT = \"", "39", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Fr", ", dT = ", 39, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[160]},
+        TemplateBox[{"\"Ra\"", "\", dT = \"", "89", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Ra", ", dT = ", 89, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[161]},
+        TemplateBox[{"\"Th\"", "\", dT = \"", "160", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Th", ", dT = ", 160, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[162]},
+        TemplateBox[{"\"Pa\"", "\", dT = \"", "185", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pa", ", dT = ", 185, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[163]},
+        TemplateBox[{"\"U\"", "\", dT = \"", "248", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"U", ", dT = ", 248, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[164]},
+        TemplateBox[{"\"Np\"", "\", dT = \"", "259", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Np", ", dT = ", 259, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[165]},
+        TemplateBox[{"\"Pu\"", "\", dT = \"", "206", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Pu", ", dT = ", 206, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[166]},
+        TemplateBox[{"\"Am\"", "\", dT = \"", "121", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Am", ", dT = ", 121, " K"}], "Tooltip"]& ], 
+      TagBox[
+       TooltipBox[
+        {Opacity[0.], PointBox[167]},
+        TemplateBox[{"\"Cm\"", "\", dT = \"", "123", "\" K\""}, "RowDefault"]],
+       Annotation[#, 
+        Row[{"Cm", ", dT = ", 123, " K"}], "Tooltip"]& ]}}], {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesLabel->{
+    FormBox["\"Z\"", TraditionalForm], None},
+  AxesOrigin->{0, 0},
+  Epilog->{{{
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{1, 5.622641509433962}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{2, 9.612903225806452}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{3, 1.784431137724551}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{4, 2.6607142857142856`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{5, 3.425287356321839}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{6, 4.447761194029851}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{7, 5.321428571428571}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{8, 6.208333333333333}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{9, 7.095238095238095}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{10, 7.842105263157895}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{11, 1.568421052631579}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{12, 2.0551724137931036`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{13, 2.5254237288135593`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{14, 2.684684684684685}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{15, 3.0408163265306123`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{16, 3.3863636363636362`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{17, 3.7721518987341773`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{18, 4.197183098591549}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{19, 1.2263374485596708`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{20, 1.5360824742268042`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{21, 1.6195652173913044`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{22, 1.6931818181818181`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{23, 1.7426900584795322`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{24, 1.7951807228915662`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{25, 1.8509316770186335`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{26, 1.9102564102564104`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{27, 1.9605263157894737`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{28, 2.}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{29, 2.0551724137931036`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{30, 2.0985915492957745`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{31, 2.1911764705882355`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{32, 2.384}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{33, 2.6140350877192984`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{34, 2.8932038834951457`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{35, 3.1702127659574466`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{36, 3.3863636363636362`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{37, 1.1245283018867924`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{38, 1.360730593607306}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{39, 1.4056603773584906`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{40, 1.4466019417475728`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{41, 1.505050505050505}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{42, 1.568421052631579}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{43, 1.6284153005464481`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{44, 1.6741573033707866`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{45, 1.722543352601156}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{46, 1.7633136094674555`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{47, 1.8060606060606061`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{48, 1.8509316770186335`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{49, 1.9102564102564104`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{50, 2.0551724137931036`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{51, 2.2406015037593985`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{52, 2.4227642276422765`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{53, 2.591304347826087}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{54, 2.759259259259259}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{55, 1.}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{56, 1.1778656126482214`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{59, 1.2064777327935223`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{60, 1.4466019417475728`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{61, 1.4536585365853658`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{62, 1.2521008403361344`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{63, 1.29004329004329}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{64, 1.2789699570815452`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{65, 1.3244444444444445`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{66, 1.3070175438596492`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{67, 1.3185840707964602`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{68, 1.3185840707964602`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{69, 1.3423423423423424`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{70, 1.3423423423423424`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{71, 1.3732718894009217`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{72, 1.4326923076923077`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{73, 1.49}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{74, 1.544041450777202}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{75, 1.5851063829787233`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{76, 1.6108108108108108`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{77, 1.6555555555555554`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{78, 1.6836158192090396`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{79, 1.7126436781609196`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{80, 1.7426900584795322`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{81, 1.9102564102564104`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{82, 1.9350649350649352`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{83, 2.0839160839160837`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{84, 2.2074074074074073`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{85, 2.3464566929133857`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{86, 2.4833333333333334`}]}}, {{
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{1, 0.273542600896861}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{3, 0.7713004484304933}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{4, 3.320627802690583}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{5, 3.3183856502242155`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{6, 5.}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{10, 0.1672645739910314}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{11, 0.3508968609865471}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{12, 0.9035874439461883}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{13, 0.9708520179372198}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{14, 1.446188340807175}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{18, 0.20627802690582958`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{19, 0.20426008968609866`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{20, 0.5134529147982063}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{21, 0.7757847533632287}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{22, 0.9417040358744394}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{23, 0.8946188340807175}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{24, 1.358744394618834}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{25, 0.9170403587443947}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{26, 1.0695067264573992`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{27, 1.031390134529148}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{28, 1.0695067264573992`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{29, 0.7780269058295964}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{30, 0.7376681614349776}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{31, 0.7286995515695067}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{32, 0.836322869955157}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{33, 0.6322869955156951}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{34, 0.3419282511210763}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{36, 0.1612107623318386}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{37, 0.1266816143497758}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{38, 0.3295964125560538}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{39, 0.5560538116591928}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{40, 0.6502242152466366}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{41, 0.6188340807174888}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{42, 0.9484304932735426}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{43, 1.0179372197309418`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{44, 1.2443946188340806`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{45, 1.147982062780269}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{46, 0.6076233183856503}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{47, 0.5096412556053812}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{48, 0.4708520179372197}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{49, 0.25112107623318386`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{50, 0.4461883408071749}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{51, 0.49327354260089684`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{52, 0.34080717488789236`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{53, 0.2443946188340807}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{54, 0.14349775784753363`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{55, 0.09080717488789239}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{56, 0.24887892376681614`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{57, 0.3363228699551569}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{58, 0.4013452914798207}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{59, 0.34080717488789236`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{60, 0.3654708520179372}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{62, 0.3789237668161435}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{63, 0.2645739910313901}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{64, 0.4080717488789238}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{65, 0.39461883408071746`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{66, 0.41031390134529144`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{67, 0.4260089686098655}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{68, 0.42152466367713004`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{69, 0.44843049327354256`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{70, 0.2645739910313901}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{71, 0.41031390134529144`}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{72, 0.5650224215246636}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{73, 0.5515695067264574}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{74, 0.858744394618834}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{75, 0.9327354260089686}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{76, 1.047085201793722}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{77, 0.9417040358744394}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{78, 0.531390134529148}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{79, 0.3639013452914799}]}, {
+      RGBColor[0, 0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666]], 
+      PointBox[{80, 0.16143497757847536`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{81, 0.17600896860986548`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{82, 0.23542600896860985`}]}, {
+      RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{83, 0.26905829596412556`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{87, 0.08744394618834081}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], 
+      PointBox[{88, 0.19955156950672648`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{90, 0.35874439461883406`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{91, 0.41479820627802694`}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{92, 0.5560538116591928}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{93, 0.5807174887892377}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{94, 0.4618834080717489}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{95, 0.2713004484304933}]}, {
+      RGBColor[
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0.33333333333333337`, 0], 
+      PointBox[{96, 0.2757847533632287}]}}},
+  ImageSize->{738., Automatic},
+  Method->{},
+  PlotRange->{{1., 96.}, {0, 9.612903225806452}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{
+    Scaled[0.02], 
+    Scaled[0.02]},
+  Ticks->{Automatic, None}]], "Output",
+ CellChangeTimes->{
+  3.591137813377705*^9, 3.59113817414534*^9, {3.591139043871085*^9, 
+   3.5911390560787835`*^9}, 3.591139107921749*^9, {3.591139143133763*^9, 
+   3.5911391545534163`*^9}, 3.5911392347630033`*^9, 3.5911393061120844`*^9, 
+   3.5911393386939483`*^9, {3.5911413276777115`*^9, 3.5911413416815124`*^9}, 
+   3.591141373300321*^9, 3.591141446639516*^9, 3.591141535032572*^9, 
+   3.5911415940949497`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Export rules", "Subsection",
+ CellChangeTimes->{{3.591192845892866*^9, 3.5911928476859684`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"peeters`exportForLatex", "[", 
+    RowBox[{"\"\<DebyeTemperaturesVsAtomicNumberFig1\>\"", ",", " ", "p"}], 
+    "]"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"peeters`exportForLatex", "[", 
+    RowBox[{"\"\<atomicRadiiVsAtomicNumberFig2\>\"", ",", " ", "p2"}], "]"}], 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"peeters`exportForLatex", "[", 
+    RowBox[{
+    "\"\<atomicInvRadiusAndDebyeTempOverlappedFig4\>\"", ",", " ", "p3"}], 
+    "]"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"peeters`exportForLatex", "[", 
+    RowBox[{"\"\<ZlessThan20Radii\>\"", ",", " ", "s"}], "]"}], 
+   "*)"}]}]], "Input",
+ CellChangeTimes->{{3.591192861663768*^9, 3.5911928659720144`*^9}, {
+  3.5911941207977867`*^9, 3.591194121278814*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Scratch stuff.", "Subsection",
+ CellChangeTimes->{{3.5911927388347425`*^9, 3.591192741423891*^9}, {
+  3.591193057022942*^9, 3.5911930573009577`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"ElementData", "[", "]"}], "\[IndentingNewLine]", 
+    RowBox[{"ElementData", "[", " ", "\"\<Properties\>\"", "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"ChemicalData", "[", " ", "\"\<Properties\>\"", "]"}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"ElementData", "[", " ", 
+    RowBox[{
+    "\"\<Carbon\>\"", ",", " ", "\"\<AtomicRadius\>\"", ",", " ", 
+     "\"\<Units\>\""}], " ", "]"}], "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"ListLinePlot", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"Tooltip", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"j", ",", " ", 
+           RowBox[{"j", "^", "2"}]}], "}"}], ",", " ", 
+         RowBox[{"j", "^", "2"}]}], "]"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", " ", "10"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+     ",", 
+     RowBox[{"PlotMarkers", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", "1"}], "}"}]}], " ", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{
+       "tooltip", " ", "seems", " ", "to", " ", "require", " ", "this"}], ",",
+        " ", 
+       RowBox[{
+       "even", " ", "with", " ", "Points", " ", "in", " ", "the", " ", 
+        "epilog"}]}], " ", "*)"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"Epilog", "\[Rule]", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"PointSize", "[", "Large", "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Table", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"RGBColor", "[", 
+             RowBox[{
+              RowBox[{"RandomReal", "[", "]"}], ",", " ", 
+              RowBox[{"RandomReal", "[", "]"}], ",", " ", 
+              RowBox[{"RandomReal", "[", "]"}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Point", "[", 
+             RowBox[{"{", 
+              RowBox[{"j", ",", " ", 
+               RowBox[{"j", "^", "2"}]}], "}"}], "]"}]}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"j", ",", " ", "10"}], "}"}]}], "\[IndentingNewLine]", 
+         "]"}]}], "  ", "\[IndentingNewLine]", "}"}]}]}], 
+    "\[IndentingNewLine]", "]"}], " ", "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"ElementData", "[", " ", 
+       RowBox[{"\"\<Carbon\>\"", ",", " ", "\"\<Name\>\""}], " ", "]"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"ElementData", "[", " ", 
+       RowBox[{"\"\<Carbon\>\"", ",", " ", "\"\<StandardName\>\""}], " ", 
+       "]"}], "\[IndentingNewLine]", 
+      RowBox[{"ElementData", "[", " ", 
+       RowBox[{"All", ",", "\"\<StandardName\>\""}], " ", "]"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"ElementData", "[", " ", 
+       RowBox[{"\"\<Carbon\>\"", ",", " ", "\"\<Abbreviation\>\""}], " ", 
+       "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\"\<Aluminum\>\""}], "/.", 
+     RowBox[{"debyeTemperatures", "\[IndentingNewLine]", "\"\<NaCl\>\""}]}], "/.",
+     "debyeTemperatures"}], "\[IndentingNewLine]", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"ElementData", "[", 
+    RowBox[{"3", ",", " ", "\"\<StandardName\>\""}], " ", "]"}], "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"ElementData", "[", 
+       RowBox[{"#", ",", "\"\<StandardName\>\""}], "]"}], " ", "&"}], "/@", 
+     " ", 
+     RowBox[{"Range", "[", "96", "]"}]}], " ", "/.", " ", 
+    "debyeTemperatures"}], "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Clear", "[", "debyeByAtomicNumber", "]"}], " ", ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"debyeByAtomicNumber", " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"ElementData", "[", 
+          RowBox[{"#", ",", " ", "\"\<AtomicNumber\>\""}], "]"}], ",", " ", 
+         RowBox[{"debyeTemperature", "[", "#", "]"}]}], "}"}], "  ", "&"}], "/@",
+       " ", "debyeElementKeys"}]}]}], "\[IndentingNewLine]", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ElementData", "[", " ", 
+      RowBox[{"#", ",", " ", "\"\<AtomicNumber\>\""}], " ", "]"}], " ", "&"}],
+     "/@", " ", "debyeElementKeys"}], "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ElementData", "[", " ", 
+        RowBox[{"#", ",", " ", "\"\<AtomicRadius\>\""}], " ", "]"}], ",", " ",
+        "#"}], "}"}], " ", "&"}], "/@", " ", "radialElementKeys"}], "*)"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellOpen->False,
+ CellChangeTimes->{{3.5911927485052958`*^9, 3.5911927489493213`*^9}, {
+  3.5911928232625713`*^9, 3.591192823708597*^9}, {3.5911929517679214`*^9, 
+  3.591192952241949*^9}, {3.5911941564278245`*^9, 3.591194156929853*^9}}]
+}, Open  ]]
+},
+WindowSize->{1584, 765},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 120, 1, 58, "Subsection"],
+Cell[CellGroupData[{
+Cell[724, 27, 268, 6, 66, "Input"],
+Cell[995, 35, 359, 5, 40, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1403, 46, 188, 4, 58, "Subsection"],
+Cell[1594, 52, 42086, 900, 25, "Input",
+ CellOpen->False,
+ InitializationCell->True]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43717, 957, 107, 1, 58, "Subsection"],
+Cell[CellGroupData[{
+Cell[43849, 962, 2925, 51, 216, "Input"],
+Cell[46777, 1015, 13835, 429, 746, "Output"],
+Cell[60615, 1446, 12426, 385, 765, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[73090, 1837, 113, 1, 58, "Subsection"],
+Cell[CellGroupData[{
+Cell[73228, 1842, 8116, 193, 25, "Input",
+ CellOpen->False],
+Cell[81347, 2037, 4939, 157, 347, "Output"]
+}, Open  ]],
+Cell[86301, 2197, 166, 2, 39, "Input"],
+Cell[CellGroupData[{
+Cell[86492, 2203, 2893, 42, 166, "Input"],
+Cell[89388, 2247, 88913, 2389, 624, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[178350, 4642, 102, 1, 58, "Subsection"],
+Cell[178455, 4645, 836, 20, 116, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[179328, 4670, 155, 2, 58, "Subsection"],
+Cell[179486, 4674, 5143, 131, 25, "Input",
+ CellOpen->False]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

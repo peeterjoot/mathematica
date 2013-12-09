@@ -1,0 +1,1483 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     61435,       1474]
+NotebookOptionsPosition[     60124,       1426]
+NotebookOutlinePosition[     60618,       1446]
+CellTagsIndexPosition[     60575,       1443]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[Cell["Hybrid orbitals, ps1 q2", "Title",
+  CellChangeTimes->{{3.588237283252586*^9, 3.588237291303046*^9}}]], "Input",
+ CellChangeTimes->{{3.5882485308069096`*^9, 3.588248554876286*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["verify orthonormality of hybrid orbitals", "Subsection",
+ CellChangeTimes->{
+  3.5882372480905747`*^9, {3.5882372962173276`*^9, 3.5882373078939953`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "psi2s", ",", " ", "psi2pz", ",", " ", "psi2px", ",", " ", "psi2py", ",", 
+   " ", "rho", ",", " ", "atomicZ", ",", " ", "aNought", ",", " ", 
+   "normConst"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"aNought", " ", ":=", " ", 
+  SubscriptBox["a", "0"]}], "\[IndentingNewLine]", 
+ RowBox[{"normConst", " ", ":=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"atomicZ", "/", 
+      RowBox[{"(", 
+       RowBox[{"2", " ", "aNought"}], ")"}]}], ")"}], "^", 
+    RowBox[{"(", 
+     RowBox[{"3", "/", "2"}], ")"}]}], " ", "/", " ", 
+   RowBox[{"Sqrt", "[", "Pi", "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"rho", "[", "r_", "]"}], " ", ":=", " ", 
+  RowBox[{"atomicZ", " ", 
+   RowBox[{"r", " ", "/", 
+    RowBox[{"(", 
+     RowBox[{"2", " ", "aNought"}], ")"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi2s", "[", 
+    RowBox[{"rhoR_", ",", " ", "phi_", ",", " ", "theta_"}], "]"}], " ", "=", 
+   " ", 
+   RowBox[{"normConst", " ", 
+    RowBox[{"E", "^", 
+     RowBox[{"(", 
+      RowBox[{"-", "rhoR"}], ")"}]}], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", " ", "-", " ", "rhoR"}], ")"}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi2pz", "[", 
+    RowBox[{"rhoR_", ",", " ", "phi_", ",", " ", "theta_"}], "]"}], " ", "=", 
+   " ", 
+   RowBox[{"normConst", " ", 
+    RowBox[{"E", "^", 
+     RowBox[{"(", 
+      RowBox[{"-", "rhoR"}], ")"}]}], " ", "rhoR", " ", 
+    RowBox[{"Cos", "[", "theta", "]"}]}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi2px", "[", 
+    RowBox[{"rhoR_", ",", " ", "phi_", ",", " ", "theta_"}], "]"}], " ", "=", 
+   " ", 
+   RowBox[{"normConst", " ", 
+    RowBox[{"E", "^", 
+     RowBox[{"(", 
+      RowBox[{"-", "rhoR"}], ")"}]}], " ", "rhoR", " ", 
+    RowBox[{"Sin", "[", "theta", "]"}], " ", 
+    RowBox[{"Cos", "[", "phi", "]"}]}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"psi2py", "[", 
+     RowBox[{"rhoR_", ",", " ", "phi_", ",", " ", "theta_"}], "]"}], " ", "=",
+     " ", 
+    RowBox[{"normConst", " ", 
+     RowBox[{"E", "^", 
+      RowBox[{"(", 
+       RowBox[{"-", "rhoR"}], ")"}]}], " ", "rhoR", " ", 
+     RowBox[{"Sin", "[", "theta", "]"}], " ", 
+     RowBox[{"Sin", "[", "phi", "]"}]}]}], " ", ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"As", " ", "functions", " ", "of", " ", "r"}], ",", " ", 
+    "\[Theta]", ",", " ", "\[Phi]"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "psi2sR", ",", " ", "psi2pxR", ",", " ", "psi2pyR", ",", " ", "psi2pzR"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi2sR", "[", 
+    RowBox[{"r_", ",", " ", "theta_", ",", " ", "phi_"}], "]"}], " ", "=", 
+   " ", 
+   RowBox[{"psi2s", "[", 
+    RowBox[{
+     RowBox[{"rho", "[", "r", "]"}], ",", " ", "phi", ",", " ", "theta"}], 
+    "]"}]}], "  ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi2pxR", "[", 
+    RowBox[{"r_", ",", " ", "theta_", ",", " ", "phi_"}], "]"}], " ", "=", 
+   RowBox[{"psi2px", "[", 
+    RowBox[{
+     RowBox[{"rho", "[", "r", "]"}], ",", " ", "phi", ",", " ", "theta"}], 
+    "]"}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi2pyR", "[", 
+    RowBox[{"r_", ",", " ", "theta_", ",", " ", "phi_"}], "]"}], " ", "=", 
+   RowBox[{"psi2py", "[", 
+    RowBox[{
+     RowBox[{"rho", "[", "r", "]"}], ",", " ", "phi", ",", " ", "theta"}], 
+    "]"}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"psi2pzR", "[", 
+     RowBox[{"r_", ",", " ", "theta_", ",", " ", "phi_"}], "]"}], " ", "=", 
+    RowBox[{"psi2pz", "[", 
+     RowBox[{
+      RowBox[{"rho", "[", "r", "]"}], ",", " ", "phi", ",", " ", "theta"}], 
+     "]"}]}], " ", ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"hybrid", " ", "functions"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{"psi1", ",", " ", "psi2", ",", " ", "psi3", ",", " ", "psi4"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi1", "[", 
+    RowBox[{"r_", ",", " ", "theta_", ",", " ", "phi_"}], "]"}], " ", "=", 
+   " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"1", "/", "3"}], "]"}], 
+     RowBox[{"psi2sR", "[", 
+      RowBox[{"r", ",", " ", "phi", ",", " ", "theta"}], "]"}]}], " ", "+", 
+    " ", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"2", "/", "3"}], "]"}], " ", 
+     RowBox[{"psi2pxR", "[", 
+      RowBox[{"r", ",", " ", "phi", ",", " ", "theta"}], "]"}]}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi2", "[", 
+    RowBox[{"r_", ",", " ", "theta_", ",", " ", "phi_"}], "]"}], " ", "=", 
+   " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"1", "/", "3"}], "]"}], 
+     RowBox[{"psi2sR", "[", 
+      RowBox[{"r", ",", " ", "phi", ",", " ", "theta"}], "]"}]}], " ", "-", 
+    " ", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"1", "/", "6"}], "]"}], " ", 
+     RowBox[{"psi2pxR", "[", 
+      RowBox[{"r", ",", " ", "phi", ",", " ", "theta"}], "]"}]}], " ", "+", 
+    " ", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"1", "/", "2"}], "]"}], 
+     RowBox[{"psi2pyR", "[", 
+      RowBox[{"r", ",", " ", "phi", ",", " ", "theta"}], "]"}]}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi3", "[", 
+    RowBox[{"r_", ",", " ", "theta_", ",", " ", "phi_"}], "]"}], " ", "=", 
+   " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"1", "/", "3"}], "]"}], 
+     RowBox[{"psi2sR", "[", 
+      RowBox[{"r", ",", " ", "phi", ",", " ", "theta"}], "]"}]}], " ", "-", 
+    " ", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"1", "/", "6"}], "]"}], " ", 
+     RowBox[{"psi2pxR", "[", 
+      RowBox[{"r", ",", " ", "phi", ",", " ", "theta"}], "]"}]}], " ", "-", 
+    " ", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"1", "/", "2"}], "]"}], 
+     RowBox[{"psi2pyR", "[", 
+      RowBox[{"r", ",", " ", "phi", ",", " ", "theta"}], "]"}]}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"psi4", "[", 
+     RowBox[{"r_", ",", " ", "theta_", ",", " ", "phi_"}], "]"}], " ", "=", 
+    " ", 
+    RowBox[{"psi2pzR", "[", 
+     RowBox[{"r", ",", " ", "phi", ",", " ", "theta"}], "]"}]}], " ", ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"For", " ", "display"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"psi2s", "[", 
+      RowBox[{"\[Rho]", ",", " ", "\[Phi]", ",", " ", "\[Theta]"}], "]"}], 
+     " ", ",", 
+     RowBox[{"psi2pz", "[", 
+      RowBox[{"\[Rho]", ",", " ", "\[Phi]", ",", " ", "\[Theta]"}], "]"}], 
+     ",", 
+     RowBox[{"psi2px", "[", 
+      RowBox[{"\[Rho]", ",", " ", "\[Phi]", ",", " ", "\[Theta]"}], "]"}], 
+     ",", 
+     RowBox[{"psi2py", "[", 
+      RowBox[{"\[Rho]", ",", " ", "\[Phi]", ",", " ", "\[Theta]"}], "]"}]}], 
+    " ", "}"}], " ", "/.", " ", 
+   RowBox[{"atomicZ", " ", "\[Rule]", " ", "Z"}]}], "//", " ", 
+  "TraditionalForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"psi1", "[", 
+       RowBox[{"r", ",", " ", "\[Theta]", ",", " ", "\[Phi]"}], "]"}], " ", 
+      ",", 
+      RowBox[{"psi2", "[", 
+       RowBox[{"r", ",", " ", "\[Theta]", ",", " ", "\[Phi]"}], "]"}], " ", 
+      ",", 
+      RowBox[{"psi3", "[", 
+       RowBox[{"r", ",", " ", "\[Theta]", ",", " ", "\[Phi]"}], "]"}], " ", 
+      ",", 
+      RowBox[{"psi4", "[", 
+       RowBox[{"r", ",", " ", "\[Theta]", ",", " ", "\[Phi]"}], "]"}]}], " ", 
+     "}"}], " ", "/.", " ", 
+    RowBox[{"atomicZ", " ", "\[Rule]", " ", "Z"}]}], "//", " ", 
+   "TraditionalForm"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", " ", "inner", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"$Assumptions", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"aNought", " ", ">", " ", "0"}], " ", "&&", " ", 
+     RowBox[{"atomicZ", " ", ">", " ", "0"}]}]}], " ", ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"assume", " ", "real", " ", "functions"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"inner", "[", 
+    RowBox[{"f_", ",", " ", "g_"}], "]"}], " ", ":=", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"f", "[", 
+        RowBox[{"r", ",", " ", "theta", ",", " ", "phi"}], "]"}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{"g", "[", 
+        RowBox[{"r", ",", " ", "theta", ",", " ", "phi"}], "]"}], ")"}], " ", 
+      RowBox[{"r", "^", "2"}], " ", 
+      RowBox[{"Sin", "[", "theta", "]"}]}], " ", ",", 
+     RowBox[{"{", 
+      RowBox[{"r", ",", "0", ",", "\[Infinity]"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"theta", ",", " ", "0", ",", " ", "Pi"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"phi", ",", " ", "0", ",", " ", 
+       RowBox[{"2", " ", "Pi"}]}], "}"}]}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{
+   "w", ",", " ", "x", ",", " ", "y", ",", " ", "psi1t", ",", " ", "psi2t", 
+    ",", " ", "psi3t", ",", " ", "psi4t"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi1t", "[", 
+    RowBox[{"x_", ",", " ", "y_", ",", " ", "atomicZ_", ",", " ", "theta_"}], 
+    "]"}], " ", "=", " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"psi1", "[", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", 
+       RowBox[{
+        RowBox[{"x", "^", "2"}], " ", "+", " ", 
+        RowBox[{"y", "^", "2"}]}], "]"}], ",", " ", "theta", ",", " ", 
+      RowBox[{"ArcTan", "[", 
+       RowBox[{"x", ",", " ", "y"}], "]"}]}], "]"}], "   ", "/.", " ", 
+    RowBox[{"aNought", " ", "\[Rule]", " ", "1"}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi2t", "[", 
+    RowBox[{"x_", ",", " ", "y_", ",", " ", "atomicZ_", ",", " ", "theta_"}], 
+    "]"}], " ", "=", " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"psi2", "[", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", 
+       RowBox[{
+        RowBox[{"x", "^", "2"}], " ", "+", " ", 
+        RowBox[{"y", "^", "2"}]}], "]"}], ",", " ", "theta", ",", " ", 
+      RowBox[{"ArcTan", "[", 
+       RowBox[{"x", ",", " ", "y"}], "]"}]}], "]"}], "  ", "/.", " ", 
+    RowBox[{"aNought", " ", "\[Rule]", " ", "1"}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi3t", "[", 
+    RowBox[{"x_", ",", " ", "y_", ",", " ", "atomicZ_", ",", " ", "theta_"}], 
+    "]"}], " ", "=", " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"psi3", "[", 
+     RowBox[{
+      RowBox[{"Sqrt", "[", 
+       RowBox[{
+        RowBox[{"x", "^", "2"}], " ", "+", " ", 
+        RowBox[{"y", "^", "2"}]}], "]"}], ",", " ", "theta", ",", " ", 
+      RowBox[{"ArcTan", "[", 
+       RowBox[{"x", ",", " ", "y"}], "]"}]}], "]"}], "  ", "/.", " ", 
+    RowBox[{"aNought", " ", "\[Rule]", " ", "1"}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"psi4t", "[", 
+     RowBox[{"x_", ",", " ", "y_", ",", " ", "atomicZ_", ",", " ", "theta_"}],
+      "]"}], " ", "=", " ", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"psi4", "[", 
+      RowBox[{
+       RowBox[{"Sqrt", "[", 
+        RowBox[{
+         RowBox[{"x", "^", "2"}], " ", "+", " ", 
+         RowBox[{"y", "^", "2"}]}], "]"}], ",", " ", "theta", ",", " ", 
+       RowBox[{"ArcTan", "[", 
+        RowBox[{"x", ",", " ", "y"}], "]"}]}], "]"}], "   ", "/.", " ", 
+     RowBox[{"aNought", " ", "\[Rule]", " ", "1"}]}]}], " ", ";"}], 
+  "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.5881724969712043`*^9, 3.5881727173548098`*^9}, {
+   3.588172751469761*^9, 3.588172919778387*^9}, {3.588174923572998*^9, 
+   3.588175055855564*^9}, 3.58817699820466*^9, {3.5881776671529217`*^9, 
+   3.588177668535001*^9}, {3.5882483438302145`*^9, 3.588248402035544*^9}, {
+   3.588248720886781*^9, 3.588248734708572*^9}, {3.5882557864770904`*^9, 
+   3.588255792191417*^9}, {3.5882560242646914`*^9, 3.5882560574245872`*^9}, {
+   3.5883674092380333`*^9, 3.5883674102730923`*^9}, {3.5883674420729113`*^9, 
+   3.5883674431209717`*^9}, {3.5883675332831287`*^9, 
+   3.5883675648919363`*^9}, {3.588368184375369*^9, 3.58836845013857*^9}, {
+   3.5883685240427966`*^9, 3.588368676291505*^9}, {3.58836873949612*^9, 
+   3.588368753624928*^9}, {3.5883689000123005`*^9, 3.5883689594717016`*^9}, {
+   3.588369031255808*^9, 3.5883690840348263`*^9}, {3.588369119903878*^9, 
+   3.588369223106781*^9}, 3.5883693112468224`*^9, {3.588369400001899*^9, 
+   3.5883694063382607`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"{", 
+   RowBox[{
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"-", "\[Rho]"}]], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Rho]"}], ")"}], " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox["Z", 
+         SubscriptBox["a", "0"]], ")"}], 
+       RowBox[{"3", "/", "2"}]]}], 
+     RowBox[{"2", " ", 
+      SqrtBox[
+       RowBox[{"2", " ", "\[Pi]"}]]}]], ",", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"-", "\[Rho]"}]], " ", "\[Rho]", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox["Z", 
+         SubscriptBox["a", "0"]], ")"}], 
+       RowBox[{"3", "/", "2"}]], " ", 
+      RowBox[{"cos", "(", "\[Theta]", ")"}]}], 
+     RowBox[{"2", " ", 
+      SqrtBox[
+       RowBox[{"2", " ", "\[Pi]"}]]}]], ",", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"-", "\[Rho]"}]], " ", "\[Rho]", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox["Z", 
+         SubscriptBox["a", "0"]], ")"}], 
+       RowBox[{"3", "/", "2"}]], " ", 
+      RowBox[{"sin", "(", "\[Theta]", ")"}], " ", 
+      RowBox[{"cos", "(", "\[Phi]", ")"}]}], 
+     RowBox[{"2", " ", 
+      SqrtBox[
+       RowBox[{"2", " ", "\[Pi]"}]]}]], ",", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"-", "\[Rho]"}]], " ", "\[Rho]", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox["Z", 
+         SubscriptBox["a", "0"]], ")"}], 
+       RowBox[{"3", "/", "2"}]], " ", 
+      RowBox[{"sin", "(", "\[Theta]", ")"}], " ", 
+      RowBox[{"sin", "(", "\[Phi]", ")"}]}], 
+     RowBox[{"2", " ", 
+      SqrtBox[
+       RowBox[{"2", " ", "\[Pi]"}]]}]]}], "}"}], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.5881727210320196`*^9, {3.588172754883956*^9, 3.5881727833905864`*^9}, 
+   3.5881729259137383`*^9, 3.5881750632739887`*^9, 3.5881769991277127`*^9, 
+   3.588248290123143*^9, 3.588248485689329*^9, 3.588248735653626*^9, 
+   3.5882557929664617`*^9, 3.588256036853411*^9, 3.5882661793105264`*^9, 
+   3.5882768219463263`*^9, 3.5882821230705338`*^9, 3.58828532056742*^9, 
+   3.5883687247432756`*^9, 3.5883691625263157`*^9, 3.5883693135959563`*^9, 
+   3.5883694108765206`*^9}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      RowBox[{"r", " ", "Z", " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["Z", 
+          SubscriptBox["a", "0"]], ")"}], 
+        RowBox[{"3", "/", "2"}]], " ", 
+       RowBox[{"cos", "(", "\[Theta]", ")"}], " ", 
+       RowBox[{"sin", "(", "\[Phi]", ")"}], " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"r", " ", "Z"}], 
+          RowBox[{"2", " ", 
+           SubscriptBox["a", "0"]}]]}]]}], 
+      RowBox[{"4", " ", 
+       SqrtBox[
+        RowBox[{"3", " ", "\[Pi]"}]], " ", 
+       SubscriptBox["a", "0"]}]], "+", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["Z", 
+          SubscriptBox["a", "0"]], ")"}], 
+        RowBox[{"3", "/", "2"}]], " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"r", " ", "Z"}], 
+          RowBox[{"2", " ", 
+           SubscriptBox["a", "0"]}]]}]], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         FractionBox[
+          RowBox[{"r", " ", "Z"}], 
+          RowBox[{"2", " ", 
+           SubscriptBox["a", "0"]}]]}], ")"}]}], 
+      RowBox[{"2", " ", 
+       SqrtBox[
+        RowBox[{"6", " ", "\[Pi]"}]]}]]}], ",", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"r", " ", "Z", " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["Z", 
+          SubscriptBox["a", "0"]], ")"}], 
+        RowBox[{"3", "/", "2"}]], " ", 
+       RowBox[{"sin", "(", "\[Theta]", ")"}], " ", 
+       RowBox[{"sin", "(", "\[Phi]", ")"}], " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"r", " ", "Z"}], 
+          RowBox[{"2", " ", 
+           SubscriptBox["a", "0"]}]]}]]}], 
+      RowBox[{"8", " ", 
+       SqrtBox["\[Pi]"], " ", 
+       SubscriptBox["a", "0"]}]], "-", 
+     FractionBox[
+      RowBox[{"r", " ", "Z", " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["Z", 
+          SubscriptBox["a", "0"]], ")"}], 
+        RowBox[{"3", "/", "2"}]], " ", 
+       RowBox[{"cos", "(", "\[Theta]", ")"}], " ", 
+       RowBox[{"sin", "(", "\[Phi]", ")"}], " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"r", " ", "Z"}], 
+          RowBox[{"2", " ", 
+           SubscriptBox["a", "0"]}]]}]]}], 
+      RowBox[{"8", " ", 
+       SqrtBox[
+        RowBox[{"3", " ", "\[Pi]"}]], " ", 
+       SubscriptBox["a", "0"]}]], "+", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["Z", 
+          SubscriptBox["a", "0"]], ")"}], 
+        RowBox[{"3", "/", "2"}]], " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"r", " ", "Z"}], 
+          RowBox[{"2", " ", 
+           SubscriptBox["a", "0"]}]]}]], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         FractionBox[
+          RowBox[{"r", " ", "Z"}], 
+          RowBox[{"2", " ", 
+           SubscriptBox["a", "0"]}]]}], ")"}]}], 
+      RowBox[{"2", " ", 
+       SqrtBox[
+        RowBox[{"6", " ", "\[Pi]"}]]}]]}], ",", 
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"r", " ", "Z", " ", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox["Z", 
+           SubscriptBox["a", "0"]], ")"}], 
+         RowBox[{"3", "/", "2"}]], " ", 
+        RowBox[{"sin", "(", "\[Theta]", ")"}], " ", 
+        RowBox[{"sin", "(", "\[Phi]", ")"}], " ", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"-", 
+          FractionBox[
+           RowBox[{"r", " ", "Z"}], 
+           RowBox[{"2", " ", 
+            SubscriptBox["a", "0"]}]]}]]}], 
+       RowBox[{"8", " ", 
+        SqrtBox["\[Pi]"], " ", 
+        SubscriptBox["a", "0"]}]]}], "-", 
+     FractionBox[
+      RowBox[{"r", " ", "Z", " ", 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["Z", 
+          SubscriptBox["a", "0"]], ")"}], 
+        RowBox[{"3", "/", "2"}]], " ", 
+       RowBox[{"cos", "(", "\[Theta]", ")"}], " ", 
+       RowBox[{"sin", "(", "\[Phi]", ")"}], " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"r", " ", "Z"}], 
+          RowBox[{"2", " ", 
+           SubscriptBox["a", "0"]}]]}]]}], 
+      RowBox[{"8", " ", 
+       SqrtBox[
+        RowBox[{"3", " ", "\[Pi]"}]], " ", 
+       SubscriptBox["a", "0"]}]], "+", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox["Z", 
+          SubscriptBox["a", "0"]], ")"}], 
+        RowBox[{"3", "/", "2"}]], " ", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"r", " ", "Z"}], 
+          RowBox[{"2", " ", 
+           SubscriptBox["a", "0"]}]]}]], " ", 
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         FractionBox[
+          RowBox[{"r", " ", "Z"}], 
+          RowBox[{"2", " ", 
+           SubscriptBox["a", "0"]}]]}], ")"}]}], 
+      RowBox[{"2", " ", 
+       SqrtBox[
+        RowBox[{"6", " ", "\[Pi]"}]]}]]}], ",", 
+    FractionBox[
+     RowBox[{"r", " ", "Z", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox["Z", 
+         SubscriptBox["a", "0"]], ")"}], 
+       RowBox[{"3", "/", "2"}]], " ", 
+      RowBox[{"cos", "(", "\[Phi]", ")"}], " ", 
+      SuperscriptBox["\[ExponentialE]", 
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{"r", " ", "Z"}], 
+         RowBox[{"2", " ", 
+          SubscriptBox["a", "0"]}]]}]]}], 
+     RowBox[{"4", " ", 
+      SqrtBox[
+       RowBox[{"2", " ", "\[Pi]"}]], " ", 
+      SubscriptBox["a", "0"]}]]}], "}"}], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.5881727210320196`*^9, {3.588172754883956*^9, 3.5881727833905864`*^9}, 
+   3.5881729259137383`*^9, 3.5881750632739887`*^9, 3.5881769991277127`*^9, 
+   3.588248290123143*^9, 3.588248485689329*^9, 3.588248735653626*^9, 
+   3.5882557929664617`*^9, 3.588256036853411*^9, 3.5882661793105264`*^9, 
+   3.5882768219463263`*^9, 3.5882821230705338`*^9, 3.58828532056742*^9, 
+   3.5883687247432756`*^9, 3.5883691625263157`*^9, 3.5883693135959563`*^9, 
+   3.588369410966526*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Verify", " ", 
+    RowBox[{"orthonormality", ".", "  ", "Did"}], " ", "the", " ", "hybrids", 
+    " ", "by", " ", "hand", " ", "on", " ", "paper", " ", "in", " ", "terms", 
+    " ", "of", " ", "basis", " ", 
+    RowBox[{"functions", ".", "  ", "Do"}], " ", "here", " ", "explicitly", 
+    " ", "to", " ", "verify", " ", "all", " ", "against", " ", "typos"}], " ",
+    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2sR", ",", " ", "psi2sR"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2pxR", ",", " ", "psi2pxR"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2pyR", ",", " ", "psi2pyR"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2pzR", ",", " ", "psi2pzR"}], "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2sR", ",", " ", "psi2pxR"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2sR", ",", " ", "psi2pyR"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2sR", ",", " ", "psi2pzR"}], "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2pxR", ",", " ", "psi2pyR"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2pxR", ",", " ", "psi2pzR"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2pyR", ",", " ", "psi2pzR"}], "]"}], ",", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi1", ",", " ", "psi1"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2", ",", " ", "psi2"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi3", ",", " ", "psi3"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi4", ",", " ", "psi4"}], "]"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi1", ",", " ", "psi2"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi1", ",", " ", "psi3"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi1", ",", " ", "psi4"}], "]"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2", ",", " ", "psi3"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi2", ",", " ", "psi4"}], "]"}], ",", 
+    RowBox[{"inner", "[", 
+     RowBox[{"psi3", ",", " ", "psi4"}], "]"}]}], "}"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1", ",", "1", ",", "1", ",", "1", ",", "0", ",", "0", ",", "0", ",", "0", 
+   ",", "0", ",", "0", ",", 
+   FractionBox["2", "3"], ",", 
+   FractionBox["11", "12"], ",", 
+   FractionBox["11", "12"], ",", 
+   FractionBox["3", "2"], ",", 
+   FractionBox["1", "6"], ",", 
+   FractionBox["1", "6"], ",", "0", ",", 
+   RowBox[{"-", 
+    FractionBox["1", "12"]}], ",", "0", ",", "0"}], "}"}]], "Output",
+ CellChangeTimes->{3.5883693780666437`*^9, 3.58836946803479*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+2b. contour plots of hybrid orbitals at \[Theta] = \[Pi]/2\
+\>", "Subsection",
+ CellChangeTimes->{{3.5882371773755302`*^9, 3.588237215053685*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{" ", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Clear", "[", "contourPlots", "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"contourPlots", "[", 
+     RowBox[{"f_", ",", " ", "tInit_"}], "]"}], ":=", " ", 
+    RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"ContourPlot", "[", " ", 
+         RowBox[{
+          RowBox[{"f", "[", 
+           RowBox[{"u", ",", " ", "v", ",", " ", "z", ",", " ", "theta"}], 
+           "]"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"u", ",", " ", 
+            RowBox[{"-", "w"}], ",", " ", "w"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"v", ",", " ", 
+            RowBox[{"-", "w"}], ",", " ", "w"}], "}"}], " ", ",", 
+          RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+          RowBox[{"Frame", "\[Rule]", "False"}], ",", 
+          RowBox[{"PlotPoints", "\[Rule]", "45"}], ",", 
+          RowBox[{"ColorFunctionScaling", "\[Rule]", "True"}], ",", 
+          RowBox[{"ColorFunction", "\[Rule]", "\"\<DeepSeaColors\>\""}]}], 
+         "  ", "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"ContourPlot", "[", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"f", "[", 
+            RowBox[{"u", ",", " ", "v", ",", " ", "z", ",", " ", "theta"}], 
+            "]"}], "^", "2"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"u", ",", " ", 
+            RowBox[{"-", "w"}], ",", " ", "w"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"v", ",", " ", 
+            RowBox[{"-", "w"}], ",", " ", "w"}], "}"}], " ", ",", 
+          RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+          RowBox[{"Frame", "\[Rule]", "False"}], ",", 
+          RowBox[{"PlotPoints", "\[Rule]", "45"}], ",", 
+          RowBox[{"ColorFunctionScaling", "\[Rule]", "True"}], ",", 
+          RowBox[{"ColorFunction", "\[Rule]", "\"\<DeepSeaColors\>\""}]}], 
+         "  ", "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"DensityPlot", "[", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"f", "[", 
+            RowBox[{"u", ",", " ", "v", ",", " ", "z", ",", " ", "theta"}], 
+            "]"}], "^", "2"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"u", ",", " ", 
+            RowBox[{"-", "w"}], ",", " ", "w"}], "}"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"v", ",", " ", 
+            RowBox[{"-", "w"}], ",", " ", "w"}], "}"}], " ", ",", 
+          RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+          RowBox[{"Frame", "\[Rule]", "False"}], ",", 
+          RowBox[{"PlotPoints", "\[Rule]", "45"}], ",", 
+          RowBox[{"ColorFunctionScaling", "\[Rule]", "True"}], ",", 
+          RowBox[{"ColorFunction", "\[Rule]", "\"\<SunsetColors\>\""}]}], 
+         "]"}]}], "}"}], "\[IndentingNewLine]", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"w", ",", " ", "10", ",", " ", "width"}], "}"}], ",", " ", 
+        "1", ",", " ", "20", ",", 
+        RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+      "\[IndentingNewLine]", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"theta", ",", " ", "tInit", ",", " ", "\[Theta]"}], "}"}], 
+        ",", " ", "0", ",", " ", "Pi", ",", 
+        RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+      "\[IndentingNewLine]", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"z", ",", "1", ",", " ", "Z"}], "}"}], ",", " ", "1", ",", 
+        " ", "20", ",", " ", "1", ",", 
+        RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}]}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"contourPlots", "[", 
+    RowBox[{"psi1t", ",", " ", 
+     RowBox[{"Pi", "/", "2"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"contourPlots", "[", 
+    RowBox[{"psi2t", ",", " ", 
+     RowBox[{"Pi", "/", "2"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"contourPlots", "[", 
+    RowBox[{"psi3t", ",", " ", 
+     RowBox[{"Pi", "/", "2"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "This", " ", "last", " ", "plotted", " ", "with", " ", "\[Theta]"}], 
+      " ", "=", " ", 
+      RowBox[{"0", " ", "by", " ", "default"}]}], ",", " ", 
+     RowBox[{"since", " ", 
+      RowBox[{"\[Pi]", "/", "2"}], " ", "is", " ", "uninteresting", " ", 
+      "for", " ", "2", " ", 
+      SubscriptBox["p", 
+       RowBox[{"z", " "}]]}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"contourPlots", "[", 
+    RowBox[{"psi4t", ",", " ", "0"}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.5882550129338465`*^9, 3.5882550419655066`*^9}, {
+   3.588255072287241*^9, 3.5882550783425875`*^9}, {3.5882552606270137`*^9, 
+   3.5882552900226946`*^9}, {3.5882553355112963`*^9, 
+   3.5882553883423185`*^9}, {3.5882554727941484`*^9, 3.588255510523307*^9}, {
+   3.588255544904273*^9, 3.5882555935340548`*^9}, {3.588256121503253*^9, 
+   3.5882561620805736`*^9}, {3.588256493606536*^9, 3.588256497852779*^9}, {
+   3.5882856586647577`*^9, 3.5882856838812003`*^9}, {3.588285837815005*^9, 
+   3.588285860582307*^9}, {3.5882859081050253`*^9, 3.588285938523765*^9}, {
+   3.588286031263069*^9, 3.5882860786247787`*^9}, {3.588286442100568*^9, 
+   3.588286468129057*^9}, {3.588286534679863*^9, 3.5882865382990704`*^9}, {
+   3.588287864350916*^9, 3.5882880043169217`*^9}, 3.588288213132865*^9, {
+   3.5882887968742533`*^9, 3.5882888024375715`*^9}, 3.5882888389956627`*^9, 
+   3.5882891722187214`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`theta$$ = Rational[1, 2] 
+    Pi, $CellContext`w$$ = 10, $CellContext`z$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`w$$], 10, $CellContext`width}, 1, 20}, {{
+       Hold[$CellContext`theta$$], Rational[1, 2] Pi, $CellContext`\[Theta]}, 
+      0, Pi}, {{
+       Hold[$CellContext`z$$], 1, $CellContext`Z}, 1, 20, 1}}, 
+    Typeset`size$$ = {772., {116., 124.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`w$12334$$ = 0, $CellContext`theta$12335$$ = 
+    0, $CellContext`z$12336$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`theta$$ = 
+        Rational[1, 2] Pi, $CellContext`w$$ = 10, $CellContext`z$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`w$$, $CellContext`w$12334$$, 0], 
+        Hold[$CellContext`theta$$, $CellContext`theta$12335$$, 0], 
+        Hold[$CellContext`z$$, $CellContext`z$12336$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> {
+        ContourPlot[
+         $CellContext`psi1t[$CellContext`u, $CellContext`v, $CellContext`z$$, \
+$CellContext`theta$$], {$CellContext`u, -$CellContext`w$$, $CellContext`w$$}, \
+{$CellContext`v, -$CellContext`w$$, $CellContext`w$$}, Mesh -> False, Frame -> 
+         False, PlotPoints -> 45, ColorFunctionScaling -> True, ColorFunction -> 
+         "DeepSeaColors"], 
+        ContourPlot[$CellContext`psi1t[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$]^2, {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$}, {$CellContext`v, -$CellContext`w$$, \
+$CellContext`w$$}, Mesh -> False, Frame -> False, PlotPoints -> 45, 
+         ColorFunctionScaling -> True, ColorFunction -> "DeepSeaColors"], 
+        DensityPlot[$CellContext`psi1t[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$]^2, {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$}, {$CellContext`v, -$CellContext`w$$, \
+$CellContext`w$$}, Mesh -> False, Frame -> False, PlotPoints -> 45, 
+         ColorFunctionScaling -> True, ColorFunction -> "SunsetColors"]}, 
+      "Specifications" :> {{{$CellContext`w$$, 10, $CellContext`width}, 1, 20,
+          Appearance -> 
+         "Labeled"}, {{$CellContext`theta$$, Rational[1, 2] 
+          Pi, $CellContext`\[Theta]}, 0, Pi, Appearance -> 
+         "Labeled"}, {{$CellContext`z$$, 1, $CellContext`Z}, 1, 20, 1, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{835., {214., 221.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.5882554831747427`*^9, {3.588255567713578*^9, 3.588255594294098*^9}, {
+   3.588285691016608*^9, 3.588285719158218*^9}, 3.5882858612343445`*^9, 
+   3.588285939393815*^9, 3.58828607953083*^9, 3.588286468965104*^9, {
+   3.588286517393874*^9, 3.5882865423112993`*^9}, {3.588288816591381*^9, 
+   3.5882888424808617`*^9}, 3.5882893153199067`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`theta$$ = Rational[1, 2] 
+    Pi, $CellContext`w$$ = 10, $CellContext`z$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`w$$], 10, $CellContext`width}, 1, 20}, {{
+       Hold[$CellContext`theta$$], Rational[1, 2] Pi, $CellContext`\[Theta]}, 
+      0, Pi}, {{
+       Hold[$CellContext`z$$], 1, $CellContext`Z}, 1, 20, 1}}, 
+    Typeset`size$$ = {772., {116., 124.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`w$12368$$ = 0, $CellContext`theta$12369$$ = 
+    0, $CellContext`z$12370$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`theta$$ = 
+        Rational[1, 2] Pi, $CellContext`w$$ = 10, $CellContext`z$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`w$$, $CellContext`w$12368$$, 0], 
+        Hold[$CellContext`theta$$, $CellContext`theta$12369$$, 0], 
+        Hold[$CellContext`z$$, $CellContext`z$12370$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> {
+        ContourPlot[
+         $CellContext`psi2t[$CellContext`u, $CellContext`v, $CellContext`z$$, \
+$CellContext`theta$$], {$CellContext`u, -$CellContext`w$$, $CellContext`w$$}, \
+{$CellContext`v, -$CellContext`w$$, $CellContext`w$$}, Mesh -> False, Frame -> 
+         False, PlotPoints -> 45, ColorFunctionScaling -> True, ColorFunction -> 
+         "DeepSeaColors"], 
+        ContourPlot[$CellContext`psi2t[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$]^2, {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$}, {$CellContext`v, -$CellContext`w$$, \
+$CellContext`w$$}, Mesh -> False, Frame -> False, PlotPoints -> 45, 
+         ColorFunctionScaling -> True, ColorFunction -> "DeepSeaColors"], 
+        DensityPlot[$CellContext`psi2t[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$]^2, {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$}, {$CellContext`v, -$CellContext`w$$, \
+$CellContext`w$$}, Mesh -> False, Frame -> False, PlotPoints -> 45, 
+         ColorFunctionScaling -> True, ColorFunction -> "SunsetColors"]}, 
+      "Specifications" :> {{{$CellContext`w$$, 10, $CellContext`width}, 1, 20,
+          Appearance -> 
+         "Labeled"}, {{$CellContext`theta$$, Rational[1, 2] 
+          Pi, $CellContext`\[Theta]}, 0, Pi, Appearance -> 
+         "Labeled"}, {{$CellContext`z$$, 1, $CellContext`Z}, 1, 20, 1, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{835., {214., 221.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.5882554831747427`*^9, {3.588255567713578*^9, 3.588255594294098*^9}, {
+   3.588285691016608*^9, 3.588285719158218*^9}, 3.5882858612343445`*^9, 
+   3.588285939393815*^9, 3.58828607953083*^9, 3.588286468965104*^9, {
+   3.588286517393874*^9, 3.5882865423112993`*^9}, {3.588288816591381*^9, 
+   3.5882888424808617`*^9}, 3.5882893317648473`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`theta$$ = Rational[1, 2] 
+    Pi, $CellContext`w$$ = 10, $CellContext`z$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`w$$], 10, $CellContext`width}, 1, 20}, {{
+       Hold[$CellContext`theta$$], Rational[1, 2] Pi, $CellContext`\[Theta]}, 
+      0, Pi}, {{
+       Hold[$CellContext`z$$], 1, $CellContext`Z}, 1, 20, 1}}, 
+    Typeset`size$$ = {772., {116., 124.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`w$12461$$ = 0, $CellContext`theta$12462$$ = 
+    0, $CellContext`z$12463$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`theta$$ = 
+        Rational[1, 2] Pi, $CellContext`w$$ = 10, $CellContext`z$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`w$$, $CellContext`w$12461$$, 0], 
+        Hold[$CellContext`theta$$, $CellContext`theta$12462$$, 0], 
+        Hold[$CellContext`z$$, $CellContext`z$12463$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> {
+        ContourPlot[
+         $CellContext`psi3t[$CellContext`u, $CellContext`v, $CellContext`z$$, \
+$CellContext`theta$$], {$CellContext`u, -$CellContext`w$$, $CellContext`w$$}, \
+{$CellContext`v, -$CellContext`w$$, $CellContext`w$$}, Mesh -> False, Frame -> 
+         False, PlotPoints -> 45, ColorFunctionScaling -> True, ColorFunction -> 
+         "DeepSeaColors"], 
+        ContourPlot[$CellContext`psi3t[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$]^2, {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$}, {$CellContext`v, -$CellContext`w$$, \
+$CellContext`w$$}, Mesh -> False, Frame -> False, PlotPoints -> 45, 
+         ColorFunctionScaling -> True, ColorFunction -> "DeepSeaColors"], 
+        DensityPlot[$CellContext`psi3t[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$]^2, {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$}, {$CellContext`v, -$CellContext`w$$, \
+$CellContext`w$$}, Mesh -> False, Frame -> False, PlotPoints -> 45, 
+         ColorFunctionScaling -> True, ColorFunction -> "SunsetColors"]}, 
+      "Specifications" :> {{{$CellContext`w$$, 10, $CellContext`width}, 1, 20,
+          Appearance -> 
+         "Labeled"}, {{$CellContext`theta$$, Rational[1, 2] 
+          Pi, $CellContext`\[Theta]}, 0, Pi, Appearance -> 
+         "Labeled"}, {{$CellContext`z$$, 1, $CellContext`Z}, 1, 20, 1, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{835., {214., 221.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.5882554831747427`*^9, {3.588255567713578*^9, 3.588255594294098*^9}, {
+   3.588285691016608*^9, 3.588285719158218*^9}, 3.5882858612343445`*^9, 
+   3.588285939393815*^9, 3.58828607953083*^9, 3.588286468965104*^9, {
+   3.588286517393874*^9, 3.5882865423112993`*^9}, {3.588288816591381*^9, 
+   3.5882888424808617`*^9}, 3.5882893460876665`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`theta$$ = 0, $CellContext`w$$ = 
+    10, $CellContext`z$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`w$$], 10, $CellContext`width}, 1, 20}, {{
+       Hold[$CellContext`theta$$], 0, $CellContext`\[Theta]}, 0, Pi}, {{
+       Hold[$CellContext`z$$], 1, $CellContext`Z}, 1, 20, 1}}, 
+    Typeset`size$$ = {772., {116., 124.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`w$12554$$ = 0, $CellContext`theta$12555$$ = 
+    0, $CellContext`z$12556$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`theta$$ = 0, $CellContext`w$$ = 
+        10, $CellContext`z$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`w$$, $CellContext`w$12554$$, 0], 
+        Hold[$CellContext`theta$$, $CellContext`theta$12555$$, 0], 
+        Hold[$CellContext`z$$, $CellContext`z$12556$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> {
+        ContourPlot[
+         $CellContext`psi4t[$CellContext`u, $CellContext`v, $CellContext`z$$, \
+$CellContext`theta$$], {$CellContext`u, -$CellContext`w$$, $CellContext`w$$}, \
+{$CellContext`v, -$CellContext`w$$, $CellContext`w$$}, Mesh -> False, Frame -> 
+         False, PlotPoints -> 45, ColorFunctionScaling -> True, ColorFunction -> 
+         "DeepSeaColors"], 
+        ContourPlot[$CellContext`psi4t[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$]^2, {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$}, {$CellContext`v, -$CellContext`w$$, \
+$CellContext`w$$}, Mesh -> False, Frame -> False, PlotPoints -> 45, 
+         ColorFunctionScaling -> True, ColorFunction -> "DeepSeaColors"], 
+        DensityPlot[$CellContext`psi4t[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$]^2, {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$}, {$CellContext`v, -$CellContext`w$$, \
+$CellContext`w$$}, Mesh -> False, Frame -> False, PlotPoints -> 45, 
+         ColorFunctionScaling -> True, ColorFunction -> "SunsetColors"]}, 
+      "Specifications" :> {{{$CellContext`w$$, 10, $CellContext`width}, 1, 20,
+          Appearance -> 
+         "Labeled"}, {{$CellContext`theta$$, 0, $CellContext`\[Theta]}, 0, Pi,
+          Appearance -> "Labeled"}, {{$CellContext`z$$, 1, $CellContext`Z}, 1,
+          20, 1, Appearance -> "Labeled"}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{835., {213., 220.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.5882554831747427`*^9, {3.588255567713578*^9, 3.588255594294098*^9}, {
+   3.588285691016608*^9, 3.588285719158218*^9}, 3.5882858612343445`*^9, 
+   3.588285939393815*^9, 3.58828607953083*^9, 3.588286468965104*^9, {
+   3.588286517393874*^9, 3.5882865423112993`*^9}, {3.588288816591381*^9, 
+   3.5882888424808617`*^9}, 3.5882893610035195`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2d.  Interacting orbitals", "Subsection",
+ CellChangeTimes->{{3.5882564264266934`*^9, 3.5882564353502035`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "psi1reversed", ",", " ", "contourPlotsScaled", ",", " ", 
+   "psi1superposition"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"contourPlotsScaled", "[", 
+   RowBox[{"f_", ",", " ", "tInit_"}], "]"}], ":=", " ", 
+  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ContourPlot", "[", " ", 
+       RowBox[{
+        RowBox[{"f", "[", 
+         RowBox[{
+         "u", ",", " ", "v", ",", " ", "z", ",", " ", "theta", ",", " ", 
+          "s"}], "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"u", ",", " ", 
+          RowBox[{"-", "w"}], ",", " ", 
+          RowBox[{"w", " ", "+", " ", "s"}]}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"v", ",", " ", 
+          RowBox[{"-", "w"}], ",", " ", "w"}], "}"}], " ", ",", 
+        RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+        RowBox[{"Frame", "\[Rule]", "False"}], ",", 
+        RowBox[{"PlotPoints", "\[Rule]", "45"}], ",", 
+        RowBox[{"ColorFunctionScaling", "\[Rule]", "True"}], ",", 
+        RowBox[{"ColorFunction", "\[Rule]", "\"\<DeepSeaColors\>\""}]}], "  ",
+        "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"ContourPlot", "[", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"f", "[", 
+          RowBox[{
+          "u", ",", " ", "v", ",", " ", "z", ",", " ", "theta", ",", " ", 
+           "s"}], "]"}], "^", "2"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"u", ",", " ", 
+          RowBox[{"-", "w"}], ",", " ", 
+          RowBox[{"w", " ", "+", " ", "s"}]}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"v", ",", " ", 
+          RowBox[{"-", "w"}], ",", " ", "w"}], "}"}], " ", ",", 
+        RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+        RowBox[{"Frame", "\[Rule]", "False"}], ",", 
+        RowBox[{"PlotPoints", "\[Rule]", "45"}], ",", 
+        RowBox[{"ColorFunctionScaling", "\[Rule]", "True"}], ",", 
+        RowBox[{"ColorFunction", "\[Rule]", "\"\<DeepSeaColors\>\""}]}], "  ",
+        "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"DensityPlot", "[", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"f", "[", 
+          RowBox[{
+          "u", ",", " ", "v", ",", " ", "z", ",", " ", "theta", ",", " ", 
+           "s"}], "]"}], "^", "2"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"u", ",", " ", 
+          RowBox[{"-", "w"}], ",", " ", 
+          RowBox[{"w", " ", "+", " ", "s"}]}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"v", ",", " ", 
+          RowBox[{"-", "w"}], ",", " ", "w"}], "}"}], " ", ",", 
+        RowBox[{"Mesh", "\[Rule]", "False"}], ",", 
+        RowBox[{"Frame", "\[Rule]", "False"}], ",", 
+        RowBox[{"PlotPoints", "\[Rule]", "45"}], ",", 
+        RowBox[{"ColorFunctionScaling", "\[Rule]", "True"}], ",", 
+        RowBox[{"ColorFunction", "\[Rule]", "\"\<SunsetColors\>\""}]}], 
+       "]"}]}], "}"}], "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"w", ",", " ", "10", ",", " ", "width"}], "}"}], ",", " ", "1",
+       ",", " ", "20", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+    "\[IndentingNewLine]", ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"theta", ",", " ", "tInit", ",", " ", "\[Theta]"}], "}"}], ",",
+       " ", "0", ",", " ", "Pi", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"z", ",", "1", ",", " ", "Z"}], "}"}], ",", " ", "1", ",", " ",
+       "20", ",", " ", "1", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+    "\[IndentingNewLine]", ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"s", ",", " ", "2", ",", " ", "separation"}], "}"}], ",", " ", 
+      "1", ",", " ", "10", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}]}], 
+   "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi1reversed", "[", 
+    RowBox[{
+    "u_", ",", " ", "v_", ",", " ", "z_", ",", " ", "theta_", ",", " ", 
+     "s_"}], "]"}], " ", "=", " ", 
+   RowBox[{"psi1t", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "u"}], " ", "+", " ", "s"}], ",", " ", "v", ",", " ", "z", 
+     ",", " ", "theta"}], "]"}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi1superposition", "[", 
+    RowBox[{
+    "u_", ",", " ", "v_", ",", " ", "z_", ",", " ", "theta_", ",", " ", 
+     "s_"}], "]"}], " ", "=", " ", 
+   RowBox[{
+    RowBox[{"psi1reversed", "[", 
+     RowBox[{
+     "u", ",", " ", "v", ",", " ", "z", ",", " ", "theta", ",", " ", "s"}], 
+     "]"}], " ", "+", " ", 
+    RowBox[{"psi1t", "[", 
+     RowBox[{"u", ",", " ", "v", ",", " ", "z", ",", " ", "theta"}], 
+     "]"}]}]}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{"contourPlotsScaled", "[", " ", 
+  RowBox[{"psi1reversed", ",", " ", 
+   RowBox[{"Pi", "/", "2"}]}], " ", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"contourPlotsScaled", "[", " ", 
+   RowBox[{"psi1superposition", ",", " ", 
+    RowBox[{"Pi", "/", "2"}]}], " ", "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.5882564554643545`*^9, 3.58825652760048*^9}, {
+   3.5882565753532114`*^9, 3.588256748113093*^9}, {3.588256802034177*^9, 
+   3.5882568057303886`*^9}, {3.588256849731905*^9, 3.588256961651306*^9}, {
+   3.5882569976063633`*^9, 3.588257017460499*^9}, {3.588285745328715*^9, 
+   3.588285814247657*^9}, {3.5882882967816496`*^9, 3.588288390393004*^9}, {
+   3.5882884339024925`*^9, 3.588288622189262*^9}, 3.58828865624621*^9, {
+   3.588288707070117*^9, 3.5882887430661755`*^9}, {3.588289289279417*^9, 
+   3.588289302017146*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`s$$ = 2, $CellContext`theta$$ = 
+    Rational[1, 2] Pi, $CellContext`w$$ = 10, $CellContext`z$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`w$$], 10, $CellContext`width}, 1, 20}, {{
+       Hold[$CellContext`theta$$], Rational[1, 2] Pi, $CellContext`\[Theta]}, 
+      0, Pi}, {{
+       Hold[$CellContext`z$$], 1, $CellContext`Z}, 1, 20, 1}, {{
+       Hold[$CellContext`s$$], 2, $CellContext`separation}, 1, 10}}, 
+    Typeset`size$$ = {772., {116., 124.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`w$12855$$ = 0, $CellContext`theta$12856$$ = 
+    0, $CellContext`z$12857$$ = 0, $CellContext`s$12858$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`s$$ = 2, $CellContext`theta$$ = 
+        Rational[1, 2] Pi, $CellContext`w$$ = 10, $CellContext`z$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`w$$, $CellContext`w$12855$$, 0], 
+        Hold[$CellContext`theta$$, $CellContext`theta$12856$$, 0], 
+        Hold[$CellContext`z$$, $CellContext`z$12857$$, 0], 
+        Hold[$CellContext`s$$, $CellContext`s$12858$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> {
+        ContourPlot[
+         $CellContext`psi1reversed[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$, $CellContext`s$$], {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$ + $CellContext`s$$}, {$CellContext`v, \
+-$CellContext`w$$, $CellContext`w$$}, Mesh -> False, Frame -> False, 
+         PlotPoints -> 45, ColorFunctionScaling -> True, ColorFunction -> 
+         "DeepSeaColors"], 
+        ContourPlot[$CellContext`psi1reversed[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$, $CellContext`s$$]^2, {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$ + $CellContext`s$$}, {$CellContext`v, \
+-$CellContext`w$$, $CellContext`w$$}, Mesh -> False, Frame -> False, 
+         PlotPoints -> 45, ColorFunctionScaling -> True, ColorFunction -> 
+         "DeepSeaColors"], 
+        DensityPlot[$CellContext`psi1reversed[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$, $CellContext`s$$]^2, {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$ + $CellContext`s$$}, {$CellContext`v, \
+-$CellContext`w$$, $CellContext`w$$}, Mesh -> False, Frame -> False, 
+         PlotPoints -> 45, ColorFunctionScaling -> True, ColorFunction -> 
+         "SunsetColors"]}, 
+      "Specifications" :> {{{$CellContext`w$$, 10, $CellContext`width}, 1, 20,
+          Appearance -> 
+         "Labeled"}, {{$CellContext`theta$$, Rational[1, 2] 
+          Pi, $CellContext`\[Theta]}, 0, Pi, Appearance -> 
+         "Labeled"}, {{$CellContext`z$$, 1, $CellContext`Z}, 1, 20, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`s$$, 2, $CellContext`separation}, 1, 10, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{835., {232., 239.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.588256751418282*^9, {3.5882568100196333`*^9, 3.588256850365941*^9}, 
+   3.588256968094675*^9, {3.5882570078599496`*^9, 3.588257018196541*^9}, 
+   3.5882571077376623`*^9, 3.5882794475335016`*^9, 3.5882858215860767`*^9, 
+   3.5882886231463165`*^9, 3.5882886586873493`*^9, 3.588290303248413*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`s$$ = 2, $CellContext`theta$$ = 
+    Rational[1, 2] Pi, $CellContext`w$$ = 10, $CellContext`z$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`w$$], 10, $CellContext`width}, 1, 20}, {{
+       Hold[$CellContext`theta$$], Rational[1, 2] Pi, $CellContext`\[Theta]}, 
+      0, Pi}, {{
+       Hold[$CellContext`z$$], 1, $CellContext`Z}, 1, 20, 1}, {{
+       Hold[$CellContext`s$$], 2, $CellContext`separation}, 1, 10}}, 
+    Typeset`size$$ = {772., {116., 124.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`w$12894$$ = 0, $CellContext`theta$12895$$ = 
+    0, $CellContext`z$12896$$ = 0, $CellContext`s$12897$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`s$$ = 2, $CellContext`theta$$ = 
+        Rational[1, 2] Pi, $CellContext`w$$ = 10, $CellContext`z$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`w$$, $CellContext`w$12894$$, 0], 
+        Hold[$CellContext`theta$$, $CellContext`theta$12895$$, 0], 
+        Hold[$CellContext`z$$, $CellContext`z$12896$$, 0], 
+        Hold[$CellContext`s$$, $CellContext`s$12897$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> {
+        ContourPlot[
+         $CellContext`psi1superposition[$CellContext`u, $CellContext`v, \
+$CellContext`z$$, $CellContext`theta$$, $CellContext`s$$], {$CellContext`u, \
+-$CellContext`w$$, $CellContext`w$$ + $CellContext`s$$}, {$CellContext`v, \
+-$CellContext`w$$, $CellContext`w$$}, Mesh -> False, Frame -> False, 
+         PlotPoints -> 45, ColorFunctionScaling -> True, ColorFunction -> 
+         "DeepSeaColors"], 
+        ContourPlot[$CellContext`psi1superposition[$CellContext`u, \
+$CellContext`v, $CellContext`z$$, $CellContext`theta$$, $CellContext`s$$]^2, \
+{$CellContext`u, -$CellContext`w$$, $CellContext`w$$ + $CellContext`s$$}, \
+{$CellContext`v, -$CellContext`w$$, $CellContext`w$$}, Mesh -> False, Frame -> 
+         False, PlotPoints -> 45, ColorFunctionScaling -> True, ColorFunction -> 
+         "DeepSeaColors"], 
+        DensityPlot[$CellContext`psi1superposition[$CellContext`u, \
+$CellContext`v, $CellContext`z$$, $CellContext`theta$$, $CellContext`s$$]^2, \
+{$CellContext`u, -$CellContext`w$$, $CellContext`w$$ + $CellContext`s$$}, \
+{$CellContext`v, -$CellContext`w$$, $CellContext`w$$}, Mesh -> False, Frame -> 
+         False, PlotPoints -> 45, ColorFunctionScaling -> True, ColorFunction -> 
+         "SunsetColors"]}, 
+      "Specifications" :> {{{$CellContext`w$$, 10, $CellContext`width}, 1, 20,
+          Appearance -> 
+         "Labeled"}, {{$CellContext`theta$$, Rational[1, 2] 
+          Pi, $CellContext`\[Theta]}, 0, Pi, Appearance -> 
+         "Labeled"}, {{$CellContext`z$$, 1, $CellContext`Z}, 1, 20, 1, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`s$$, 2, $CellContext`separation}, 1, 10, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{835., {232., 239.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.588256751418282*^9, {3.5882568100196333`*^9, 3.588256850365941*^9}, 
+   3.588256968094675*^9, {3.5882570078599496`*^9, 3.588257018196541*^9}, 
+   3.5882571077376623`*^9, 3.5882794475335016`*^9, 3.5882858215860767`*^9, 
+   3.5882886231463165`*^9, 3.5882886586873493`*^9, 3.5882903198113604`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1584, 765},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{32000, 32000},
+PrintingOptions->{"Magnification"->1.,
+"PaperOrientation"->"Portrait",
+"PaperSize"->{612, 792}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 199, 2, 91, "Input"],
+Cell[CellGroupData[{
+Cell[781, 26, 159, 2, 58, "Subsection"],
+Cell[CellGroupData[{
+Cell[965, 32, 12949, 352, 1191, "Input"],
+Cell[13917, 386, 2313, 66, 106, "Output"],
+Cell[16233, 454, 6286, 192, 206, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22556, 651, 2351, 54, 241, "Input"],
+Cell[24910, 707, 504, 13, 90, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25463, 726, 156, 3, 58, "Subsection"],
+Cell[CellGroupData[{
+Cell[25644, 733, 5624, 121, 541, "Input"],
+Cell[31271, 856, 3671, 66, 457, "Output"],
+Cell[34945, 924, 3671, 66, 457, "Output"],
+Cell[38619, 992, 3671, 66, 457, "Output"],
+Cell[42293, 1060, 3589, 64, 455, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[45931, 1130, 117, 1, 58, "Subsection"],
+Cell[CellGroupData[{
+Cell[46073, 1135, 5834, 139, 491, "Input"],
+Cell[51910, 1276, 4083, 72, 493, "Output"],
+Cell[55996, 1350, 4100, 72, 493, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
