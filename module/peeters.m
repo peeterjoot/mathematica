@@ -8,23 +8,27 @@ ClearAll[exportForLatex, setGitDir];
 setGitDir::usage = "Peeter's home laptop: set working dir relative to physicsplay/ (like figures\phy487)" ;
 setGitDir[where_] := SetDirectory[ "C:/Users/Peeter/cygwin_home/physicsplay/" <> where ] ;
 
-exportForLatex::usage = "peeters`exportForLatex[ filename, image] ::This seems to be the most compact way to export for latex that still retains good resolution.  Use the epstopdf program to convert the resulting .eps file.  Also generate a .png for wordpress posts at the same time. \[IndentingNewLine]Note that the .png displays with some software having a checkerboard background, but that doesn't show up in the eventual web view.\[IndentingNewLine]\[IndentingNewLine]This png file is generated with a different basename so that latex includegraphics doesn't find it." ;
+exportForLatex::usage = "peeters`exportForLatex[ filename, image, True/False] :: This seems to be the most compact way to export for latex that still retains good resolution.  Use the epstopdf program to convert the resulting .eps file.  Also generate a .png for wordpress posts at the same time. \[IndentingNewLine]Note that the .png displays with some software having a checkerboard background, but that doesn't show up in the eventual web view.\[IndentingNewLine]\[IndentingNewLine]This png file is generated with a different basename so that latex includegraphics doesn't find it.
+
+The last (optional) argument is for whether or not to allow rasterization.
+" ;
 
 (*
 https://plus.google.com/u/0/103302026148070112829/posts/YtM2TERTpob
 
 *)
-exportForLatex[filename_, image_]  := Module[{output, dir},
+exportForLatex[filename_, image_, allowRast_ : False ]  := Module[{output, dir},
 
 dir = Directory[] ;
 output =
-{Export[filename  <> ".eps",First[ImportString[ExportString[image,"PDF",Background->None],"PDF"]]]
+{Export[filename  <> ".eps",First[ImportString[ExportString[image, "PDF", "AllowRasterization"-> allowRast, Background->None],"PDF"]]]
 
-,Export[filename  <> "pn.png", image ,Background->None, ImageResolution->72*4]
+,Export[filename  <> "pn.png", image, "AllowRasterization"-> allowRast, Background->None, ImageResolution->72*4]
 (*,Export[filename  <> ".pdf", image]*)
 } ;
 {dir <> "/" <> output[[1]], dir <> "/" <> output[[2]] }
 ]
+
 
 ClearAll[lblPlot];
 
