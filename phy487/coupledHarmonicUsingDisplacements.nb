@@ -1,0 +1,285 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      9379,        276]
+NotebookOptionsPosition[      8534,        245]
+NotebookOutlinePosition[      8953,        261]
+CellTagsIndexPosition[      8910,        258]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "Verify the solution for ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"u", "''"}], " ", "=", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", 
+       SuperscriptBox["\[CapitalOmega]", "2"]}], "u"}], " ", "+", " ", 
+     RowBox[{
+      SuperscriptBox["\[CapitalOmega]", "2"], "a"}]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ".  Calculated solution, summing specific and  homogenenous solutions:"
+}], "Text",
+ CellChangeTimes->{{3.596346922767692*^9, 3.5963469628579855`*^9}, {
+  3.5963489762651453`*^9, 3.596349064859213*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", " ", 
+  RowBox[{"u", ",", " ", "omega", ",", " ", "a", ",", " ", "u0"}], " ", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"$Assumptions", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"a", " ", "\[Element]", " ", "Reals"}], " ", "&&", "  ", 
+     RowBox[{"omega", " ", ">", " ", "0"}], " ", "&&", " ", 
+     RowBox[{"a", " ", "\[Element]", " ", "Reals"}], " ", "&&", " ", 
+     RowBox[{"u0", " ", "\[Element]", " ", "Reals"}]}]}], " ", ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"u", "[", "t_", "]"}], " ", "=", " ", 
+   RowBox[{
+    RowBox[{"2", "  ", "a", " ", 
+     RowBox[{
+      RowBox[{"Sin", "[", " ", 
+       RowBox[{"omega", " ", 
+        RowBox[{"t", " ", "/", "2"}]}], "]"}], "^", "2"}]}], " ", "+", " ", 
+    RowBox[{"u0", " ", 
+     RowBox[{"Cos", "[", " ", 
+      RowBox[{"omega", " ", "t"}], " ", "]"}]}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Row", "[", 
+  RowBox[{"{", 
+   RowBox[{"\"\<u(t) = \>\"", ",", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"u", "[", "t", "]"}], " ", "/.", " ", 
+       RowBox[{"omega", " ", "\[Rule]", " ", "\[CapitalOmega]"}]}], " ", "/.",
+       " ", 
+      RowBox[{"u0", " ", "\[Rule]", " ", 
+       SubscriptBox["u", "0"]}]}], " ", "//", " ", "TraditionalForm"}]}], " ",
+    "}"}], "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.596346914949245*^9, 3.5963469168223524`*^9}, {
+   3.5963469755527115`*^9, 3.596347045779728*^9}, {3.596347090478285*^9, 
+   3.59634733446524*^9}, 3.5963474088624954`*^9, 3.596347449697831*^9, {
+   3.596348882201765*^9, 3.596348948650566*^9}, 3.5963490743197536`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"\"u(t) = \"",TagBox[
+    FormBox[
+     RowBox[{
+       RowBox[{"2", " ", "a", " ", 
+         RowBox[{
+           SuperscriptBox["sin", "2"], "(", 
+           FractionBox[
+            RowBox[{"t", " ", "\[CapitalOmega]"}], "2"], ")"}]}], "+", 
+       RowBox[{
+         SubscriptBox["u", "0"], " ", 
+         RowBox[{"cos", "(", 
+           RowBox[{"t", " ", "\[CapitalOmega]"}], ")"}]}]}], TraditionalForm],
+     TraditionalForm, Editable -> True]},
+  "RowDefault"]], "Output",
+ CellChangeTimes->{{3.5963472529665785`*^9, 3.5963473354012938`*^9}, 
+   3.5963474104585867`*^9, 3.596347450606883*^9, {3.5963489067501698`*^9, 
+   3.596348955318948*^9}, 3.5963490750497956`*^9}]
+}, Open  ]],
+
+Cell["Check against the ODE", "Text",
+ CellChangeTimes->{{3.5963475717008095`*^9, 3.596347578224182*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "check", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"check", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"u", "''"}], "[", "t", "]"}], " ", "+", " ", 
+    RowBox[{
+     RowBox[{"omega", "^", "2"}], " ", 
+     RowBox[{"u", "[", "t", "]"}]}], " ", "-", " ", 
+    RowBox[{
+     RowBox[{"omega", "^", "2"}], " ", "a"}]}]}], "  ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"check", " ", "/.", " ", 
+    RowBox[{"omega", " ", "\[Rule]", " ", "\[CapitalOmega]"}]}], " ", "/.", 
+   " ", 
+   RowBox[{"u0", " ", "\[Rule]", " ", 
+    SubscriptBox["u", "0"]}]}], " ", "//", " ", 
+  "TraditionalForm"}], "\[IndentingNewLine]", 
+ RowBox[{"check", " ", "//", " ", "Simplify"}]}], "Input",
+ CellChangeTimes->{{3.5963473569695272`*^9, 3.5963473933896103`*^9}, {
+  3.59634745702125*^9, 3.596347463580625*^9}, {3.59634879941403*^9, 
+  3.596348851620016*^9}, {3.5963490807081194`*^9, 3.596349081036138*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["\[CapitalOmega]", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"2", " ", "a", " ", 
+       RowBox[{
+        SuperscriptBox["sin", "2"], "(", 
+        FractionBox[
+         RowBox[{"t", " ", "\[CapitalOmega]"}], "2"], ")"}]}], "+", 
+      RowBox[{
+       SubscriptBox["u", "0"], " ", 
+       RowBox[{"cos", "(", 
+        RowBox[{"t", " ", "\[CapitalOmega]"}], ")"}]}]}], ")"}]}], "-", 
+   RowBox[{"a", " ", 
+    SuperscriptBox["\[CapitalOmega]", "2"], " ", 
+    RowBox[{
+     SuperscriptBox["sin", "2"], "(", 
+     FractionBox[
+      RowBox[{"t", " ", "\[CapitalOmega]"}], "2"], ")"}]}], "+", 
+   RowBox[{"a", " ", 
+    SuperscriptBox["\[CapitalOmega]", "2"], " ", 
+    RowBox[{
+     SuperscriptBox["cos", "2"], "(", 
+     FractionBox[
+      RowBox[{"t", " ", "\[CapitalOmega]"}], "2"], ")"}]}], "-", 
+   RowBox[{"a", " ", 
+    SuperscriptBox["\[CapitalOmega]", "2"]}], "-", 
+   RowBox[{
+    SubscriptBox["u", "0"], " ", 
+    SuperscriptBox["\[CapitalOmega]", "2"], " ", 
+    RowBox[{"cos", "(", 
+     RowBox[{"t", " ", "\[CapitalOmega]"}], ")"}]}]}], 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{{3.5963473589376397`*^9, 3.5963474143358088`*^9}, {
+   3.596347453952074*^9, 3.596347464489677*^9}, {3.596348812855799*^9, 
+   3.596348853030097*^9}, 3.5963490841013136`*^9}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.5963473589376397`*^9, 3.5963474143358088`*^9}, {
+   3.596347453952074*^9, 3.596347464489677*^9}, {3.596348812855799*^9, 
+   3.596348853030097*^9}, 3.5963490841203146`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Compute the average over one period ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"T", " ", "=", " ", 
+    RowBox[{"2", " ", 
+     RowBox[{"\[Pi]", "/", "\[CapitalOmega]"}]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Text",
+ CellChangeTimes->{{3.5963475883407607`*^9, 3.5963476643861103`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "i", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"i", " ", "=", " ", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "p", "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"p", " ", "=", " ", 
+      RowBox[{"2", " ", 
+       RowBox[{"Pi", "/", "omega"}]}]}], " ", ";", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "/", "p"}], ")"}], " ", 
+      RowBox[{"Integrate", "[", " ", 
+       RowBox[{
+        RowBox[{"u", "[", "t", "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", " ", "0", ",", " ", "p"}], "}"}]}], "]"}]}]}]}], 
+   "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Integrate", "[", " ", 
+  RowBox[{
+   RowBox[{"2", " ", 
+    RowBox[{
+     RowBox[{"Sin", "[", " ", 
+      RowBox[{"2", " ", "Pi", " ", 
+       RowBox[{"s", "/", "2"}]}], " ", "]"}], "^", "2"}]}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"s", ",", " ", "0", ",", " ", "1"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Integrate", "[", " ", 
+  RowBox[{
+   RowBox[{"Cos", "[", " ", 
+    RowBox[{"2", " ", "Pi", " ", "s"}], " ", "]"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"s", ",", " ", "0", ",", " ", "1"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.596347671987545*^9, 3.5963477705461826`*^9}, {
+  3.596348633984568*^9, 3.596348686186554*^9}, {3.5963487511002665`*^9, 
+  3.596348762062894*^9}}],
+
+Cell[BoxData["a"], "Output",
+ CellChangeTimes->{3.596347698355053*^9, 3.5963477715552397`*^9, 
+  3.596348687846649*^9, 3.596348763254962*^9, 3.596349091229721*^9}],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{3.596347698355053*^9, 3.5963477715552397`*^9, 
+  3.596348687846649*^9, 3.596348763254962*^9, 3.596349091355728*^9}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.596347698355053*^9, 3.5963477715552397`*^9, 
+  3.596348687846649*^9, 3.596348763254962*^9, 3.596349091495736*^9}]
+}, Open  ]]
+},
+WindowSize->{920, 637},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 570, 16, 66, "Text"],
+Cell[CellGroupData[{
+Cell[1152, 40, 1696, 41, 178, "Input"],
+Cell[2851, 83, 701, 17, 70, "Output"]
+}, Open  ]],
+Cell[3567, 103, 105, 1, 40, "Text"],
+Cell[CellGroupData[{
+Cell[3697, 108, 967, 24, 128, "Input"],
+Cell[4667, 134, 1356, 38, 91, "Output"],
+Cell[6026, 174, 222, 3, 52, "Output"]
+}, Open  ]],
+Cell[6263, 180, 323, 9, 40, "Text"],
+Cell[CellGroupData[{
+Cell[6611, 193, 1409, 37, 203, "Input"],
+Cell[8023, 232, 163, 2, 52, "Output"],
+Cell[8189, 236, 163, 2, 52, "Output"],
+Cell[8355, 240, 163, 2, 52, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
