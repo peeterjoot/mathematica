@@ -1,25 +1,58 @@
-(* Content-type: application/vnd.wolfram.mathematica *)
+(* Content-type: application/vnd.wolfram.cdf.text *)
 
-(*** Wolfram Notebook File ***)
-(* http://www.wolfram.com/nb *)
+(*** Wolfram CDF File ***)
+(* http://www.wolfram.com/cdf *)
 
 (* CreatedBy='Mathematica 9.0' *)
+
+(*************************************************************************)
+(*                                                                       *)
+(*  The Mathematica License under which this file was created prohibits  *)
+(*  restricting third parties in receipt of this file from republishing  *)
+(*  or redistributing it by any means, including but not limited to      *)
+(*  rights management or terms of use, without the express consent of    *)
+(*  Wolfram Research, Inc. For additional information concerning CDF     *)
+(*  licensing and redistribution see:                                    *)
+(*                                                                       *)
+(*        www.wolfram.com/cdf/adopting-cdf/licensing-options.html        *)
+(*                                                                       *)
+(*************************************************************************)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       157,          7]
-NotebookDataLength[     11002,        274]
-NotebookOptionsPosition[     10684,        258]
-NotebookOutlinePosition[     11027,        273]
-CellTagsIndexPosition[     10984,        270]
+NotebookDataPosition[      1063,         20]
+NotebookDataLength[     12095,        296]
+NotebookOptionsPosition[     12643,        292]
+NotebookOutlinePosition[     12986,        307]
+CellTagsIndexPosition[     12943,        304]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell[TextData[{
+ "Here\[CloseCurlyQuote]s an animation of two masses harmonically coupled.  I \
+was confused by the fact that the math I was using appeared to indicate the \
+masses were passing through each other.  That\[CloseCurlyQuote]s surely the \
+case when the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"t", " ", "=", " ", "0"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " initial velocity (sine term) is zero, since the cosine will then oscillate \
+around zero.  This animation demonstrates this for non-zero initial \
+velocities.\n\nThe root cause of the trouble is that the Lagrangian I used to \
+model the coupling didn\[CloseCurlyQuote]t include a rest-length for the \
+\[OpenCurlyDoubleQuote]spring\[CloseCurlyDoubleQuote] that coupled the \
+masses, thus being physically unrealistic.  When that is included, we don\
+\[CloseCurlyQuote]t have this trouble."
+}], "Text",
+ CellChangeTimes->{{3.596589396080334*^9, 3.596589487686574*^9}, {
+  3.596589520502451*^9, 3.5965896707860465`*^9}}],
 
 Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
@@ -163,9 +196,10 @@ Cell[BoxData[
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`dr0$$ = 1, $CellContext`dv0$$ = 
-    1, $CellContext`m1$$ = 1, $CellContext`m2$$ = 1, $CellContext`tPeriod$$ = 
-    1, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+   DynamicModuleBox[{$CellContext`dr0$$ = 
+    1.7600000000000002`, $CellContext`dv0$$ = 4.7, $CellContext`m1$$ = 
+    1, $CellContext`m2$$ = 2.3400000000000003`, $CellContext`tPeriod$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
     Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
     1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`m1$$], 1, "\!\(\*SubscriptBox[\(m\), \(1\)]\)"}, 0.1,
@@ -272,12 +306,15 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[1463, 33, 1007, 18, 170, "Text"],
 Cell[CellGroupData[{
-Cell[579, 22, 5426, 138, 666, "Input"],
-Cell[6008, 162, 4660, 93, 689, "Output"]
+Cell[2495, 55, 5426, 138, 666, "Input"],
+Cell[7924, 195, 4703, 94, 689, "Output"]
 }, Open  ]]
 }
 ]
 *)
 
 (* End of internal cache information *)
+
+(* NotebookSignature LvTOlR6NlYJKdD1YxJetz5Bo *)
