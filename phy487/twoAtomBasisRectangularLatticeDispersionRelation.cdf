@@ -23,10 +23,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[      1063,         20]
-NotebookDataLength[     60097,       1426]
-NotebookOptionsPosition[     60452,       1418]
-NotebookOutlinePosition[     60872,       1434]
-CellTagsIndexPosition[     60829,       1431]
+NotebookDataLength[     60336,       1431]
+NotebookOptionsPosition[     60691,       1423]
+NotebookOutlinePosition[     61111,       1439]
+CellTagsIndexPosition[     61068,       1436]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -360,7 +360,7 @@ Cell[BoxData[{
              RowBox[{"mA", "[", 
               RowBox[{"#2", ",", "#3", ",", "#7", ",", "#8", ",", "#9"}], 
               "]"}], "/", "#5"}]}]}]}], "}"}]}], "}"}], "]"}], "&"}]}], ";"}],
-   "\[IndentingNewLine]"}], "\n", 
+   "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"d", " ", "=", " ", 
@@ -1279,12 +1279,12 @@ Cell[BoxData[
        Hold[$CellContext`a$$], 1, "a"}, 0.5, 2}, {{
        Hold[$CellContext`theta$$], Rational[1, 3] Pi, "\[Theta]"}, 
       Rational[1, 3] Pi, Rational[1, 2] Pi}}, Typeset`size$$ = {
-    606., {360., 367.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`k1$387122$$ = 
-    0, $CellContext`k2$387123$$ = 0, $CellContext`k3$387124$$ = 
-    0, $CellContext`k4$387125$$ = 0, $CellContext`m1$387126$$ = 
-    0, $CellContext`m2$387127$$ = 0, $CellContext`a$387128$$ = 
-    0, $CellContext`theta$387129$$ = 0}, 
+    606., {364., 371.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`k1$58083$$ = 
+    0, $CellContext`k2$58084$$ = 0, $CellContext`k3$58085$$ = 
+    0, $CellContext`k4$58086$$ = 0, $CellContext`m1$58087$$ = 
+    0, $CellContext`m2$58088$$ = 0, $CellContext`a$58089$$ = 
+    0, $CellContext`theta$58090$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`a$$ = 1, $CellContext`k1$$ = 
@@ -1292,14 +1292,14 @@ Cell[BoxData[
         0.25, $CellContext`k4$$ = 0.25, $CellContext`m1$$ = 
         10, $CellContext`m2$$ = 20, $CellContext`theta$$ = Rational[1, 3] Pi},
        "ControllerVariables" :> {
-        Hold[$CellContext`k1$$, $CellContext`k1$387122$$, 0], 
-        Hold[$CellContext`k2$$, $CellContext`k2$387123$$, 0], 
-        Hold[$CellContext`k3$$, $CellContext`k3$387124$$, 0], 
-        Hold[$CellContext`k4$$, $CellContext`k4$387125$$, 0], 
-        Hold[$CellContext`m1$$, $CellContext`m1$387126$$, 0], 
-        Hold[$CellContext`m2$$, $CellContext`m2$387127$$, 0], 
-        Hold[$CellContext`a$$, $CellContext`a$387128$$, 0], 
-        Hold[$CellContext`theta$$, $CellContext`theta$387129$$, 0]}, 
+        Hold[$CellContext`k1$$, $CellContext`k1$58083$$, 0], 
+        Hold[$CellContext`k2$$, $CellContext`k2$58084$$, 0], 
+        Hold[$CellContext`k3$$, $CellContext`k3$58085$$, 0], 
+        Hold[$CellContext`k4$$, $CellContext`k4$58086$$, 0], 
+        Hold[$CellContext`m1$$, $CellContext`m1$58087$$, 0], 
+        Hold[$CellContext`m2$$, $CellContext`m2$58088$$, 0], 
+        Hold[$CellContext`a$$, $CellContext`a$58089$$, 0], 
+        Hold[$CellContext`theta$$, $CellContext`theta$58090$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -1373,6 +1373,11 @@ $CellContext`g0[#] + {0, $CellContext`b} + $CellContext`f2[
               Row[{"\[Omega] = ", $CellContext`omega}], 
               Animate[
                Show[{
+                 ListPlot[
+                  Flatten[{
+                    $CellContext`points1[$CellContext`t], 
+                    $CellContext`points2[$CellContext`t]}, 1], 
+                  PlotRange -> {{-2, 2}, {-2, 2}}], 
                  ListLinePlot[
                   
                   Flatten[{$CellContext`lines1, $CellContext`lines2}, 
@@ -1401,7 +1406,7 @@ $CellContext`g0[#] + {0, $CellContext`b} + $CellContext`f2[
          2}, {{$CellContext`theta$$, Rational[1, 3] Pi, "\[Theta]"}, 
          Rational[1, 3] Pi, Rational[1, 2] Pi}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{988., {399., 406.}},
+     ImageSizeCache->{988., {403., 410.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1413,7 +1418,7 @@ $CellContext`g0[#] + {0, $CellContext`b} + $CellContext`f2[
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{
   3.5980190429786677`*^9, 3.5980195790223274`*^9, {3.5980196608990107`*^9, 
-   3.5980196741817703`*^9}, 3.598019705488561*^9}]
+   3.5980196741817703`*^9}, 3.598019705488561*^9, 3.5980200767987986`*^9}]
 }, Open  ]]
 },
 WindowSize->{1584, 765},
@@ -1436,10 +1441,10 @@ Notebook[{
 Cell[1463, 33, 486, 9, 118, "Text"],
 Cell[1952, 44, 24849, 634, 2228, "Input",
  InitializationCell->True],
-Cell[26804, 680, 2879, 73, 417, "Text"],
+Cell[26804, 680, 2879, 73, 421, "Text"],
 Cell[CellGroupData[{
 Cell[29708, 757, 22393, 497, 2206, "Input"],
-Cell[52104, 1256, 8332, 159, 839, "Output"]
+Cell[52104, 1256, 8571, 164, 847, "Output"]
 }, Open  ]]
 }
 ]
@@ -1447,4 +1452,4 @@ Cell[52104, 1256, 8332, 159, 839, "Output"]
 
 (* End of internal cache information *)
 
-(* NotebookSignature LxDArqZsmDdW#DKyOa0He5B5 *)
+(* NotebookSignature fxDTpIYFybGDOAwE7MZICufV *)
