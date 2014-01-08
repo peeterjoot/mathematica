@@ -23,10 +23,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[      1063,         20]
-NotebookDataLength[     94310,       2211]
-NotebookOptionsPosition[     94544,       2199]
-NotebookOutlinePosition[     94964,       2215]
-CellTagsIndexPosition[     94921,       2212]
+NotebookDataLength[     94306,       2212]
+NotebookOptionsPosition[     94540,       2200]
+NotebookOutlinePosition[     94960,       2216]
+CellTagsIndexPosition[     94917,       2213]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -362,7 +362,7 @@ Cell[BoxData[{
              RowBox[{"mA", "[", 
               RowBox[{"#2", ",", "#3", ",", "#7", ",", "#8", ",", "#9"}], 
               "]"}], "/", "#5"}]}]}]}], "}"}]}], "}"}], "]"}], "&"}]}], ";"}],
-   "\[IndentingNewLine]"}], "\n", 
+   "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"d", " ", "=", " ", 
@@ -701,8 +701,7 @@ Cell[BoxData[{
           "0", ",", "0"}], "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
       RowBox[{"Transpose", "[", 
        RowBox[{"{", 
-        RowBox[{"xlist", ",", "ylist"}], "}"}], "]"}]}]}], "]"}]}], 
-  "\[IndentingNewLine]", 
+        RowBox[{"xlist", ",", "ylist"}], "}"}], "]"}]}]}], "]"}]}], "\n", 
   RowBox[{"(*", 
    RowBox[{
     RowBox[{
@@ -721,14 +720,14 @@ Cell[BoxData[{
        "To"}], " ", "show", " ", "the", " ", "spring", " ", "just", " ", 
      "wrap", " ", "a", " ", "Line", " ", "around", " ", "the", " ", 
      "generated", " ", "points"}], ",", 
-    RowBox[{"like", " ", "this"}]}], "\n", "*)"}], "\n", 
+    RowBox[{"like", " ", "this"}]}], "\n", "*)"}], "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{"Show", "[", 
     RowBox[{"Graphics", "[", 
      RowBox[{"Line", "[", 
       RowBox[{"unitSpringPoints", "[", 
-       RowBox[{"5", ",", "0.25"}], "]"}], "]"}], "]"}], "]"}], "*)"}], 
-  "\[IndentingNewLine]", "\n", 
+       RowBox[{"5", ",", "0.25"}], "]"}], "]"}], "]"}], "]"}], "*)"}], "\n", 
+  "\n", 
   RowBox[{"(*", 
    RowBox[{
     RowBox[{
@@ -745,7 +744,7 @@ Cell[BoxData[{
     RowBox[{
     "I", " ", "defined", " ", "my", " ", "own", " ", "transformation", " ", 
      "matrix", " ", "as", " ", "in"}]}], "*)"}], 
-  "\n"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"coordinateTrasformMatrix", "[", 
@@ -777,7 +776,7 @@ Cell[BoxData[{
          RowBox[{
           RowBox[{"Sin", "[", "theta", "]"}], ",", 
           RowBox[{"Cos", "[", "theta", "]"}]}], "}"}]}], "}"}]}]}], "]"}]}], 
-  "\n", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\n", 
   RowBox[{"(*", 
    RowBox[{
    "And", " ", "then", " ", "I", " ", "used", " ", "it", " ", "to", " ", 
@@ -785,7 +784,7 @@ Cell[BoxData[{
     "points", " ", "of", " ", "the", " ", "the", " ", "unit", " ", "spring", 
     " ", "in", " ", "those", " ", "of", " ", "the", " ", "points", " ", "of", 
     " ", "the", " ", "spring", " ", "between", " ", "the", " ", "given", " ", 
-    "points"}], "*)"}], "\n"}], "\[IndentingNewLine]", 
+    "points"}], "*)"}], "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{"coordinateTransform", "[", 
@@ -830,8 +829,8 @@ Cell[BoxData[{
             RowBox[{
              RowBox[{"{", 
               RowBox[{"scale", ",", "1"}], "}"}], "*", "#"}], ")"}]}]}], 
-         ")"}], "&"}], "/@", "coords"}]}]}], "]"}]}], "\n", 
-  "\[IndentingNewLine]", 
+         ")"}], "&"}], "/@", "coords"}]}]}], "]"}]}], "\[IndentingNewLine]", 
+  "\n", 
   RowBox[{"(*", 
    RowBox[{"Then", ",", 
     RowBox[{
@@ -841,7 +840,7 @@ Cell[BoxData[{
       RowBox[{"x0", ",", "y0"}], "}"}], " ", "and", " ", 
      RowBox[{"{", 
       RowBox[{"x1", ",", "y1"}], "}"}], " ", "would", " ", "be", " ", "given",
-      " ", "by"}]}], "*)"}], "\n"}], "\[IndentingNewLine]", 
+      " ", "by"}]}], "*)"}], "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{"spring", "[", 
@@ -865,10 +864,11 @@ Cell[BoxData[{
          RowBox[{"x0", ",", "y0"}], "}"}], ",", 
         RowBox[{"{", 
          RowBox[{"x1", ",", "y1"}], "}"}]}], "}"}]}], "]"}], "]"}]}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\n", 
   RowBox[{"(*", 
    RowBox[{"For", " ", 
-    RowBox[{"example", ":"}]}], "*)"}], "\n", "\[IndentingNewLine]", 
+    RowBox[{"example", ":"}]}], "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{"Show", "[", 
     RowBox[{
@@ -1891,7 +1891,7 @@ Cell[BoxData[
    DynamicModuleBox[{$CellContext`a$$ = 1, $CellContext`k1$$ = 
     0.5, $CellContext`k2$$ = 0.5, $CellContext`k3$$ = 
     0.25, $CellContext`k4$$ = 0.25, $CellContext`m1$$ = 
-    10, $CellContext`m2$$ = 20, $CellContext`theta$$ = 1.119454182229163, 
+    10, $CellContext`m2$$ = 20, $CellContext`theta$$ = Rational[1, 3] Pi, 
     Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
     Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
     1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
@@ -1910,12 +1910,12 @@ Cell[BoxData[
        Hold[$CellContext`a$$], 1, "a"}, 0.5, 2}, {{
        Hold[$CellContext`theta$$], Rational[1, 3] Pi, "\[Theta]"}, 
       Rational[1, 3] Pi, Rational[1, 2] Pi}}, Typeset`size$$ = {
-    606., {531., 538.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`k1$693882$$ = 
-    0, $CellContext`k2$693883$$ = 0, $CellContext`k3$693884$$ = 
-    0, $CellContext`k4$693885$$ = 0, $CellContext`m1$693886$$ = 
-    0, $CellContext`m2$693887$$ = 0, $CellContext`a$693888$$ = 
-    0, $CellContext`theta$693889$$ = 0}, 
+    606., {442., 449.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`k1$2023$$ = 
+    0, $CellContext`k2$2024$$ = 0, $CellContext`k3$2025$$ = 
+    0, $CellContext`k4$2026$$ = 0, $CellContext`m1$2027$$ = 
+    0, $CellContext`m2$2028$$ = 0, $CellContext`a$2029$$ = 
+    0, $CellContext`theta$2030$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`a$$ = 1, $CellContext`k1$$ = 
@@ -1923,14 +1923,14 @@ Cell[BoxData[
         0.25, $CellContext`k4$$ = 0.25, $CellContext`m1$$ = 
         10, $CellContext`m2$$ = 20, $CellContext`theta$$ = Rational[1, 3] Pi},
        "ControllerVariables" :> {
-        Hold[$CellContext`k1$$, $CellContext`k1$693882$$, 0], 
-        Hold[$CellContext`k2$$, $CellContext`k2$693883$$, 0], 
-        Hold[$CellContext`k3$$, $CellContext`k3$693884$$, 0], 
-        Hold[$CellContext`k4$$, $CellContext`k4$693885$$, 0], 
-        Hold[$CellContext`m1$$, $CellContext`m1$693886$$, 0], 
-        Hold[$CellContext`m2$$, $CellContext`m2$693887$$, 0], 
-        Hold[$CellContext`a$$, $CellContext`a$693888$$, 0], 
-        Hold[$CellContext`theta$$, $CellContext`theta$693889$$, 0]}, 
+        Hold[$CellContext`k1$$, $CellContext`k1$2023$$, 0], 
+        Hold[$CellContext`k2$$, $CellContext`k2$2024$$, 0], 
+        Hold[$CellContext`k3$$, $CellContext`k3$2025$$, 0], 
+        Hold[$CellContext`k4$$, $CellContext`k4$2026$$, 0], 
+        Hold[$CellContext`m1$$, $CellContext`m1$2027$$, 0], 
+        Hold[$CellContext`m2$$, $CellContext`m2$2028$$, 0], 
+        Hold[$CellContext`a$$, $CellContext`a$2029$$, 0], 
+        Hold[$CellContext`theta$$, $CellContext`theta$2030$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -2108,7 +2108,7 @@ $CellContext`prange$, $CellContext`bothLists$}, $CellContext`mList1$ = {
          2}, {{$CellContext`theta$$, Rational[1, 3] Pi, "\[Theta]"}, 
          Rational[1, 3] Pi, Rational[1, 2] Pi}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{988., {570., 577.}},
+     ImageSizeCache->{988., {481., 488.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -2126,7 +2126,8 @@ $CellContext`prange$, $CellContext`bothLists$}, $CellContext`mList1$ = {
    3.598050826274693*^9, 3.5980509391081467`*^9, 3.5980516461115847`*^9, {
    3.5980537016631556`*^9, 3.598053730495805*^9}, 3.5980538662865715`*^9, 
    3.5980539394847584`*^9, 3.5980539914467306`*^9, 3.5980541003129573`*^9, 
-   3.5980548353099966`*^9, {3.5980549960161886`*^9, 3.5980550148492656`*^9}}]
+   3.5980548353099966`*^9, {3.5980549960161886`*^9, 3.5980550148492656`*^9}, 
+   3.5981895090205812`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2220,11 +2221,11 @@ Cell[2012, 46, 34224, 899, 3053, "Input",
 Cell[36239, 947, 2739, 71, 395, "Text"],
 Cell[CellGroupData[{
 Cell[39003, 1022, 39466, 863, 3081, "Input"],
-Cell[78472, 1887, 12724, 241, 1181, "Output"]
+Cell[78472, 1887, 12720, 242, 1003, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[91233, 2133, 134, 2, 49, "Input"],
-Cell[91370, 2137, 3158, 59, 216, "Output"]
+Cell[91229, 2134, 134, 2, 49, "Input"],
+Cell[91366, 2138, 3158, 59, 216, "Output"]
 }, Open  ]]
 }
 ]
@@ -2232,4 +2233,4 @@ Cell[91370, 2137, 3158, 59, 216, "Output"]
 
 (* End of internal cache information *)
 
-(* NotebookSignature lvDsiQNwkssnmA1TuidXcCIP *)
+(* NotebookSignature Ou0ZDeb8@kH#EAgUjw4Pv1bz *)
