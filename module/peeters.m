@@ -5,7 +5,7 @@ Begin["peeters`"]
 (* copy this module to a directory in $Path.  Then invoke with <<peeters` *)
 ClearAll[exportForLatex, setGitDir];
 
-setGitDir::usage = "Peeter's home laptop: set working dir relative to physicsplay/ (like figures\phy487)" ;
+setGitDir::usage = "Peeter's home laptop: set working dir relative to physicsplay/ (like figures/phy487)" ;
 setGitDir[where_] := SetDirectory[ "C:/Users/Peeter/cygwin_home/physicsplay/" <> where ] ;
 
 exportForLatex::usage = "peeters`exportForLatex[ filename, image, True/False] :: This seems to be the most compact way to export for latex that still retains good resolution.  Use the epstopdf program to convert the resulting .eps file.  Also generate a .png for wordpress posts at the same time. \[IndentingNewLine]Note that the .png displays with some software having a checkerboard background, but that doesn't show up in the eventual web view.\[IndentingNewLine]\[IndentingNewLine]This png file is generated with a different basename so that latex includegraphics doesn't find it.
@@ -48,6 +48,11 @@ Table[ a1 -r1 + r . { n1 + nd f + (1 - 2f) nd + t f nd, 0}, {t, 0, 1, 0.01 } ],
 Table[ a1 -r1 + r . { n1 +t f nd, 0}, {t, 0, 1, 0.01 } ]
 }
 ]
+
+(*Show[
+ListLinePlot[#, AspectRatio\[Rule]Automatic, PlotStyle \[Rule] Red, PlotRange \[Rule] {{-10,10},{-10,10}} ]
+& /@ {springPoints[{1,2},{3,5}], springPoints[{-1,2},{-3,5}]}
+]*)
 
 
 ClearAll[lblPlot];

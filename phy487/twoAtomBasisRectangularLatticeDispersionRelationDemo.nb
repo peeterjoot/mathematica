@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    189010,       4288]
-NotebookOptionsPosition[    184102,       4138]
-NotebookOutlinePosition[    185719,       4188]
-CellTagsIndexPosition[    185383,       4176]
+NotebookDataLength[    155877,       3562]
+NotebookOptionsPosition[    150953,       3412]
+NotebookOutlinePosition[    152570,       3462]
+CellTagsIndexPosition[    152234,       3450]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -371,25 +371,27 @@ the helper submatrix variables above).\n\>\""}], " ", ";"}], "\n",
   RowBox[{"ClearAll", "[", "qTable", "]"}], " ", ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
+   RowBox[{"qTable", "::", "usage"}], " ", "=", " ", 
+   "\"\<Do the computation of the matrix to solve for each q in the range of \
+interest, and pass back the data.\>\""}], " ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
    RowBox[{
-    RowBox[{"qTable", "[", "p_", "]"}], " ", ":=", " ", 
+    RowBox[{"qTable", "[", 
+     RowBox[{"{", 
+      RowBox[{
+      "k1_", ",", " ", "k2_", ",", " ", "k3_", ",", " ", "k4_", ",", " ", 
+       "m1_", ",", " ", "m2_", ",", " ", "a_", ",", " ", "theta_", ",", " ", 
+       "qiSys_", ",", " ", "qiEig_"}], "}"}], "]"}], " ", ":=", " ", 
     RowBox[{"Module", "[", 
      RowBox[{
       RowBox[{"{", 
        RowBox[{
-       "k1", ",", " ", "k2", ",", " ", "k3", ",", " ", "k4", ",", " ", "m1", 
-        ",", " ", "m2", ",", " ", "a", ",", " ", "theta", ",", "qIntervals", 
-        ",", "mE", ",", " ", "alpha", ",", " ", "beta", ",", " ", "vv", ",", 
-        " ", "qMax", ",", " ", "f", ",", " ", "e", ",", " ", "t", ",", " ", 
-        "len"}], "}"}], ",", "\[IndentingNewLine]", 
+       "mE", ",", " ", "alpha", ",", " ", "beta", ",", " ", "vv", ",", " ", 
+        "qMax", ",", " ", "eigenSystemTable", ",", " ", "eigenValueTable", 
+        ",", "e", ",", " ", "t", ",", " ", "len"}], "}"}], ",", 
+      "\[IndentingNewLine]", " ", "\[IndentingNewLine]", 
       RowBox[{
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{
-         "k1", ",", " ", "k2", ",", " ", "k3", ",", " ", "k4", ",", " ", "m1",
-           ",", " ", "m2", ",", " ", "a", ",", " ", "theta", ",", " ", 
-          "qIntervals"}], "}"}], " ", "=", " ", "p"}], " ", ";", 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"qMax", " ", "=", " ", 
         RowBox[{"maxQ", "[", 
          RowBox[{"a", ",", " ", "theta"}], "]"}]}], " ", ";", 
@@ -440,22 +442,7 @@ the helper submatrix variables above).\n\>\""}], " ", ";"}], "\n",
            RowBox[{"qq", "[", 
             RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}]}], " ", ";", 
        "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"(*", 
-        RowBox[{
-         RowBox[{"f", " ", "=", " ", 
-          RowBox[{
-           RowBox[{"mE", "[", 
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"-", "qMax"}], "/", "2"}], ",", " ", 
-              RowBox[{
-               RowBox[{"-", "qMax"}], "/", "2"}]}], "}"}], "]"}], " ", "//", 
-           " ", "N"}]}], "  ", ";", "\[IndentingNewLine]", 
-         RowBox[{"(*", "f", "*)"}], "\[IndentingNewLine]", 
-         RowBox[{"Eigensystem", "[", "f", "]"}]}], "*)"}], 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"f", " ", "=", " ", 
+       RowBox[{"eigenSystemTable", " ", "=", " ", 
         RowBox[{"Flatten", "[", " ", 
          RowBox[{
           RowBox[{"Table", "[", " ", 
@@ -473,21 +460,22 @@ the helper submatrix variables above).\n\>\""}], " ", ";"}], "\n",
               RowBox[{
                RowBox[{"-", "qMax"}], "/", "2"}], ",", " ", 
               RowBox[{"qMax", "/", "2"}], ",", " ", 
-              RowBox[{"qMax", "/", "qIntervals"}]}], "}"}], ",", " ", 
+              RowBox[{"qMax", "/", "qiSys"}]}], "}"}], ",", " ", 
             RowBox[{"{", 
              RowBox[{"qy", ",", " ", 
               RowBox[{
                RowBox[{"-", "qMax"}], "/", "2"}], ",", " ", 
               RowBox[{"qMax", "/", "2"}], ",", " ", 
-              RowBox[{"qMax", "/", "qIntervals"}]}], "}"}]}], "]"}], ",", " ",
-           "1"}], "]"}]}], " ", ";", "\[IndentingNewLine]", 
+              RowBox[{"qMax", "/", "qiSys"}]}], "}"}]}], "]"}], ",", " ", 
+          "1"}], "]"}]}], " ", ";", "\[IndentingNewLine]", " ", 
+       "\[IndentingNewLine]", 
        RowBox[{"e", " ", "=", " ", 
         RowBox[{
          RowBox[{
           RowBox[{"Eigensystem", "[", " ", 
            RowBox[{"#", "[", 
             RowBox[{"[", "3", "]"}], "]"}], " ", "]"}], " ", "&"}], "/@", " ",
-          "f"}]}], " ", ";", "\[IndentingNewLine]", 
+          "eigenSystemTable"}]}], " ", ";", "\[IndentingNewLine]", 
        RowBox[{"(*", "e", "*)"}], "\[IndentingNewLine]", 
        RowBox[{"len", " ", "=", " ", 
         RowBox[{"Length", "[", "e", "]"}]}], " ", ";", "\[IndentingNewLine]", 
@@ -531,21 +519,58 @@ the helper submatrix variables above).\n\>\""}], " ", ";"}], "\n",
        "\[IndentingNewLine]", 
        RowBox[{"(*", "t", "*)"}], "\[IndentingNewLine]", 
        "\[IndentingNewLine]", 
-       RowBox[{"Table", "[", 
+       RowBox[{"eigenValueTable", " ", "=", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"qx", ",", " ", "qy"}], "}"}], ",", " ", 
+              RowBox[{"Eigenvalues", "[", 
+               RowBox[{"mE", "[", 
+                RowBox[{"{", 
+                 RowBox[{"qx", ",", " ", 
+                  RowBox[{"-", "qy"}]}], "}"}], "]"}], "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"qx", ",", " ", 
+              RowBox[{
+               RowBox[{"-", "qMax"}], "/", "2"}], ",", " ", 
+              RowBox[{"qMax", "/", "2"}], ",", " ", 
+              RowBox[{"qMax", "/", "qiEig"}]}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"qy", ",", " ", 
+              RowBox[{
+               RowBox[{"-", "qMax"}], "/", "2"}], ",", " ", 
+              RowBox[{"qMax", "/", "2"}], ",", " ", 
+              RowBox[{"qMax", "/", "qiEig"}]}], "}"}]}], " ", "]"}], ",", " ",
+           "1"}], "]"}]}], " ", ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Take", "[", 
+         RowBox[{"eigenValueTable", ",", " ", "3"}], "]"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"eigenValueTable", " ", "//", " ", "N"}], "*)"}], 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"{", 
         RowBox[{
-         RowBox[{"{", 
+         RowBox[{"Table", "[", 
           RowBox[{
-           RowBox[{"Take", "[", 
+           RowBox[{"{", 
             RowBox[{
-             RowBox[{"f", "[", 
-              RowBox[{"[", "i", "]"}], "]"}], ",", " ", "2"}], "]"}], ",", 
-           " ", 
-           RowBox[{"t", "[", 
-            RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", " ", 
-         RowBox[{"{", 
-          RowBox[{"i", ",", " ", "len"}], "}"}]}], "]"}]}]}], 
-     "\[IndentingNewLine]", "]"}]}], " ", ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+             RowBox[{"Take", "[", 
+              RowBox[{
+               RowBox[{"eigenSystemTable", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], ",", " ", "2"}], "]"}], ",", 
+             " ", 
+             RowBox[{"t", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", " ", "len"}], "}"}]}], "]"}], ",", " ", 
+         "eigenValueTable"}], "}"}]}]}], "\[IndentingNewLine]", "]"}]}], " ", 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"ClearAll", "[", "tableOfEpsilonsByQandOmegaForOneQPoint", "]"}], 
   " ", ";"}], "\[IndentingNewLine]", 
@@ -607,7 +632,7 @@ eigenvector components by the masses.\>\""}], " ",
    "precomputationOfStuffIndependentOfQandOmegaAndTime", "::", "usage"}], " ",
     "=", " ", 
    "\"\<precomputationOfStuffIndependentOfQandOmegaAndTime({k1, k2, k3, k4, \
-m1, m2, a, theta, qi})\>\""}], " ", ";"}], "\[IndentingNewLine]", 
+m1, m2, a, theta, qi, qi2})\>\""}], " ", ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -616,23 +641,25 @@ m1, m2, a, theta, qi})\>\""}], " ", ";"}], "\[IndentingNewLine]",
       RowBox[{
       "k1_", ",", " ", "k2_", ",", " ", "k3_", ",", " ", "k4_", ",", " ", 
        "m1_", ",", " ", "m2_", ",", " ", "a_", ",", " ", "theta_", ",", " ", 
-       "qi_"}], "}"}], "]"}], ":=", " ", 
+       "qi_", ",", " ", "qi2_"}], "}"}], "]"}], ":=", " ", 
     RowBox[{"Module", "[", 
      RowBox[{
       RowBox[{"{", 
        RowBox[{
-       "r", ",", " ", "f", ",", " ", "l", ",", " ", "g", ",", " ", "yoffsets",
-         ",", " ", "qf", ",", "pointsRange", ",", " ", "pointsN"}], "}"}], 
-      ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "r", ",", " ", "e", ",", " ", "f", ",", " ", "l", ",", " ", "g", ",", 
+        " ", "yoffsets", ",", " ", "qf", ",", "pointsRange", ",", " ", 
+        "pointsN"}], "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{
-       RowBox[{"r", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"r", ",", "e"}], "}"}], " ", "=", " ", 
         RowBox[{"qTable", "[", 
          RowBox[{"{", 
           RowBox[{
           "k1", ",", " ", "k2", ",", " ", "k3", ",", " ", "k4", ",", " ", 
            "m1", ",", " ", "m2", ",", " ", "a", ",", " ", "theta", ",", " ", 
-           "qi"}], "}"}], "]"}]}], "  ", ";", "\[IndentingNewLine]", 
-       "\[IndentingNewLine]", 
+           "qi", ",", " ", "qi2"}], "}"}], "]"}]}], "  ", ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"f", " ", "=", " ", 
         RowBox[{"Flatten", "[", 
          RowBox[{
@@ -767,9 +794,9 @@ m1, m2, a, theta, qi})\>\""}], " ", ";"}], "\[IndentingNewLine]",
            RowBox[{"Sqrt", "[", "m1", "]"}], "/", "200"}], "]"}], ",", " ", 
          RowBox[{"PointSize", "[", 
           RowBox[{
-           RowBox[{"Sqrt", "[", "m2", "]"}], "/", "200"}], "]"}]}], "}"}]}]}],
-      "\[IndentingNewLine]", "]"}]}], " ", ";"}], "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", 
+           RowBox[{"Sqrt", "[", "m2", "]"}], "/", "200"}], "]"}], ",", " ", 
+         "e"}], "}"}]}]}], "\[IndentingNewLine]", "]"}]}], " ", ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
    "Based", " ", "on", " ", "a", " ", "ListLinePlot", " ", "version", " ", 
@@ -910,7 +937,7 @@ ListLinePlot[springPoints[{1,2},{3,5}], AspectRatio\[Rule]Automatic ]\>\""}],
    3.598391691898814*^9, 3.5983917389345045`*^9}, {3.5983919248801403`*^9, 
    3.598392004758709*^9}, {3.5983926231640797`*^9, 3.5983926457493715`*^9}, {
    3.598397060818899*^9, 3.5983970832171803`*^9}, {3.598397165615893*^9, 
-   3.598397206525233*^9}},
+   3.598397206525233*^9}, 3.598410810881921*^9},
  CellID->23115735]
 }, Open  ]],
 
@@ -930,8 +957,9 @@ Cell[BoxData[
        RowBox[{"qi", ","}], "*)"}], " ", 
       RowBox[{
       "resultsTable", ",", " ", "lines", ",", " ", "g", ",", " ", "qf", ",", 
-       " ", "sz1", ",", " ", "sz2", ",", "p", ",", "pointsRange"}], "  ", 
-      "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       " ", "sz1", ",", " ", "sz2", ",", "p", ",", "pointsRange", ",", " ", 
+       "eigenValuesTable"}], "  ", "}"}], ",", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
      RowBox[{"(*", 
       RowBox[{
        RowBox[{"qi", " ", "=", " ", "4"}], " ", ";"}], "*)"}], 
@@ -941,15 +969,17 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{
         "resultsTable", ",", " ", "lines", ",", " ", "g", ",", " ", "qf", ",",
-          " ", "sz1", ",", " ", "sz2"}], "}"}], " ", "=", " ", 
+          " ", "sz1", ",", " ", "sz2", ",", " ", "eigenValuesTable"}], "}"}], 
+       " ", "=", " ", 
        RowBox[{"precomputationOfStuffIndependentOfQandOmegaAndTime", "[", " ", 
         RowBox[{"{", 
          RowBox[{
          "k1", ",", " ", "k2", ",", " ", "k3", ",", " ", "k4", ",", " ", "m1",
-           ",", " ", "m2", ",", " ", "a", ",", " ", "theta", ",", " ", "8"}], 
-         " ", 
-         RowBox[{"(*", " ", "qi", "*)"}], " ", "}"}], " ", "]"}]}], " ", ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           ",", " ", "m2", ",", " ", "a", ",", " ", "theta", ",", " ", "4", 
+          " ", 
+          RowBox[{"(*", " ", "qi", "*)"}], ",", " ", "16"}], " ", 
+         RowBox[{"(*", " ", "qi2", " ", "*)"}], " ", "}"}], " ", "]"}]}], " ",
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"pointsRange", " ", "=", " ", "2"}], " ", ";", 
       "\[IndentingNewLine]", 
       RowBox[{"(*", " ", 
@@ -986,8 +1016,8 @@ Cell[BoxData[
          RowBox[{"{", 
           RowBox[{
           "q", ",", "select", ",", " ", "omega", ",", " ", "e", ",", "   ", 
-           "points1", ",", " ", "points2", ",", " ", "plotData"}], "}"}], ",",
-          "\[IndentingNewLine]", 
+           "points1", ",", " ", "points2"}], "}"}], ",", 
+         "\[IndentingNewLine]", 
          RowBox[{
           RowBox[{"q", " ", "=", " ", 
            RowBox[{"qf", "[", " ", "qManip", " ", "]"}]}], " ", ";", 
@@ -1030,119 +1060,209 @@ Cell[BoxData[
           RowBox[{"Grid", "[", 
            RowBox[{
             RowBox[{"{", "\[IndentingNewLine]", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"Row", "[", 
-                RowBox[{"{", 
-                 RowBox[{
-                  RowBox[{"OverVector", "[", "\"\<q\>\"", "]"}], ",", 
-                  "\"\< = \>\"", ",", " ", 
-                  RowBox[{"q", " ", "//", " ", "MatrixForm"}], ",", 
-                  "\"\< \[Omega] = \>\"", ",", " ", "omega"}], "}"}], "]"}], 
-               "}"}], ",", "\[IndentingNewLine]", 
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"Module", "[", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   RowBox[{
-                   "mList1", ",", " ", "mList2", ",", " ", "prange", ",", " ",
-                     "bothLists"}], "}"}], ",", "\[IndentingNewLine]", 
-                  RowBox[{"(*", " ", 
-                   RowBox[{"FIXME", ":", " ", 
-                    RowBox[{
-                    "Could", " ", "merge", " ", "Epilog", " ", "construction",
-                     " ", "of", " ", "point", " ", "coloring", " ", "and", 
-                    " ", "sizes", " ", "and", " ", "labelling", " ", "into", 
-                    " ", 
-                    RowBox[{"springPoints", "[", "]"}], " ", 
-                    RowBox[{"function", ".", "  ", "label"}], " ", "position",
-                     " ", "offset", " ", "can", " ", "be", " ", "done", " ", 
-                    "based", " ", "on", " ", 
-                    RowBox[{"angle", ".", "  ", "point"}], " ", "mass", " ", 
-                    "labelling", " ", "can", " ", "also", " ", "be", " ", 
-                    "done", " ", 
-                    RowBox[{"there", "."}]}]}], " ", "*)"}], 
-                  "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Module", "[", 
+                RowBox[{
+                 RowBox[{"{", 
                   RowBox[{
-                   RowBox[{"mList1", "=", 
-                    RowBox[{"{", "\[IndentingNewLine]", 
+                  "mList1", ",", " ", "mList2", ",", " ", "prange", ",", " ", 
+                   "bothLists", ",", " ", "springData", ",", " ", 
+                   "springCoords", ",", "coordList", ",", " ", "mSelect"}], 
+                  "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"springCoords", "=", "\[IndentingNewLine]", 
+                   RowBox[{"{", 
                     RowBox[{
-                    RowBox[{"g", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"Orange", ",", 
+                    RowBox[{"{", 
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "1",
-                     ",", "omega", ",", " ", "q", ",", "e"}], "]"}], ",", 
-                    "\[IndentingNewLine]", 
-                    RowBox[{"g", "[", 
+                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "2"}], "}"}], 
+                    ",", 
+                    RowBox[{"{", 
                     RowBox[{
                     RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega", ",", " ", "q", ",", "e"}], "]"}], ",", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "}"}]}], " ", 
+                    RowBox[{"(*", "k1", "*)"}], "}"}], ",", 
                     "\[IndentingNewLine]", 
-                    RowBox[{"g", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"Orange", ",", 
+                    RowBox[{"{", 
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega", ",", " ", "q", ",", "e"}], "]"}], ",", 
-                    "\[IndentingNewLine]", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega", ",", " ", "q", ",", "e"}], "]"}], ",", 
-                    "\[IndentingNewLine]", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "1"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega", ",", " ", "q", ",", "e"}], "]"}]}], 
-                    "\[IndentingNewLine]", "}"}]}], ";", 
-                   "\[IndentingNewLine]", 
-                   RowBox[{"mList2", "=", 
-                    RowBox[{"{", "\[IndentingNewLine]", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
+                    RowBox[{"-", "1"}]}], "}"}], ",", "2"}], "}"}], ",", 
                     RowBox[{"{", 
                     RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "2",
-                     ",", "omega", ",", " ", "q", ",", "e"}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "}"}]}], " ", 
+                    RowBox[{"(*", "k1", "*)"}], "}"}], ",", 
                     "\[IndentingNewLine]", 
-                    RowBox[{"g", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"Green", ",", 
+                    RowBox[{"{", 
                     RowBox[{
                     RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega", ",", " ", "q", ",", "e"}], "]"}], ",", 
-                    "\[IndentingNewLine]", 
-                    RowBox[{"g", "[", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
                     RowBox[{
                     RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega", ",", " ", "q", ",", "e"}], "]"}], ",", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "2"}], "}"}]}], " ", 
+                    RowBox[{"(*", "k2", "*)"}], "}"}], ",", 
                     "\[IndentingNewLine]", 
-                    RowBox[{"g", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"Green", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{
                     RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega", ",", " ", "q", ",", "e"}], "]"}]}], 
-                    "\[IndentingNewLine]", "}"}]}], ";", "\n", 
-                   "\[IndentingNewLine]", 
-                   RowBox[{"bothLists", " ", "=", " ", 
+                    RowBox[{"-", "1"}]}], "}"}], ",", "2"}], "}"}]}], " ", 
+                    RowBox[{"(*", "k2", "*)"}], "}"}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"{", 
+                    RowBox[{"Purple", ",", 
+                    RowBox[{"{", 
                     RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "0"}], "}"}], ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "}"}]}], " ", 
+                    RowBox[{"(*", "k3", "*)"}], "}"}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"{", 
+                    RowBox[{"Purple", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "1"}], "}"}], 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "}"}]}], " ", 
+                    RowBox[{"(*", "k3", "*)"}], "}"}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"{", 
+                    RowBox[{"Cyan", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "1"}], "}"}], ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "}"}]}], " ", 
+                    RowBox[{"(*", "k4", "*)"}], "}"}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"{", 
+                    RowBox[{"Cyan", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", "1"}]}], "}"}], ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "}"}]}], " ", 
+                    RowBox[{"(*", "k4", "*)"}], "}"}]}], "}"}]}], ";", 
+                  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                  RowBox[{"springData", " ", "=", " ", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"springPoints", "[", 
+                    RowBox[{
+                    RowBox[{"g", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", " ", "0", ",", " ", 
+                    RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", "omega", ",", " ", 
+                    "q", ",", " ", "e"}], "]"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{"g", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}], "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", " ", "0", ",", " ", 
+                    RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", "omega", ",", " ", 
+                    "q", ",", " ", "e"}], "]"}]}], "]"}]}], 
+                    "\[IndentingNewLine]", "}"}], " ", "&"}], "/@", " ", 
+                    "springCoords"}]}], "  ", ";", "\[IndentingNewLine]", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"coordList", " ", "=", " ", 
+                   RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{
+                    RowBox[{"springCoords", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"All", ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "3"}], "}"}]}], "]"}], "]"}], ",", " ", 
+                    "1"}], "]"}], " ", "//", " ", "DeleteDuplicates"}]}], ";",
+                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"mSelect", "[", "i_", "]"}], " ", ":=", " ", 
+                   RowBox[{"Select", "[", " ", 
+                    RowBox[{"coordList", ",", " ", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], " ", "\[Equal]", " ", 
+                    "i"}], " ", "&"}]}], " ", "]"}]}], " ", ";", 
+                  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"mList1", ",", " ", "mList2"}], "}"}], " ", "=", 
+                   " ", 
+                   RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"g", "[", 
+                    RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", " ", "0", ",", " ", 
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", "omega", ",", " ", 
+                    "q", ",", " ", "e"}], "]"}], " ", "&"}], "/@", " ", 
+                    RowBox[{"mSelect", "[", "j", "]"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"j", ",", " ", "2"}], "}"}]}], "]"}]}], " ", ";", 
+                  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                  RowBox[{"bothLists", " ", "=", " ", 
+                   RowBox[{
                     RowBox[{"Flatten", "[", " ", 
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{"mList1", ",", " ", "mList2"}], "}"}], ",", " ", 
                     "1"}], "]"}], " ", "//", " ", "Transpose"}]}], " ", ";", 
-                   "\[IndentingNewLine]", 
-                   RowBox[{"prange", " ", "=", " ", 
-                    RowBox[{
+                  "\[IndentingNewLine]", 
+                  RowBox[{"prange", " ", "=", " ", 
+                   RowBox[{
                     RowBox[{
                     RowBox[{"{", " ", 
                     RowBox[{
@@ -1153,277 +1273,85 @@ Cell[BoxData[
                     RowBox[{"bothLists", "[", 
                     RowBox[{"[", "#", "]"}], "]"}], " ", "]"}]}], " ", "}"}], 
                     " ", "*", " ", "1.1"}], " ", "&"}]}], ";", 
-                   "\[IndentingNewLine]", "\[IndentingNewLine]", 
-                   RowBox[{"plotData", " ", "=", " ", 
-                    RowBox[{"Flatten", "[", 
+                  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                  RowBox[{"Show", "[", 
+                   RowBox[{"{", "\[IndentingNewLine]", 
                     RowBox[{
-                    RowBox[{"{", "\[IndentingNewLine]", 
                     RowBox[{
-                    RowBox[{"springPoints", "[", 
                     RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", " ", "0"}], "}"}], ",", " ", "0",
-                     ",", " ", "2", ",", "omega", ",", " ", "q", ",", " ", 
-                    "e"}], "]"}], ",", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], "]"}], "\[IndentingNewLine]", ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "1"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}], ",", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], "]"}], "\[IndentingNewLine]", ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", " ", "0"}], "}"}], ",", " ", "0",
-                     ",", " ", "1", ",", "omega", ",", " ", "q", ",", " ", 
-                    "e"}], "]"}], ",", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], "]"}], "\[IndentingNewLine]", ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}], ",", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "2", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], "]"}], "\[IndentingNewLine]", 
-                    "\[IndentingNewLine]", ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}], ",", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], "]"}], "\[IndentingNewLine]", ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", " ", "0", ",", " ", "1",
-                     ",", "omega", ",", " ", "q", ",", " ", "e"}], "]"}], ",",
-                     " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], "]"}], "\[IndentingNewLine]", ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", " ", "0", ",", " ", "2",
-                     ",", "omega", ",", " ", "q", ",", " ", "e"}], "]"}], ",",
-                     " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], "]"}], "\[IndentingNewLine]", ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}], ",", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", " ", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", " ", "0", ",", " ", "2",
-                     ",", "omega", ",", " ", "q", ",", " ", "e"}], "]"}]}], 
-                    "]"}], "\[IndentingNewLine]", ",", " ", "lines"}], 
-                    "\[IndentingNewLine]", "}"}], ",", " ", "1"}], "]"}]}], 
-                   ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-                   RowBox[{"ListLinePlot", "[", " ", 
-                    RowBox[{"plotData", ",", " ", "\[IndentingNewLine]", 
+                    RowBox[{"ListLinePlot", "[", " ", 
+                    RowBox[{"#", ",", " ", "\[IndentingNewLine]", 
                     RowBox[{"PlotRange", " ", "\[Rule]", " ", 
                     RowBox[{"(", 
                     RowBox[{
                     RowBox[{
                     RowBox[{"prange", "[", "#", "]"}], " ", "&"}], "/@", " ", 
-                    RowBox[{"Range", "[", "2", "]"}]}], ")"}]}], ",", 
-                    "\[IndentingNewLine]", 
-                    RowBox[{"Epilog", " ", "\[Rule]", " ", 
-                    RowBox[{"{", "\[IndentingNewLine]", 
-                    RowBox[{"sz1", ",", "Red", ",", " ", 
-                    RowBox[{"Point", "[", " ", "mList1", "]"}], 
-                    "\[IndentingNewLine]", ",", "Blue", ",", " ", "sz2", ",", 
-                    RowBox[{"Point", "[", "mList2", "]"}], 
-                    "\[IndentingNewLine]", ",", 
-                    RowBox[{"Text", "[", " ", 
+                    RowBox[{"Range", "[", "2", "]"}]}], ")"}]}], 
+                    "\[IndentingNewLine]", ",", " ", 
+                    RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], 
+                    "\[IndentingNewLine]", ",", " ", 
                     RowBox[{
-                    "\"\<\!\(\*SubscriptBox[\(m\), \(1\)]\)\>\"", ",", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
+                    "PlotLabel", "\[Rule]", "\"\<Interaction legend\>\""}], 
+                    "\[IndentingNewLine]", ",", " ", 
+                    RowBox[{"PlotStyle", "\[Rule]", "LightGray"}]}], 
+                    "\[IndentingNewLine]", "]"}], " ", "&"}], "/@", " ", 
+                    "lines"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{"ListPlot", "[", " ", 
+                    RowBox[{"mList1", ",", "\[IndentingNewLine]", 
+                    RowBox[{"PlotStyle", "\[Rule]", 
                     RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", " ", "omega", ",", " ", "q", ",", " ", 
-                    "e"}], "]"}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], " ", "]"}], 
-                    "\[IndentingNewLine]", ",", 
-                    RowBox[{"Text", "[", " ", 
-                    RowBox[{
-                    "\"\<\!\(\*SubscriptBox[\(m\), \(2\)]\)\>\"", ",", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
+                    RowBox[{"sz1", ",", " ", "Red"}], "}"}]}]}], 
+                    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+                    RowBox[{"ListPlot", "[", " ", 
+                    RowBox[{"mList2", ",", "\[IndentingNewLine]", 
+                    RowBox[{"PlotStyle", "\[Rule]", 
                     RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "2", ",", " ", "omega", ",", " ", "q", ",", " ", 
-                    "e"}], "]"}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], " ", "]"}], 
-                    "\[IndentingNewLine]", "\[IndentingNewLine]", 
-                    RowBox[{"(*", " ", 
+                    RowBox[{"sz2", ",", " ", "Blue"}], "}"}]}]}], 
+                    "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
                     RowBox[{
-                    "labels", " ", "at", " ", "the", " ", "midpoints"}], " ", 
-                    "*)"}], "\[IndentingNewLine]", ",", 
-                    RowBox[{"Text", "[", 
-                    RowBox[{"\"\<\!\(\*SubscriptBox[\(k\), \(3\)]\)\>\"", ",", 
                     RowBox[{
-                    RowBox[{"(", 
+                    RowBox[{"ListLinePlot", "[", " ", 
                     RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", " ", "0"}], "}"}], ",", " ", "0",
-                     ",", " ", "1", ",", "omega", ",", " ", "q", ",", " ", 
-                    "e"}], "]"}], "+", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], ")"}], "/", "2"}], " ", ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], 
-                    "\[IndentingNewLine]", ",", 
-                    RowBox[{"Text", "[", 
-                    RowBox[{"\"\<\!\(\*SubscriptBox[\(k\), \(1\)]\)\>\"", ",", 
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", " ", "0"}], "}"}], ",", " ", "0",
-                     ",", " ", "2", ",", "omega", ",", " ", "q", ",", " ", 
-                    "e"}], "]"}], "+", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], ")"}], "/", "2"}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], 
-                    "\[IndentingNewLine]", ",", 
-                    RowBox[{"Text", "[", 
-                    RowBox[{
-                    "\"\<\!\(\*SubscriptBox[\(k\), \(2\)]\)\>\"", ",", " ", 
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", " ", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", " ", "0", ",", " ", "2",
-                     ",", "omega", ",", " ", "q", ",", " ", "e"}], "]"}], "+",
-                     " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], ")"}], "/", "2"}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], 
-                    "\[IndentingNewLine]", ",", 
-                    RowBox[{"Text", "[", 
-                    RowBox[{"\"\<\!\(\*SubscriptBox[\(k\), \(4\)]\)\>\"", ",", 
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "1"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}], "+", " ", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", " ", "0"}], "}"}], ",", " ", "0", ",", 
-                    " ", "1", ",", "omega", ",", " ", "q", ",", " ", "e"}], 
-                    "]"}]}], ")"}], "/", "2"}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}]}], 
-                    "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
-                    ",", " ", 
-                    RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], 
-                    "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", 
-                 "]"}], " ", 
-                RowBox[{"(*", " ", "Module", " ", "*)"}], 
-                "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
-                RowBox[{"ListLinePlot", "[", 
-                 RowBox[{"lines", "\[IndentingNewLine]", ",", " ", 
-                  RowBox[{"PlotRange", " ", "\[Rule]", " ", 
-                   RowBox[{"{", 
-                    RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", " ", 
+                    "\[IndentingNewLine]", " ", 
+                    RowBox[{"PlotStyle", "\[Rule]", 
+                    RowBox[{"Darker", "[", 
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "]"}]}]}], 
+                    "\[IndentingNewLine]", "]"}], " ", "&"}], "/@", " ", 
+                    "springData"}]}], "\[IndentingNewLine]", "}"}], "]"}]}]}],
+                 "\[IndentingNewLine]", "]"}], " ", 
+               RowBox[{"(*", " ", "Module", " ", "*)"}], 
+               "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+               RowBox[{"ListLinePlot", "[", 
+                RowBox[{"lines", "\[IndentingNewLine]", ",", " ", 
+                 RowBox[{"PlotRange", " ", "\[Rule]", " ", 
+                  RowBox[{"{", 
+                   RowBox[{
                     RowBox[{"{", 
                     RowBox[{
                     RowBox[{"-", "2"}], ",", " ", "2"}], "}"}], ",", " ", 
                     RowBox[{"{", 
                     RowBox[{
                     RowBox[{"-", "2"}], ",", " ", "2"}], "}"}]}], "}"}]}], 
-                  "\[IndentingNewLine]", ",", " ", 
-                  RowBox[{"Epilog", " ", "\[Rule]", " ", 
-                   RowBox[{"{", 
-                    RowBox[{"sz1", ",", "Red", ",", " ", 
+                 "\[IndentingNewLine]", ",", " ", 
+                 RowBox[{"PlotLabel", " ", "\[Rule]", " ", 
+                  RowBox[{"Row", "[", 
+                   RowBox[{"{", " ", 
+                    RowBox[{"\"\<Lattice mass positions for \>\"", ",", " ", 
+                    RowBox[{"Subscript", "[", 
+                    RowBox[{"\[Omega]", ",", " ", "n"}], "]"}], ",", " ", 
+                    "\"\<( \>\"", ",", " ", 
+                    RowBox[{"q", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", " ", "\"\< , \>\"", 
+                    ",", " ", 
+                    RowBox[{"q", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", " ", "\"\< )\>\""}], 
+                    "}"}], "]"}]}], "\[IndentingNewLine]", ",", " ", 
+                 RowBox[{"Epilog", " ", "\[Rule]", " ", 
+                  RowBox[{"{", 
+                   RowBox[{"sz1", ",", "Red", ",", " ", 
                     RowBox[{"Point", "[", 
                     RowBox[{"points1", "[", 
                     RowBox[{"2", " ", "Pi", " ", 
@@ -1433,11 +1361,98 @@ Cell[BoxData[
                     RowBox[{"points2", "[", 
                     RowBox[{"2", " ", "Pi", " ", 
                     RowBox[{"tau", "/", "omega"}]}], "]"}], "]"}]}], "}"}]}], 
-                  "\[IndentingNewLine]", ",", " ", 
-                  RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], 
-                 "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
-               "}"}]}], "\[IndentingNewLine]", "}"}], "\[IndentingNewLine]", 
-            ",", 
+                 "\[IndentingNewLine]", ",", " ", 
+                 RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], 
+                "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"Module", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"t", ",", " ", "oMin", ",", "oMax"}], "}"}], ",", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"t", "[", "nn_", "]"}], " ", ":=", " ", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"Sqrt", "[", 
+                    RowBox[{"#", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "]"}], "[", 
+                    RowBox[{"[", "nn", "]"}], "]"}]}], "}"}], "]"}], "&"}], "/@",
+                     " ", "eigenValuesTable"}]}], "  ", ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"oMin", " ", "=", " ", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"eigenValuesTable", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"All", ",", "2"}], "]"}], "]"}], " ", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"All", ",", "4"}], "]"}], "]"}], " ", "//", " ", 
+                    "Min"}], " ", "//", " ", "Sqrt"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"oMax", " ", "=", " ", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"eigenValuesTable", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"All", ",", "2"}], "]"}], "]"}], " ", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"All", ",", "1"}], "]"}], "]"}], " ", "//", " ", 
+                    "Max"}], " ", "//", " ", "Sqrt"}]}], ";", 
+                  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+                  RowBox[{"Show", "[", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"ListPlot3D", "[", "  ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"t", "[", "#", "]"}], " ", "&"}], "/@", " ", 
+                    RowBox[{"Range", "[", "4", "]"}]}], ")"}], ",", " ", 
+                    RowBox[{"PlotLabel", " ", "\[Rule]", " ", 
+                    RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Subscript", "[", 
+                    RowBox[{"\[Omega]", ",", " ", "\"\<n\>\""}], "]"}], " ", 
+                    ",", "\"\<( \>\"", ",", " ", 
+                    RowBox[{"OverVector", "[", "\"\<q\>\"", "]"}], ",", 
+                    "\"\< )\>\""}], "}"}], " ", "]"}]}]}], "]"}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"Graphics3D", "[", " ", 
+                    RowBox[{"{", "\[IndentingNewLine]", 
+                    RowBox[{"Thick", ",", "\[IndentingNewLine]", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"q", ",", "oMin"}], "}"}], "]"}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"q", ",", "oMax"}], "}"}], "]"}]}], 
+                    "\[IndentingNewLine]", "}"}], " ", "]"}], ",", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"PointSize", " ", "\[Rule]", " ", "Large"}], ",", 
+                    " ", 
+                    RowBox[{"Point", "[", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"q", ",", "omega"}], "}"}], "]"}], "]"}]}], 
+                    "\[IndentingNewLine]", "}"}], " ", "]"}]}], 
+                   "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", 
+                "]"}]}], "\[IndentingNewLine]", "}"}], "\[IndentingNewLine]", 
+             "}"}], "\[IndentingNewLine]", ",", 
             RowBox[{"ItemSize", "\[Rule]", "Automatic"}], 
             "\[IndentingNewLine]", ",", 
             RowBox[{"ItemStyle", "\[Rule]", 
@@ -1452,55 +1467,65 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{
-      "k1", ",", " ", "0.5", ",", " ", 
-       "\"\<\!\(\*SubscriptBox[\(k\), \(1\)]\)\>\""}], "}"}], ",", " ", 
+      RowBox[{"k1", ",", " ", "0.5", ",", " ", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<\!\(\*SubscriptBox[\(k\), \(1\)]\)\>\"", ",", " ", 
+         RowBox[{"FontColor", "\[Rule]", 
+          RowBox[{"Darker", "[", "Orange", "]"}]}]}], "]"}]}], "}"}], ",", 
+     " ", "0.25", ",", " ", "0.9", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+   "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"k2", ",", " ", "0.5", ",", " ", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<\!\(\*SubscriptBox[\(k\), \(2\)]\)\>\"", ",", " ", 
+         RowBox[{"FontColor", "\[Rule]", 
+          RowBox[{"Darker", "[", "Green", "]"}]}]}], "]"}]}], "}"}], ",", " ",
+      "0.25", ",", " ", "0.9", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+   "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"k3", ",", " ", "0.25", ",", " ", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<\!\(\*SubscriptBox[\(k\), \(3\)]\)\>\"", ",", " ", 
+         RowBox[{"FontColor", "\[Rule]", 
+          RowBox[{"Darker", "[", "Cyan", "]"}]}]}], "]"}]}], "}"}], ",", " ", 
      "0.25", ",", " ", "0.9", ",", 
      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
    "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{
-      "k2", ",", " ", "0.5", ",", " ", 
-       "\"\<\!\(\*SubscriptBox[\(k\), \(2\)]\)\>\""}], "}"}], ",", " ", 
-     "0.25", ",", " ", "0.9", ",", 
+      RowBox[{"k4", ",", " ", "0.25", ",", " ", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<\!\(\*SubscriptBox[\(k\), \(4\)]\)\>\"", ",", " ", 
+         RowBox[{"FontColor", "\[Rule]", 
+          RowBox[{"Darker", "[", "Purple", "]"}]}]}], "]"}]}], "}"}], ",", 
+     " ", "0.25", ",", " ", "0.9", ",", 
      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
    "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{
-      "k3", ",", " ", "0.25", ",", " ", 
-       "\"\<\!\(\*SubscriptBox[\(k\), \(3\)]\)\>\""}], "}"}], ",", " ", 
-     "0.25", ",", " ", "0.9", ",", 
+      RowBox[{"m1", ",", " ", "10", ",", " ", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<\!\(\*SubscriptBox[\(m\), \(1\)]\)\>\"", ",", " ", 
+         RowBox[{"FontColor", "\[Rule]", "Red"}]}], "]"}]}], "}"}], ",", " ", 
+     "5", ",", " ", "30", ",", 
      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
    "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{
-      "k4", ",", " ", "0.25", ",", " ", 
-       "\"\<\!\(\*SubscriptBox[\(k\), \(4\)]\)\>\""}], "}"}], ",", " ", 
-     "0.25", ",", " ", "0.9", ",", 
-     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
-   "\[IndentingNewLine]", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "m1", ",", " ", "10", ",", " ", 
-       "\"\<\!\(\*SubscriptBox[\(m\), \(1\)]\)\>\""}], "}"}], ",", " ", "5", 
-     ",", " ", "30", ",", 
-     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
-   "\[IndentingNewLine]", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "m2", ",", " ", "20", ",", " ", 
-       "\"\<\!\(\*SubscriptBox[\(m\), \(2\)]\)\>\""}], "}"}], ",", " ", "5", 
-     ",", " ", "30", ",", 
+      RowBox[{"m2", ",", " ", "20", ",", " ", 
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<\!\(\*SubscriptBox[\(m\), \(2\)]\)\>\"", ",", " ", 
+         RowBox[{"FontColor", "\[Rule]", "Blue"}]}], "]"}]}], "}"}], ",", " ",
+      "5", ",", " ", "30", ",", 
      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
    "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
@@ -1671,7 +1696,23 @@ Cell[BoxData[
    3.598395926659028*^9}, {3.598396095987714*^9, 3.5983961303006763`*^9}, {
    3.5983966152284126`*^9, 3.5983966237468996`*^9}, {3.5983966547056704`*^9, 
    3.5983967524752626`*^9}, {3.5983967838230553`*^9, 
-   3.5983967865162096`*^9}, {3.598402278653342*^9, 3.5984022790553646`*^9}}],
+   3.5983967865162096`*^9}, {3.598402278653342*^9, 3.5984022790553646`*^9}, 
+   3.5984108556394806`*^9, {3.5984397159502754`*^9, 3.5984398274636536`*^9}, {
+   3.598440615752741*^9, 3.598440953728072*^9}, {3.598441173366635*^9, 
+   3.5984412342651176`*^9}, {3.598441313933675*^9, 3.598441479213128*^9}, {
+   3.5984415092598467`*^9, 3.598441680550644*^9}, {3.5984417191798534`*^9, 
+   3.598441795068194*^9}, {3.598441885582371*^9, 3.598442091066124*^9}, {
+   3.598442156792884*^9, 3.5984422445579033`*^9}, {3.5984422747246284`*^9, 
+   3.5984423589254446`*^9}, {3.5984423961355734`*^9, 3.598442423450135*^9}, {
+   3.5984425399998016`*^9, 3.598442609566781*^9}, {3.598442688961322*^9, 
+   3.59844272057413*^9}, {3.5984427544690685`*^9, 3.5984427868129187`*^9}, {
+   3.5984428713807554`*^9, 3.5984429006044273`*^9}, {3.598442930964164*^9, 
+   3.5984429350713987`*^9}, {3.59844647314958*^9, 3.598446486698355*^9}, {
+   3.5984465423315372`*^9, 3.598446585248992*^9}, {3.598446692272113*^9, 
+   3.598446701412636*^9}, {3.5984473157727757`*^9, 3.5984473640895395`*^9}, {
+   3.5984481175106325`*^9, 3.598448160164072*^9}, {3.5984481953600855`*^9, 
+   3.598448200254365*^9}, {3.5984483506929693`*^9, 3.598448353884152*^9}, {
+   3.598448421110997*^9, 3.5984484282244043`*^9}}],
 
 Cell[BoxData[
  TagBox[
@@ -1681,22 +1722,33 @@ Cell[BoxData[
     0.25, $CellContext`k4$$ = 0.25, $CellContext`m1$$ = 
     10, $CellContext`m2$$ = 20, $CellContext`n$$ = 
     1, $CellContext`qManip$$ = {0, 0}, $CellContext`tau$$ = 
-    0, $CellContext`theta$$ = Rational[1, 3] Pi, Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`k1$$], 0.5, "\!\(\*SubscriptBox[\(k\), \(1\)]\)"}, 
-      0.25, 0.9}, {{
-       Hold[$CellContext`k2$$], 0.5, "\!\(\*SubscriptBox[\(k\), \(2\)]\)"}, 
-      0.25, 0.9}, {{
-       Hold[$CellContext`k3$$], 0.25, "\!\(\*SubscriptBox[\(k\), \(3\)]\)"}, 
-      0.25, 0.9}, {{
-       Hold[$CellContext`k4$$], 0.25, "\!\(\*SubscriptBox[\(k\), \(4\)]\)"}, 
-      0.25, 0.9}, {{
-       Hold[$CellContext`m1$$], 10, "\!\(\*SubscriptBox[\(m\), \(1\)]\)"}, 5, 
-      30}, {{
-       Hold[$CellContext`m2$$], 20, "\!\(\*SubscriptBox[\(m\), \(2\)]\)"}, 5, 
-      30}, {{
+    0.07181451034545887, $CellContext`theta$$ = Rational[1, 3] Pi, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`k1$$], 0.5, 
+       Style["\!\(\*SubscriptBox[\(k\), \(1\)]\)", FontColor -> RGBColor[
+          Rational[2, 3], 0.33333333333333337`, 0]]}, 0.25, 0.9}, {{
+       Hold[$CellContext`k2$$], 0.5, 
+       Style["\!\(\*SubscriptBox[\(k\), \(2\)]\)", FontColor -> RGBColor[0, 
+          Rational[2, 3], 0]]}, 0.25, 0.9}, {{
+       Hold[$CellContext`k3$$], 0.25, 
+       Style["\!\(\*SubscriptBox[\(k\), \(3\)]\)", FontColor -> RGBColor[0, 
+          Rational[2, 3], 
+          Rational[2, 3]]]}, 0.25, 0.9}, {{
+       Hold[$CellContext`k4$$], 0.25, 
+       Style[
+       "\!\(\*SubscriptBox[\(k\), \(4\)]\)", FontColor -> 
+        RGBColor[0.33333333333333337`, 0, 0.33333333333333337`]]}, 0.25, 
+      0.9}, {{
+       Hold[$CellContext`m1$$], 10, 
+       Style[
+       "\!\(\*SubscriptBox[\(m\), \(1\)]\)", FontColor -> RGBColor[1, 0, 0]]},
+       5, 30}, {{
+       Hold[$CellContext`m2$$], 20, 
+       Style[
+       "\!\(\*SubscriptBox[\(m\), \(2\)]\)", FontColor -> RGBColor[0, 0, 1]]},
+       5, 30}, {{
        Hold[$CellContext`a$$], 1, "a"}, 0.5, 2}, {{
        Hold[$CellContext`theta$$], Rational[1, 3] Pi, "\[Theta]"}, 
       0.9817477042468103, Rational[1, 2] Pi}, {{
@@ -1705,12 +1757,12 @@ Cell[BoxData[
        Hold[$CellContext`qManip$$], {0, 0}, 
        OverVector["q"]}, {-1, -1}, {1, 1}}, {{
        Hold[$CellContext`tau$$], 0, "t/T"}, 0, 1}}, Typeset`size$$ = {
-    814., {304., 311.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = False, $CellContext`k1$1559$$ = 
-    0, $CellContext`k2$1560$$ = 0, $CellContext`k3$1561$$ = 
-    0, $CellContext`k4$1562$$ = 0, $CellContext`m1$1563$$ = 
-    0, $CellContext`m2$1564$$ = 0, $CellContext`a$1565$$ = 
-    0, $CellContext`theta$1566$$ = 0, $CellContext`qManip$1567$$ = {0, 0}}, 
+    922., {284.5, 291.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`k1$66166$$ = 
+    0, $CellContext`k2$66167$$ = 0, $CellContext`k3$66168$$ = 
+    0, $CellContext`k4$66169$$ = 0, $CellContext`m1$66170$$ = 
+    0, $CellContext`m2$66171$$ = 0, $CellContext`a$66172$$ = 
+    0, $CellContext`theta$66173$$ = 0, $CellContext`qManip$66174$$ = {0, 0}}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`a$$ = 1, $CellContext`k1$$ = 
@@ -1719,15 +1771,15 @@ Cell[BoxData[
         10, $CellContext`m2$$ = 20, $CellContext`n$$ = 
         1, $CellContext`qManip$$ = {0, 0}, $CellContext`tau$$ = 
         0, $CellContext`theta$$ = Rational[1, 3] Pi}, "ControllerVariables" :> {
-        Hold[$CellContext`k1$$, $CellContext`k1$1559$$, 0], 
-        Hold[$CellContext`k2$$, $CellContext`k2$1560$$, 0], 
-        Hold[$CellContext`k3$$, $CellContext`k3$1561$$, 0], 
-        Hold[$CellContext`k4$$, $CellContext`k4$1562$$, 0], 
-        Hold[$CellContext`m1$$, $CellContext`m1$1563$$, 0], 
-        Hold[$CellContext`m2$$, $CellContext`m2$1564$$, 0], 
-        Hold[$CellContext`a$$, $CellContext`a$1565$$, 0], 
-        Hold[$CellContext`theta$$, $CellContext`theta$1566$$, 0], 
-        Hold[$CellContext`qManip$$, $CellContext`qManip$1567$$, {0, 0}]}, 
+        Hold[$CellContext`k1$$, $CellContext`k1$66166$$, 0], 
+        Hold[$CellContext`k2$$, $CellContext`k2$66167$$, 0], 
+        Hold[$CellContext`k3$$, $CellContext`k3$66168$$, 0], 
+        Hold[$CellContext`k4$$, $CellContext`k4$66169$$, 0], 
+        Hold[$CellContext`m1$$, $CellContext`m1$66170$$, 0], 
+        Hold[$CellContext`m2$$, $CellContext`m2$66171$$, 0], 
+        Hold[$CellContext`a$$, $CellContext`a$66172$$, 0], 
+        Hold[$CellContext`theta$$, $CellContext`theta$66173$$, 0], 
+        Hold[$CellContext`qManip$$, $CellContext`qManip$66174$$, {0, 0}]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -1735,13 +1787,14 @@ Cell[BoxData[
          Typeset`skipInitDone$$}, "Body" :> 
       DynamicModule[{$CellContext`resultsTable, $CellContext`lines, \
 $CellContext`g, $CellContext`qf, $CellContext`sz1, $CellContext`sz2, \
-$CellContext`p, $CellContext`pointsRange}, {$CellContext`resultsTable, \
-$CellContext`lines, $CellContext`g, $CellContext`qf, $CellContext`sz1, \
-$CellContext`sz2} = \
+$CellContext`p, $CellContext`pointsRange, $CellContext`eigenValuesTable}, \
+{$CellContext`resultsTable, $CellContext`lines, $CellContext`g, \
+$CellContext`qf, $CellContext`sz1, $CellContext`sz2, \
+$CellContext`eigenValuesTable} = \
 $CellContext`precomputationOfStuffIndependentOfQandOmegaAndTime[{$CellContext`\
 k1$$, $CellContext`k2$$, $CellContext`k3$$, $CellContext`k4$$, \
 $CellContext`m1$$, $CellContext`m2$$, $CellContext`a$$, $CellContext`theta$$, 
-            8}]; $CellContext`pointsRange = 2; $CellContext`p := Flatten[
+            4, 16}]; $CellContext`pointsRange = 2; $CellContext`p := Flatten[
            Table[
             $CellContext`g[{$CellContext`i, $CellContext`j}, 
              SlotSequence[1]], {$CellContext`i, -$CellContext`pointsRange - 
@@ -1749,9 +1802,9 @@ $CellContext`m1$$, $CellContext`m2$$, $CellContext`a$$, $CellContext`theta$$,
 -$CellContext`pointsRange - 1, $CellContext`pointsRange}], 1]& ; Dynamic[
           
           Module[{$CellContext`q$, $CellContext`select$, $CellContext`omega$, \
-$CellContext`e$, $CellContext`points1$, $CellContext`points2$, \
-$CellContext`plotData$}, $CellContext`q$ = \
-$CellContext`qf[$CellContext`qManip$$]; $CellContext`select$ = Part[
+$CellContext`e$, $CellContext`points1$, $CellContext`points2$}, \
+$CellContext`q$ = $CellContext`qf[$CellContext`qManip$$]; \
+$CellContext`select$ = Part[
               
               Select[$CellContext`resultsTable, 
                Part[#, 
@@ -1763,154 +1816,145 @@ $CellContext`p[#,
 $CellContext`points2$ = $CellContext`p[#, 
               2, $CellContext`omega$, $CellContext`q$, $CellContext`e$]& ; 
            Grid[{{
-               Row[{
-                 OverVector["q"], " = ", 
-                 MatrixForm[$CellContext`q$], 
-                 " \[Omega] = ", $CellContext`omega$}]}, {
                
                Module[{$CellContext`mList1$, $CellContext`mList2$, \
-$CellContext`prange$, $CellContext`bothLists$}, $CellContext`mList1$ = {
-                   $CellContext`g[{-1, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                   $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                   $CellContext`g[{0, -1}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                   $CellContext`g[{1, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                   $CellContext`g[{0, 1}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$]}; $CellContext`mList2$ = {
-                   $CellContext`g[{-1, 0}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                   $CellContext`g[{0, 0}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                   $CellContext`g[{0, -1}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                   $CellContext`g[{-1, -1}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$]}; $CellContext`bothLists$ = Transpose[
+$CellContext`prange$, $CellContext`bothLists$, $CellContext`springData$, \
+$CellContext`springCoords$, $CellContext`coordList$, $CellContext`mSelect$}, \
+$CellContext`springCoords$ = {{Orange, {{-1, 0}, 2}, {{0, 0}, 1}}, {
+                   Orange, {{0, -1}, 2}, {{0, 0}, 1}}, {
+                   Green, {{0, 0}, 1}, {{0, 0}, 2}}, {
+                   Green, {{0, 0}, 1}, {{-1, -1}, 2}}, {
+                   Purple, {{1, 0}, 1}, {{0, 0}, 1}}, {
+                   Purple, {{-1, 0}, 1}, {{0, 0}, 1}}, {
+                   Cyan, {{0, 1}, 1}, {{0, 0}, 1}}, {
+                   Cyan, {{0, -1}, 1}, {{0, 0}, 
+                    1}}}; $CellContext`springData$ = Map[{
+                    Part[#, 1], 
+                    $CellContext`springPoints[
+                    $CellContext`g[
+                    Part[
+                    Part[#, 2], 1], 0, 
+                    Part[
+                    Part[#, 2], 
+                    2], $CellContext`omega$, $CellContext`q$, \
+$CellContext`e$], 
+                    $CellContext`g[
+                    Part[
+                    Part[#, 3], 1], 0, 
+                    Part[
+                    Part[#, 3], 
+                    2], $CellContext`omega$, $CellContext`q$, \
+$CellContext`e$]]}& , $CellContext`springCoords$]; $CellContext`coordList$ = 
+                 DeleteDuplicates[
+                   Flatten[
+                    Part[$CellContext`springCoords$, All, {2, 3}], 
+                    1]]; $CellContext`mSelect$[
+                   Pattern[$CellContext`i$, 
+                    Blank[]]] := 
+                 Select[$CellContext`coordList$, 
+                   Part[#, 
+                    2] == $CellContext`i$& ]; {$CellContext`mList1$, \
+$CellContext`mList2$} = Table[
+                   Map[$CellContext`g[
+                    Part[#, 1], 0, 
+                    
+                    Part[#, 
+                    2], $CellContext`omega$, $CellContext`q$, \
+$CellContext`e$]& , 
+                    $CellContext`mSelect$[$CellContext`j]], {$CellContext`j, 
+                    2}]; $CellContext`bothLists$ = Transpose[
                    
                    Flatten[{$CellContext`mList1$, $CellContext`mList2$}, 
                     1]]; $CellContext`prange$ = {
                     Min[
                     Part[$CellContext`bothLists$, #]], 
                     Max[
-                    Part[$CellContext`bothLists$, #]]} 
-                  1.1& ; $CellContext`plotData$ = Flatten[{
-                    $CellContext`springPoints[
-                    $CellContext`g[{-1, 0}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                    $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$]], 
-                    $CellContext`springPoints[
-                    $CellContext`g[{0, 1}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                    $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$]], 
-                    $CellContext`springPoints[
-                    $CellContext`g[{-1, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                    $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$]], 
-                    $CellContext`springPoints[
-                    $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                    $CellContext`g[{0, 0}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$]], 
-                    $CellContext`springPoints[
-                    $CellContext`g[{1, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                    $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$]], 
-                    $CellContext`springPoints[
-                    $CellContext`g[{0, -1}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                    $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$]], 
-                    $CellContext`springPoints[
-                    $CellContext`g[{0, -1}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                    $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$]], 
-                    $CellContext`springPoints[
-                    $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$], 
-                    $CellContext`g[{-1, -1}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$]], $CellContext`lines}, 1]; 
-                ListLinePlot[$CellContext`plotData$, PlotRange -> 
-                  Map[$CellContext`prange$[#]& , 
-                    Range[2]], Epilog -> {$CellContext`sz1, Red, 
-                    Point[$CellContext`mList1$], Blue, $CellContext`sz2, 
-                    Point[$CellContext`mList2$], 
-                    Text["\!\(\*SubscriptBox[\(m\), \(1\)]\)", 
-                    $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$],
-                     Background -> White], 
-                    Text["\!\(\*SubscriptBox[\(m\), \(2\)]\)", 
-                    $CellContext`g[{0, 0}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, $CellContext`e$],
-                     Background -> White], 
-                    Text[
-                    "\!\(\*SubscriptBox[\(k\), \(3\)]\)", ($CellContext`g[{-1,
-                     0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, $CellContext`e$] + \
-$CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$])/2, Background -> White], 
-                    Text[
-                    "\!\(\*SubscriptBox[\(k\), \(1\)]\)", ($CellContext`g[{-1,
-                     0}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, $CellContext`e$] + \
-$CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$])/2, Background -> White], 
-                    Text[
-                    "\!\(\*SubscriptBox[\(k\), \(2\)]\)", \
-($CellContext`g[{-1, -1}, 0, 
-                    2, $CellContext`omega$, $CellContext`q$, $CellContext`e$] + \
-$CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$])/2, Background -> White], 
-                    Text[
-                    "\!\(\*SubscriptBox[\(k\), \(4\)]\)", ($CellContext`g[{0, 
-                    1}, 0, 1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$] + $CellContext`g[{0, 0}, 0, 
-                    1, $CellContext`omega$, $CellContext`q$, \
-$CellContext`e$])/2, Background -> White]}, AspectRatio -> Automatic]], 
+                    Part[$CellContext`bothLists$, #]]} 1.1& ; Show[{
+                   Map[
+                   ListLinePlot[#, PlotRange -> Map[$CellContext`prange$[#]& , 
+                    Range[2]], AspectRatio -> Automatic, PlotLabel -> 
+                    "Interaction legend", PlotStyle -> 
+                    LightGray]& , $CellContext`lines], 
+                   
+                   ListPlot[$CellContext`mList1$, 
+                    PlotStyle -> {$CellContext`sz1, Red}], 
+                   ListPlot[$CellContext`mList2$, 
+                    PlotStyle -> {$CellContext`sz2, Blue}], 
+                   Map[ListLinePlot[
+                    Part[#, 2], PlotStyle -> Darker[
+                    Part[#, 1]]]& , $CellContext`springData$]}]], 
                
                ListLinePlot[$CellContext`lines, 
-                PlotRange -> {{-2, 2}, {-2, 2}}, 
+                PlotRange -> {{-2, 2}, {-2, 2}}, PlotLabel -> 
+                Row[{"Lattice mass positions for ", 
+                   Subscript[$CellContext`\[Omega], $CellContext`n$$], "( ", 
+                   Part[$CellContext`q$, 1], " , ", 
+                   Part[$CellContext`q$, 2], " )"}], 
                 Epilog -> {$CellContext`sz1, Red, 
                   Point[
-                   $CellContext`points1$[(2 
-                    Pi) ($CellContext`tau$$/$CellContext`omega$)]], 
+                   $CellContext`points1$[
+                   2 Pi ($CellContext`tau$$/$CellContext`omega$)]], 
                   Blue, $CellContext`sz2, 
                   Point[
-                   $CellContext`points2$[(2 
-                    Pi) ($CellContext`tau$$/$CellContext`omega$)]]}, 
-                AspectRatio -> Automatic]}}, ItemSize -> Automatic, 
+                   $CellContext`points2$[
+                   2 Pi ($CellContext`tau$$/$CellContext`omega$)]]}, 
+                AspectRatio -> Automatic], 
+               
+               Module[{$CellContext`t$, $CellContext`oMin$, \
+$CellContext`oMax$}, $CellContext`t$[
+                   Pattern[$CellContext`nn, 
+                    Blank[]]] := Map[Flatten[{
+                    Part[#, 1], 
+                    Part[
+                    Sqrt[
+                    
+                    Part[#, 
+                    2]], $CellContext`nn]}]& , $CellContext`eigenValuesTable]; \
+$CellContext`oMin$ = Sqrt[
+                   Min[
+                    Part[
+                    Part[$CellContext`eigenValuesTable, All, 2], All, 
+                    4]]]; $CellContext`oMax$ = Sqrt[
+                   Max[
+                    Part[
+                    Part[$CellContext`eigenValuesTable, All, 2], All, 1]]]; 
+                Show[
+                  ListPlot3D[
+                   Map[$CellContext`t$[#]& , 
+                    Range[4]], PlotLabel -> Row[{
+                    Subscript[$CellContext`\[Omega], "n"], "( ", 
+                    OverVector["q"], " )"}]], 
+                  Graphics3D[{Thick, 
+                    Line[{
+                    Flatten[{$CellContext`q$, $CellContext`oMin$}], 
+                    Flatten[{$CellContext`q$, $CellContext`oMax$}]}], 
+                    PointSize -> Large, 
+                    Point[
+                    Flatten[{$CellContext`q$, $CellContext`omega$}]]}]]]}}, 
+             ItemSize -> Automatic, 
              ItemStyle -> (ImageSizeMultipliers -> 1)]]]], 
       "Specifications" :> {{{$CellContext`k1$$, 0.5, 
-          "\!\(\*SubscriptBox[\(k\), \(1\)]\)"}, 0.25, 0.9, Appearance -> 
-         "Labeled"}, {{$CellContext`k2$$, 0.5, 
-          "\!\(\*SubscriptBox[\(k\), \(2\)]\)"}, 0.25, 0.9, Appearance -> 
+          Style["\!\(\*SubscriptBox[\(k\), \(1\)]\)", FontColor -> RGBColor[
+             Rational[2, 3], 0.33333333333333337`, 0]]}, 0.25, 0.9, 
+         Appearance -> "Labeled"}, {{$CellContext`k2$$, 0.5, 
+          Style["\!\(\*SubscriptBox[\(k\), \(2\)]\)", FontColor -> RGBColor[0, 
+             Rational[2, 3], 0]]}, 0.25, 0.9, Appearance -> 
          "Labeled"}, {{$CellContext`k3$$, 0.25, 
-          "\!\(\*SubscriptBox[\(k\), \(3\)]\)"}, 0.25, 0.9, Appearance -> 
+          Style["\!\(\*SubscriptBox[\(k\), \(3\)]\)", FontColor -> RGBColor[0, 
+             Rational[2, 3], 
+             Rational[2, 3]]]}, 0.25, 0.9, Appearance -> 
          "Labeled"}, {{$CellContext`k4$$, 0.25, 
-          "\!\(\*SubscriptBox[\(k\), \(4\)]\)"}, 0.25, 0.9, Appearance -> 
-         "Labeled"}, {{$CellContext`m1$$, 10, 
-          "\!\(\*SubscriptBox[\(m\), \(1\)]\)"}, 5, 30, Appearance -> 
+          Style[
+          "\!\(\*SubscriptBox[\(k\), \(4\)]\)", FontColor -> 
+           RGBColor[0.33333333333333337`, 0, 0.33333333333333337`]]}, 0.25, 
+         0.9, Appearance -> "Labeled"}, {{$CellContext`m1$$, 10, 
+          Style[
+          "\!\(\*SubscriptBox[\(m\), \(1\)]\)", FontColor -> 
+           RGBColor[1, 0, 0]]}, 5, 30, Appearance -> 
          "Labeled"}, {{$CellContext`m2$$, 20, 
-          "\!\(\*SubscriptBox[\(m\), \(2\)]\)"}, 5, 30, Appearance -> 
+          Style[
+          "\!\(\*SubscriptBox[\(m\), \(2\)]\)", FontColor -> 
+           RGBColor[0, 0, 1]]}, 5, 30, Appearance -> 
          "Labeled"}, {{$CellContext`a$$, 1, "a"}, 0.5, 2, Appearance -> 
          "Labeled"}, {{$CellContext`theta$$, Rational[1, 3] Pi, "\[Theta]"}, 
          0.9817477042468103, Rational[1, 2] Pi, Appearance -> 
@@ -1922,7 +1966,7 @@ $CellContext`e$])/2, Background -> White]}, AspectRatio -> Automatic]],
          True}, {{$CellContext`tau$$, 0, "t/T"}, 0, 1, ContinuousAction -> 
          True}}, "Options" :> {ContinuousAction -> None}, 
       "DefaultOptions" :> {ControllerLinking -> True}],
-     ImageSizeCache->{1286., {342., 349.}},
+     ImageSizeCache->{1394., {323., 330.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1945,13 +1989,16 @@ precomputationOfStuffIndependentOfQandOmegaAndTime[{
           Pattern[$CellContext`theta, 
            Blank[]], 
           Pattern[$CellContext`qi, 
+           Blank[]], 
+          Pattern[$CellContext`qi2, 
            Blank[]]}] := 
-       Module[{$CellContext`r, $CellContext`f, $CellContext`l, \
-$CellContext`g, $CellContext`yoffsets, $CellContext`qf, \
-$CellContext`pointsRange, $CellContext`pointsN}, $CellContext`r = \
-$CellContext`qTable[{$CellContext`k1, $CellContext`k2, $CellContext`k3, \
-$CellContext`k4, $CellContext`m1, $CellContext`m2, $CellContext`a, \
-$CellContext`theta, $CellContext`qi}]; $CellContext`f = Flatten[
+       Module[{$CellContext`r, $CellContext`e, $CellContext`f, \
+$CellContext`l, $CellContext`g, $CellContext`yoffsets, $CellContext`qf, \
+$CellContext`pointsRange, $CellContext`pointsN}, {$CellContext`r, \
+$CellContext`e} = $CellContext`qTable[{$CellContext`k1, $CellContext`k2, \
+$CellContext`k3, $CellContext`k4, $CellContext`m1, $CellContext`m2, \
+$CellContext`a, $CellContext`theta, $CellContext`qi, $CellContext`qi2}]; \
+$CellContext`f = Flatten[
             Table[
              $CellContext`tableOfEpsilonsByQandOmegaForOneQPoint[{$\
 CellContext`m1, $CellContext`m2}, $CellContext`j, $CellContext`i, \
@@ -1973,32 +2020,46 @@ $CellContext`theta],
 {$CellContext`i, -3, 3}]}, 1]; $CellContext`yoffsets = {
            1/2, 3/2}; $CellContext`g = $CellContext`rn[#, $CellContext`a, \
 $CellContext`theta] + {
-            0, (Part[$CellContext`yoffsets, #3] $CellContext`a) 
+            0, Part[$CellContext`yoffsets, #3] $CellContext`a 
              Sin[$CellContext`theta]} + Re[Part[#6, #3] Exp[I (Dot[
                   $CellContext`rn[#, $CellContext`a, $CellContext`theta], #5] - \
 #4 #2)]]& ; $CellContext`qf = 
-          Pi (Round[# ($CellContext`qi/2)] (($CellContext`qi/
-               2)^(-1)/($CellContext`a 
+          Pi (Round[# ($CellContext`qi/2)]/(($CellContext`qi/
+             2) ($CellContext`a 
              Sin[2 $CellContext`theta])))& ; {$CellContext`f, $CellContext`l, \
 $CellContext`g, $CellContext`qf, 
            PointSize[Sqrt[$CellContext`m1]/200], 
-           PointSize[Sqrt[$CellContext`m2]/200]}], 
+           PointSize[Sqrt[$CellContext`m2]/200], $CellContext`e}], 
        TagSet[$CellContext`precomputationOfStuffIndependentOfQandOmegaAndTime, 
         MessageName[$CellContext`\
 precomputationOfStuffIndependentOfQandOmegaAndTime, "usage"], 
         "precomputationOfStuffIndependentOfQandOmegaAndTime({k1, k2, k3, k4, \
-m1, m2, a, theta, qi})"], $CellContext`qTable[
-         Pattern[$CellContext`p, 
-          Blank[]]] := 
-       Module[{$CellContext`k1, $CellContext`k2, $CellContext`k3, \
-$CellContext`k4, $CellContext`m1, $CellContext`m2, $CellContext`a, \
-$CellContext`theta, $CellContext`qIntervals, $CellContext`mE, \
-$CellContext`alpha, $CellContext`beta, $CellContext`vv, $CellContext`qMax, \
-$CellContext`f, $CellContext`e, $CellContext`t, $CellContext`len}, \
-{$CellContext`k1, $CellContext`k2, $CellContext`k3, $CellContext`k4, \
-$CellContext`m1, $CellContext`m2, $CellContext`a, $CellContext`theta, \
-$CellContext`qIntervals} = $CellContext`p; $CellContext`qMax = \
-$CellContext`maxQ[$CellContext`a, $CellContext`theta]; $CellContext`alpha[
+m1, m2, a, theta, qi, qi2})"], $CellContext`qTable[{
+          Pattern[$CellContext`k1, 
+           Blank[]], 
+          Pattern[$CellContext`k2, 
+           Blank[]], 
+          Pattern[$CellContext`k3, 
+           Blank[]], 
+          Pattern[$CellContext`k4, 
+           Blank[]], 
+          Pattern[$CellContext`m1, 
+           Blank[]], 
+          Pattern[$CellContext`m2, 
+           Blank[]], 
+          Pattern[$CellContext`a, 
+           Blank[]], 
+          Pattern[$CellContext`theta, 
+           Blank[]], 
+          Pattern[$CellContext`qiSys, 
+           Blank[]], 
+          Pattern[$CellContext`qiEig, 
+           Blank[]]}] := 
+       Module[{$CellContext`mE, $CellContext`alpha, $CellContext`beta, \
+$CellContext`vv, $CellContext`qMax, $CellContext`eigenSystemTable, \
+$CellContext`eigenValueTable, $CellContext`e, $CellContext`t, \
+$CellContext`len}, $CellContext`qMax = $CellContext`maxQ[$CellContext`a, \
+$CellContext`theta]; $CellContext`alpha[
             Pattern[$CellContext`qq, 
              Blank[]], 
             Pattern[$CellContext`sign, 
@@ -2021,16 +2082,17 @@ $CellContext`m2, $CellContext`a, $CellContext`theta,
              $CellContext`alpha[$CellContext`qq, -1], 
              $CellContext`beta[$CellContext`qq, 1], 
              $CellContext`beta[$CellContext`qq, -1], 
-             Part[$CellContext`qq, 2]]; $CellContext`f = Flatten[
+             Part[$CellContext`qq, 2]]; $CellContext`eigenSystemTable = 
+          Flatten[
             Table[{$CellContext`qx, $CellContext`qy, 
               N[
                $CellContext`mE[{$CellContext`qx, -$CellContext`qy}]]}, \
-{$CellContext`qx, (-$CellContext`qMax)/2, $CellContext`qMax/
-              2, $CellContext`qMax/$CellContext`qIntervals}, \
-{$CellContext`qy, (-$CellContext`qMax)/2, $CellContext`qMax/
-              2, $CellContext`qMax/$CellContext`qIntervals}], 
-            1]; $CellContext`e = Map[Eigensystem[
-             Part[#, 3]]& , $CellContext`f]; $CellContext`len = 
+{$CellContext`qx, -($CellContext`qMax/2), $CellContext`qMax/
+              2, $CellContext`qMax/$CellContext`qiSys}, {$CellContext`qy, \
+-($CellContext`qMax/2), $CellContext`qMax/
+              2, $CellContext`qMax/$CellContext`qiSys}], 1]; $CellContext`e = 
+          Map[Eigensystem[
+             Part[#, 3]]& , $CellContext`eigenSystemTable]; $CellContext`len = 
           Length[$CellContext`e]; $CellContext`t = Table[
             Sort[
              Map[{
@@ -2042,12 +2104,27 @@ $CellContext`m2, $CellContext`a, $CellContext`theta,
                 Part[#, 2], 2]}& , 
               Transpose[
                Part[$CellContext`e, $CellContext`i]]], Part[#, 1] < 
-             Part[#2, 1]& ], {$CellContext`i, $CellContext`len}]; Table[{
-            Take[
-             Part[$CellContext`f, $CellContext`i], 2], 
-            
-            Part[$CellContext`t, $CellContext`i]}, {$CellContext`i, \
-$CellContext`len}]], $CellContext`maxQ = 2 (Pi/(# Sin[2 #2]))& , 
+             Part[#2, 
+               1]& ], {$CellContext`i, $CellContext`len}]; \
+$CellContext`eigenValueTable = Flatten[
+            Table[{{$CellContext`qx, $CellContext`qy}, 
+              Eigenvalues[
+               $CellContext`mE[{$CellContext`qx, -$CellContext`qy}]]}, \
+{$CellContext`qx, -($CellContext`qMax/2), $CellContext`qMax/
+              2, $CellContext`qMax/$CellContext`qiEig}, {$CellContext`qy, \
+-($CellContext`qMax/2), $CellContext`qMax/
+              2, $CellContext`qMax/$CellContext`qiEig}], 1]; {
+           Table[{
+             Take[
+              Part[$CellContext`eigenSystemTable, $CellContext`i], 2], 
+             
+             Part[$CellContext`t, $CellContext`i]}, {$CellContext`i, \
+$CellContext`len}], $CellContext`eigenValueTable}], 
+       TagSet[$CellContext`qTable, 
+        MessageName[$CellContext`qTable, "usage"], 
+        "Do the computation of the matrix to solve for each q in the range of \
+interest, and pass back the data."], $CellContext`maxQ = 
+       2 (Pi/(# Sin[2 #2]))& , 
        TagSet[$CellContext`maxQ, 
         MessageName[$CellContext`maxQ, "usage"], 
         "maxQ(a, theta).  This is the maximum length for either of the \
@@ -2097,7 +2174,7 @@ the helper submatrix variables above).\n"], $CellContext`mA = {{# + #4 (1 +
        TagSet[$CellContext`mA, 
         MessageName[$CellContext`mA, "usage"], 
         "mA(k1, k2, theta, alphaPlus, alphaMinus)"], $CellContext`mB = 
-       E^(((I #) Sin[#2]) #3) {{#4 (1 + Cos[2 #2]), #5 Sin[2 #2]}, {#5 
+       E^(I # Sin[#2] #3) {{#4 (1 + Cos[2 #2]), #5 Sin[2 #2]}, {#5 
            Sin[2 #2], #4 (1 + Cos[2 #2])}}& , 
        TagSet[$CellContext`mB, 
         MessageName[$CellContext`mB, "usage"], 
@@ -2157,37 +2234,52 @@ $CellContext`a1; $CellContext`nd = Norm[$CellContext`d]; $CellContext`r =
            
            Table[$CellContext`a1 - $CellContext`r1 + 
             Dot[$CellContext`r, {$CellContext`n1 + $CellContext`nd \
-$CellContext`f + ($CellContext`t (1 - 
-                  2 $CellContext`f)) $CellContext`nd, $CellContext`h 
-               Sin[((2 Pi) $CellContext`n) $CellContext`t]}], {$CellContext`t,
-              0, 1, 0.01}], 
+$CellContext`f + $CellContext`t (1 - 
+                 2 $CellContext`f) $CellContext`nd, $CellContext`h 
+               Sin[2 Pi $CellContext`n $CellContext`t]}], {$CellContext`t, 0, 
+             1, 0.01}], 
            
            Table[$CellContext`a1 - $CellContext`r1 + 
             Dot[$CellContext`r, {$CellContext`n1 + $CellContext`nd \
 $CellContext`f + (1 - 
-                 2 $CellContext`f) $CellContext`nd + ($CellContext`t \
-$CellContext`f) $CellContext`nd, 0}], {$CellContext`t, 0, 1, 0.01}], 
+                 2 $CellContext`f) $CellContext`nd + $CellContext`t \
+$CellContext`f $CellContext`nd, 0}], {$CellContext`t, 0, 1, 0.01}], 
            
            Table[$CellContext`a1 - $CellContext`r1 + 
-            Dot[$CellContext`r, {$CellContext`n1 + ($CellContext`t \
-$CellContext`f) $CellContext`nd, 0}], {$CellContext`t, 0, 1, 0.01}]}], 
+            Dot[$CellContext`r, {$CellContext`n1 + $CellContext`t \
+$CellContext`f $CellContext`nd, 0}], {$CellContext`t, 0, 1, 0.01}]}], 
        TagSet[$CellContext`springPoints, 
         MessageName[$CellContext`springPoints, "usage"], 
         "springPoints[ point1, point2, numberOfTurns, height, \
 fractionToDrawAsLinesAtEnds ].  Example:\n\n\
-ListLinePlot[springPoints[{1,2},{3,5}], AspectRatio\[Rule]Automatic ]"]}; 
-     Typeset`initDone$$ = True),
+ListLinePlot[springPoints[{1,2},{3,5}], AspectRatio\[Rule]Automatic ]"], 
+       Attributes[Subscript] = {NHoldRest}}; Typeset`initDone$$ = True),
     SynchronousInitialization->True,
     UnsavedVariables:>{Typeset`initDone$$},
     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{3.598396144646497*^9, 3.598397719001545*^9, 
-  3.598398825905856*^9, 3.598399176823927*^9, 3.5983994276722755`*^9, 
-  3.5984022841196547`*^9},
- CellID->336745495]
-}, Open  ]]
+ CellChangeTimes->{
+  3.598396144646497*^9, 3.598397719001545*^9, 3.598398825905856*^9, 
+   3.598399176823927*^9, 3.5983994276722755`*^9, 3.5984022841196547`*^9, 
+   3.5984108665651054`*^9, {3.598439805762412*^9, 3.598439830097804*^9}, {
+   3.5984406192549415`*^9, 3.598440719554678*^9}, 3.5984407774959927`*^9, {
+   3.5984408671871223`*^9, 3.5984408941206627`*^9}, 3.598440958566349*^9, 
+   3.598441175663766*^9, {3.598441211605822*^9, 3.598441236237231*^9}, 
+   3.5984414172675853`*^9, 3.5984414643202763`*^9, 3.59844155494746*^9, 
+   3.5984416854379234`*^9, 3.598441723229085*^9, 3.5984417660745354`*^9, 
+   3.598442361307581*^9, 3.5984426289048867`*^9, 3.598442905612714*^9, 
+   3.5984429376445456`*^9, 3.5984464904255686`*^9, 3.598446593887486*^9, 
+   3.5984473718259816`*^9, 3.5984482177103634`*^9, 3.598448356597307*^9},
+ CellID->61251275]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{{3.5984109740712547`*^9, 3.598410980757637*^9}},
+ CellID->391132796]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2317,10 +2409,12 @@ Cell[BoxData[
      RowBox[{"k4", "=", "0.25`"}], ",", 
      RowBox[{"m1", "=", "10"}], ",", 
      RowBox[{"m2", "=", "20"}], ",", 
-     RowBox[{"n", "=", "1"}], ",", 
+     RowBox[{"n", "=", "3"}], ",", 
      RowBox[{"qManip", "=", 
       RowBox[{"{", 
-       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+       RowBox[{
+        RowBox[{"-", "0.53`"}], ",", 
+        RowBox[{"-", "0.36`"}]}], "}"}]}], ",", 
      RowBox[{"tau", "=", "0"}], ",", 
      RowBox[{"theta", "=", 
       FractionBox["\[Pi]", "3"]}]}], "}"}], ",", 
@@ -2329,18 +2423,19 @@ Cell[BoxData[
      RowBox[{"{", 
       RowBox[{
       "resultsTable", ",", "lines", ",", "g", ",", "qf", ",", "sz1", ",", 
-       "sz2", ",", "p", ",", "pointsRange"}], "}"}], ",", 
+       "sz2", ",", "p", ",", "pointsRange", ",", "eigenValuesTable"}], "}"}], 
+     ",", 
      RowBox[{
       RowBox[{
        RowBox[{"{", 
         RowBox[{
         "resultsTable", ",", "lines", ",", "g", ",", "qf", ",", "sz1", ",", 
-         "sz2"}], "}"}], "=", 
+         "sz2", ",", "eigenValuesTable"}], "}"}], "=", 
        RowBox[{"precomputationOfStuffIndependentOfQandOmegaAndTime", "[", 
         RowBox[{"{", 
          RowBox[{
          "k1", ",", "k2", ",", "k3", ",", "k4", ",", "m1", ",", "m2", ",", 
-          "a", ",", "theta", ",", "8"}], "}"}], "]"}]}], ";", 
+          "a", ",", "theta", ",", "4", ",", "16"}], "}"}], "]"}]}], ";", 
       RowBox[{"pointsRange", "=", "2"}], ";", 
       RowBox[{"p", ":=", 
        RowBox[{
@@ -2403,27 +2498,17 @@ Cell[BoxData[
           RowBox[{"Grid", "[", 
            RowBox[{
             RowBox[{"{", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"Row", "[", 
-                RowBox[{"{", 
-                 RowBox[{
-                  OverscriptBox["\<\"q\"\>", "\[RightVector]"], 
-                  ",", "\<\" = \"\>", ",", 
-                  RowBox[{"MatrixForm", "[", "q$", "]"}], 
-                  ",", "\<\" \[Omega] = \"\>", ",", "omega$"}], "}"}], "]"}], 
-               "}"}], ",", 
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"Module", "[", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   RowBox[{
-                   "mList1$", ",", "mList2$", ",", "prange$", ",", 
-                    "bothLists$"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Module", "[", 
+                RowBox[{
+                 RowBox[{"{", 
                   RowBox[{
-                   RowBox[{"mList1$", "=", 
-                    RowBox[{"{", 
+                  "mList1$", ",", "mList2$", ",", "prange$", ",", 
+                   "bothLists$"}], "}"}], ",", 
+                 RowBox[{
+                  RowBox[{"mList1$", "=", 
+                   RowBox[{"{", 
                     RowBox[{
                     RowBox[{"g", "[", 
                     RowBox[{
@@ -2452,8 +2537,8 @@ Cell[BoxData[
                     RowBox[{"{", 
                     RowBox[{"0", ",", "1"}], "}"}], ",", "0", ",", "1", ",", 
                     "omega$", ",", "q$", ",", "e$"}], "]"}]}], "}"}]}], ";", 
-                   RowBox[{"mList2$", "=", 
-                    RowBox[{"{", 
+                  RowBox[{"mList2$", "=", 
+                   RowBox[{"{", 
                     RowBox[{
                     RowBox[{"g", "[", 
                     RowBox[{
@@ -2479,15 +2564,15 @@ Cell[BoxData[
                     RowBox[{"-", "1"}], ",", 
                     RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
                     "omega$", ",", "q$", ",", "e$"}], "]"}]}], "}"}]}], ";", 
-                   RowBox[{"bothLists$", "=", 
-                    RowBox[{"Transpose", "[", 
+                  RowBox[{"bothLists$", "=", 
+                   RowBox[{"Transpose", "[", 
                     RowBox[{"Flatten", "[", 
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{"mList1$", ",", "mList2$"}], "}"}], ",", "1"}], 
                     "]"}], "]"}]}], ";", 
-                   RowBox[{"prange$", "=", 
-                    RowBox[{
+                  RowBox[{"prange$", "=", 
+                   RowBox[{
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{
@@ -2500,8 +2585,8 @@ Cell[BoxData[
                     "bothLists$", "\[LeftDoubleBracket]", "#1", 
                     "\[RightDoubleBracket]"}], "]"}]}], "}"}], " ", "1.1`"}], 
                     "&"}]}], ";", 
-                   RowBox[{"plotData$", "=", 
-                    RowBox[{"Flatten", "[", 
+                  RowBox[{"plotData$", "=", 
+                   RowBox[{"Flatten", "[", 
                     RowBox[{
                     RowBox[{"{", 
                     RowBox[{
@@ -2608,8 +2693,8 @@ Cell[BoxData[
                     RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
                     "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
                     "lines"}], "}"}], ",", "1"}], "]"}]}], ";", 
-                   RowBox[{"ListLinePlot", "[", 
-                    RowBox[{"plotData$", ",", 
+                  RowBox[{"ListLinePlot", "[", 
+                   RowBox[{"plotData$", ",", 
                     RowBox[{"PlotRange", "\[Rule]", 
                     RowBox[{
                     RowBox[{"(", 
@@ -2724,21 +2809,33 @@ Cell[BoxData[
                     RowBox[{"Background", "\[Rule]", "White"}]}], "]"}]}], 
                     "}"}]}], ",", 
                     RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], 
-                    "]"}]}]}], "]"}], ",", 
-                RowBox[{"ListLinePlot", "[", 
-                 RowBox[{"lines", ",", 
-                  RowBox[{"PlotRange", "\[Rule]", 
-                   RowBox[{"{", 
-                    RowBox[{
+                   "]"}]}]}], "]"}], ",", 
+               RowBox[{"ListLinePlot", "[", 
+                RowBox[{"lines", ",", 
+                 RowBox[{"PlotRange", "\[Rule]", 
+                  RowBox[{"{", 
+                   RowBox[{
                     RowBox[{"{", 
                     RowBox[{
                     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
                     RowBox[{"{", 
                     RowBox[{
                     RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "}"}]}], ",", 
-                  RowBox[{"Epilog", "\[Rule]", 
+                 RowBox[{"PlotLabel", "\[Rule]", 
+                  RowBox[{"Row", "[", 
                    RowBox[{"{", 
-                    RowBox[{"sz1", ",", "Red", ",", 
+                    RowBox[{
+                    SubscriptBox["\[Omega]", "n"], ",", "\<\"( \"\>", ",", 
+                    RowBox[{
+                    "q$", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], ",", "\<\" , \"\>", ",", 
+                    RowBox[{
+                    "q$", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}], ",", "\<\" )\"\>"}], "}"}], 
+                   "]"}]}], ",", 
+                 RowBox[{"Epilog", "\[Rule]", 
+                  RowBox[{"{", 
+                   RowBox[{"sz1", ",", "Red", ",", 
                     RowBox[{"Point", "[", 
                     RowBox[{"points1$", "[", 
                     FractionBox[
@@ -2748,9 +2845,76 @@ Cell[BoxData[
                     RowBox[{"points2$", "[", 
                     FractionBox[
                     RowBox[{"2", " ", "\[Pi]", " ", "tau"}], "omega$"], "]"}],
-                     "]"}]}], "}"}]}], ",", " ", 
-                  RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], "]"}]}], 
-               "}"}]}], "}"}], ",", 
+                     "]"}]}], "}"}]}], ",", 
+                 RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], "]"}], 
+               ",", 
+               RowBox[{"Module", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"t$", ",", "oMin$", ",", "oMax$"}], "}"}], ",", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"t$", "[", "nn_", "]"}], ":=", 
+                   RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], ",", 
+                    RowBox[{
+                    SqrtBox[
+                    RowBox[{
+                    "#1", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]], "\[LeftDoubleBracket]", "nn", 
+                    "\[RightDoubleBracket]"}]}], "}"}], "]"}], "&"}], ")"}], "/@",
+                     "eigenValuesTable"}]}], ";", 
+                  RowBox[{"oMin$", "=", 
+                   SqrtBox[
+                    RowBox[{"Min", "[", 
+                    RowBox[{
+                    RowBox[{"eigenValuesTable", "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "2"}], "\[RightDoubleBracket]"}], 
+                    "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "4"}], "\[RightDoubleBracket]"}], 
+                    "]"}]]}], ";", 
+                  RowBox[{"oMax$", "=", 
+                   SqrtBox[
+                    RowBox[{"Max", "[", 
+                    RowBox[{
+                    RowBox[{"eigenValuesTable", "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "2"}], "\[RightDoubleBracket]"}], 
+                    "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "1"}], "\[RightDoubleBracket]"}], 
+                    "]"}]]}], ";", 
+                  RowBox[{"Show", "[", 
+                   RowBox[{
+                    RowBox[{"ListPlot3D", "[", 
+                    RowBox[{
+                    RowBox[{"t$", "[", "n", "]"}], ",", 
+                    RowBox[{"PlotLabel", "\[Rule]", 
+                    RowBox[{"Row", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    SubscriptBox["\[Omega]", "n"], ",", "\<\"( \"\>", ",", 
+                    OverscriptBox["\<\"q\"\>", "\[RightVector]"], 
+                    ",", "\<\" )\"\>"}], "}"}], "]"}]}]}], "]"}], ",", 
+                    RowBox[{"Graphics3D", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"Thick", ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"q$", ",", "oMin$"}], "}"}], "]"}], ",", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"q$", ",", "oMax$"}], "}"}], "]"}]}], "}"}], 
+                    "]"}]}], "}"}], "]"}]}], "]"}]}]}], "]"}]}], "}"}], "}"}],
+             ",", 
             RowBox[{"ItemSize", "\[Rule]", "Automatic"}], ",", 
             RowBox[{"ItemStyle", "\[Rule]", 
              RowBox[{"ImageSizeMultipliers", "\[Rule]", "1"}]}]}], "]"}]}]}], 
@@ -2764,906 +2928,16 @@ Cell[BoxData[
    3.5983965532258663`*^9, 3.59839682848461*^9, {3.5983981805959463`*^9, 
    3.598398183598118*^9}, {3.5983985776646576`*^9, 3.5983985861931453`*^9}, 
    3.5983991328274107`*^9, {3.598399278343734*^9, 3.598399279766815*^9}, 
-   3.5984024379574537`*^9}],
+   3.5984024379574537`*^9, 3.5984109162519474`*^9, 3.5984109868179836`*^9}],
 
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"DynamicModule", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"a", "=", "1"}], ",", 
-     RowBox[{"k1", "=", "0.5`"}], ",", 
-     RowBox[{"k2", "=", "0.5`"}], ",", 
-     RowBox[{"k3", "=", "0.25`"}], ",", 
-     RowBox[{"k4", "=", "0.495`"}], ",", 
-     RowBox[{"m1", "=", "10"}], ",", 
-     RowBox[{"m2", "=", "16.98`"}], ",", 
-     RowBox[{"n", "=", "2"}], ",", 
-     RowBox[{"qManip", "=", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"-", "0.8049999999999999`"}], ",", "0.09000000000000008`"}], 
-       "}"}]}], ",", 
-     RowBox[{"tau", "=", "0.397`"}], ",", 
-     RowBox[{"theta", "=", "1.1207631791681587`"}]}], "}"}], ",", 
-   RowBox[{"DynamicModule", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "resultsTable", ",", "lines", ",", "g", ",", "qf", ",", "sz1", ",", 
-       "sz2", ",", "p", ",", "pointsRange"}], "}"}], ",", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{
-        "resultsTable", ",", "lines", ",", "g", ",", "qf", ",", "sz1", ",", 
-         "sz2"}], "}"}], "=", 
-       RowBox[{"precomputationOfStuffIndependentOfQandOmegaAndTime", "[", 
-        RowBox[{"{", 
-         RowBox[{
-         "k1", ",", "k2", ",", "k3", ",", "k4", ",", "m1", ",", "m2", ",", 
-          "a", ",", "theta", ",", "8"}], "}"}], "]"}]}], ";", 
-      RowBox[{"pointsRange", "=", "2"}], ";", 
-      RowBox[{"p", ":=", 
-       RowBox[{
-        RowBox[{"Flatten", "[", 
-         RowBox[{
-          RowBox[{"Table", "[", 
-           RowBox[{
-            RowBox[{"g", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"i", ",", "j"}], "}"}], ",", "##1"}], "]"}], ",", 
-            RowBox[{"{", 
-             RowBox[{"i", ",", 
-              RowBox[{
-               RowBox[{"-", "pointsRange"}], "-", "1"}], ",", "pointsRange"}],
-              "}"}], ",", 
-            RowBox[{"{", 
-             RowBox[{"j", ",", 
-              RowBox[{
-               RowBox[{"-", "pointsRange"}], "-", "1"}], ",", "pointsRange"}],
-              "}"}]}], "]"}], ",", "1"}], "]"}], "&"}]}], ";", 
-      RowBox[{"Dynamic", "[", 
-       RowBox[{"Module", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{
-          "q$", ",", "select$", ",", "omega$", ",", "e$", ",", "points1$", 
-           ",", "points2$", ",", "plotData$"}], "}"}], ",", 
-         RowBox[{
-          RowBox[{"q$", "=", 
-           RowBox[{"qf", "[", "qManip", "]"}]}], ";", 
-          RowBox[{"select$", "=", 
-           RowBox[{
-            RowBox[{"Select", "[", 
-             RowBox[{"resultsTable", ",", 
-              RowBox[{
-               RowBox[{
-                RowBox[{
-                "#1", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
-                "\[Equal]", "q$"}], "&"}]}], "]"}], "\[LeftDoubleBracket]", 
-            "n", "\[RightDoubleBracket]"}]}], ";", 
-          RowBox[{"omega$", "=", 
-           RowBox[{
-           "select$", "\[LeftDoubleBracket]", "2", 
-            "\[RightDoubleBracket]"}]}], ";", 
-          RowBox[{"e$", "=", 
-           RowBox[{"Take", "[", 
-            RowBox[{"select$", ",", 
-             RowBox[{"-", "2"}]}], "]"}]}], ";", 
-          RowBox[{"points1$", "=", 
-           RowBox[{
-            RowBox[{"p", "[", 
-             RowBox[{"#1", ",", "1", ",", "omega$", ",", "q$", ",", "e$"}], 
-             "]"}], "&"}]}], ";", 
-          RowBox[{"points2$", "=", 
-           RowBox[{
-            RowBox[{"p", "[", 
-             RowBox[{"#1", ",", "2", ",", "omega$", ",", "q$", ",", "e$"}], 
-             "]"}], "&"}]}], ";", 
-          RowBox[{"Grid", "[", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"Row", "[", 
-                RowBox[{"{", 
-                 RowBox[{
-                  OverscriptBox["\"\<q\>\"", "\[RightVector]"], ",", 
-                  "\"\< = \>\"", ",", 
-                  RowBox[{"MatrixForm", "[", "q$", "]"}], ",", 
-                  "\"\< \[Omega] = \>\"", ",", "omega$"}], "}"}], "]"}], 
-               "}"}], ",", 
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"Module", "[", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   RowBox[{
-                   "mList1$", ",", "mList2$", ",", "prange$", ",", 
-                    "bothLists$"}], "}"}], ",", 
-                  RowBox[{
-                   RowBox[{"mList1$", "=", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "1",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "1"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "}"}]}], ";", 
-                   RowBox[{"mList2$", "=", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "2",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "}"}]}], ";", 
-                   RowBox[{"bothLists$", "=", 
-                    RowBox[{"Transpose", "[", 
-                    RowBox[{"Flatten", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"mList1$", ",", "mList2$"}], "}"}], ",", "1"}], 
-                    "]"}], "]"}]}], ";", 
-                   RowBox[{"prange$", "=", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"Min", "[", 
-                    RowBox[{
-                    "bothLists$", "\[LeftDoubleBracket]", "#1", 
-                    "\[RightDoubleBracket]"}], "]"}], ",", 
-                    RowBox[{"Max", "[", 
-                    RowBox[{
-                    "bothLists$", "\[LeftDoubleBracket]", "#1", 
-                    "\[RightDoubleBracket]"}], "]"}]}], "}"}], " ", "1.1`"}], 
-                    "&"}]}], ";", 
-                   RowBox[{"plotData$", "=", 
-                    RowBox[{"Flatten", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "2",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "1"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "1",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    "lines"}], "}"}], ",", "1"}], "]"}]}], ";", 
-                   RowBox[{"ListLinePlot", "[", 
-                    RowBox[{"plotData$", ",", 
-                    RowBox[{"PlotRange", "\[Rule]", 
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"prange$", "[", "#1", "]"}], "&"}], ")"}], "/@", 
-                    RowBox[{"Range", "[", "2", "]"}]}]}], ",", 
-                    RowBox[{"Epilog", "\[Rule]", 
-                    RowBox[{"{", 
-                    RowBox[{"sz1", ",", "Red", ",", 
-                    RowBox[{"Point", "[", "mList1$", "]"}], ",", "Blue", ",", 
-                    "sz2", ",", 
-                    RowBox[{"Point", "[", "mList2$", "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    RowBox[{
-                    "\"\<\\!\\(\\*SubscriptBox[\\(m\\), \\(1\\)]\\)\>\"", ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    RowBox[{
-                    "\"\<\\!\\(\\*SubscriptBox[\\(m\\), \\(2\\)]\\)\>\"", ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    RowBox[{
-                    "\"\<\\!\\(\\*SubscriptBox[\\(k\\), \\(3\\)]\\)\>\"", ",", 
-                    RowBox[{
-                    FractionBox["1", "2"], " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "1",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], "+", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], ")"}]}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    RowBox[{
-                    "\"\<\\!\\(\\*SubscriptBox[\\(k\\), \\(1\\)]\\)\>\"", ",", 
-                    RowBox[{
-                    FractionBox["1", "2"], " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "2",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], "+", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], ")"}]}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    RowBox[{
-                    "\"\<\\!\\(\\*SubscriptBox[\\(k\\), \\(2\\)]\\)\>\"", ",", 
-                    RowBox[{
-                    FractionBox["1", "2"], " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], "+", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], ")"}]}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    RowBox[{
-                    "\"\<\\!\\(\\*SubscriptBox[\\(k\\), \\(4\\)]\\)\>\"", ",", 
-                    RowBox[{
-                    FractionBox["1", "2"], " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "1"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], "+", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], ")"}]}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}]}], 
-                    "}"}]}], ",", 
-                    RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], 
-                    "]"}]}]}], "]"}], ",", 
-                RowBox[{"ListLinePlot", "[", 
-                 RowBox[{"lines", ",", 
-                  RowBox[{"PlotRange", "\[Rule]", 
-                   RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "}"}]}], ",", 
-                  RowBox[{"Epilog", "\[Rule]", 
-                   RowBox[{"{", 
-                    RowBox[{"sz1", ",", "Red", ",", 
-                    RowBox[{"Point", "[", 
-                    RowBox[{"points1$", "[", 
-                    FractionBox[
-                    RowBox[{"2", " ", "\[Pi]", " ", "tau"}], "omega$"], "]"}],
-                     "]"}], ",", "Blue", ",", "sz2", ",", 
-                    RowBox[{"Point", "[", 
-                    RowBox[{"points2$", "[", 
-                    FractionBox[
-                    RowBox[{"2", " ", "\[Pi]", " ", "tau"}], "omega$"], "]"}],
-                     "]"}]}], "}"}]}]}], "]"}]}], "}"}]}], "}"}], ",", 
-            RowBox[{"ItemSize", "\[Rule]", "Automatic"}], ",", 
-            RowBox[{"ItemStyle", "\[Rule]", 
-             RowBox[{"ImageSizeMultipliers", "\[Rule]", "1"}]}]}], "]"}]}]}], 
-        "]"}], "]"}]}]}], "]"}]}], "]"}]], "Input",
- CellChangeTimes->{{3.5984024542103834`*^9, 3.5984024571495514`*^9}},
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.5984024542103834`*^9, 3.5984024571495514`*^9}, 
+   3.5984109222262893`*^9},
  CellID->14512652],
 
-Cell[BoxData[
- RowBox[{"DynamicModule", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"a", "=", "1"}], ",", 
-     RowBox[{"k1", "=", "0.5`"}], ",", 
-     RowBox[{"k2", "=", "0.5`"}], ",", 
-     RowBox[{"k3", "=", "0.25`"}], ",", 
-     RowBox[{"k4", "=", "0.495`"}], ",", 
-     RowBox[{"m1", "=", "10"}], ",", 
-     RowBox[{"m2", "=", "10"}], ",", 
-     RowBox[{"n", "=", "3"}], ",", 
-     RowBox[{"qManip", "=", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"-", "1"}], ",", "0.020000000000000018`"}], "}"}]}], ",", 
-     RowBox[{"tau", "=", "0.`"}], ",", 
-     RowBox[{"theta", "=", "1.1207631791681587`"}]}], "}"}], ",", 
-   RowBox[{"DynamicModule", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "resultsTable", ",", "lines", ",", "g", ",", "qf", ",", "sz1", ",", 
-       "sz2", ",", "p", ",", "pointsRange"}], "}"}], ",", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{
-        "resultsTable", ",", "lines", ",", "g", ",", "qf", ",", "sz1", ",", 
-         "sz2"}], "}"}], "=", 
-       RowBox[{"precomputationOfStuffIndependentOfQandOmegaAndTime", "[", 
-        RowBox[{"{", 
-         RowBox[{
-         "k1", ",", "k2", ",", "k3", ",", "k4", ",", "m1", ",", "m2", ",", 
-          "a", ",", "theta", ",", "8"}], "}"}], "]"}]}], ";", 
-      RowBox[{"pointsRange", "=", "2"}], ";", 
-      RowBox[{"p", ":=", 
-       RowBox[{
-        RowBox[{"Flatten", "[", 
-         RowBox[{
-          RowBox[{"Table", "[", 
-           RowBox[{
-            RowBox[{"g", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"i", ",", "j"}], "}"}], ",", "##1"}], "]"}], ",", 
-            RowBox[{"{", 
-             RowBox[{"i", ",", 
-              RowBox[{
-               RowBox[{"-", "pointsRange"}], "-", "1"}], ",", "pointsRange"}],
-              "}"}], ",", 
-            RowBox[{"{", 
-             RowBox[{"j", ",", 
-              RowBox[{
-               RowBox[{"-", "pointsRange"}], "-", "1"}], ",", "pointsRange"}],
-              "}"}]}], "]"}], ",", "1"}], "]"}], "&"}]}], ";", 
-      RowBox[{"Dynamic", "[", 
-       RowBox[{"Module", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{
-          "q$", ",", "select$", ",", "omega$", ",", "e$", ",", "points1$", 
-           ",", "points2$", ",", "plotData$"}], "}"}], ",", 
-         RowBox[{
-          RowBox[{"q$", "=", 
-           RowBox[{"qf", "[", "qManip", "]"}]}], ";", 
-          RowBox[{"select$", "=", 
-           RowBox[{
-            RowBox[{"Select", "[", 
-             RowBox[{"resultsTable", ",", 
-              RowBox[{
-               RowBox[{
-                RowBox[{
-                "#1", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
-                "\[Equal]", "q$"}], "&"}]}], "]"}], "\[LeftDoubleBracket]", 
-            "n", "\[RightDoubleBracket]"}]}], ";", 
-          RowBox[{"omega$", "=", 
-           RowBox[{
-           "select$", "\[LeftDoubleBracket]", "2", 
-            "\[RightDoubleBracket]"}]}], ";", 
-          RowBox[{"e$", "=", 
-           RowBox[{"Take", "[", 
-            RowBox[{"select$", ",", 
-             RowBox[{"-", "2"}]}], "]"}]}], ";", 
-          RowBox[{"points1$", "=", 
-           RowBox[{
-            RowBox[{"p", "[", 
-             RowBox[{"#1", ",", "1", ",", "omega$", ",", "q$", ",", "e$"}], 
-             "]"}], "&"}]}], ";", 
-          RowBox[{"points2$", "=", 
-           RowBox[{
-            RowBox[{"p", "[", 
-             RowBox[{"#1", ",", "2", ",", "omega$", ",", "q$", ",", "e$"}], 
-             "]"}], "&"}]}], ";", 
-          RowBox[{"Grid", "[", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"Row", "[", 
-                RowBox[{"{", 
-                 RowBox[{
-                  OverscriptBox["\<\"q\"\>", "\[RightVector]"], 
-                  ",", "\<\" = \"\>", ",", 
-                  RowBox[{"MatrixForm", "[", "q$", "]"}], 
-                  ",", "\<\" \[Omega] = \"\>", ",", "omega$"}], "}"}], "]"}], 
-               "}"}], ",", 
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"Module", "[", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   RowBox[{
-                   "mList1$", ",", "mList2$", ",", "prange$", ",", 
-                    "bothLists$"}], "}"}], ",", 
-                  RowBox[{
-                   RowBox[{"mList1$", "=", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "1",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "1"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "}"}]}], ";", 
-                   RowBox[{"mList2$", "=", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "2",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "}"}]}], ";", 
-                   RowBox[{"bothLists$", "=", 
-                    RowBox[{"Transpose", "[", 
-                    RowBox[{"Flatten", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"mList1$", ",", "mList2$"}], "}"}], ",", "1"}], 
-                    "]"}], "]"}]}], ";", 
-                   RowBox[{"prange$", "=", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"Min", "[", 
-                    RowBox[{
-                    "bothLists$", "\[LeftDoubleBracket]", "#1", 
-                    "\[RightDoubleBracket]"}], "]"}], ",", 
-                    RowBox[{"Max", "[", 
-                    RowBox[{
-                    "bothLists$", "\[LeftDoubleBracket]", "#1", 
-                    "\[RightDoubleBracket]"}], "]"}]}], "}"}], " ", "1.1`"}], 
-                    "&"}]}], ";", 
-                   RowBox[{"plotData$", "=", 
-                    RowBox[{"Flatten", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "2",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "1"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "1",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    RowBox[{"springPoints", "[", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], "]"}], ",", 
-                    "lines"}], "}"}], ",", "1"}], "]"}]}], ";", 
-                   RowBox[{"ListLinePlot", "[", 
-                    RowBox[{"plotData$", ",", 
-                    RowBox[{"PlotRange", "\[Rule]", 
-                    RowBox[{
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"prange$", "[", "#1", "]"}], "&"}], ")"}], "/@", 
-                    RowBox[{"Range", "[", "2", "]"}]}]}], ",", 
-                    RowBox[{"Epilog", "\[Rule]", 
-                    RowBox[{"{", 
-                    RowBox[{"sz1", ",", "Red", ",", 
-                    RowBox[{"Point", "[", "mList1$", "]"}], ",", "Blue", ",", 
-                    "sz2", ",", 
-                    RowBox[{"Point", "[", "mList2$", "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    
-                    RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(m\\), \\(1\\)]\\)\"\
-\>", ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    
-                    RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(m\\), \\(2\\)]\\)\"\
-\>", ",", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    
-                    RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(3\\)]\\)\"\
-\>", ",", 
-                    RowBox[{
-                    FractionBox["1", "2"], " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "1",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], "+", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], ")"}]}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    
-                    RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(1\\)]\\)\"\
-\>", ",", 
-                    RowBox[{
-                    FractionBox["1", "2"], " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", "0", ",", "2",
-                     ",", "omega$", ",", "q$", ",", "e$"}], "]"}], "+", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], ")"}]}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    
-                    RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(2\\)]\\)\"\
-\>", ",", 
-                    RowBox[{
-                    FractionBox["1", "2"], " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", "0", ",", "2", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], "+", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], ")"}]}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}], ",", 
-                    RowBox[{"Text", "[", 
-                    
-                    RowBox[{"\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(4\\)]\\)\"\
-\>", ",", 
-                    RowBox[{
-                    FractionBox["1", "2"], " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "1"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}], "+", 
-                    RowBox[{"g", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}], ",", "0", ",", "1", ",", 
-                    "omega$", ",", "q$", ",", "e$"}], "]"}]}], ")"}]}], ",", 
-                    RowBox[{"Background", "\[Rule]", "White"}]}], "]"}]}], 
-                    "}"}]}], ",", 
-                    RowBox[{"AspectRatio", "\[Rule]", "Automatic"}]}], 
-                    "]"}]}]}], "]"}], ",", 
-                RowBox[{"ListLinePlot", "[", 
-                 RowBox[{"lines", ",", 
-                  RowBox[{"PlotRange", "\[Rule]", 
-                   RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "}"}]}], ",", 
-                  RowBox[{"Epilog", "\[Rule]", 
-                   RowBox[{"{", 
-                    RowBox[{"sz1", ",", "Red", ",", 
-                    RowBox[{"Point", "[", 
-                    RowBox[{"points1$", "[", 
-                    FractionBox[
-                    RowBox[{"2", " ", "\[Pi]", " ", "tau"}], "omega$"], "]"}],
-                     "]"}], ",", "Blue", ",", "sz2", ",", 
-                    RowBox[{"Point", "[", 
-                    RowBox[{"points2$", "[", 
-                    FractionBox[
-                    RowBox[{"2", " ", "\[Pi]", " ", "tau"}], "omega$"], "]"}],
-                     "]"}]}], "}"}]}]}], "]"}]}], "}"}]}], "}"}], ",", 
-            RowBox[{"ItemSize", "\[Rule]", "Automatic"}], ",", 
-            RowBox[{"ItemStyle", "\[Rule]", 
-             RowBox[{"ImageSizeMultipliers", "\[Rule]", "1"}]}]}], "]"}]}]}], 
-        "]"}], "]"}]}]}], "]"}]}], "]"}]], "Output",
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.5984109272315755`*^9, 3.598410932114855*^9}},
  CellID->106188728]
-}, Open  ]]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4148,41 +3422,41 @@ StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb",
 (*CellTagsOutline
 CellTagsIndex->{
  "ResizeImages"->{
-  Cell[175739, 3907, 312, 8, 30, "ControlSuggestions",
+  Cell[142590, 3181, 312, 8, 30, "ControlSuggestions",
    CellTags->"ResizeImages"]},
  "RotateAndZoomIn3D"->{
-  Cell[176054, 3917, 678, 16, 30, "ControlSuggestions",
+  Cell[142905, 3191, 678, 16, 30, "ControlSuggestions",
    CellTags->"RotateAndZoomIn3D"]},
  "DragLocators"->{
-  Cell[176735, 3935, 381, 12, 30, "ControlSuggestions",
+  Cell[143586, 3209, 381, 12, 30, "ControlSuggestions",
    CellTags->"DragLocators"]},
  "CreateAndDeleteLocators"->{
-  Cell[177119, 3949, 637, 15, 30, "ControlSuggestions",
+  Cell[143970, 3223, 637, 15, 30, "ControlSuggestions",
    CellTags->"CreateAndDeleteLocators"]},
  "SliderZoom"->{
-  Cell[177759, 3966, 844, 21, 30, "ControlSuggestions",
+  Cell[144610, 3240, 844, 21, 30, "ControlSuggestions",
    CellTags->"SliderZoom"]},
  "GamepadControls"->{
-  Cell[178606, 3989, 369, 9, 30, "ControlSuggestions",
+  Cell[145457, 3263, 369, 9, 30, "ControlSuggestions",
    CellTags->"GamepadControls"]},
  "AutomaticAnimation"->{
-  Cell[178978, 4000, 1507, 32, 30, "ControlSuggestions",
+  Cell[145829, 3274, 1507, 32, 30, "ControlSuggestions",
    CellTags->"AutomaticAnimation"]},
  "BookmarkAnimation"->{
-  Cell[180488, 4034, 908, 21, 30, "ControlSuggestions",
+  Cell[147339, 3308, 908, 21, 30, "ControlSuggestions",
    CellTags->"BookmarkAnimation"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"ResizeImages", 184476, 4149},
- {"RotateAndZoomIn3D", 184586, 4152},
- {"DragLocators", 184697, 4155},
- {"CreateAndDeleteLocators", 184814, 4158},
- {"SliderZoom", 184929, 4161},
- {"GamepadControls", 185036, 4164},
- {"AutomaticAnimation", 185150, 4167},
- {"BookmarkAnimation", 185268, 4170}
+ {"ResizeImages", 151327, 3423},
+ {"RotateAndZoomIn3D", 151437, 3426},
+ {"DragLocators", 151548, 3429},
+ {"CreateAndDeleteLocators", 151665, 3432},
+ {"SliderZoom", 151780, 3435},
+ {"GamepadControls", 151887, 3438},
+ {"AutomaticAnimation", 152001, 3441},
+ {"BookmarkAnimation", 152119, 3444}
  }
 *)
 (*NotebookFileOutline
@@ -4191,103 +3465,103 @@ Cell[CellGroupData[{
 Cell[579, 22, 143, 3, 98, "DemoTitle"],
 Cell[CellGroupData[{
 Cell[747, 29, 33, 0, 365, "InitializationSection"],
-Cell[783, 31, 35841, 882, 3621, "Input",
+Cell[783, 31, 37078, 909, 3713, "Input",
  InitializationCell->True,
  CellID->23115735]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[36661, 918, 29, 0, 311, "ManipulateSection"],
+Cell[37898, 945, 29, 0, 311, "ManipulateSection"],
 Cell[CellGroupData[{
-Cell[36715, 922, 37574, 751, 2356, "Input"],
-Cell[74292, 1675, 26295, 513, 706, "Output",
- CellID->336745495]
-}, Open  ]]
+Cell[37952, 949, 38313, 765, 2655, "Input"],
+Cell[76268, 1716, 27361, 558, 668, "Output",
+ CellID->61251275]
+}, Open  ]],
+Cell[103644, 2277, 164, 4, 32, "Input",
+ CellID->391132796]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[100636, 2194, 36, 0, 228, "ManipulateCaptionSection"],
-Cell[100675, 2196, 1165, 17, 106, "ManipulateCaption"]
+Cell[103845, 2286, 36, 0, 228, "ManipulateCaptionSection"],
+Cell[103884, 2288, 1165, 17, 106, "ManipulateCaption"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[101877, 2218, 28, 0, 229, "ThumbnailSection"],
-Cell[101908, 2220, 3965, 80, 327, "Output"]
+Cell[105086, 2310, 28, 0, 229, "ThumbnailSection"],
+Cell[105117, 2312, 3965, 80, 327, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[105910, 2305, 28, 0, 189, "SnapshotsSection"],
-Cell[105941, 2307, 20558, 459, 711, "Output"],
-Cell[CellGroupData[{
-Cell[126524, 2770, 20007, 444, 902, InheritFromParent,
+Cell[109119, 2397, 28, 0, 189, "SnapshotsSection"],
+Cell[109150, 2399, 23903, 531, 833, "Output"],
+Cell[133056, 2932, 143, 3, 32, "Input",
  CellID->14512652],
-Cell[146534, 3216, 19919, 448, 706, "Output",
+Cell[133202, 2937, 114, 2, 32, InheritFromParent,
  CellID->106188728]
-}, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[166502, 3670, 26, 0, 452, "DetailsSection"],
-Cell[166531, 3672, 158, 3, 28, "DetailNotes",
+Cell[133353, 2944, 26, 0, 452, "DetailsSection"],
+Cell[133382, 2946, 158, 3, 28, "DetailNotes",
  CellID->8783407],
-Cell[166692, 3677, 110, 2, 28, "DetailNotes",
+Cell[133543, 2951, 110, 2, 28, "DetailNotes",
  CellID->13874049],
-Cell[166805, 3681, 1422, 39, 54, "DetailNotes",
+Cell[133656, 2955, 1422, 39, 54, "DetailNotes",
  CellID->136338682],
-Cell[168230, 3722, 2436, 70, 85, "DetailNotes",
+Cell[135081, 2996, 2436, 70, 85, "DetailNotes",
  CellID->508431597],
-Cell[170669, 3794, 554, 8, 28, "DetailNotes",
+Cell[137520, 3068, 554, 8, 28, "DetailNotes",
  CellID->108883385],
-Cell[171226, 3804, 945, 21, 29, "DetailNotes",
+Cell[138077, 3078, 945, 21, 29, "DetailNotes",
  CellID->95910711],
-Cell[172174, 3827, 641, 11, 28, "DetailNotes",
+Cell[139025, 3101, 641, 11, 28, "DetailNotes",
  CellID->478802772],
-Cell[172818, 3840, 506, 8, 28, "DetailNotes",
+Cell[139669, 3114, 506, 8, 28, "DetailNotes",
  CellID->9794757],
-Cell[173327, 3850, 828, 15, 29, "DetailNotes",
+Cell[140178, 3124, 828, 15, 29, "DetailNotes",
  CellID->354495821],
-Cell[174158, 3867, 538, 9, 28, "DetailNotes",
+Cell[141009, 3141, 538, 9, 28, "DetailNotes",
  CellID->455282571],
-Cell[174699, 3878, 211, 4, 28, "DetailNotes",
+Cell[141550, 3152, 211, 4, 28, "DetailNotes",
  CellID->311113939],
-Cell[174913, 3884, 359, 7, 28, "DetailNotes",
+Cell[141764, 3158, 359, 7, 28, "DetailNotes",
  CellID->906102703],
-Cell[175275, 3893, 387, 7, 28, "DetailNotes",
+Cell[142126, 3167, 387, 7, 28, "DetailNotes",
  CellID->193641512]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[175699, 3905, 37, 0, 168, "ControlSuggestionsSection"],
-Cell[175739, 3907, 312, 8, 30, "ControlSuggestions",
+Cell[142550, 3179, 37, 0, 168, "ControlSuggestionsSection"],
+Cell[142590, 3181, 312, 8, 30, "ControlSuggestions",
  CellTags->"ResizeImages"],
-Cell[176054, 3917, 678, 16, 30, "ControlSuggestions",
+Cell[142905, 3191, 678, 16, 30, "ControlSuggestions",
  CellTags->"RotateAndZoomIn3D"],
-Cell[176735, 3935, 381, 12, 30, "ControlSuggestions",
+Cell[143586, 3209, 381, 12, 30, "ControlSuggestions",
  CellTags->"DragLocators"],
-Cell[177119, 3949, 637, 15, 30, "ControlSuggestions",
+Cell[143970, 3223, 637, 15, 30, "ControlSuggestions",
  CellTags->"CreateAndDeleteLocators"],
-Cell[177759, 3966, 844, 21, 30, "ControlSuggestions",
+Cell[144610, 3240, 844, 21, 30, "ControlSuggestions",
  CellTags->"SliderZoom"],
-Cell[178606, 3989, 369, 9, 30, "ControlSuggestions",
+Cell[145457, 3263, 369, 9, 30, "ControlSuggestions",
  CellTags->"GamepadControls"],
-Cell[178978, 4000, 1507, 32, 30, "ControlSuggestions",
+Cell[145829, 3274, 1507, 32, 30, "ControlSuggestions",
  CellTags->"AutomaticAnimation"],
-Cell[180488, 4034, 908, 21, 30, "ControlSuggestions",
+Cell[147339, 3308, 908, 21, 30, "ControlSuggestions",
  CellTags->"BookmarkAnimation"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[181433, 4060, 30, 0, 208, "SearchTermsSection"],
-Cell[181466, 4062, 259, 6, 28, "SearchTerms",
+Cell[148284, 3334, 30, 0, 208, "SearchTermsSection"],
+Cell[148317, 3336, 259, 6, 28, "SearchTerms",
  CellID->291605643]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[181762, 4073, 31, 0, 188, "RelatedLinksSection"],
-Cell[181796, 4075, 468, 10, 28, "RelatedLinks",
+Cell[148613, 3347, 31, 0, 188, "RelatedLinksSection"],
+Cell[148647, 3349, 468, 10, 28, "RelatedLinks",
  CellID->24498121],
-Cell[182267, 4087, 486, 11, 28, "RelatedLinks",
+Cell[149118, 3361, 486, 11, 28, "RelatedLinks",
  CellID->28998832],
-Cell[182756, 4100, 564, 12, 28, "RelatedLinks",
+Cell[149607, 3374, 564, 12, 28, "RelatedLinks",
  CellID->611518950],
-Cell[183323, 4114, 575, 12, 28, "RelatedLinks",
+Cell[150174, 3388, 575, 12, 28, "RelatedLinks",
  CellID->63968418]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[183935, 4131, 25, 0, 188, "AuthorSection"],
-Cell[183963, 4133, 111, 1, 28, "Author"]
+Cell[150786, 3405, 25, 0, 188, "AuthorSection"],
+Cell[150814, 3407, 111, 1, 28, "Author"]
 }, Open  ]]
 }, Open  ]]
 }
