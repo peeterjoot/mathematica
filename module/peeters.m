@@ -29,6 +29,26 @@ output =
 {dir <> "/" <> output[[1]], dir <> "/" <> output[[2]] }
 ]
 
+(* Based on a ListLinePlot version posted in: http://mathematica.stackexchange.com/a/37228/10 *)
+ClearAll[springPoints]
+springPoints::usage = "springPoints[ point1, point2, numberOfTurns, height, fractionToDrawAsLinesAtEnds ].  Example:
+
+ListLinePlot[springPoints[{1,2},{3,5}], AspectRatio\[Rule]Automatic ]" ;
+springPoints[ a1_List, a2_List, n_Integer:8,h_:.05, f_: 0.1 ] :=Module[{n1, d, nd, r, r1 },
+
+n1 = Norm[a1] ;
+d = a2 - a1 ;
+nd = Norm[d] ;
+r = RotationMatrix[ArcTan @@  d ] ;
+r1 = r . {n1, 0} ;
+
+{
+Table[ a1 -r1 + r . { n1 + nd f + t (1 - 2f) nd, h Sin[ 2 Pi n t]}, {t, 0, 1, 0.01 } ],
+Table[ a1 -r1 + r . { n1 + nd f + (1 - 2f) nd + t f nd, 0}, {t, 0, 1, 0.01 } ],
+Table[ a1 -r1 + r . { n1 +t f nd, 0}, {t, 0, 1, 0.01 } ]
+}
+]
+
 
 ClearAll[lblPlot];
 
