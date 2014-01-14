@@ -1,0 +1,1055 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     46827,       1046]
+NotebookOptionsPosition[     46282,       1025]
+NotebookOutlinePosition[     46702,       1041]
+CellTagsIndexPosition[     46659,       1038]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Helper functions, and constants.\
+\>", "Text",
+ CellChangeTimes->{{3.598714939380348*^9, 3.5987149638987503`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"named", " ", "global", " ", "variables"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Clear", "[", 
+    RowBox[{"windowHalfWidth", ",", " ", "kMax", ",", " ", "mMax"}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"windowHalfWidth", " ", "=", " ", "3"}], " ", ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"kMax", " ", "=", " ", "0.9"}], " ", ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mMax", " ", "=", " ", "30"}], " ", ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Clear", "[", " ", "springColors", " ", "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"springColors", "=", " ", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "Orange", ",", " ", "Green", ",", " ", "Purple", ",", " ", "Cyan"}], 
+       "}"}], " ", "//", " ", "Darker"}]}], " ", ";"}], "\[IndentingNewLine]",
+    "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", "functions", " ", "*)"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Based", " ", "on", " ", "a", " ", "ListLinePlot", " ", "version", " ", 
+     "posted", " ", 
+     RowBox[{"in", ":", " ", 
+      ButtonBox[
+       RowBox[{
+        RowBox[{"http", ":"}], "//", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"mathematica", ".", "stackexchange", ".", "com"}], "/", 
+           "a"}], "/", "37228"}], "/", "10"}]}],
+       BaseStyle->"Hyperlink",
+       ButtonData->{
+         URL["http://mathematica.stackexchange.com/a/37228/10"], None},
+       ButtonNote->"http://mathematica.stackexchange.com/a/37228/10"]}]}], 
+    " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"ClearAll", "[", "springPoints", "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"springPoints", "::", "usage"}], " ", "=", " ", 
+     "\"\<springPoints[ point1, point2, numberOfTurns, height, \
+fractionToDrawAsLinesAtEnds ].  Example:\n\n\
+ListLinePlot[springPoints[{1,2},{3,5}], AspectRatio\[Rule]Automatic, \
+PlotStyle -> Darker[ Purple ] ]\>\""}], " ", ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"springPoints", "[", " ", 
+     RowBox[{"a1_List", ",", " ", "a2_List", ",", " ", 
+      RowBox[{"n_Integer:", "8"}], ",", 
+      RowBox[{"h_:", ".05"}], ",", " ", 
+      RowBox[{"f_:", " ", "0.1"}]}], " ", "]"}], " ", ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "n1", ",", " ", "d", ",", " ", "nd", ",", " ", "r", ",", " ", "r1"}], 
+       " ", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"n1", " ", "=", " ", 
+        RowBox[{"Norm", "[", "a1", "]"}]}], " ", ";", "\[IndentingNewLine]", 
+       RowBox[{"d", " ", "=", " ", 
+        RowBox[{"a2", " ", "-", " ", "a1"}]}], " ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"nd", " ", "=", " ", 
+        RowBox[{"Norm", "[", "d", "]"}]}], " ", ";", "\[IndentingNewLine]", 
+       RowBox[{"r", " ", "=", " ", 
+        RowBox[{"RotationMatrix", "[", 
+         RowBox[{"ArcTan", " ", "@@", "  ", "d"}], " ", "]"}]}], " ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"r1", " ", "=", " ", 
+        RowBox[{"r", " ", ".", " ", 
+         RowBox[{"{", 
+          RowBox[{"n1", ",", " ", "0"}], "}"}]}]}], " ", ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Table", "[", " ", 
+          RowBox[{
+           RowBox[{"a1", " ", "-", "r1", " ", "+", " ", 
+            RowBox[{"r", " ", ".", " ", 
+             RowBox[{"{", " ", 
+              RowBox[{
+               RowBox[{"n1", " ", "+", " ", 
+                RowBox[{"nd", " ", "f"}], " ", "+", " ", 
+                RowBox[{"t", " ", 
+                 RowBox[{"(", 
+                  RowBox[{"1", " ", "-", " ", 
+                   RowBox[{"2", "f"}]}], ")"}], " ", "nd"}]}], ",", " ", 
+               RowBox[{"h", " ", 
+                RowBox[{"Sin", "[", " ", 
+                 RowBox[{"2", " ", "Pi", " ", "n", " ", "t"}], "]"}]}]}], 
+              "}"}]}]}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", " ", "0", ",", " ", "1", ",", " ", "0.01"}], 
+            " ", "}"}]}], " ", "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Table", "[", " ", 
+          RowBox[{
+           RowBox[{"a1", " ", "-", "r1", " ", "+", " ", 
+            RowBox[{"r", " ", ".", " ", 
+             RowBox[{"{", " ", 
+              RowBox[{
+               RowBox[{"n1", " ", "+", " ", 
+                RowBox[{"nd", " ", "f"}], " ", "+", " ", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"1", " ", "-", " ", 
+                   RowBox[{"2", "f"}]}], ")"}], " ", "nd"}], " ", "+", " ", 
+                RowBox[{"t", " ", "f", " ", "nd"}]}], ",", " ", "0"}], 
+              "}"}]}]}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", " ", "0", ",", " ", "1", ",", " ", "0.01"}], 
+            " ", "}"}]}], " ", "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Table", "[", " ", 
+          RowBox[{
+           RowBox[{"a1", " ", "-", "r1", " ", "+", " ", 
+            RowBox[{"r", " ", ".", " ", 
+             RowBox[{"{", " ", 
+              RowBox[{
+               RowBox[{"n1", " ", "+", 
+                RowBox[{"t", " ", "f", " ", "nd"}]}], ",", " ", "0"}], 
+              "}"}]}]}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", " ", "0", ",", " ", "1", ",", " ", "0.01"}], 
+            " ", "}"}]}], " ", "]"}]}], "\[IndentingNewLine]", "}"}]}]}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ClearAll", "[", "kLable", "]"}], " ", ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"kLable", "::", "usage"}], " ", "=", " ", 
+     "\"\<\!\(\*SubscriptBox[\(k\), \(\(i\)\(\\\ \)\)]\)in italic and colored \
+by spring index.\>\""}], " ", ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"kLable", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"Style", "[", 
+       RowBox[{
+        RowBox[{"Subscript", "[", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{"\"\<k\>\"", ",", "Italic"}], "]"}], ",", " ", "#"}], 
+         "]"}], ",", " ", 
+        RowBox[{"FontColor", "\[Rule]", 
+         RowBox[{"springColors", "[", 
+          RowBox[{"[", "#", "]"}], "]"}]}]}], "]"}], " ", "&"}]}], " ", ";"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"ClearAll", "[", "lineTable", "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"lineTable", "[", " ", 
+      RowBox[{"n_List", ",", " ", "b_List", ",", " ", "i_List"}], " ", "]"}], 
+     " ", ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"first", ",", " ", "second"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"first", ",", " ", "second"}], "}"}], " ", "=", " ", "i"}], 
+        " ", ";", "\[IndentingNewLine]", 
+        RowBox[{"Table", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Line", "[", "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", 
+                RowBox[{"n", "[", 
+                 RowBox[{"[", "first", "]"}], "]"}]}], 
+               RowBox[{"b", "[", 
+                RowBox[{"[", "first", "]"}], "]"}]}], " ", "+", " ", 
+              RowBox[{"j", " ", 
+               RowBox[{"b", "[", 
+                RowBox[{"[", "second", "]"}], "]"}]}]}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"n", "[", 
+                RowBox[{"[", "first", "]"}], "]"}], 
+               RowBox[{"b", "[", 
+                RowBox[{"[", "first", "]"}], "]"}]}], " ", "+", " ", 
+              RowBox[{"j", " ", 
+               RowBox[{"b", "[", 
+                RowBox[{"[", "second", "]"}], "]"}]}]}]}], "}"}], " ", 
+           "\[IndentingNewLine]", "]"}], " ", "\[IndentingNewLine]", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"j", ",", " ", 
+            RowBox[{"-", 
+             RowBox[{"n", "[", 
+              RowBox[{"[", "second", "]"}], "]"}]}], ",", " ", 
+            RowBox[{"n", "[", 
+             RowBox[{"[", "second", "]"}], "]"}]}], "}"}]}], 
+         "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+    " ", ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"ClearAll", "[", " ", "calcReciprocalBasis", " ", "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"calcReciprocalBasis", "::", "usage"}], " ", "=", " ", 
+     "\"\<Return a reciprocal frame basis for a set of vectors.  This doesn't \
+include the 2 \[Pi] scaling that is common in solid state physics.  Example, \
+displaying the desired Kronicker delta behaviour:\n\nb = {{2,1},{-1/4, 2}} ;\n\
+g = calcReciprocalBasis[ b ] ;\n\n\
+{g[[1]].loc[[1]],\[IndentingNewLine]g[[1]].loc[[2]],\[IndentingNewLine]g[[2]].\
+loc[[1]],\[IndentingNewLine]g[[2]].loc[[2]]}\n\>\""}], " ", ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"calcReciprocalBasis", "[", "loc_List", "]"}], " ", ":=", " ", 
+     RowBox[{"Inverse", "[", " ", 
+      RowBox[{"Transpose", "[", " ", "loc", " ", "]"}], " ", "]"}]}], " ", 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ClearAll", "[", " ", "pointsTable", " ", "]"}], " ", ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"pointsTable", "[", " ", 
+      RowBox[{
+      "mPosFirstCell_List", ",", " ", "latticeBasis_List", ",", " ", 
+       "numberLatticeLinesToDisplay_List"}], " ", "]"}], " ", ":=", " ", 
+     RowBox[{"Table", "[", " ", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"mPosFirstCell", " ", "+", " ", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"i", ",", "j"}], "}"}], ".", " ", "latticeBasis"}]}], 
+       "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", " ", 
+         RowBox[{"-", 
+          RowBox[{"numberLatticeLinesToDisplay", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+         RowBox[{"numberLatticeLinesToDisplay", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", " ", 
+         RowBox[{"-", 
+          RowBox[{"numberLatticeLinesToDisplay", "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], ",", " ", 
+         RowBox[{"numberLatticeLinesToDisplay", "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "\[IndentingNewLine]", 
+      "]"}]}], " ", ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.5987005681203594`*^9, 3.598700650505071*^9}, {
+  3.5987007017180004`*^9, 3.5987007196000233`*^9}, {3.598702957063999*^9, 
+  3.598702958039055*^9}, {3.5987056568204165`*^9, 3.5987057949143147`*^9}, {
+  3.598705830294338*^9, 3.5987058807852263`*^9}, {3.5987119467991824`*^9, 
+  3.5987119475552254`*^9}, {3.598712054436339*^9, 3.5987120640278873`*^9}, {
+  3.598713246157501*^9, 3.598713249677703*^9}, {3.598713290052012*^9, 
+  3.5987132929631786`*^9}, {3.59871393445887*^9, 3.5987139446484528`*^9}, {
+  3.5987143871987653`*^9, 3.5987144045967607`*^9}, {3.5987149739133234`*^9, 
+  3.5987150181518536`*^9}, {3.598715058034135*^9, 3.5987150580831375`*^9}, {
+  3.598715101669631*^9, 3.598715102787695*^9}}],
+
+Cell["\<\
+And the physical constants manipulate chooser:\
+\>", "Text",
+ CellChangeTimes->{{3.598715068333724*^9, 3.598715078876327*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Dynamic", "@"}], "*)"}], 
+   RowBox[{
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "latticeBasis", ",", " ", "reciprocalBasis", ",", " ", "latticeNorms", 
+        ",", " ", "latticeUnitVectors", ",", " ", 
+        "numberLatticeLinesToDisplay", ",", " ", "mObliqueComponents", ",", 
+        " ", "mPosFirstCell", ",", " ", "pointsDataTable", ",", " ", 
+        "springDataH", ",", " ", "springDataV"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"latticeBasis", " ", "=", " ", 
+        RowBox[{"Take", "[", 
+         RowBox[{"loc", ",", " ", "2"}], "]"}]}], " ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"latticeNorms", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Norm", "[", 
+           RowBox[{"latticeBasis", "[", 
+            RowBox[{"[", "#", "]"}], "]"}], "]"}], " ", "&"}], " ", "/@", " ", 
+         RowBox[{"Range", "[", "2", "]"}]}]}], " ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"latticeUnitVectors", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Normalize", "[", 
+           RowBox[{"latticeBasis", "[", 
+            RowBox[{"[", "#", "]"}], "]"}], "]"}], " ", "&"}], " ", "/@", " ", 
+         RowBox[{"Range", "[", "2", "]"}]}]}], " ", ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Approximation", ";", " ", 
+         RowBox[{
+         "Not", " ", "right", " ", "if", " ", "the", " ", "lattice", " ", 
+          "spacing", " ", "is", " ", "made", " ", "too", " ", 
+          RowBox[{"small", ":"}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"numberLatticeLinesToDisplay", " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ceiling", "[", "  ", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"d", "/", " ", 
+             RowBox[{
+              RowBox[{"latticeBasis", "[", 
+               RowBox[{"[", "#", "]"}], "]"}], "[", 
+              RowBox[{"[", "#", "]"}], "]"}]}], "]"}], "]"}], " ", "&"}], " ",
+          "/@", " ", 
+         RowBox[{"Range", "[", "2", "]"}]}]}], " ", ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"reciprocalBasis", "  ", "=", " ", 
+        RowBox[{"calcReciprocalBasis", "[", " ", "latticeBasis", " ", "]"}]}],
+        " ", ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"mObliqueComponents", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"loc", "[", 
+              RowBox[{"[", "3", "]"}], "]"}], " ", ".", " ", 
+             RowBox[{"reciprocalBasis", "[", 
+              RowBox[{"[", "#", "]"}], "]"}]}], ")"}], " ", "&"}], ")"}], " ",
+          "/@", " ", 
+         RowBox[{"Range", "[", "2", "]"}]}]}], "  ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"mPosFirstCell", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"loc", "[", 
+          RowBox[{"[", "3", "]"}], "]"}], " ", "-", " ", 
+         RowBox[{
+          RowBox[{"Floor", "[", "mObliqueComponents", "]"}], " ", ".", " ", 
+          "latticeBasis"}]}]}], "  ", ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"pointsDataTable", " ", "=", " ", 
+        RowBox[{"pointsTable", "[", 
+         RowBox[{
+         "mPosFirstCell", ",", "latticeBasis", ",", 
+          "numberLatticeLinesToDisplay"}], "]"}]}], " ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"springDataH", " ", "=", " ", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{
+          RowBox[{"Table", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"springPoints", "[", " ", 
+             RowBox[{
+              RowBox[{"pointsDataTable", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", " ", 
+              RowBox[{"pointsDataTable", "[", 
+               RowBox[{"[", 
+                RowBox[{
+                 RowBox[{"i", "+", "1"}], ",", "j"}], "]"}], "]"}], ",", " ", 
+              RowBox[{"Ceiling", "[", 
+               RowBox[{"8", " ", 
+                RowBox[{"k1", "/", "kMax"}]}], "]"}]}], " ", "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", " ", "1", ",", " ", 
+              RowBox[{
+               RowBox[{"numberLatticeLinesToDisplay", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], " ", "*", " ", "2"}]}], " ", 
+             "}"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"j", ",", " ", "1", ",", " ", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"numberLatticeLinesToDisplay", "[", 
+                 RowBox[{"[", "2", "]"}], "]"}], " ", "*", " ", "2"}], " ", 
+               "+", " ", "1"}]}], " ", "}"}]}], "\[IndentingNewLine]", "]"}], 
+          ",", " ", "2"}], "]"}]}], " ", ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"springDataV", " ", "=", "  ", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{
+          RowBox[{"Table", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"springPoints", "[", " ", 
+             RowBox[{
+              RowBox[{"pointsDataTable", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", " ", 
+              RowBox[{"pointsDataTable", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", ",", 
+                 RowBox[{"j", " ", "+", " ", "1"}]}], "]"}], "]"}], ",", " ", 
+              RowBox[{"Ceiling", "[", 
+               RowBox[{"8", " ", 
+                RowBox[{"k2", "/", "kMax"}]}], "]"}]}], " ", "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", " ", "1", ",", " ", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"numberLatticeLinesToDisplay", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], " ", "*", " ", "2"}], " ", 
+               "+", " ", "1"}]}], "}"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{"j", ",", " ", "1", ",", " ", 
+              RowBox[{
+               RowBox[{"numberLatticeLinesToDisplay", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], " ", "*", " ", "2"}]}], " ", 
+             "}"}]}], "\[IndentingNewLine]", "]"}], ",", "2"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Column", "[", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"8", " ", 
+            RowBox[{"Ceil", "[", 
+             RowBox[{"k2", "/", "kMax"}], "]"}]}], ","}]}]}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"springData", ","}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<\[Alpha] = \>\"", ",", " ", "latticeBasis"}], "}"}], 
+          "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<\[Beta] = \>\"", ",", "reciprocalBasis"}], "}"}], 
+          "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+          "latticeNorms", ",", "\[IndentingNewLine]", "latticeUnitVectors", 
+           ","}], "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<n = \>\"", ",", "numberLatticeLinesToDisplay"}], 
+           "}"}], "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"\"\<loc(m) = \>\"", ",", " ", 
+            RowBox[{"loc", "[", 
+             RowBox[{"[", "3", "]"}], "]"}], ",", " ", 
+            "\"\<, first cell pos = \>\"", ",", "mPosFirstCell"}], "}"}], 
+          "]"}], ","}], "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"Show", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Graphics", "[", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"lineTable", "[", " ", 
+                 RowBox[{
+                 "numberLatticeLinesToDisplay", ",", " ", "latticeBasis", ",",
+                   " ", "#"}], " ", "]"}], " ", "&"}], " ", "/@", " ", 
+               RowBox[{"Permutations", "[", 
+                RowBox[{"{", 
+                 RowBox[{"1", ",", "2"}], "}"}], "]"}]}], 
+              "\[IndentingNewLine]", ",", "Blue", ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Arrow", "[", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", " ", 
+                   RowBox[{"(*", 
+                    RowBox[{"2", "Normalize"}], "*)"}], " ", 
+                   RowBox[{"Identity", "[", 
+                    RowBox[{"reciprocalBasis", "[", 
+                    RowBox[{"[", "#", "]"}], "]"}], "]"}]}], "}"}], "]"}], 
+                " ", "&"}], " ", "/@", " ", 
+               RowBox[{"Range", "[", "2", "]"}]}], "\[IndentingNewLine]", ",",
+               "Thick", ",", 
+              RowBox[{"Arrowheads", "[", "0.05", "]"}], "\[IndentingNewLine]",
+               ",", "Red", ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Arrow", "[", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", " ", 
+                   RowBox[{"latticeBasis", "[", 
+                    RowBox[{"[", "#", "]"}], "]"}]}], "}"}], "]"}], " ", 
+                "&"}], " ", "/@", " ", 
+               RowBox[{"Range", "[", "2", "]"}]}], "\[IndentingNewLine]", ",",
+               "Blue", "\[IndentingNewLine]", ",", 
+              RowBox[{"PointSize", "[", 
+               RowBox[{"Sqrt", "[", 
+                RowBox[{
+                 RowBox[{"m", "/", "mMax"}], "/", "500"}], "]"}], "]"}], 
+              "\[IndentingNewLine]", ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Point", "[", " ", "#", " ", "]"}], " ", "&"}], " ", "/@",
+                " ", "pointsDataTable"}], " ", "\[IndentingNewLine]", ",", 
+              RowBox[{"Darker", "[", "Green", "]"}], ",", 
+              RowBox[{"Point", "[", "  ", "mPosFirstCell", " ", "]"}]}], 
+             "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"PlotRange", " ", "\[Rule]", " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "windowHalfWidth"}], "/", "2"}], ",", " ", 
+                 "windowHalfWidth"}], "}"}], ",", " ", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "windowHalfWidth"}], "/", "2"}], ",", " ", 
+                 "windowHalfWidth"}], "}"}]}], "}"}]}]}], 
+           "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+          RowBox[{"ListLinePlot", "[", 
+           RowBox[{"springDataH", ",", " ", 
+            RowBox[{"PlotStyle", " ", "->", " ", 
+             RowBox[{"springColors", "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}]}], " ", "]"}], 
+          "\[IndentingNewLine]", ",", 
+          RowBox[{"ListLinePlot", "[", 
+           RowBox[{"springDataV", ",", " ", 
+            RowBox[{"PlotStyle", " ", "->", " ", 
+             RowBox[{"springColors", "[", 
+              RowBox[{"[", "2", "]"}], "]"}]}]}], " ", "]"}]}], 
+         "\[IndentingNewLine]", "}"}], "]"}]}]}], "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"}", " ", "]"}], " ", 
+      RowBox[{"(*", " ", "Column", " ", "*)"}], "*)"}], "\[IndentingNewLine]",
+      "]"}], "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+      RowBox[{
+      "first", " ", "two", " ", "locators", " ", "are", " ", "the", " ", 
+       "lattice", " ", "basis", " ", "vectors"}], ",", " ", 
+      RowBox[{
+      "and", " ", "the", " ", "last", " ", "for", " ", "the", " ", "mass", 
+       " ", "position", " ", "within", " ", "a", " ", "cell", " ", 
+       RowBox[{"(", 
+        RowBox[{
+        "normalized", " ", "to", " ", "first", " ", "cell", " ", "later"}], 
+        ")"}]}]}], " ", "*)"}], "\[IndentingNewLine]", ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"loc", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"2", ",", "1"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "1"}], "/", "4"}], ",", " ", "2"}], "}"}], ",", 
+          "  ", 
+          RowBox[{"{", 
+           RowBox[{"1", ",", "2"}], "}"}]}], "}"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "windowHalfWidth"}], ",", " ", 
+        RowBox[{"-", "windowHalfWidth"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"windowHalfWidth", ",", "windowHalfWidth"}], "}"}], ",", " ", 
+      "Locator"}], "}"}], "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{"spring", " ", "constants"}], " ", "*)"}], "\[IndentingNewLine]",
+     ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"k1", ",", " ", "0.5", ",", " ", 
+        RowBox[{"kLable", "[", "1", "]"}]}], "}"}], ",", " ", "0.25", ",", 
+      " ", "kMax", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"k2", ",", " ", "0.5", ",", " ", 
+        RowBox[{"kLable", "[", "2", "]"}]}], "}"}], ",", " ", "0.25", ",", 
+      " ", "kMax", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"k3", ",", " ", "0.25", ",", " ", 
+        RowBox[{"kLable", "[", "3", "]"}]}], "}"}], ",", " ", "0.25", ",", 
+      " ", "kMax", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"k4", ",", " ", "0.25", ",", " ", 
+        RowBox[{"kLable", "[", "4", "]"}]}], "}"}], ",", " ", "0.25", ",", 
+      " ", "kMax", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", "mass", " ", "*)"}], "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"m", ",", " ", "10", ",", " ", 
+        RowBox[{"Style", "[", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<m\>\"", ",", "Italic"}], "]"}], "]"}]}], "}"}], ",", 
+      " ", "5", ",", " ", "30", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", ",", 
+    RowBox[{"SaveDefinitions", "\[Rule]", "True"}], "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{",", 
+      RowBox[{"ContinuousAction", "\[Rule]", "None"}]}], "*)"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"SynchronousInitialization", "\[Rule]", "False"}]}], 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.598700738882126*^9, 3.5987009638129916`*^9}, {
+   3.5987010324639177`*^9, 3.5987010562782803`*^9}, {3.598701086577013*^9, 
+   3.598701166392578*^9}, {3.598701271962617*^9, 3.598701273372697*^9}, {
+   3.5987013130749683`*^9, 3.5987013146390576`*^9}, {3.598701441346305*^9, 
+   3.5987014834267116`*^9}, {3.5987015351546707`*^9, 3.598701604543639*^9}, {
+   3.5987017135548744`*^9, 3.598701752885124*^9}, {3.5987019025506845`*^9, 
+   3.5987019842673583`*^9}, {3.5987021116816463`*^9, 
+   3.5987021886950507`*^9}, {3.5987029008577843`*^9, 3.598703169527151*^9}, {
+   3.5987032480176406`*^9, 3.5987032605923595`*^9}, {3.598703381465273*^9, 
+   3.5987033874996185`*^9}, {3.5987034390235653`*^9, 
+   3.5987034886584044`*^9}, {3.59870358194674*^9, 3.5987036647394753`*^9}, {
+   3.5987036990894403`*^9, 3.5987037379716644`*^9}, {3.5987037681573906`*^9, 
+   3.5987037942298822`*^9}, {3.598703876295576*^9, 3.598704038181835*^9}, {
+   3.5987042731552753`*^9, 3.5987044812691784`*^9}, {3.598704561786784*^9, 
+   3.598704666117751*^9}, {3.5987047363187666`*^9, 3.598704783214449*^9}, {
+   3.598704815382289*^9, 3.598704865269142*^9}, {3.5987049343400927`*^9, 
+   3.5987050187829227`*^9}, {3.5987050604153037`*^9, 3.598705087169834*^9}, {
+   3.5987051219318223`*^9, 3.598705138513771*^9}, {3.5987056482019234`*^9, 
+   3.5987056548093014`*^9}, {3.598705813470376*^9, 3.598705823607956*^9}, {
+   3.5987059050586147`*^9, 3.598705985419211*^9}, {3.5987060911462584`*^9, 
+   3.5987063070926094`*^9}, 3.5987063391724443`*^9, 3.598706377674647*^9, {
+   3.598706933059413*^9, 3.598707061210743*^9}, {3.598707182476679*^9, 
+   3.5987072453892775`*^9}, {3.5987073095969496`*^9, 
+   3.5987073106970124`*^9}, {3.5987073604358573`*^9, 
+   3.5987073684963183`*^9}, {3.5987074241845036`*^9, 3.598707454172219*^9}, {
+   3.598707489307228*^9, 3.598707564271516*^9}, {3.598709202285205*^9, 
+   3.5987093900109425`*^9}, {3.598709434786504*^9, 3.5987094491973276`*^9}, 
+   3.598709552323226*^9, {3.5987096280415573`*^9, 3.598709660809431*^9}, {
+   3.598709700685712*^9, 3.5987097424371*^9}, 3.5987098079538474`*^9, {
+   3.59870989576587*^9, 3.5987099676339808`*^9}, {3.5987100006868715`*^9, 
+   3.5987100645285225`*^9}, {3.598710106132902*^9, 3.5987101259120336`*^9}, 
+   3.5987101832873154`*^9, {3.5987102856321692`*^9, 3.5987102966187973`*^9}, {
+   3.5987103358000383`*^9, 3.5987104560879183`*^9}, {3.5987105391336684`*^9, 
+   3.598710539943715*^9}, {3.598710635985208*^9, 3.598710667002982*^9}, {
+   3.598710754465985*^9, 3.5987108033717823`*^9}, {3.598710853374642*^9, 
+   3.5987108563148108`*^9}, {3.5987108936689467`*^9, 3.5987109009873657`*^9}, 
+   3.598710982507028*^9, {3.598711046283676*^9, 3.598711055711215*^9}, {
+   3.598711090205188*^9, 3.598711132881629*^9}, {3.59871117205787*^9, 
+   3.5987113671390276`*^9}, {3.5987114028880725`*^9, 3.598711429174576*^9}, 
+   3.5987116860272675`*^9, {3.5987117165100107`*^9, 3.5987117255505276`*^9}, 
+   3.598711836771889*^9, {3.598711880885412*^9, 3.598711945244094*^9}, {
+   3.598712004328473*^9, 3.5987120420676317`*^9}, 3.598712100665983*^9, {
+   3.598712133780877*^9, 3.59871217648232*^9}, {3.598712241272025*^9, 
+   3.5987122516066165`*^9}, {3.5987123013284607`*^9, 
+   3.5987123870973663`*^9}, {3.598712444672659*^9, 3.5987124625446815`*^9}, {
+   3.598712570207839*^9, 3.5987126908797417`*^9}, {3.5987127455288672`*^9, 
+   3.5987129017668037`*^9}, {3.5987129339376435`*^9, 
+   3.5987129770871115`*^9}, {3.5987130331223164`*^9, 3.598713060269869*^9}, 
+   3.59871315102506*^9, {3.598713183430914*^9, 3.5987132076602993`*^9}, {
+   3.5987132637965107`*^9, 3.5987132868608294`*^9}, {3.5987133185066395`*^9, 
+   3.598713319286684*^9}, {3.5987133570578446`*^9, 3.5987134931206264`*^9}, 
+   3.5987135406803474`*^9, {3.5987136030839167`*^9, 3.59871371747946*^9}, {
+   3.598713760289908*^9, 3.598713889663308*^9}, {3.59871395299193*^9, 
+   3.5987139641745696`*^9}, {3.5987140305553665`*^9, 3.598714119542456*^9}, {
+   3.5987141498271885`*^9, 3.598714156055545*^9}, {3.5987141890274305`*^9, 
+   3.598714189487457*^9}, {3.598714241543434*^9, 3.598714253130097*^9}, {
+   3.5987143059371176`*^9, 3.598714308305253*^9}, {3.598714433636421*^9, 
+   3.5987144771769114`*^9}, {3.5987145149600725`*^9, 
+   3.5987145562144327`*^9}, {3.5987147990933247`*^9, 3.598714871542468*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`k1$$ = 0.5, $CellContext`k2$$ = 
+    0.5, $CellContext`k3$$ = 0.25, $CellContext`k4$$ = 
+    0.25, $CellContext`loc$$ = {{2, 1}, {-0.25, 2}, {0.33000000000000007`, 
+     0.54}}, $CellContext`m$$ = 10, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`loc$$], {{2, 1}, {
+         Rational[-1, 4], 2}, {1, 2}}}, {-3, -3}, {3, 3}}, {{
+       Hold[$CellContext`k1$$], 0.5, 
+       Style[
+        Subscript[
+         Style["k", Italic], 1], FontColor -> RGBColor[
+          Rational[2, 3], 0.33333333333333337`, 0]]}, 0.25, 0.9}, {{
+       Hold[$CellContext`k2$$], 0.5, 
+       Style[
+        Subscript[
+         Style["k", Italic], 2], FontColor -> RGBColor[0, 
+          Rational[2, 3], 0]]}, 0.25, 0.9}, {{
+       Hold[$CellContext`k3$$], 0.25, 
+       Style[
+        Subscript[
+         Style["k", Italic], 3], FontColor -> 
+        RGBColor[0.33333333333333337`, 0, 0.33333333333333337`]]}, 0.25, 
+      0.9}, {{
+       Hold[$CellContext`k4$$], 0.25, 
+       Style[
+        Subscript[
+         Style["k", Italic], 4], FontColor -> RGBColor[0, 
+          Rational[2, 3], 
+          Rational[2, 3]]]}, 0.25, 0.9}, {{
+       Hold[$CellContext`m$$], 10, 
+       Style[
+        Style["m", Italic]]}, 5, 30}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`loc$125358$$ = {0, 0}, $CellContext`k1$125359$$ = 
+    0, $CellContext`k2$125360$$ = 0, $CellContext`k3$125361$$ = 
+    0, $CellContext`k4$125362$$ = 0, $CellContext`m$125363$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`k1$$ = 0.5, $CellContext`k2$$ = 
+        0.5, $CellContext`k3$$ = 0.25, $CellContext`k4$$ = 
+        0.25, $CellContext`loc$$ = {{2, 1}, {
+           Rational[-1, 4], 2}, {1, 2}}, $CellContext`m$$ = 10}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`loc$$, $CellContext`loc$125358$$, {0, 0}], 
+        Hold[$CellContext`k1$$, $CellContext`k1$125359$$, 0], 
+        Hold[$CellContext`k2$$, $CellContext`k2$125360$$, 0], 
+        Hold[$CellContext`k3$$, $CellContext`k3$125361$$, 0], 
+        Hold[$CellContext`k4$$, $CellContext`k4$125362$$, 0], 
+        Hold[$CellContext`m$$, $CellContext`m$125363$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Module[{$CellContext`latticeBasis$, $CellContext`reciprocalBasis$, \
+$CellContext`latticeNorms$, $CellContext`latticeUnitVectors$, \
+$CellContext`numberLatticeLinesToDisplay$, $CellContext`mObliqueComponents$, \
+$CellContext`mPosFirstCell$, $CellContext`pointsDataTable$, \
+$CellContext`springDataH$, $CellContext`springDataV$}, \
+$CellContext`latticeBasis$ = 
+         Take[$CellContext`loc$$, 2]; $CellContext`latticeNorms$ = Map[Norm[
+            Part[$CellContext`latticeBasis$, #]]& , 
+           Range[2]]; $CellContext`latticeUnitVectors$ = Map[Normalize[
+            Part[$CellContext`latticeBasis$, #]]& , 
+           Range[2]]; $CellContext`numberLatticeLinesToDisplay$ = Map[Ceiling[
+            Abs[$CellContext`d/Part[
+              Part[$CellContext`latticeBasis$, #], #]]]& , 
+           Range[
+           2]]; $CellContext`reciprocalBasis$ = \
+$CellContext`calcReciprocalBasis[$CellContext`latticeBasis$]; \
+$CellContext`mObliqueComponents$ = Map[Dot[
+            Part[$CellContext`loc$$, 3], 
+            Part[$CellContext`reciprocalBasis$, #]]& , 
+           Range[2]]; $CellContext`mPosFirstCell$ = 
+         Part[$CellContext`loc$$, 3] - Dot[
+           
+           Floor[$CellContext`mObliqueComponents$], \
+$CellContext`latticeBasis$]; $CellContext`pointsDataTable$ = \
+$CellContext`pointsTable[$CellContext`mPosFirstCell$, \
+$CellContext`latticeBasis$, $CellContext`numberLatticeLinesToDisplay$]; \
+$CellContext`springDataH$ = Flatten[
+           Table[
+            $CellContext`springPoints[
+             
+             Part[$CellContext`pointsDataTable$, $CellContext`i, \
+$CellContext`j], 
+             
+             Part[$CellContext`pointsDataTable$, $CellContext`i + 
+              1, $CellContext`j], 
+             Ceiling[
+             8 ($CellContext`k1$$/$CellContext`kMax)]], {$CellContext`i, 1, 
+             Part[$CellContext`numberLatticeLinesToDisplay$, 1] 
+             2}, {$CellContext`j, 1, 
+             Part[$CellContext`numberLatticeLinesToDisplay$, 2] 2 + 1}], 
+           2]; $CellContext`springDataV$ = Flatten[
+           Table[
+            $CellContext`springPoints[
+             
+             Part[$CellContext`pointsDataTable$, $CellContext`i, \
+$CellContext`j], 
+             
+             Part[$CellContext`pointsDataTable$, $CellContext`i, \
+$CellContext`j + 1], 
+             Ceiling[
+             8 ($CellContext`k2$$/$CellContext`kMax)]], {$CellContext`i, 1, 
+             Part[$CellContext`numberLatticeLinesToDisplay$, 1] 2 + 
+             1}, {$CellContext`j, 1, 
+             Part[$CellContext`numberLatticeLinesToDisplay$, 2] 2}], 2]; Show[{
+           Graphics[{
+             
+             Map[$CellContext`lineTable[$CellContext`\
+numberLatticeLinesToDisplay$, $CellContext`latticeBasis$, #]& , 
+              Permutations[{1, 2}]], Blue, 
+             Map[Arrow[{{0, 0}, 
+                Identity[
+                 Part[$CellContext`reciprocalBasis$, #]]}]& , 
+              Range[2]], Thick, 
+             Arrowheads[0.05], Red, 
+             Map[Arrow[{{0, 0}, 
+                Part[$CellContext`latticeBasis$, #]}]& , 
+              Range[2]], Blue, 
+             PointSize[
+              Sqrt[($CellContext`m$$/$CellContext`mMax)/500]], 
+             Map[Point[#]& , $CellContext`pointsDataTable$], 
+             Darker[Green], 
+             Point[$CellContext`mPosFirstCell$]}, 
+            PlotRange -> {{(-$CellContext`windowHalfWidth)/
+               2, $CellContext`windowHalfWidth}, \
+{(-$CellContext`windowHalfWidth)/2, $CellContext`windowHalfWidth}}], 
+           
+           ListLinePlot[$CellContext`springDataH$, PlotStyle -> 
+            Part[$CellContext`springColors, 1]], 
+           
+           ListLinePlot[$CellContext`springDataV$, PlotStyle -> 
+            Part[$CellContext`springColors, 2]]}]], 
+      "Specifications" :> {{{$CellContext`loc$$, {{2, 1}, {
+            Rational[-1, 4], 2}, {1, 2}}}, {-3, -3}, {3, 3}, ControlType -> 
+         Locator}, {{$CellContext`k1$$, 0.5, 
+          Style[
+           Subscript[
+            Style["k", Italic], 1], FontColor -> RGBColor[
+             Rational[2, 3], 0.33333333333333337`, 0]]}, 0.25, 0.9, 
+         Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`k2$$, 0.5, 
+          Style[
+           Subscript[
+            Style["k", Italic], 2], FontColor -> RGBColor[0, 
+             Rational[2, 3], 0]]}, 0.25, 0.9, Appearance -> "Labeled", 
+         ImageSize -> Tiny}, {{$CellContext`k3$$, 0.25, 
+          Style[
+           Subscript[
+            Style["k", Italic], 3], FontColor -> 
+           RGBColor[0.33333333333333337`, 0, 0.33333333333333337`]]}, 0.25, 
+         0.9, Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`k4$$, 0.25, 
+          Style[
+           Subscript[
+            Style["k", Italic], 4], FontColor -> RGBColor[0, 
+             Rational[2, 3], 
+             Rational[2, 3]]]}, 0.25, 0.9, Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`m$$, 10, 
+          Style[
+           Style["m", Italic]]}, 5, 30, Appearance -> "Labeled", ImageSize -> 
+         Tiny}}, "Options" :> {SynchronousInitialization -> False}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{551., {357., 364.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`reciprocalBasis[
+         Pattern[$CellContext`loc, 
+          Blank[List]]] := Module[{$CellContext`g}, $CellContext`g = Inverse[
+            Transpose[$CellContext`loc]]; {
+           Dot[
+            Part[$CellContext`g, 1], 
+            Part[$CellContext`loc, 1]], 
+           Dot[
+            Part[$CellContext`g, 1], 
+            Part[$CellContext`loc, 2]], 
+           Dot[
+            Part[$CellContext`g, 2], 
+            Part[$CellContext`loc, 1]], 
+           Dot[
+            Part[$CellContext`g, 2], 
+            Part[$CellContext`loc, 2]]}], $CellContext`d = 
+       4, $CellContext`calcReciprocalBasis[
+         Pattern[$CellContext`loc, 
+          Blank[List]]] := Inverse[
+         Transpose[$CellContext`loc]], 
+       TagSet[$CellContext`calcReciprocalBasis, 
+        MessageName[$CellContext`calcReciprocalBasis, "usage"], 
+        "Return a reciprocal frame basis for a set of vectors.  This doesn't \
+include the 2 \[Pi] scaling that is common in solid state physics.  Example, \
+displaying the desired Kronicker delta behaviour:\n\nb = {{2,1},{-1/4, 2}} ;\n\
+g = calcReciprocalBasis[ b ] ;\n\n\
+{g[[1]].loc[[1]],\[IndentingNewLine]g[[1]].loc[[2]],\[IndentingNewLine]g[[2]].\
+loc[[1]],\[IndentingNewLine]g[[2]].loc[[2]]}\n"], $CellContext`pointsTable[
+         Pattern[$CellContext`mPosFirstCell, 
+          Blank[List]], 
+         Pattern[$CellContext`latticeBasis, 
+          Blank[List]], 
+         Pattern[$CellContext`numberLatticeLinesToDisplay, 
+          Blank[List]]] := 
+       Table[$CellContext`mPosFirstCell + 
+         Dot[{$CellContext`i, $CellContext`j}, $CellContext`latticeBasis], \
+{$CellContext`i, -Part[$CellContext`numberLatticeLinesToDisplay, 1], 
+          
+          Part[$CellContext`numberLatticeLinesToDisplay, 
+           1]}, {$CellContext`j, -
+          Part[$CellContext`numberLatticeLinesToDisplay, 2], 
+          Part[$CellContext`numberLatticeLinesToDisplay, 
+           2]}], $CellContext`springPoints[
+         Pattern[$CellContext`a1, 
+          Blank[List]], 
+         Pattern[$CellContext`a2, 
+          Blank[List]], 
+         Optional[
+          Pattern[$CellContext`n, 
+           Blank[Integer]], 8], 
+         Optional[
+          Pattern[$CellContext`h, 
+           Blank[]], 0.05], 
+         Optional[
+          Pattern[$CellContext`f, 
+           Blank[]], 0.1]] := 
+       Module[{$CellContext`n1, $CellContext`d, $CellContext`nd, \
+$CellContext`r, $CellContext`r1}, $CellContext`n1 = 
+          Norm[$CellContext`a1]; $CellContext`d = $CellContext`a2 - \
+$CellContext`a1; $CellContext`nd = Norm[$CellContext`d]; $CellContext`r = 
+          RotationMatrix[
+            Apply[ArcTan, $CellContext`d]]; $CellContext`r1 = 
+          Dot[$CellContext`r, {$CellContext`n1, 0}]; {
+           
+           Table[$CellContext`a1 - $CellContext`r1 + 
+            Dot[$CellContext`r, {$CellContext`n1 + $CellContext`nd \
+$CellContext`f + $CellContext`t (1 - 
+                 2 $CellContext`f) $CellContext`nd, $CellContext`h 
+               Sin[2 Pi $CellContext`n $CellContext`t]}], {$CellContext`t, 0, 
+             1, 0.01}], 
+           
+           Table[$CellContext`a1 - $CellContext`r1 + 
+            Dot[$CellContext`r, {$CellContext`n1 + $CellContext`nd \
+$CellContext`f + (1 - 
+                 2 $CellContext`f) $CellContext`nd + $CellContext`t \
+$CellContext`f $CellContext`nd, 0}], {$CellContext`t, 0, 1, 0.01}], 
+           
+           Table[$CellContext`a1 - $CellContext`r1 + 
+            Dot[$CellContext`r, {$CellContext`n1 + $CellContext`t \
+$CellContext`f $CellContext`nd, 0}], {$CellContext`t, 0, 1, 0.01}]}], 
+       TagSet[$CellContext`springPoints, 
+        MessageName[$CellContext`springPoints, "usage"], 
+        "springPoints[ point1, point2, numberOfTurns, height, \
+fractionToDrawAsLinesAtEnds ].  Example:\n\n\
+ListLinePlot[springPoints[{1,2},{3,5}], AspectRatio\[Rule]Automatic, \
+PlotStyle -> Darker[ Purple ] ]"], $CellContext`kMax = 
+       0.9, $CellContext`lineTable[
+         Pattern[$CellContext`n, 
+          Blank[List]], 
+         Pattern[$CellContext`b, 
+          Blank[List]], 
+         Pattern[$CellContext`i, 
+          Blank[List]]] := 
+       Module[{$CellContext`first, $CellContext`second}, {$CellContext`first, \
+$CellContext`second} = $CellContext`i; Table[
+           
+           Line[{(-Part[$CellContext`n, $CellContext`first]) 
+              Part[$CellContext`b, $CellContext`first] + $CellContext`j 
+              Part[$CellContext`b, $CellContext`second], 
+             Part[$CellContext`n, $CellContext`first] 
+              Part[$CellContext`b, $CellContext`first] + $CellContext`j 
+              Part[$CellContext`b, $CellContext`second]}], {$CellContext`j, -
+            Part[$CellContext`n, $CellContext`second], 
+            Part[$CellContext`n, $CellContext`second]}]], $CellContext`mMax = 
+       30, $CellContext`windowHalfWidth = 3, $CellContext`springColors = {
+         RGBColor[2/3, 0.33333333333333337`, 0], 
+         RGBColor[0, 2/3, 0], 
+         RGBColor[0.33333333333333337`, 0, 0.33333333333333337`], 
+         RGBColor[0, 2/3, 2/3]}, Attributes[Subscript] = {NHoldRest}}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->False,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.5987142554732313`*^9, 3.5987143093463125`*^9, {3.5987144446390505`*^9, 
+   3.598714477935955*^9}, 3.598714520027363*^9, 3.598714557290494*^9, 
+   3.5987148350313797`*^9, 3.5987148743146267`*^9, {3.5987150819585032`*^9, 
+   3.5987151094080734`*^9}}]
+}, Open  ]]
+},
+WindowSize->{1584, 765},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 124, 3, 40, "Text"],
+Cell[684, 25, 11644, 268, 1903, "Input",
+ InitializationCell->True],
+Cell[12331, 295, 136, 3, 40, "Text"],
+Cell[CellGroupData[{
+Cell[12492, 302, 20014, 424, 1853, "Input"],
+Cell[32509, 728, 13757, 294, 787, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
