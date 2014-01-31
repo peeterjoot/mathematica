@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    111933,       2588]
-NotebookOptionsPosition[    111379,       2566]
-NotebookOutlinePosition[    111722,       2581]
-CellTagsIndexPosition[    111679,       2578]
+NotebookDataLength[    139574,       3156]
+NotebookOptionsPosition[    139033,       3134]
+NotebookOutlinePosition[    139376,       3149]
+CellTagsIndexPosition[    139333,       3146]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -975,6 +975,7 @@ CellChangeTimes->{3.5990563268386803`*^9, {3.5990565758059196`*^9, \
                "}"}], "]"}]}], "\[IndentingNewLine]", "}"}], "]"}], " ", 
           "&"}], ")"}]}]}], "\[IndentingNewLine]", "]"}]}], " ", 
     ";"}]}]}]], "Input",
+ InitializationCell->True,
  CellChangeTimes->{
   3.5994783330097203`*^9, {3.5994784035987577`*^9, 3.5994784301462765`*^9}, {
    3.59947865504914*^9, 3.5994787032999*^9}, {3.5994787946221232`*^9, 
@@ -2286,91 +2287,391 @@ the unit cell basis vectors)\n\nExample:\n\nlocDependent[{1/2,1}, {1,1/2}, \
  RowBox[{
   RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"Grid", "[", 
-     RowBox[{"{", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"{", " ", "\[IndentingNewLine]", 
+    RowBox[{"tick", ";", "\[IndentingNewLine]", 
+     RowBox[{"Grid", "[", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<Number of interactions: \>\"", ",", " ", "\[IndentingNewLine]", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{"\"\<  \>\"", ",", "\[IndentingNewLine]", 
+             RowBox[{"Manipulator", "[", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", 
+                RowBox[{"nn", ",", 
+                 RowBox[{
+                  RowBox[{"(", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"nn", "=", "#"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"tick", "=", 
+                    RowBox[{"Not", "[", "tick", "]"}]}]}], ")"}], "&"}]}], 
+                "]"}], ",", "\[IndentingNewLine]", " ", 
+               RowBox[{"{", 
+                RowBox[{"1", ",", " ", 
+                 RowBox[{"Dynamic", "[", 
+                  RowBox[{
+                   RowBox[{"-", "1"}], " ", "+", 
+                   RowBox[{"10", " ", "lastNumMasses"}]}], " ", "]"}], ",", 
+                 " ", "1"}], "}"}], " ", ",", "\[IndentingNewLine]", 
+               RowBox[{"ImageSize", "\[Rule]", "Tiny"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], 
+              "\[IndentingNewLine]", "]"}], ",", " ", "\[IndentingNewLine]", 
+             "\"\< \>\"", ",", "\[IndentingNewLine]", 
+             RowBox[{"Dynamic", "@", "nn"}]}], "\[IndentingNewLine]", "}"}], 
+           "]"}]}], "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", " ", 
+         RowBox[{
+         "\"\<Coupling to neighbouring: \>\"", ",", " ", 
+          "\[IndentingNewLine]", 
+          RowBox[{"SetterBar", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"Dynamic", "[", 
+             RowBox[{"m2Sel", ",", 
+              RowBox[{
+               RowBox[{"(", "\[IndentingNewLine]", 
+                RowBox[{
+                 RowBox[{"m2Sel", "=", "#"}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"tick", "=", 
+                  RowBox[{"Not", "[", "tick", "]"}]}]}], ")"}], "&"}]}], 
+             "]"}], ",", " ", "\[IndentingNewLine]", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", " ", "\[Rule]", " ", 
+                RowBox[{"Subscript", "[", 
+                 RowBox[{"\"\<m\>\"", ",", " ", "#"}], "]"}]}], " ", "&"}], "/@",
+               " ", 
+              RowBox[{"Range", "[", "lastNumMasses", "]"}]}], ")"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Enabled", " ", "\[Rule]", " ", 
+             RowBox[{"(", 
+              RowBox[{"lastNumMasses", " ", ">", " ", "1"}], ")"}]}]}], 
+           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}], ",", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", 
          RowBox[{
-         "TODO", "\[IndentingNewLine]", " ", "1.", " ", "mass", " ", "scalar",
-           " ", "logic", "\[IndentingNewLine]", " ", "2.", " ", "mass", " ", 
-          "selector", " ", "for", " ", "nn", " ", "illustration", " ", 
-          RowBox[{"(", 
+          RowBox[{
+          "TODO", "\[IndentingNewLine]", "  ", "2.", " ", "label", " ", "the",
+            " ", "masses", "\[IndentingNewLine]", " ", "3.", " ", "spring", 
+           " ", "plots", " ", "based", " ", "on", " ", 
+           RowBox[{"nn", ".", "\[IndentingNewLine]", "4."}], " ", "spring", 
+           " ", "constants", " ", "selection", " ", 
+           RowBox[{"logic", ".", "  ", "Like"}], " ", "masses"}], ",", " ", 
+          RowBox[{
            RowBox[{
-           "click", " ", "boxes", " ", "of", " ", "some", " ", "sort"}], 
-           ")"}], "\[IndentingNewLine]", " ", "3.", " ", "spring", " ", 
-          "plots", " ", "based", " ", "on", " ", 
-          RowBox[{"nn", ".", "\[IndentingNewLine]", "4."}], " ", "spring", 
-          " ", "constants", " ", "selection", " ", 
-          RowBox[{"logic", "."}]}], "\[IndentingNewLine]", "*)"}], 
+           "will", " ", "have", " ", "to", " ", "deal", " ", "with", " ", 
+            "Alt"}], "-", 
+           RowBox[{
+           "click", " ", "resize", " ", "to", " ", "the", " ", "array", " ", 
+            "of", " ", "spring", " ", 
+            RowBox[{"constants", ".", "\[IndentingNewLine]", "6."}], " ", 
+            "generate", " ", "the", " ", "matrix", "\[IndentingNewLine]", 
+            "7.", " ", "add", " ", "back", " ", "Lance", " ", "test", " ", 
+            "force", " ", 
+            RowBox[{"field", "."}]}]}]}], "\[IndentingNewLine]", "*)"}], 
         "\[IndentingNewLine]", 
-        RowBox[{"Row", "[", 
-         RowBox[{"{", "\[IndentingNewLine]", 
-          RowBox[{"\"\<interactions: \>\"", ",", "\[IndentingNewLine]", 
-           RowBox[{"Manipulator", "[", 
-            RowBox[{
-             RowBox[{"Dynamic", "[", "nn", "]"}], ",", " ", 
-             RowBox[{"{", 
-              RowBox[{"1", ",", " ", 
-               RowBox[{"Dynamic", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{"\"\<mass: \>\"", ",", " ", "\[IndentingNewLine]", 
+            RowBox[{"SetterBar", "[", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Dynamic", "[", 
+               RowBox[{"m1Sel", ",", 
                 RowBox[{
-                 RowBox[{"-", "1"}], " ", "+", 
-                 RowBox[{"10", " ", 
-                  RowBox[{"nMasses", "[", "u", "]"}]}]}], " ", "]"}], ",", 
-               " ", "1"}], "}"}]}], " ", "]"}], ",", " ", 
-           "\[IndentingNewLine]", "\"\< \>\"", ",", "\[IndentingNewLine]", 
-           RowBox[{"Dynamic", "@", "nn"}]}], "\[IndentingNewLine]", 
-          RowBox[{"(*", 
-           RowBox[{",", " ", "\[IndentingNewLine]", "\"\<, u: \>\"", ",", 
-            RowBox[{"Dynamic", "@", "u"}], ",", " ", "\[IndentingNewLine]", 
-            "\"\<, nm: \>\"", ",", 
-            RowBox[{"Dynamic", "@", 
-             RowBox[{"nMasses", "[", "u", "]"}]}], ",", 
-            "\[IndentingNewLine]", "\"\<, mass array: \>\"", ",", 
+                 RowBox[{"(", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"m1Sel", "=", "#"}], ";", "\[IndentingNewLine]", 
+                   RowBox[{"massValue", " ", "=", " ", 
+                    RowBox[{"mScalarArray", "[", 
+                    RowBox[{"[", "m1Sel", "]"}], "]"}]}], ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"tick", "=", 
+                    RowBox[{"Not", "[", "tick", "]"}]}]}], ")"}], "&"}]}], 
+               "]"}], ",", " ", "\[IndentingNewLine]", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"#", " ", "\[Rule]", " ", 
+                  RowBox[{"Subscript", "[", 
+                   RowBox[{"\"\<m\>\"", ",", " ", "#"}], "]"}]}], " ", "&"}], 
+                "/@", " ", 
+                RowBox[{"Range", "[", "lastNumMasses", "]"}]}], ")"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Enabled", " ", "\[Rule]", " ", 
+               RowBox[{"(", 
+                RowBox[{"lastNumMasses", " ", ">", " ", "1"}], ")"}]}]}], 
+             "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+            "\"\< \>\"", ",", "\[IndentingNewLine]", 
+            RowBox[{"Manipulator", "[", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"Dynamic", "[", 
+               RowBox[{"massValue", ",", 
+                RowBox[{
+                 RowBox[{"(", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"massValue", " ", "=", " ", "#"}], " ", ";", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"mScalarArray", "[", 
+                    RowBox[{"[", "m1Sel", "]"}], "]"}], "=", "massValue"}], 
+                   " ", ";", "\[IndentingNewLine]", 
+                   RowBox[{"tick", "=", 
+                    RowBox[{"Not", "[", "tick", "]"}]}]}], ")"}], "&"}]}], 
+               "]"}], "\[IndentingNewLine]", ",", 
+              RowBox[{"{", 
+               RowBox[{"0.25", ",", 
+                RowBox[{"Dynamic", "@", "mMax"}]}], "}"}], ",", 
+              RowBox[{"ImageSize", "\[Rule]", "Tiny"}], ",", 
+              RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], 
+             "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+            "\"\< \>\"", ",", 
             RowBox[{"Dynamic", "[", 
+             RowBox[{"NumberForm", "[", 
+              RowBox[{
+               RowBox[{"mScalarArray", "[", 
+                RowBox[{"[", "m1Sel", "]"}], "]"}], ",", "3"}], "]"}], 
+             "]"}]}], "\[IndentingNewLine]", "}"}], "]"}], 
+         "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", "\"\<spring constants:\>\"", " ", "}"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Row", "[", 
+           RowBox[{"{", " ", 
+            RowBox[{"\"\<horizontal: \>\"", ",", 
+             RowBox[{"kLable", "[", "1", "]"}], ",", " ", "\"\< || \>\"", ",",
+              " ", 
+             RowBox[{"OverVector", "[", "\"\<a\>\"", "]"}], ",", 
+             "\"\< \>\""}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"Manipulator", "[", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", 
+                RowBox[{"k1", ",", 
+                 RowBox[{
+                  RowBox[{"(", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"k1", "=", "#"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"tick", "=", 
+                    RowBox[{"Not", "[", "tick", "]"}]}]}], ")"}], "&"}]}], 
+                "]"}], "\[IndentingNewLine]", ",", 
+               RowBox[{"{", 
+                RowBox[{"0.25", ",", 
+                 RowBox[{"Dynamic", "@", "kMax"}]}], "}"}], ",", 
+               RowBox[{"ImageSize", "\[Rule]", "Tiny"}], ",", 
+               RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], 
+              "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+             "\[IndentingNewLine]", "\"\< \>\"", ",", 
+             RowBox[{"Dynamic", "[", 
+              RowBox[{"NumberForm", "[", 
+               RowBox[{"k1", ",", "3"}], "]"}], "]"}]}], 
+            "\[IndentingNewLine]", "}"}], "]"}]}], "\[IndentingNewLine]", 
+         "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Row", "[", 
+           RowBox[{"{", " ", 
+            RowBox[{"\"\<vertical: \>\"", ",", 
+             RowBox[{"kLable", "[", "2", "]"}], ",", " ", "\"\< || \>\"", ",",
+              " ", 
+             RowBox[{"OverVector", "[", "\"\<b\>\"", "]"}], ",", 
+             "\"\< \>\""}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Manipulator", "[", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", 
+                RowBox[{"k2", ",", 
+                 RowBox[{
+                  RowBox[{"(", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"k2", "=", "#"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"tick", "=", 
+                    RowBox[{"Not", "[", "tick", "]"}]}]}], ")"}], "&"}]}], 
+                "]"}], "\[IndentingNewLine]", ",", 
+               RowBox[{"{", 
+                RowBox[{"0.25", ",", 
+                 RowBox[{"Dynamic", "@", "kMax"}]}], "}"}], ",", 
+               RowBox[{"ImageSize", "\[Rule]", "Tiny"}], ",", 
+               RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], 
+              "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+             "\"\< \>\"", ",", 
+             RowBox[{"Dynamic", "[", 
+              RowBox[{"NumberForm", "[", 
+               RowBox[{"k2", ",", "3"}], "]"}], "]"}]}], 
+            "\[IndentingNewLine]", "}"}], "]"}]}], " ", "\[IndentingNewLine]",
+          "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Row", "[", 
+           RowBox[{"{", " ", 
+            RowBox[{"\"\<diagonal: \>\"", ",", 
+             RowBox[{"kLable", "[", "3", "]"}], ",", " ", "\"\< || (\>\"", 
+             ",", "  ", 
+             RowBox[{"OverVector", "[", "\"\<b\>\"", "]"}], ",", " ", 
+             "\"\< + \>\"", ",", " ", 
+             RowBox[{"OverVector", "[", "\"\<a\>\"", "]"}], ",", " ", 
+             "\"\<) \>\""}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Manipulator", "[", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", 
+                RowBox[{"k3", ",", 
+                 RowBox[{
+                  RowBox[{"(", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"k3", "=", "#"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"tick", "=", 
+                    RowBox[{"Not", "[", "tick", "]"}]}]}], ")"}], "&"}]}], 
+                "]"}], "\[IndentingNewLine]", ",", 
+               RowBox[{"{", 
+                RowBox[{"0.25", ",", 
+                 RowBox[{"Dynamic", "@", "kMax"}]}], "}"}], ",", 
+               RowBox[{"ImageSize", "\[Rule]", "Tiny"}], ",", 
+               RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], 
+              "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+             "\"\< \>\"", ",", 
+             RowBox[{"Dynamic", "[", 
+              RowBox[{"NumberForm", "[", 
+               RowBox[{"k3", ",", "3"}], "]"}], "]"}]}], 
+            "\[IndentingNewLine]", "}"}], "]"}]}], "\[IndentingNewLine]", 
+         "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Row", "[", 
+           RowBox[{"{", " ", 
+            RowBox[{"\"\<diagonal: \>\"", ",", 
+             RowBox[{"kLable", "[", "4", "]"}], ",", " ", "\"\< || (\>\"", 
+             ",", "  ", 
+             RowBox[{"OverVector", "[", "\"\<b\>\"", "]"}], ",", " ", 
+             "\"\< - \>\"", ",", " ", 
+             RowBox[{"OverVector", "[", "\"\<a\>\"", "]"}], ",", " ", 
+             "\"\<) \>\""}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Row", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Manipulator", "[", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"Dynamic", "[", 
+                RowBox[{"k4", ",", 
+                 RowBox[{
+                  RowBox[{"(", "\[IndentingNewLine]", 
+                   RowBox[{
+                    RowBox[{"k4", "=", "#"}], ";", "\[IndentingNewLine]", 
+                    RowBox[{"tick", "=", 
+                    RowBox[{"Not", "[", "tick", "]"}]}]}], ")"}], "&"}]}], 
+                "]"}], "\[IndentingNewLine]", ",", 
+               RowBox[{"{", 
+                RowBox[{"0.25", ",", 
+                 RowBox[{"Dynamic", "@", "kMax"}]}], "}"}], ",", 
+               RowBox[{"ImageSize", "\[Rule]", "Tiny"}], ",", 
+               RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], 
+              "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+             "\"\< \>\"", ",", 
+             RowBox[{"Dynamic", "[", 
+              RowBox[{"NumberForm", "[", 
+               RowBox[{"k4", ",", "3"}], "]"}], "]"}]}], 
+            "\[IndentingNewLine]", "}"}], "]"}]}], "\[IndentingNewLine]", 
+         "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{"\"\<m1Sel, m2Sel, mScalarArray = \>\"", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"m1Sel", ",", " ", "m2Sel", ",", " ", "mScalarArray"}], 
+             "}"}]}], "\[IndentingNewLine]", "}"}], ","}], "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{"LocatorPane", "[", " ", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", 
+            RowBox[{"u", ",", 
+             RowBox[{
+              RowBox[{"(", "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{"u", "=", "#"}], ";", "\[IndentingNewLine]", 
+                RowBox[{"mScalarArray", " ", "=", 
+                 RowBox[{"If", " ", "[", " ", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"nMasses", "[", "u", "]"}], " ", ">", " ", 
+                    "lastNumMasses"}], ",", " ", "\[IndentingNewLine]", 
+                   RowBox[{"Append", "[", 
+                    RowBox[{"mScalarArray", ",", " ", "defaultMass"}], "]"}], 
+                   ",", " ", 
+                   RowBox[{"(*", " ", 
+                    RowBox[{
+                    "Assumes", " ", "just", " ", "one", " ", "added", " ", 
+                    "at", " ", "a", " ", "time"}], " ", "*)"}], 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"Take", "[", 
+                    RowBox[{"mScalarArray", ",", " ", 
+                    RowBox[{"nMasses", "[", "u", "]"}]}], " ", "]"}]}], 
+                  "]"}]}], " ", ";", " ", 
+                RowBox[{"(*", " ", 
+                 RowBox[{
+                 "could", " ", "probably", " ", "assume", " ", "just", " ", 
+                  "one", " ", "removed"}], " ", "*)"}], "\[IndentingNewLine]", 
+                RowBox[{"lastNumMasses", " ", "=", " ", 
+                 RowBox[{"nMasses", "[", "u", "]"}]}], " ", ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"(*", 
+                 RowBox[{
+                 "Lance", " ", "test", " ", "force", " ", "field", " ", 
+                  RowBox[{"here", "."}]}], "*)"}], "\[IndentingNewLine]", 
+                RowBox[{"ld", " ", "=", " ", 
+                 RowBox[{"locDependent", "[", 
+                  RowBox[{
+                   RowBox[{"u", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+                   RowBox[{"u", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", " ", 
+                   RowBox[{"Drop", "[", 
+                    RowBox[{"u", ",", "2"}], "]"}]}], "]"}]}], " ", ";", 
+                "\[IndentingNewLine]", 
+                RowBox[{"tick", "=", 
+                 RowBox[{"Not", "[", "tick", "]"}]}]}], ")"}], "&"}]}], "]"}],
+            ",", "\[IndentingNewLine]", 
+           RowBox[{"(*", " ", 
+            RowBox[{
+             RowBox[{"Why", " ", 
+              RowBox[{"doesn", "'"}], "t", " ", "Alt"}], "-", 
+             RowBox[{
+             "click", " ", "to", " ", "remove", " ", "existing", " ", 
+              "Locator", " ", "refresh", " ", "this", " ", 
+              RowBox[{"plot", "?", "  ", 
+               RowBox[{"Workaround", ":", " ", 
+                RowBox[{
+                "move", " ", "one", " ", "of", " ", "the", " ", "other", " ", 
+                 "locators", " ", "to", " ", "refresh"}]}]}]}]}], " ", "*)"}],
+            "\[IndentingNewLine]", 
+           RowBox[{"plotSprings", "[", " ", 
+            RowBox[{
              RowBox[{
               RowBox[{
                RowBox[{"10", "#"}], " ", "&"}], "/@", " ", 
-              RowBox[{"Range", "[", 
-               RowBox[{"nMasses", "[", "u", "]"}], "]"}]}], "]"}]}], "*)"}], 
-          "\[IndentingNewLine]", "}"}], "]"}], "\[IndentingNewLine]", "}"}], 
-       ",", "\[IndentingNewLine]", 
-       RowBox[{"{", "\[IndentingNewLine]", 
-        RowBox[{"DynamicModule", "[", 
-         RowBox[{
-          RowBox[{"{", "ld", "}"}], ",", "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{"ld", " ", "=", " ", 
-            RowBox[{"locDependent", "[", 
-             RowBox[{
-              RowBox[{"u", "[", 
-               RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
-              RowBox[{"u", "[", 
-               RowBox[{"[", "2", "]"}], "]"}], ",", " ", 
-              RowBox[{"Drop", "[", 
-               RowBox[{"u", ",", "2"}], "]"}]}], "]"}]}], " ", ";", 
-           "\[IndentingNewLine]", "\[IndentingNewLine]", 
-           RowBox[{"Column", "[", 
-            RowBox[{"{", 
-             RowBox[{"u", ",", "\[IndentingNewLine]", 
-              RowBox[{"LocatorPane", "[", " ", 
-               RowBox[{
-                RowBox[{"Dynamic", "[", "u", "]"}], ",", 
-                "\[IndentingNewLine]", 
-                RowBox[{"plotSprings", "[", " ", 
-                 RowBox[{
-                  RowBox[{
-                   RowBox[{
-                    RowBox[{"10", "#"}], " ", "&"}], "/@", " ", 
-                   RowBox[{"Range", "[", 
-                    RowBox[{"nMasses", "[", "u", "]"}], "]"}]}], ",", " ", 
-                  "ld"}], " ", "]"}], ",", "\[IndentingNewLine]", 
-                RowBox[{"LocatorAutoCreate", "\[Rule]", "True"}], ",", " ", 
-                "\[IndentingNewLine]", 
-                RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], 
-               "\[IndentingNewLine]", "]"}]}], "}"}], "]"}]}]}], 
-         "\[IndentingNewLine]", "]"}], "}"}]}], "\[IndentingNewLine]", "}"}], 
-     "]"}], "\[IndentingNewLine]", ",", 
+              RowBox[{"Range", "[", "lastNumMasses", "]"}]}], ",", " ", 
+             "ld"}], " ", "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"LocatorAutoCreate", "\[Rule]", "True"}], ",", " ", 
+           "\[IndentingNewLine]", 
+           RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], 
+          "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "}"}]}], 
+       "\[IndentingNewLine]", "}"}], "\[IndentingNewLine]", "]"}]}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"tick", ",", "False"}], "}"}], ",", "None"}], "}"}], 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", ",", 
     RowBox[{"{", 
      RowBox[{
       RowBox[{"{", 
@@ -2396,7 +2697,78 @@ the unit cell basis vectors)\n\nExample:\n\nlocDependent[{1/2,1}, {1,1/2}, \
      RowBox[{
       RowBox[{"{", 
        RowBox[{"nn", ",", " ", "1"}], "}"}], ",", "None"}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"m1Sel", ",", " ", "1"}], "}"}], ",", " ", "None"}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"m2Sel", ",", " ", "1"}], "}"}], ",", " ", "None"}], "}"}], 
     "\[IndentingNewLine]", ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"lastNumMasses", ",", " ", "1"}], "}"}], ",", " ", "None"}], 
+     "}"}], "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"ld", ",", " ", 
+        RowBox[{"{", "}"}]}], "}"}], ",", " ", "None"}], "}"}], 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"k1", ",", "0.5"}], "}"}], ",", "None"}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"k2", ",", "0.5"}], "}"}], ",", "None"}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"k3", ",", "0.25"}], "}"}], ",", "None"}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"k4", ",", "0.25"}], "}"}], ",", "None"}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"kMax", ",", " ", "0.9"}], "}"}], ",", " ", "None"}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"mScalarArray", ",", " ", 
+        RowBox[{"{", "10", "}"}]}], "}"}], ",", " ", "None"}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"mMax", ",", " ", "30"}], "}"}], ",", " ", "None"}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"defaultMass", ",", " ", "10"}], "}"}], ",", " ", "None"}], 
+     "}"}], "\[IndentingNewLine]", "\[IndentingNewLine]", ",", 
+    RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+     RowBox[{"{", "tick", "}"}]}], "\[IndentingNewLine]", ",", 
+    RowBox[{"ControlPlacement", "\[Rule]", "Left"}], "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{",", 
+      RowBox[{"SaveDefinitions", "\[Rule]", "True"}], "\[IndentingNewLine]", 
+      ",", 
+      RowBox[{"SynchronousInitialization", "\[Rule]", "False"}]}], 
+     "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", ",", " ", 
     RowBox[{"Initialization", " ", "\[RuleDelayed]", " ", 
      RowBox[{"{", "\[IndentingNewLine]", 
       RowBox[{
@@ -2407,7 +2779,17 @@ the unit cell basis vectors)\n\nExample:\n\nlocDependent[{1/2,1}, {1,1/2}, \
            RowBox[{"(", 
             RowBox[{
              RowBox[{"Dimensions", "[", "#", "]"}], " ", "//", " ", "First"}],
-             ")"}], " ", "-", "2"}], ")"}], " ", "&"}]}], " ", ";"}], 
+             ")"}], " ", "-", "2"}], ")"}], " ", "&"}]}], " ", ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ld", " ", "=", " ", 
+        RowBox[{"locDependent", "[", 
+         RowBox[{
+          RowBox[{"u", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+          RowBox[{"u", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], ",", " ", 
+          RowBox[{"Drop", "[", 
+           RowBox[{"u", ",", "2"}], "]"}]}], "]"}]}], " ", ";"}], 
       "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", "]"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
@@ -2447,122 +2829,308 @@ the unit cell basis vectors)\n\nExample:\n\nlocDependent[{1/2,1}, {1,1/2}, \
    3.6000626475364547`*^9}, {3.600062704261699*^9, 3.600062705116748*^9}, {
    3.600062861579697*^9, 3.600062949000697*^9}, {3.600062981547559*^9, 
    3.600062997929496*^9}, {3.600063608873884*^9, 3.600063687529222*^9}, {
-   3.600076408611462*^9, 3.600076409765864*^9}}],
+   3.600076408611462*^9, 3.600076409765864*^9}, {3.600125750708497*^9, 
+   3.600125850505205*^9}, {3.6001259105796413`*^9, 3.6001260753280644`*^9}, {
+   3.6001261250799103`*^9, 3.600126228631833*^9}, {3.600126262137749*^9, 
+   3.600126263887849*^9}, {3.6001263202560735`*^9, 3.6001263261844125`*^9}, {
+   3.600126480486238*^9, 3.6001265355323863`*^9}, {3.6001266291897435`*^9, 
+   3.600126785923708*^9}, {3.6001269046765003`*^9, 3.6001269060895815`*^9}, {
+   3.600126953298281*^9, 3.600127182198374*^9}, {3.6001272137181764`*^9, 
+   3.6001272321812325`*^9}, {3.6001639510711393`*^9, 3.600164108327134*^9}, {
+   3.60016414409418*^9, 3.6001641746039248`*^9}, {3.600164227577955*^9, 
+   3.6001642710164394`*^9}, {3.6001643387893157`*^9, 3.600164433608739*^9}, {
+   3.600172705309454*^9, 3.600172710112729*^9}, {3.600172784590989*^9, 
+   3.600172794344547*^9}, {3.600172876820264*^9, 3.600172911825266*^9}, {
+   3.6001729658913584`*^9, 3.600173001422391*^9}, {3.6001730720794325`*^9, 
+   3.6001730749305954`*^9}, {3.6001731118637075`*^9, 3.600173151228959*^9}, {
+   3.6001732598571725`*^9, 3.600173302509612*^9}, {3.6001733585558176`*^9, 
+   3.6001733657832313`*^9}, {3.6001734528532114`*^9, 
+   3.6001734850280514`*^9}, {3.600173563904563*^9, 3.600173668366538*^9}, 
+   3.6001737281759586`*^9, {3.600173788395403*^9, 3.60017378904044*^9}, {
+   3.60017386089955*^9, 3.6001740632991266`*^9}, {3.6001740986521487`*^9, 
+   3.600174265155672*^9}, 3.600174295429404*^9, {3.600174337361802*^9, 
+   3.600174363052272*^9}, {3.600174434266345*^9, 3.6001744551705403`*^9}, {
+   3.6001744883874407`*^9, 3.600174533911044*^9}, {3.6001745694960794`*^9, 
+   3.600174603173006*^9}, {3.600174668054717*^9, 3.6001746824215384`*^9}, {
+   3.600174762733132*^9, 3.600174768556465*^9}, {3.6001748126269855`*^9, 
+   3.6001749398852644`*^9}, {3.600174992042248*^9, 3.60017500501799*^9}, {
+   3.6001751821891236`*^9, 3.600175193682781*^9}, {3.6001752847279882`*^9, 
+   3.60017538772988*^9}, {3.600175418375633*^9, 3.600175482964327*^9}, 
+   3.6001755758816414`*^9, {3.6001757888368216`*^9, 3.600175863242078*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`nn$$ = 1, $CellContext`u$$ = {{
-    0.5300000000000002, 1.4900000000000002`}, {2.3, 0.9}, {0.9, 0.7}}, 
+   DynamicModuleBox[{$CellContext`defaultMass$$ = 10, $CellContext`k1$$ = 
+    0.5, $CellContext`k2$$ = 0.5, $CellContext`k3$$ = 
+    0.25, $CellContext`k4$$ = 0.25, $CellContext`kMax$$ = 
+    0.9, $CellContext`lastNumMasses$$ = 1, $CellContext`ld$$ = {
+    "aLoc" -> {0.5, 1.3}, "bLoc" -> {2.3, 0.9}, "mLoc" -> {{0.9, 0.7}}, 
+     "numMasses" -> 1, "latticeBasis" -> {{0.5, 1.3}, {2.3, 0.9}}, 
+     "latticeNorms" -> {1.392838827718412, 2.4698178070456933`}, 
+     "latticeUnitVectors" -> {{0.358979079308869, 0.9333456062030595}, {
+      0.9312427797057535, 0.36439934858051226`}}, 
+     "numberLatticeLinesToDisplay" -> {6, 4}, 
+     "reciprocalBasis" -> {{-0.35433070866141736`, 0.905511811023622}, {
+      0.5118110236220473, -0.1968503937007874}}, 
+     "reciprocalNorms" -> {0.9723692153723205, 0.5483617431962253}, 
+     "mObliqueComponents" -> {{0.31496062992125967`, 0.32283464566929143`}}, 
+     "mPosFirstCell" -> {{0.9, 0.7}}, "pointsDataTable" -> CompressedData["
+1:eJxVlcluE0EQhsd2HMexjdfxvsyMF5YjDufuZ+ARQDFw4mUQIoYDR16B0/Q1
+YrnklBtSpEhIOQRFimIFGeyur0fySFZrarrq/2rpdvji7fPjPc/zUptfafPL
+b37pze/EPjPzarF9puaffUKztPax+W6frvlp19DI/qrZxvG8wPywdg//vnln
+v58qsbeJl9FH8+3jG7vM63pJnIX46bSNVyT+lLgR/oGxn70QnjZ6Q+KV2d+F
+exWLvWWO7b5LJXHrxMtpiVfB39cS9wCeIXwpeCZG+AOztv4j9PrwNInTYS3A
+4bP+iUWvZp7a7zdK/IrwFNDL4t/SEv8veQRa6n8Vn9AXsffgGaDTgqdBvRrs
+y1Evl+9FLPvz8Nyr1/Z7Gp6yfmPfb9Hv0J9fvIda+nxOXSP0mvj30KvBU4Ov
+hH6GOu+bD9b+NZb9a/JLaZmva1c3/Zl95E29fit5j/ScPMQ/pD8VeDroHcJT
+oZ+OYx2L3h11OVdH1EniZbXU6UxRV/Ru0B/QLw/7mPk60OIfoJeDp0W9POar
+lMzJgrp/knMUS9wrtdiZ4zz5r+BporeH/ojzVuB9wloljxG6q1h4fCP9vyTf
+PH05Vd+YO/jguEXXI78Seu5ctbXse+Dypz41OKZa+t2EZ0B9zuCpM5cX5Jul
+XnfqvfQnpn/orOE6RKeSrOLXRa8BT8h8teGZUc8ePD3ut2slPFXmeQ1Pinrt
+6y8yl4r5Jl4GvVqSd2qnT330OvBE1G+A/0PyCuBx85vWnE/mJc/3e85PRT+j
+brtzmkPP3SsN9HrwDLEP4Rlrd85lfcS+MXruninCUzDunHK/MS++dnMjcTrE
+K6DXZ21iD9BxawTPhPvZcT3GPkXPNx/tex2eHPPU0i+Za7k/u8m54f+DeGX0
+QnjarFFiX8LhdKUfM/yfJHX6DwnVGTU=
+      "], "lineTable" -> {{
+        Line[{{-12.2, -11.4}, {-6.199999999999999, 4.200000000000001}}], 
+        Line[{{-9.899999999999999, -10.5}, {-3.8999999999999995`, 
+         5.1000000000000005`}}], 
+        Line[{{-7.6, -9.600000000000001}, {-1.5999999999999996`, 
+         6.000000000000001}}], 
+        Line[{{-5.3, -8.700000000000001}, {0.7000000000000002, 6.9}}], 
+        Line[{{-3., -7.800000000000001}, {3., 7.800000000000001}}], 
+        Line[{{-0.7000000000000002, -6.9}, {5.3, 8.700000000000001}}], 
+        Line[{{1.5999999999999996`, -6.000000000000001}, {7.6, 
+         9.600000000000001}}], 
+        Line[{{3.8999999999999995`, -5.1000000000000005`}, {9.899999999999999,
+          10.5}}], 
+        Line[{{6.199999999999999, -4.200000000000001}, {12.2, 11.4}}]}, {
+        Line[{{-12.2, -11.4}, {6.199999999999999, -4.200000000000001}}], 
+        Line[{{-11.7, -10.1}, {6.699999999999999, -2.9}}], 
+        Line[{{-11.2, -8.8}, {7.199999999999999, -1.6}}], 
+        Line[{{-10.7, -7.5}, {7.699999999999999, -0.30000000000000027`}}], 
+        Line[{{-10.2, -6.2}, {8.2, 1.}}], 
+        Line[{{-9.7, -4.9}, {8.7, 2.3}}], 
+        Line[{{-9.2, -3.6}, {9.2, 3.6}}], 
+        Line[{{-8.7, -2.3}, {9.7, 4.9}}], 
+        Line[{{-8.2, -1.}, {10.2, 6.2}}], 
+        Line[{{-7.699999999999999, 0.30000000000000027`}, {10.7, 7.5}}], 
+        Line[{{-7.199999999999999, 1.6}, {11.2, 8.8}}], 
+        Line[{{-6.699999999999999, 2.9}, {11.7, 10.1}}], 
+        Line[{{-6.199999999999999, 4.200000000000001}, {12.2, 
+         11.4}}]}}}, $CellContext`m1Sel$$ = 1, $CellContext`m2Sel$$ = 
+    1, $CellContext`mMax$$ = 30, $CellContext`mScalarArray$$ = {
+    10}, $CellContext`nn$$ = 1, $CellContext`tick$$ = 
+    False, $CellContext`u$$ = {{0.5, 1.3}, {2.3, 0.9}, {0.9, 0.7}}, 
     Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
     Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
     1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`tick$$], False}, 0}, {{
        Hold[$CellContext`u$$], {{0.5, 1.3}, {2.3, 0.9}, {0.9, 0.7}}}, 0}, {{
-       Hold[$CellContext`nn$$], 1}, 0}}, Typeset`size$$ = {
-    446., {164., 171.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+       Hold[$CellContext`nn$$], 1}, 0}, {{
+       Hold[$CellContext`m1Sel$$], 1}, 0}, {{
+       Hold[$CellContext`m2Sel$$], 1}, 0}, {{
+       Hold[$CellContext`lastNumMasses$$], 1}, 0}, {{
+       Hold[$CellContext`ld$$], {}}, 0}, {{
+       Hold[$CellContext`k1$$], 0.5}, 0}, {{
+       Hold[$CellContext`k2$$], 0.5}, 0}, {{
+       Hold[$CellContext`k3$$], 0.25}, 0}, {{
+       Hold[$CellContext`k4$$], 0.25}, 0}, {{
+       Hold[$CellContext`kMax$$], 0.9}, 0}, {{
+       Hold[$CellContext`mScalarArray$$], {10}}, 0}, {{
+       Hold[$CellContext`mMax$$], 30}, 0}, {{
+       Hold[$CellContext`defaultMass$$], 10}, 0}}, Typeset`size$$ = {
+    450., {255.5, 262.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
     Typeset`skipInitDone$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
-      "Variables" :> {$CellContext`nn$$ = 
-        1, $CellContext`u$$ = {{0.5, 1.3}, {2.3, 0.9}, {0.9, 0.7}}}, 
+      "Variables" :> {$CellContext`defaultMass$$ = 10, $CellContext`k1$$ = 
+        0.5, $CellContext`k2$$ = 0.5, $CellContext`k3$$ = 
+        0.25, $CellContext`k4$$ = 0.25, $CellContext`kMax$$ = 
+        0.9, $CellContext`lastNumMasses$$ = 
+        1, $CellContext`ld$$ = {}, $CellContext`m1Sel$$ = 
+        1, $CellContext`m2Sel$$ = 1, $CellContext`mMax$$ = 
+        30, $CellContext`mScalarArray$$ = {10}, $CellContext`nn$$ = 
+        1, $CellContext`tick$$ = 
+        False, $CellContext`u$$ = {{0.5, 1.3}, {2.3, 0.9}, {0.9, 0.7}}}, 
       "ControllerVariables" :> {}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, "Body" :> Grid[{{
-          Row[{"interactions: ", 
-            Manipulator[
-             Dynamic[$CellContext`nn$$], {1, 
-              Dynamic[-1 + 10 $CellContext`nMasses[$CellContext`u$$]], 1}], 
-            " ", 
-            Dynamic[$CellContext`nn$$]}]}, {
-          
-          DynamicModule[{$CellContext`ld}, $CellContext`ld = \
-$CellContext`locDependent[
-              Part[$CellContext`u$$, 1], 
-              Part[$CellContext`u$$, 2], 
-              Drop[$CellContext`u$$, 2]]; Column[{$CellContext`u$$, 
-              LocatorPane[
-               Dynamic[$CellContext`u$$], 
-               $CellContext`plotSprings[
-                Map[10 #& , 
-                 Range[
-                  $CellContext`nMasses[$CellContext`u$$]]], $CellContext`ld], 
-               LocatorAutoCreate -> True, ContinuousAction -> False]}]]}}], 
-      "Specifications" :> {{{$CellContext`u$$, {{0.5, 1.3}, {2.3, 0.9}, {0.9, 
-          0.7}}}, 0, ControlType -> None}, {{$CellContext`nn$$, 1}, 0, 
-         ControlType -> None}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{509., {203., 210.}},
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`tick$$; Grid[{{"Number of interactions: ", 
+           Row[{"  ", 
+             Manipulator[
+              
+              Dynamic[$CellContext`nn$$, ($CellContext`nn$$ = #; \
+$CellContext`tick$$ = Not[$CellContext`tick$$])& ], {1, 
+               Dynamic[-1 + 10 $CellContext`lastNumMasses$$], 1}, ImageSize -> 
+              Tiny, ContinuousAction -> False], " ", 
+             Dynamic[$CellContext`nn$$]}]}, {"Coupling to neighbouring: ", 
+           SetterBar[
+            
+            Dynamic[$CellContext`m2Sel$$, ($CellContext`m2Sel$$ = #; \
+$CellContext`tick$$ = Not[$CellContext`tick$$])& ], 
+            Map[# -> Subscript["m", #]& , 
+             Range[$CellContext`lastNumMasses$$]], 
+            Enabled -> $CellContext`lastNumMasses$$ > 1]}, {
+           Row[{"mass: ", 
+             SetterBar[
+              
+              Dynamic[$CellContext`m1Sel$$, ($CellContext`m1Sel$$ = #; \
+$CellContext`massValue = 
+                Part[$CellContext`mScalarArray$$, $CellContext`m1Sel$$]; \
+$CellContext`tick$$ = Not[$CellContext`tick$$])& ], 
+              Map[# -> Subscript["m", #]& , 
+               Range[$CellContext`lastNumMasses$$]], 
+              Enabled -> $CellContext`lastNumMasses$$ > 1], " ", 
+             Manipulator[
+              
+              Dynamic[$CellContext`massValue, ($CellContext`massValue = #; 
+               Part[$CellContext`mScalarArray$$, $CellContext`m1Sel$$] = \
+$CellContext`massValue; $CellContext`tick$$ = Not[$CellContext`tick$$])& ], {
+              0.25, 
+               Dynamic[$CellContext`mMax$$]}, ImageSize -> Tiny, 
+              ContinuousAction -> False], " ", 
+             Dynamic[
+              NumberForm[
+               Part[$CellContext`mScalarArray$$, $CellContext`m1Sel$$], 
+               3]]}]}, {"spring constants:"}, {
+           Row[{"horizontal: ", 
+             $CellContext`kLable[1], " || ", 
+             OverVector["a"], " "}], 
+           Row[{
+             Manipulator[
+              
+              Dynamic[$CellContext`k1$$, ($CellContext`k1$$ = #; \
+$CellContext`tick$$ = Not[$CellContext`tick$$])& ], {0.25, 
+               Dynamic[$CellContext`kMax$$]}, ImageSize -> Tiny, 
+              ContinuousAction -> False], " ", 
+             Dynamic[
+              NumberForm[$CellContext`k1$$, 3]]}]}, {
+           Row[{"vertical: ", 
+             $CellContext`kLable[2], " || ", 
+             OverVector["b"], " "}], 
+           Row[{
+             Manipulator[
+              
+              Dynamic[$CellContext`k2$$, ($CellContext`k2$$ = #; \
+$CellContext`tick$$ = Not[$CellContext`tick$$])& ], {0.25, 
+               Dynamic[$CellContext`kMax$$]}, ImageSize -> Tiny, 
+              ContinuousAction -> False], " ", 
+             Dynamic[
+              NumberForm[$CellContext`k2$$, 3]]}]}, {
+           Row[{"diagonal: ", 
+             $CellContext`kLable[3], " || (", 
+             OverVector["b"], " + ", 
+             OverVector["a"], ") "}], 
+           Row[{
+             Manipulator[
+              
+              Dynamic[$CellContext`k3$$, ($CellContext`k3$$ = #; \
+$CellContext`tick$$ = Not[$CellContext`tick$$])& ], {0.25, 
+               Dynamic[$CellContext`kMax$$]}, ImageSize -> Tiny, 
+              ContinuousAction -> False], " ", 
+             Dynamic[
+              NumberForm[$CellContext`k3$$, 3]]}]}, {
+           Row[{"diagonal: ", 
+             $CellContext`kLable[4], " || (", 
+             OverVector["b"], " - ", 
+             OverVector["a"], ") "}], 
+           Row[{
+             Manipulator[
+              
+              Dynamic[$CellContext`k4$$, ($CellContext`k4$$ = #; \
+$CellContext`tick$$ = Not[$CellContext`tick$$])& ], {0.25, 
+               Dynamic[$CellContext`kMax$$]}, ImageSize -> Tiny, 
+              ContinuousAction -> False], " ", 
+             Dynamic[
+              NumberForm[$CellContext`k4$$, 3]]}]}, {
+           LocatorPane[
+            
+            Dynamic[$CellContext`u$$, ($CellContext`u$$ = #; \
+$CellContext`mScalarArray$$ = 
+              If[$CellContext`nMasses[$CellContext`u$$] > \
+$CellContext`lastNumMasses$$, 
+                
+                Append[$CellContext`mScalarArray$$, \
+$CellContext`defaultMass$$], 
+                Take[$CellContext`mScalarArray$$, 
+                 $CellContext`nMasses[$CellContext`u$$]]]; \
+$CellContext`lastNumMasses$$ = $CellContext`nMasses[$CellContext`u$$]; \
+$CellContext`ld$$ = $CellContext`locDependent[
+                Part[$CellContext`u$$, 1], 
+                Part[$CellContext`u$$, 2], 
+                Drop[$CellContext`u$$, 2]]; $CellContext`tick$$ = 
+              Not[$CellContext`tick$$])& ], 
+            $CellContext`plotSprings[
+             Map[10 #& , 
+              Range[$CellContext`lastNumMasses$$]], $CellContext`ld$$], 
+            LocatorAutoCreate -> True, ContinuousAction -> False]}}]), 
+      "Specifications" :> {{{$CellContext`tick$$, False}, 0, ControlType -> 
+         None}, {{$CellContext`u$$, {{0.5, 1.3}, {2.3, 0.9}, {0.9, 0.7}}}, 0, 
+         ControlType -> None}, {{$CellContext`nn$$, 1}, 0, ControlType -> 
+         None}, {{$CellContext`m1Sel$$, 1}, 0, ControlType -> 
+         None}, {{$CellContext`m2Sel$$, 1}, 0, ControlType -> 
+         None}, {{$CellContext`lastNumMasses$$, 1}, 0, ControlType -> 
+         None}, {{$CellContext`ld$$, {}}, 0, ControlType -> 
+         None}, {{$CellContext`k1$$, 0.5}, 0, ControlType -> 
+         None}, {{$CellContext`k2$$, 0.5}, 0, ControlType -> 
+         None}, {{$CellContext`k3$$, 0.25}, 0, ControlType -> 
+         None}, {{$CellContext`k4$$, 0.25}, 0, ControlType -> 
+         None}, {{$CellContext`kMax$$, 0.9}, 0, ControlType -> 
+         None}, {{$CellContext`mScalarArray$$, {10}}, 0, ControlType -> 
+         None}, {{$CellContext`mMax$$, 30}, 0, ControlType -> 
+         None}, {{$CellContext`defaultMass$$, 10}, 0, ControlType -> None}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`tick$$}, ControlPlacement -> Left}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{513., {295., 302.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
     Initialization:>({$CellContext`nMasses := First[
-           Dimensions[#]] - 2& ; Null}; Typeset`initDone$$ = True),
+           Dimensions[#]] - 2& ; $CellContext`ld$$ = $CellContext`locDependent[
+          Part[$CellContext`u$$, 1], 
+          Part[$CellContext`u$$, 2], 
+          Drop[$CellContext`u$$, 2]]; Null}; Typeset`initDone$$ = True),
     SynchronousInitialization->True,
     UnsavedVariables:>{Typeset`initDone$$},
     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.6000431428996716`*^9, 3.6000431606266856`*^9}, 
-   3.600043194365615*^9, 3.6000432285675716`*^9, 3.600043348178413*^9, 
-   3.600044094312089*^9, 3.600044188256462*^9, 3.6000443328107305`*^9, {
-   3.6000445394835515`*^9, 3.6000446071034193`*^9}, {3.600045405165182*^9, 
-   3.6000454553780537`*^9}, {3.600045540516924*^9, 3.6000456126810513`*^9}, {
-   3.6000456566065636`*^9, 3.600045666439126*^9}, 3.600045900665523*^9, 
-   3.6000459329683704`*^9, 3.60004596704732*^9, 3.6000460453527985`*^9, 
-   3.6000461014750085`*^9, {3.60004618472077*^9, 3.6000461939873*^9}, {
-   3.6000462375357904`*^9, 3.600046247746375*^9}, {3.600046299112313*^9, 
-   3.600046347782097*^9}, 3.600046390235525*^9, 3.6000464674809427`*^9, {
-   3.600060810602388*^9, 3.6000608282373967`*^9}, 3.600060860256228*^9, 
-   3.6000610762925844`*^9, 3.6000611110955753`*^9, 3.600061200786705*^9, {
-   3.600061240693988*^9, 3.6000613159152904`*^9}, {3.6000613475991025`*^9, 
-   3.6000613864343233`*^9}, {3.600061468662027*^9, 3.600061492038364*^9}, {
-   3.6000616199236784`*^9, 3.6000616310973177`*^9}, {3.600061665706297*^9, 
-   3.6000616704275675`*^9}, 3.600061765554008*^9, 3.600061854437092*^9, 
-   3.6000619131234484`*^9, 3.6000620118190937`*^9, {3.600062052546423*^9, 
-   3.6000620847412643`*^9}, {3.600062184338961*^9, 3.600062208013315*^9}, {
-   3.600062308175044*^9, 3.60006231998872*^9}, 3.600062593023337*^9, 
-   3.6000626485195107`*^9, 3.600062706215811*^9, 3.6000627514924006`*^9, {
-   3.600062876057525*^9, 3.600062895338628*^9}, {3.600062925560357*^9, 
-   3.6000629986855392`*^9}, {3.6000630357016563`*^9, 
-   3.6000630938719835`*^9}, {3.6000636560639668`*^9, 3.6000636591995726`*^9}}]
+ CellChangeTimes->{
+  3.600164277256796*^9, 3.6001643668979235`*^9, {3.6001644170567923`*^9, 
+   3.600164452056794*^9}, 3.600172711436805*^9, 3.600172816344805*^9, 
+   3.600172920516763*^9, {3.600173024271698*^9, 3.6001730393415594`*^9}, 
+   3.6001730758376474`*^9, {3.6001731131807833`*^9, 3.600173171102096*^9}, 
+   3.6001733669342966`*^9, {3.6001734978987875`*^9, 3.600173502255037*^9}, {
+   3.6001736781060953`*^9, 3.6001737377955093`*^9}, {3.6001737915675845`*^9, 
+   3.600173815563957*^9}, {3.600174301007723*^9, 3.600174307404089*^9}, {
+   3.6001743737228823`*^9, 3.600174396733198*^9}, {3.600174571482193*^9, 
+   3.600174632284671*^9}, {3.6001746916480665`*^9, 3.6001746981204367`*^9}, {
+   3.6001749420623894`*^9, 3.6001750482304616`*^9}, {3.6001751084749074`*^9, 
+   3.6001751374675655`*^9}, 3.6001751955138855`*^9, {3.600175333112756*^9, 
+   3.6001753707929115`*^9}, {3.6001754845074153`*^9, 
+   3.6001755016993985`*^9}, {3.6001755770507083`*^9, 
+   3.6001755829070435`*^9}, {3.6001757516276937`*^9, 3.600175780693356*^9}, {
+   3.600175839975747*^9, 3.600175864323139*^9}}]
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.600039556967568*^9, 3.6000395569755683`*^9}, 
-   3.6000399123398943`*^9, {3.6000440047459664`*^9, 3.6000440261491904`*^9}}],
-
-Cell[BoxData[
- RowBox[{"(*", 
-  RowBox[{"Module", "[", 
-   RowBox[{
-    RowBox[{"{", "colors", "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"colors", " ", ":=", " ", 
-      RowBox[{"(", " ", 
-       RowBox[{
-        RowBox[{
-         RowBox[{"{", " ", 
-          RowBox[{
-          "Blue", ",", " ", "Green", ",", " ", "Purple", ",", " ", "Red", ",",
-            " ", "Orange"}], " ", "}"}], "[", 
-         RowBox[{"[", 
-          RowBox[{
-           RowBox[{"Mod", "[", 
-            RowBox[{"#", ",", " ", "5"}], "]"}], " ", "+", " ", "1"}], "]"}], 
-         " ", "]"}], " ", "&"}], " ", ")"}]}], ";", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"colors", "[", "#", "]"}], " ", "&"}], "/@", " ", 
-      RowBox[{"Range", "[", "10", "]"}]}]}]}], "\[IndentingNewLine]", "]"}], 
-  "*)"}]], "Input",
  CellChangeTimes->{{3.6000426983262434`*^9, 3.6000427270158844`*^9}, {
-   3.600042778947855*^9, 3.600042904687046*^9}, 3.6000444089230843`*^9}],
+   3.600042778947855*^9, 3.600042904687046*^9}, 3.6000444089230843`*^9, 
+   3.6001758787039623`*^9}],
 
 Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.60006171243797*^9, 3.600061741231617*^9}}]
+ CellChangeTimes->{{3.6001250516435127`*^9, 3.6001251542903843`*^9}, {
+   3.6001252039702253`*^9, 3.600125263337621*^9}, {3.6001252964445148`*^9, 
+   3.600125315784621*^9}, {3.6001254056087584`*^9, 3.600125732268442*^9}, {
+   3.6001262982058125`*^9, 3.6001263075203447`*^9}, 3.6001268810421486`*^9, 
+   3.6001758734846635`*^9}]
 },
 WindowSize->{1584, 765},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -2580,16 +3148,16 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 38063, 968, 4461, "Input"],
-Cell[38623, 990, 43033, 924, 25, "Input",
+Cell[557, 20, 38090, 969, 4461, "Input",
+ InitializationCell->True],
+Cell[38650, 991, 43033, 924, 25, "Input",
  CellOpen->False],
 Cell[CellGroupData[{
-Cell[81681, 1918, 24094, 531, 3516, "Input"],
-Cell[105778, 2451, 4333, 78, 435, "Output"]
+Cell[81708, 1919, 43325, 939, 6391, "Input"],
+Cell[125036, 2860, 13423, 259, 619, "Output"]
 }, Open  ]],
-Cell[110126, 2532, 172, 2, 39, "Input"],
-Cell[110301, 2536, 980, 25, 116, "Input"],
-Cell[111284, 2563, 91, 1, 39, "Input"]
+Cell[138474, 3122, 198, 3, 39, "Input"],
+Cell[138675, 3127, 354, 5, 39, "Input"]
 }
 ]
 *)
