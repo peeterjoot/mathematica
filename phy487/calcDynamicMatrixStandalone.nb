@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    567387,      12403]
-NotebookOptionsPosition[    566533,      12370]
-NotebookOutlinePosition[    566876,      12385]
-CellTagsIndexPosition[    566833,      12382]
+NotebookDataLength[    568361,      12366]
+NotebookOptionsPosition[    567986,      12349]
+NotebookOutlinePosition[    568329,      12364]
+CellTagsIndexPosition[    568286,      12361]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,9 +26,17 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"matrix", "[", "qLoc", "]"}], " ", "//", " ", "MatrixForm"}], 
    "*)"}], "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"dynamics", " ", "//", " ", "TableForm"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", ",", 
+  RowBox[{"(*", 
+   RowBox[{"dynamics", " ", "//", " ", "TableForm"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Animate", "[", 
+    RowBox[{
+     RowBox[{"dynPlot", "[", "t", "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", " ", "0", ",", " ", "1"}], "}"}]}], "]"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"0", "\[IndentingNewLine]", "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
@@ -8692,7 +8700,22 @@ Cell[BoxData[
         RowBox[{"projOpU", "[", "v", "]"}], "/", 
         RowBox[{"(", 
          RowBox[{"v", ".", " ", "v"}], ")"}]}]}], " ", ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"massColors", " ", ":=", " ", 
+       RowBox[{"(", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Darker", "[", 
+           RowBox[{"{", " ", 
+            RowBox[{
+            "Blue", ",", " ", "Green", ",", " ", "Purple", ",", " ", "Red", 
+             ",", " ", "Orange"}], " ", "}"}], "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{
+            RowBox[{"Mod", "[", 
+             RowBox[{"#", ",", " ", "5"}], "]"}], " ", "+", " ", "1"}], "]"}],
+           " ", "]"}], " ", "&"}], " ", ")"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"(*", 
        RowBox[{
         RowBox[{"ClearAll", "[", " ", "frequencyPlot", " ", "]"}], " ", ";", 
@@ -8909,119 +8932,6 @@ Cell[BoxData[
             RowBox[{"Ticks", " ", "\[Rule]", " ", "None"}]}], "]"}]}], "*)"}],
          "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}], " ", ";", 
       "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      "\[IndentingNewLine]", 
-      RowBox[{"(*", 
-       RowBox[{
-        RowBox[{"ClearAll", "[", " ", "showDynamics", " ", "]"}], " ", ";"}], 
-       "*)"}], "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"showDynamics", "[", " ", "oi_Integer", " ", "]"}], " ", ":=", 
-       RowBox[{"Module", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{
-          "pointsDataTable", ",", "numberLatticeLinesToDisplay", ",", " ", 
-           "e", ",", " ", "omega", ",", " ", "points", ",", " ", "lines", ",",
-            " ", "nu"}], "}"}], ",", "\[IndentingNewLine]", 
-         "\[IndentingNewLine]", 
-         RowBox[{
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{
-            "pointsDataTable", ",", "numberLatticeLinesToDisplay", ",", " ", 
-             "lines"}], "}"}], "=", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{
-             "\"\<pointsDataTable\>\"", ",", 
-              "\"\<numberLatticeLinesToDisplay\>\"", ",", " ", 
-              "\"\<lineTable\>\""}], "}"}], " ", "/.", " ", "ld"}]}], " ", 
-          ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"omega", ",", " ", "e"}], "}"}], " ", "=", " ", 
-           RowBox[{"eigensystem", "[", 
-            RowBox[{"[", "oi", "]"}], "]"}]}], " ", ";", 
-          "\[IndentingNewLine]", "\[IndentingNewLine]", 
-          RowBox[{"points", " ", "=", " ", 
-           RowBox[{
-            RowBox[{"pointsDataTable", " ", "+", " ", 
-             RowBox[{"Table", "[", " ", "\[IndentingNewLine]", " ", 
-              RowBox[{
-               RowBox[{"scaleVar", " ", 
-                RowBox[{"Re", "[", 
-                 RowBox[{"e", " ", 
-                  RowBox[{"E", "^", 
-                   RowBox[{"(", 
-                    RowBox[{"I", 
-                    RowBox[{"(", " ", 
-                    RowBox[{
-                    RowBox[{"q", " ", ".", " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"a", " ", "i"}], " ", "+", " ", 
-                    RowBox[{"b", " ", "j"}]}], ")"}]}], " ", "-", " ", 
-                    RowBox[{"omega", " ", "#"}]}], ")"}]}], ")"}]}]}], " ", 
-                 "]"}]}], "\[IndentingNewLine]", ",", 
-               RowBox[{"{", 
-                RowBox[{"i", ",", " ", 
-                 RowBox[{"-", 
-                  RowBox[{"numberLatticeLinesToDisplay", "[", 
-                   RowBox[{"[", "1", "]"}], "]"}]}], ",", 
-                 RowBox[{"numberLatticeLinesToDisplay", "[", 
-                  RowBox[{"[", "1", "]"}], "]"}]}], "}"}], 
-               "\[IndentingNewLine]", ",", 
-               RowBox[{"{", 
-                RowBox[{"j", ",", " ", 
-                 RowBox[{"-", 
-                  RowBox[{"numberLatticeLinesToDisplay", "[", 
-                   RowBox[{"[", "2", "]"}], "]"}]}], ",", " ", 
-                 RowBox[{"numberLatticeLinesToDisplay", "[", 
-                  RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], 
-              "\[IndentingNewLine]", "]"}]}], " ", "&"}]}], " ", ";", 
-          "\[IndentingNewLine]", "\[IndentingNewLine]", 
-          RowBox[{"nu", " ", "=", " ", 
-           RowBox[{"2", " ", "Pi", " ", 
-            RowBox[{"If", "[", " ", 
-             RowBox[{
-              RowBox[{"omega", " ", "\[Equal]", " ", "0"}], ",", " ", "1", 
-              ",", " ", 
-              RowBox[{"1", "/", "omega"}]}], "]"}]}]}], " ", ";", " ", 
-          "\[IndentingNewLine]", "\[IndentingNewLine]", 
-          RowBox[{"(", 
-           RowBox[{
-            RowBox[{"Show", "[", 
-             RowBox[{"{", "\[IndentingNewLine]", 
-              RowBox[{
-               RowBox[{"ListPlot", "[", " ", 
-                RowBox[{
-                 RowBox[{"points", "[", 
-                  RowBox[{"nu", " ", "#"}], "]"}], "\[IndentingNewLine]", ",", 
-                 RowBox[{"PlotRange", " ", "\[Rule]", " ", 
-                  RowBox[{"{", 
-                   RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"-", "windowHalfWidth"}], "/", "2"}], ",", " ", 
-                    "windowHalfWidth"}], "}"}], ",", " ", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{
-                    RowBox[{"-", "windowHalfWidth"}], "/", "2"}], ",", " ", 
-                    "windowHalfWidth"}], "}"}]}], "}"}]}], 
-                 "\[IndentingNewLine]", ",", 
-                 RowBox[{"ImageSize", "\[Rule]", "primaryDisplaySize"}], 
-                 "\[IndentingNewLine]", ",", " ", 
-                 RowBox[{"PlotStyle", "\[Rule]", 
-                  RowBox[{"Directive", "[", 
-                   RowBox[{"PointSize", "[", "Large", "]"}], "]"}]}]}], 
-                "\[IndentingNewLine]", "]"}], ",", " ", "\[IndentingNewLine]", 
-               RowBox[{"Graphics", "[", 
-                RowBox[{
-                "{", "\[IndentingNewLine]", "lines", "\[IndentingNewLine]", 
-                 "}"}], "]"}]}], "\[IndentingNewLine]", "}"}], "]"}], " ", 
-            "&"}], ")"}]}]}], "\[IndentingNewLine]", "]"}]}], " ", ";", 
       "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"(*", 
        RowBox[{
@@ -9360,13 +9270,155 @@ of the system eigenvalues, when evaluated at qLoc\>\""}], " ", ";"}],
            RowBox[{"Eigensystem", "[", " ", 
             RowBox[{"matrix", "[", "qLoc", "]"}], " ", "]"}], " ", "//", " ", 
            "Transpose"}], ")"}]}], ")"}]}], "  ", ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"ClearAll", "[", " ", "showDynamics", " ", "]"}], " ", ";"}], 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"showDynamics", " ", ":=", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+          "pointsDataTable", ",", "numberLatticeLinesToDisplay", ",", " ", 
+           "e", ",", " ", "omega", ",", " ", "points", ",", " ", "lines", ",",
+            " ", "nu", ",", " ", "a", ",", "b"}], "}"}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"a", ",", " ", "b"}], "}"}], ",", "pointsDataTable", 
+             ",", "numberLatticeLinesToDisplay", ",", " ", "lines"}], "}"}], 
+           "=", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<latticeBasis\>\"", ",", "\"\<pointsDataTable\>\"", ",", 
+              "\"\<numberLatticeLinesToDisplay\>\"", ",", " ", 
+              "\"\<lineTable\>\""}], "}"}], " ", "/.", " ", "ld"}]}], " ", 
+          ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"omega", ",", " ", "e"}], "}"}], " ", "=", " ", 
+           RowBox[{"dynamics", "[", 
+            RowBox[{"[", "omegaIndex", "]"}], "]"}]}], " ", ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"e", " ", "=", " ", 
+           RowBox[{"Partition", "[", 
+            RowBox[{"e", ",", "2"}], "]"}]}], " ", ";", "\[IndentingNewLine]",
+           "\[IndentingNewLine]", 
+          RowBox[{"points", " ", "=", " ", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"pointsDataTable", "[", 
+                RowBox[{"[", "k", "]"}], "]"}], " ", "+", " ", 
+               RowBox[{"Table", "[", " ", "\[IndentingNewLine]", " ", 
+                RowBox[{"(*", "scaleVar", "*)"}], " ", 
+                RowBox[{
+                 RowBox[{"Re", "[", 
+                  RowBox[{
+                   RowBox[{"e", "[", 
+                    RowBox[{"[", "k", "]"}], "]"}], " ", 
+                   RowBox[{"E", "^", 
+                    RowBox[{"(", 
+                    RowBox[{"I", 
+                    RowBox[{"(", " ", 
+                    RowBox[{
+                    RowBox[{"qLoc", " ", ".", " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"a", " ", "i"}], " ", "+", " ", 
+                    RowBox[{"b", " ", "j"}]}], ")"}]}], " ", "-", " ", 
+                    RowBox[{"omega", " ", "#"}]}], ")"}]}], ")"}]}]}], " ", 
+                  "]"}], "\[IndentingNewLine]", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"i", ",", " ", 
+                   RowBox[{"-", 
+                    RowBox[{"numberLatticeLinesToDisplay", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+                   RowBox[{"numberLatticeLinesToDisplay", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], "}"}], 
+                 "\[IndentingNewLine]", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"j", ",", " ", 
+                   RowBox[{"-", 
+                    RowBox[{"numberLatticeLinesToDisplay", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}]}], ",", " ", 
+                   RowBox[{"numberLatticeLinesToDisplay", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], 
+                "\[IndentingNewLine]", "]"}]}], " ", "&"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"k", ",", "lastNumMasses"}], "}"}]}], "]"}]}], " ", ";",
+           "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"nu", " ", "=", " ", 
+           RowBox[{"2", " ", "Pi", " ", 
+            RowBox[{"If", "[", " ", 
+             RowBox[{
+              RowBox[{"omega", " ", "\[Equal]", " ", "0"}], ",", " ", "1", 
+              ",", " ", 
+              RowBox[{"1", "/", "omega"}]}], "]"}]}]}], " ", ";", " ", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Show", "[", 
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"Table", "[", 
+                RowBox[{
+                 RowBox[{"ListPlot", "[", " ", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "k", "]"}], "]"}], "[", 
+                    RowBox[{"nu", " ", "#"}], "]"}], "\[IndentingNewLine]", 
+                   ",", 
+                   RowBox[{"PlotRange", " ", "\[Rule]", " ", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "windowHalfWidth"}], "/", "2"}], ",", " ", 
+                    "windowHalfWidth"}], "}"}], ",", " ", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "windowHalfWidth"}], "/", "2"}], ",", " ", 
+                    "windowHalfWidth"}], "}"}]}], "}"}]}], 
+                   "\[IndentingNewLine]", ",", 
+                   RowBox[{"ImageSize", "\[Rule]", "primaryDisplaySize"}], 
+                   "\[IndentingNewLine]", ",", " ", 
+                   RowBox[{"PlotStyle", "\[Rule]", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    RowBox[{"PointSize", "[", 
+                    RowBox[{"Sqrt", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"mScalarArray", "[", 
+                    RowBox[{"[", "k", "]"}], "]"}], "/", "mMax"}], "/", 
+                    "500"}], "]"}], "]"}], ",", 
+                    RowBox[{"massColors", "[", "k", "]"}]}], "]"}]}]}], 
+                  "\[IndentingNewLine]", "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"k", ",", "lastNumMasses"}], "}"}]}], "]"}], ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{"Graphics", "[", 
+                RowBox[{
+                "{", "\[IndentingNewLine]", "lines", "\[IndentingNewLine]", 
+                 "}"}], "]"}]}], "\[IndentingNewLine]", "}"}], "]"}], " ", 
+            "&"}], ")"}]}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        "]"}]}], " ", ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
       "\[IndentingNewLine]", 
       RowBox[{"matrix", " ", "=", " ", "dynamicsMatrix"}], " ", ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
       RowBox[{"dynamics", " ", "=", " ", "calcDynamics"}], " ", ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      RowBox[{"dynPlot", " ", "=", " ", 
-       RowBox[{"showDynamics", "[", "omegaIndex", " ", "]"}]}], " ", ";"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"dynPlot", " ", "=", " ", "showDynamics"}], " ", ";"}], 
      "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", "]"}]], "Input",
  CellChangeTimes->{{3.6007761646284904`*^9, 3.6007762295382032`*^9}, {
    3.6007762652102437`*^9, 3.6007764867229137`*^9}, {3.6007765267362022`*^9, 
@@ -9416,7 +9468,17 @@ of the system eigenvalues, when evaluated at qLoc\>\""}], " ", ";"}],
    3.600871861757653*^9, 3.600871963600478*^9}, {3.600872012045249*^9, 
    3.6008720677644367`*^9}, {3.60087209930424*^9, 3.600872162271842*^9}, {
    3.6008727606000643`*^9, 3.6008729523760333`*^9}, {3.600873043118223*^9, 
-   3.6008731124171867`*^9}}],
+   3.6008731124171867`*^9}, {3.600875707125596*^9, 3.60087575720046*^9}, {
+   3.6008757986818323`*^9, 3.600875820175062*^9}, 3.600875867508769*^9, {
+   3.6008759100292015`*^9, 3.600875916542574*^9}, {3.6008759566598682`*^9, 
+   3.6008760744156036`*^9}, {3.6008761188951473`*^9, 
+   3.6008761200992165`*^9}, {3.6008761517400265`*^9, 
+   3.6008761776145062`*^9}, {3.600876226751317*^9, 3.6008762289134407`*^9}, {
+   3.600876286395728*^9, 3.6008763562447233`*^9}, {3.6008765029341135`*^9, 
+   3.600876537458088*^9}, {3.6008765747602215`*^9, 3.600876625243109*^9}, {
+   3.6008766834274373`*^9, 3.600876686222597*^9}, {3.6008767184194384`*^9, 
+   3.600876864063769*^9}, {3.600876904842101*^9, 3.6008769172968135`*^9}, {
+   3.600876979530373*^9, 3.600876983301589*^9}}],
 
 Cell[BoxData[
  TagBox[
@@ -9700,8 +9762,22 @@ Cell[BoxData[
        Complex[-0.07046013441277148, -0.07550151355839353], 
        Complex[0.1709476533167647, 0.08679128004982957], 
        Complex[-0.6046291193971047, 0.036113553181318495`], 
-       0.7375568117203846}}}, $CellContext`dynPlot$$ = {}, \
-$CellContext`dynTab$$ = 1, $CellContext`freqTab$$ = 2, $CellContext`k1$$ = 
+       0.7375568117203846}}}, $CellContext`dynPlot$$ = Show[{
+      Table[
+       ListPlot[
+        Part[$CellContext`points$12627, $CellContext`k][$CellContext`nu$12627 \
+#], PlotRange -> {{(-$CellContext`windowHalfWidth$$)/
+           2, $CellContext`windowHalfWidth$$}, \
+{(-$CellContext`windowHalfWidth$$)/2, $CellContext`windowHalfWidth$$}}, 
+        ImageSize -> $CellContext`primaryDisplaySize$$, PlotStyle -> Directive[
+          PointSize[
+           Sqrt[(
+             Part[$CellContext`mScalarArray$$, \
+$CellContext`k]/$CellContext`mMax$$)/500]], 
+          $CellContext`massColors[$CellContext`k]]], {$CellContext`k, \
+$CellContext`lastNumMasses$$}], 
+      Graphics[{$CellContext`lines$12627}]}]& , $CellContext`dynTab$$ = 
+    1, $CellContext`freqTab$$ = 2, $CellContext`k1$$ = 
     0.5, $CellContext`k2$$ = 0.5, $CellContext`k3$$ = 
     0.25, $CellContext`k4$$ = 0.25, $CellContext`k5$$ = 
     0.25, $CellContext`kArray$$ = {{1, 1, {-1, 0}} -> 0.5, {1, 1, {0, -1}} -> 
@@ -10011,7 +10087,7 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
         Line[{{-4.6, 35.8}, {10.6, 42.2}}]}}}, $CellContext`locDefault$$ = {{
     0.1, 1.3}, {1.9, 0.8}}, $CellContext`m1Sel$$ = 1, $CellContext`m2Sel$$ = 
     1, $CellContext`matrix$$ = 
-    ReplaceAll[$CellContext`res$498, $CellContext`qVec -> #]& , \
+    ReplaceAll[$CellContext`res$12626, $CellContext`qVec -> #]& , \
 $CellContext`meshSize$$ = 8, $CellContext`minAngleBetweenLatticeVectors$$ = 
     Rational[1, 6] Pi, $CellContext`minSquaredDistanceFromOrigin$$ = 
     0.1, $CellContext`mLocDefault$$ = {{0.9, 0.7}, {0.4, 1.2}, {0.6, 
@@ -10345,6 +10421,7 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
            Line[{{-7.199999999999999, 2.}, {8., 8.4}}], 
            Line[{{-7.1, 3.3}, {8.1, 9.7}}], 
            Line[{{-7., 4.6000000000000005`}, {8.2, 11.}}], 
+           
            Line[{{-6.8999999999999995`, 5.8999999999999995`}, {
             8.299999999999999, 12.3}}], 
            Line[{{-6.8, 7.2}, {8.4, 13.600000000000001`}}], 
@@ -10659,7 +10736,7 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
           3, 2, {1, 1}, 0.25, 12.02, {0.5, 0.3999999999999999}, {2.4, 3.3}, {{
            0.3003327787021631, 0.45840266222961734`}, {0.45840266222961734`, 
            0.699667221297837}}}}}}}, 0}}, Typeset`size$$ = {
-    339., {299., 306.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    570., {300., 307.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
     Typeset`skipInitDone$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
@@ -10707,6 +10784,7 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
              0.4, -0.9000000000000001}, {{0.0889679715302491, 
              0.2846975088967971}, {0.2846975088967971, 0.911032028469751}}}, {
             1, 2, {1, 0}, 0.5, 3.4000000000000004`, {0.9, 0.7}, {0.5, 2.5}, {{
+             
              0.047058823529411764`, -0.21176470588235294`}, \
 {-0.21176470588235294`, 0.9529411764705882}}}, {
             1, 1, {1, -1}, 0.25, 3.4899999999999993`, {0.9, 
@@ -11299,8 +11377,8 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, "Body" :> 
-      TableForm[$CellContext`dynamics$$], 
+         Typeset`skipInitDone$$}, "Body" :> Animate[
+        $CellContext`dynPlot$$[$CellContext`t], {$CellContext`t, 0, 1}], 
       "Specifications" :> {{{$CellContext`tick$$, False}, 0, ControlType -> 
          None}, {{$CellContext`qPlaneLoc$$, {{1, 1}, {-1, -1}}}, 0, 
          ControlType -> None}, {{$CellContext`qLoc$$, {1, 1}}, 0, ControlType -> 
@@ -11632,6 +11710,7 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
               Line[{{-6.699999999999999, 8.5}, {8.5, 14.900000000000002`}}], 
               Line[{{-6.6, 9.8}, {8.6, 16.2}}], 
               Line[{{-6.5, 11.100000000000001`}, {8.7, 17.5}}], 
+              
               Line[{{-6.3999999999999995`, 12.400000000000002`}, {8.8, 
                18.8}}], 
               Line[{{-6.3, 13.700000000000003`}, {8.9, 20.1}}], 
@@ -11654,7 +11733,6 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
                34.400000000000006`}}], 
               Line[{{-5.1, 29.3}, {10.1, 35.7}}], 
               Line[{{-5., 30.600000000000005`}, {10.2, 37.00000000000001}}], 
-              
               Line[{{-4.8999999999999995`, 31.900000000000002`}, {10.3, 
                38.300000000000004`}}], 
               Line[{{-4.799999999999999, 33.199999999999996`}, {10.4, 39.6}}], 
@@ -11750,7 +11828,6 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
 {-0.25787965616045844`, 0.07163323782234958}}}, {
              1, 1, {-1, 1}, 0.25, 3.4899999999999993`, {0.9, 0.7}, {
               2.6999999999999997`, 0.19999999999999996`}, {{
-              
               0.9283667621776504, -0.25787965616045844`}, \
 {-0.25787965616045844`, 0.07163323782234958}}}, {
              1, 2, {0, 1}, 0.5, 3.65, {0.9, 0.7}, {2.3, 2.}, {{
@@ -11894,6 +11971,7 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
               0.005882352941176467, 0.0764705882352941}, {0.0764705882352941, 
               0.9941176470588234}}}, {
              3, 1, {0, -1}, 0.5, 2.5, {0.5, 
+              
               0.3999999999999999}, {-0.9999999999999999, \
 -0.10000000000000009`}, {{0.9, 0.30000000000000004`}, {0.30000000000000004`, 
               0.1}}}, {
@@ -11935,8 +12013,9 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
               0.9918032786885246, -0.09016393442622948}, \
 {-0.09016393442622948, 0.008196721311475407}}}, {
              3, 2, {1, -1}, 0.25, 5.3, {0.5, 0.3999999999999999}, {-1.4, 
-              1.7}, {{0.6811320754716982, -0.4660377358490566}, \
-{-0.4660377358490566, 0.3188679245283019}}}, {
+              1.7}, {{
+              0.6811320754716982, -0.4660377358490566}, {-0.4660377358490566, 
+              0.3188679245283019}}}, {
              3, 2, {0, 1}, 0.5, 5.8, {0.5, 0.3999999999999999}, {2.3, 2.}, {{
               0.5586206896551723, 0.496551724137931}, {0.496551724137931, 
               0.4413793103448277}}}, {
@@ -11966,7 +12045,7 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
               3.3}, {{0.3003327787021631, 0.45840266222961734`}, {
               0.45840266222961734`, 0.699667221297837}}}}}}}, 0, ControlType -> 
          None}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{402., {338., 345.}},
+     ImageSizeCache->{633., {339., 346.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -11979,7 +12058,9 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
            Part[$CellContext`v, 2]^2}}; $CellContext`projOp[
           Pattern[$CellContext`v, 
            Blank[List]]] := $CellContext`projOpU[$CellContext`v]/
-         Dot[$CellContext`v, $CellContext`v]; $CellContext`frequencyPlot[
+         Dot[$CellContext`v, $CellContext`v]; $CellContext`massColors := Part[
+          Darker[{Blue, Green, Purple, Red, Orange}], Mod[#, 5] + 
+          1]& ; $CellContext`frequencyPlot[
           Pattern[$CellContext`mat$, 
            Blank[]], 
           Pattern[$CellContext`meshSz$, 
@@ -12033,54 +12114,7 @@ $CellContext`range$ = Range[2 $CellContext`lastNumMasses$$]; Show[{
                  Part[$CellContext`bb$, 2], 1}, {
                  Part[$CellContext`aa$, 1], 
                  Part[$CellContext`aa$, 2], 
-                 1}}]]}]]; $CellContext`showDynamics[
-          Pattern[$CellContext`q$, 
-           Blank[]], 
-          Pattern[$CellContext`eigensystem$, 
-           Blank[]], 
-          Pattern[$CellContext`oi$, 
-           Blank[Integer]], 
-          Pattern[$CellContext`scaleVar$, 
-           Blank[]], 
-          Pattern[$CellContext`a$, 
-           Blank[]], 
-          Pattern[$CellContext`b$, 
-           Blank[]]] := 
-        Module[{$CellContext`pointsDataTable$, \
-$CellContext`numberLatticeLinesToDisplay$, $CellContext`e$, \
-$CellContext`omega$, $CellContext`points$, $CellContext`lines$, \
-$CellContext`nu$}, {$CellContext`pointsDataTable$, \
-$CellContext`numberLatticeLinesToDisplay$, $CellContext`lines$} = 
-           ReplaceAll[{
-             "pointsDataTable", "numberLatticeLinesToDisplay", 
-              "lineTable"}, $CellContext`ld$$]; {$CellContext`omega$, \
-$CellContext`e$} = 
-           Part[$CellContext`eigensystem$, $CellContext`oi$]; \
-$CellContext`points$ = $CellContext`pointsDataTable$ + 
-            Table[$CellContext`scaleVar$ 
-              Re[$CellContext`e$ 
-                E^(I (Dot[$CellContext`q$, $CellContext`a$ $CellContext`i + \
-$CellContext`b$ $CellContext`j] - $CellContext`omega$ #))], {$CellContext`i, -
-               Part[$CellContext`numberLatticeLinesToDisplay$, 1], 
-               
-               Part[$CellContext`numberLatticeLinesToDisplay$, 
-                1]}, {$CellContext`j, -
-               Part[$CellContext`numberLatticeLinesToDisplay$, 2], 
-               
-               Part[$CellContext`numberLatticeLinesToDisplay$, 
-                2]}]& ; $CellContext`nu$ = 
-           2 Pi If[$CellContext`omega$ == 0, 1, 1/$CellContext`omega$]; Show[{
-             ListPlot[
-              $CellContext`points$[$CellContext`nu$ #], 
-              PlotRange -> {{(-$CellContext`windowHalfWidth$$)/
-                 2, $CellContext`windowHalfWidth$$}, \
-{(-$CellContext`windowHalfWidth$$)/2, $CellContext`windowHalfWidth$$}}, 
-              ImageSize -> $CellContext`primaryDisplaySize$$, PlotStyle -> 
-              Directive[
-                PointSize[Large]]], 
-             
-             Graphics[{$CellContext`lines$}]}]& ]; \
-$CellContext`oneTermOfdynamicsMatrix[{
+                 1}}]]}]]; $CellContext`oneTermOfdynamicsMatrix[{
            Pattern[$CellContext`k$, 
             Blank[Integer]], 
            Pattern[$CellContext`j$, 
@@ -12135,8 +12169,52 @@ $CellContext`calcDynamics := Map[{
           Transpose[
            Eigensystem[
             $CellContext`matrix$$[$CellContext`qLoc$$]]]]; \
-$CellContext`matrix$$ = $CellContext`dynamicsMatrix; $CellContext`dynamics$$ = \
-$CellContext`calcDynamics; Null}; Typeset`initDone$$ = True),
+$CellContext`showDynamics := 
+        Module[{$CellContext`pointsDataTable$, \
+$CellContext`numberLatticeLinesToDisplay$, $CellContext`e$, \
+$CellContext`omega$, $CellContext`points$, $CellContext`lines$, \
+$CellContext`nu$, $CellContext`a$, $CellContext`b$}, {{$CellContext`a$, \
+$CellContext`b$}, $CellContext`pointsDataTable$, \
+$CellContext`numberLatticeLinesToDisplay$, $CellContext`lines$} = 
+           ReplaceAll[{
+             "latticeBasis", "pointsDataTable", "numberLatticeLinesToDisplay",
+               "lineTable"}, $CellContext`ld$$]; {$CellContext`omega$, \
+$CellContext`e$} = 
+           Part[$CellContext`dynamics$$, $CellContext`omegaIndex$$]; \
+$CellContext`e$ = Partition[$CellContext`e$, 2]; $CellContext`points$ = 
+           Table[Part[$CellContext`pointsDataTable$, $CellContext`k] + Table[
+               Re[
+               Part[$CellContext`e$, $CellContext`k] 
+                E^(I (Dot[$CellContext`qLoc$$, $CellContext`a$ $CellContext`i + \
+$CellContext`b$ $CellContext`j] - $CellContext`omega$ #))], {$CellContext`i, -
+                Part[$CellContext`numberLatticeLinesToDisplay$, 1], 
+                
+                Part[$CellContext`numberLatticeLinesToDisplay$, 
+                 1]}, {$CellContext`j, -
+                Part[$CellContext`numberLatticeLinesToDisplay$, 2], 
+                Part[$CellContext`numberLatticeLinesToDisplay$, 
+                 2]}]& , {$CellContext`k, $CellContext`lastNumMasses$$}]; \
+$CellContext`nu$ = 
+           2 Pi If[$CellContext`omega$ == 0, 1, 1/$CellContext`omega$]; Show[{
+             Table[
+              ListPlot[
+               Part[$CellContext`points$, $CellContext`k][$CellContext`nu$ #],
+                PlotRange -> {{(-$CellContext`windowHalfWidth$$)/
+                  2, $CellContext`windowHalfWidth$$}, \
+{(-$CellContext`windowHalfWidth$$)/2, $CellContext`windowHalfWidth$$}}, 
+               ImageSize -> $CellContext`primaryDisplaySize$$, PlotStyle -> 
+               Directive[
+                 PointSize[
+                  
+                  Sqrt[(Part[$CellContext`mScalarArray$$, \
+$CellContext`k]/$CellContext`mMax$$)/500]], 
+                 $CellContext`massColors[$CellContext`k]]], {$CellContext`k, \
+$CellContext`lastNumMasses$$}], 
+             
+             Graphics[{$CellContext`lines$}]}]& ]; $CellContext`matrix$$ = \
+$CellContext`dynamicsMatrix; $CellContext`dynamics$$ = \
+$CellContext`calcDynamics; $CellContext`dynPlot$$ = $CellContext`showDynamics; 
+       Null}; Typeset`initDone$$ = True),
     SynchronousInitialization->True,
     UnsavedVariables:>{Typeset`initDone$$},
     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
@@ -12164,209 +12242,110 @@ $CellContext`calcDynamics; Null}; Typeset`initDone$$ = True),
    3.6008705825604877`*^9, 3.6008706287061267`*^9, 3.6008706623220496`*^9, 
    3.6008707794757504`*^9, 3.6008708430623875`*^9, 3.6008708777213697`*^9, 
    3.600871823363457*^9, 3.6008721302400093`*^9, 3.6008721636479206`*^9, 
-   3.6008729882190833`*^9}]
+   3.6008729882190833`*^9, 3.6008759187947025`*^9, 3.600875960786104*^9, {
+   3.60087601788137*^9, 3.6008760407066755`*^9}, 3.600876079572899*^9, 
+   3.6008761805316734`*^9, 3.600876231810606*^9, {3.6008763181985474`*^9, 
+   3.6008763444140463`*^9}, {3.6008766115623264`*^9, 3.6008766273132277`*^9}, 
+   3.6008766906388493`*^9, 3.60087673680049*^9, 3.600876872840271*^9, 
+   3.600876920645005*^9}]
 }, Open  ]],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"ArrayFlatten", "[", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", " ", 
-      RowBox[{
-       RowBox[{"IdentityMatrix", "[", "2", "]"}], ",", 
-       RowBox[{"2", 
-        RowBox[{"IdentityMatrix", "[", "2", "]"}]}]}], "}"}], ",", 
-     RowBox[{"{", " ", 
-      RowBox[{
-       RowBox[{"3", 
-        RowBox[{"IdentityMatrix", "[", "2", "]"}]}], ",", 
-       RowBox[{"4", 
-        RowBox[{"IdentityMatrix", "[", "2", "]"}]}]}], "}"}]}], "}"}], " ", 
-   "]"}], " ", "//", " ", "MatrixForm"}]], "Input",
- CellChangeTimes->{{3.6008271366624823`*^9, 3.6008271833241515`*^9}}],
-
-Cell[BoxData[
- TagBox[
-  RowBox[{"(", "\[NoBreak]", GridBox[{
-     {"1", "0", "2", "0"},
-     {"0", "1", "0", "2"},
-     {"3", "0", "4", "0"},
-     {"0", "3", "0", "4"}
-    },
-    GridBoxAlignment->{
-     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-      "RowsIndexed" -> {}},
-    GridBoxSpacings->{"Columns" -> {
-        Offset[0.27999999999999997`], {
-         Offset[0.7]}, 
-        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-        Offset[0.2], {
-         Offset[0.4]}, 
-        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
-  Function[BoxForm`e$, 
-   MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{{3.600827176424757*^9, 3.600827183882183*^9}}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Module", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"n", ",", " ", "p"}], "}"}], ",", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
    RowBox[{
-    RowBox[{"n", " ", "=", " ", "3"}], " ", ";", "\[IndentingNewLine]", 
-    RowBox[{"p", " ", "=", " ", 
-     RowBox[{"Partition", "[", 
+    RowBox[{"ArrayFlatten", "[", 
+     RowBox[{"{", 
       RowBox[{
-       RowBox[{"IdentityMatrix", "[", " ", 
-        RowBox[{"2", " ", "n"}], " ", "]"}], ",", "2"}], "]"}]}], " ", ";", 
-    "\[IndentingNewLine]", 
-    RowBox[{"(*", 
-     RowBox[{"i", " ", "//", " ", "MatrixForm"}], "*)"}], 
-    "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-    "\[IndentingNewLine]", 
-    RowBox[{"(*", 
+       RowBox[{"{", " ", 
+        RowBox[{
+         RowBox[{"IdentityMatrix", "[", "2", "]"}], ",", 
+         RowBox[{"2", 
+          RowBox[{"IdentityMatrix", "[", "2", "]"}]}]}], "}"}], ",", 
+       RowBox[{"{", " ", 
+        RowBox[{
+         RowBox[{"3", 
+          RowBox[{"IdentityMatrix", "[", "2", "]"}]}], ",", 
+         RowBox[{"4", 
+          RowBox[{"IdentityMatrix", "[", "2", "]"}]}]}], "}"}]}], "}"}], " ", 
+     "]"}], " ", "//", " ", "MatrixForm"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", " ", "p"}], "}"}], ",", "\[IndentingNewLine]", 
      RowBox[{
-      RowBox[{
-       RowBox[{"{", 
+      RowBox[{"n", " ", "=", " ", "3"}], " ", ";", "\[IndentingNewLine]", 
+      RowBox[{"p", " ", "=", " ", 
+       RowBox[{"Partition", "[", 
+        RowBox[{
+         RowBox[{"IdentityMatrix", "[", " ", 
+          RowBox[{"2", " ", "n"}], " ", "]"}], ",", "2"}], "]"}]}], " ", ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"i", " ", "//", " ", "MatrixForm"}], "*)"}], 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
         RowBox[{
          RowBox[{"{", 
-          RowBox[{"a", ",", "b"}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"c", ",", "d"}], "}"}]}], "}"}], " ", ".", " ", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"a", ",", "b"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"c", ",", "d"}], "}"}]}], "}"}], " ", ".", " ", 
+         RowBox[{"p", "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], " ", "//", " ", "MatrixForm"}], 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
        RowBox[{"p", "[", 
-        RowBox[{"[", "3", "]"}], "]"}]}], " ", "//", " ", "MatrixForm"}], 
-     "*)"}], "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"p", "[", 
-      RowBox[{"[", "1", "]"}], "]"}], " ", "//", " ", "MatrixForm"}]}]}], 
-  "\[IndentingNewLine]", "]"}]], "Input",
- CellChangeTimes->{{3.600868898046139*^9, 3.600869106403056*^9}, {
-  3.6008691957211647`*^9, 3.600869224079787*^9}, {3.600871191802334*^9, 
-  3.60087119854872*^9}}],
-
-Cell[BoxData[
- TagBox[
-  RowBox[{"(", "\[NoBreak]", GridBox[{
-     {"1", "0", "0", "0", "0", "0"},
-     {"0", "1", "0", "0", "0", "0"}
-    },
-    GridBoxAlignment->{
-     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-      "RowsIndexed" -> {}},
-    GridBoxSpacings->{"Columns" -> {
-        Offset[0.27999999999999997`], {
-         Offset[0.7]}, 
-        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-        Offset[0.2], {
-         Offset[0.4]}, 
-        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
-  Function[BoxForm`e$, 
-   MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{{3.600868923702606*^9, 3.6008689327441235`*^9}, {
-   3.6008689749195356`*^9, 3.600869008076432*^9}, {3.6008690610234604`*^9, 
-   3.6008691072841063`*^9}, {3.600869218730481*^9, 3.6008692246528196`*^9}, 
-   3.600871199314764*^9}]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{"ClearAll", "[", "epsilon", "]"}]], "Input",
- CellChangeTimes->{{3.6008692654391527`*^9, 3.600869268382321*^9}}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{"{", 
+        RowBox[{"[", "1", "]"}], "]"}], " ", "//", " ", "MatrixForm"}]}]}], 
+    "\[IndentingNewLine]", "]"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"ClearAll", "[", "epsilon", "]"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
    RowBox[{
     RowBox[{"{", 
      RowBox[{
       RowBox[{"{", 
-       RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}],
-       ",", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+         "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+         "}"}]}], "}"}], ",", 
       RowBox[{"{", 
-       RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "0", ",", "0"}], 
-       "}"}]}], "}"}], ",", 
-    RowBox[{"{", 
-     RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0", ",", "1", ",", "0", ",", "0", ",", "0"}], 
+         "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0", ",", "0", ",", "1", ",", "0", ",", "0"}], 
+         "}"}]}], "}"}], ",", 
       RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "1", ",", "0", ",", "0", ",", "0"}], "}"}],
-       ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "0", ",", "1", ",", "0", ",", "0"}], 
-       "}"}]}], "}"}], ",", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "1", ",", "0"}], "}"}],
-       ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "1"}], 
-       "}"}]}], "}"}]}], "}"}], "\[LeftDoubleBracket]", "1", 
-  "\[RightDoubleBracket]"}]], "Input"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}]}], 
-  "}"}]], "Output",
- CellChangeTimes->{3.6008693977947226`*^9}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"Table", "[", " ", 
-     RowBox[{
-      RowBox[{"Subscript", "[", 
-       RowBox[{"\"\<\[Epsilon]\>\"", ",", " ", "k"}], "]"}], ",", " ", 
-      RowBox[{"{", 
-       RowBox[{"k", ",", "6"}], "}"}]}], "]"}], "}"}], " ", "//", " ", 
-   "Transpose"}], "//", " ", "MatrixForm"}]], "Input",
- CellChangeTimes->{{3.6008713052088203`*^9, 3.6008713534975824`*^9}}],
-
-Cell[BoxData[
- TagBox[
-  RowBox[{"(", "\[NoBreak]", GridBox[{
-     {
-      SubscriptBox["\<\"\[Epsilon]\"\>", "1"]},
-     {
-      SubscriptBox["\<\"\[Epsilon]\"\>", "2"]},
-     {
-      SubscriptBox["\<\"\[Epsilon]\"\>", "3"]},
-     {
-      SubscriptBox["\<\"\[Epsilon]\"\>", "4"]},
-     {
-      SubscriptBox["\<\"\[Epsilon]\"\>", "5"]},
-     {
-      SubscriptBox["\<\"\[Epsilon]\"\>", "6"]}
-    },
-    GridBoxAlignment->{
-     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-      "RowsIndexed" -> {}},
-    GridBoxSpacings->{"Columns" -> {
-        Offset[0.27999999999999997`], {
-         Offset[0.7]}, 
-        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-        Offset[0.2], {
-         Offset[0.4]}, 
-        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
-  Function[BoxForm`e$, 
-   MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{{3.600871330362259*^9, 3.6008713538916054`*^9}}]
-}, Open  ]]
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "1", ",", "0"}], 
+         "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "1"}], 
+         "}"}]}], "}"}]}], "}"}], "\[LeftDoubleBracket]", "1", 
+    "\[RightDoubleBracket]"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Table", "[", " ", 
+       RowBox[{
+        RowBox[{"Subscript", "[", 
+         RowBox[{"\"\<\[Epsilon]\>\"", ",", " ", "k"}], "]"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "6"}], "}"}]}], "]"}], "}"}], " ", "//", " ", 
+     "Transpose"}], "//", " ", "MatrixForm"}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.6008271366624823`*^9, 3.6008271833241515`*^9}, {
+  3.6008770134043107`*^9, 3.600877037188671*^9}}]
 },
 WindowSize->{1584, 765},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -12385,26 +12364,10 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[579, 22, 399877, 9396, 20388, "Input"],
-Cell[400459, 9420, 159629, 2746, 705, "Output"]
+Cell[579, 22, 402839, 9458, 20638, "Input"],
+Cell[403421, 9482, 161063, 2767, 707, "Output"]
 }, Open  ]],
-Cell[CellGroupData[{
-Cell[560125, 12171, 608, 17, 39, "Input"],
-Cell[560736, 12190, 725, 20, 99, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[561498, 12215, 1334, 35, 266, "Input"],
-Cell[562835, 12252, 873, 21, 57, "Output"]
-}, Open  ]],
-Cell[563723, 12276, 135, 2, 39, "Input"],
-Cell[CellGroupData[{
-Cell[563883, 12282, 921, 28, 39, "Input"],
-Cell[564807, 12312, 302, 9, 40, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[565146, 12326, 419, 11, 39, "Input"],
-Cell[565568, 12339, 949, 28, 141, "Output"]
-}, Open  ]]
+Cell[564499, 12252, 3483, 95, 366, "Input"]
 }
 ]
 *)
