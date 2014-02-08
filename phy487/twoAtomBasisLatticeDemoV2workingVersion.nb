@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    252452,       5216]
-NotebookOptionsPosition[    251837,       5191]
-NotebookOutlinePosition[    252180,       5206]
-CellTagsIndexPosition[    252137,       5203]
+NotebookDataLength[    250972,       5150]
+NotebookOptionsPosition[    250597,       5133]
+NotebookOutlinePosition[    250940,       5148]
+CellTagsIndexPosition[    250897,       5145]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -66,11 +66,6 @@ Cell[BoxData[
          RowBox[{"Format", "."}]}]},
        {
         RowBox[{"Recreate", " ", "snapshots", " ", "and", " ", "thumbnails"}]},
-       {
-        RowBox[{
-        "Remove", " ", "descriptive", " ", "text", " ", "reference", " ", 
-         "to", " ", "num", " ", "interactions", " ", 
-         RowBox[{"slider", "."}]}]},
        {
         RowBox[{
          RowBox[{"Final", " ", "review"}], ",", " ", 
@@ -1570,22 +1565,26 @@ CellChangeTimes->{{3.5990911441851797`*^9, 3.599091144641206*^9}, \
            " ", ";", "\[IndentingNewLine]", 
            RowBox[{
             RowBox[{"relativeDifferences", "::", "usage"}], " ", "=", " ", 
-            "\"\<Example: relativeDifferences[ {{1,1,{-1,0}},0.5} ].\n\nHere, \
-the list of the form: {{1,1,{-1,0}},0.5}} = {{m1, m2, {n1, n2}}, K}\>\""}]}], 
-          ",", " ", 
+            "\"\<Example: relativeDifferences[ {aLoc,bLoc}, {mLoc1, mLoc2, \
+...}, kArray[[1]] /. Rule -> List ].\n\nHere, the list of the form: \
+(kArray[[1]] /. Rule -> List) // First = {1,1,{-1,0}} = {m1index, m2index, \
+{nIndex1, nIndex2}}\>\""}]}], ",", " ", 
           RowBox[{
            RowBox[{
            "is", " ", "a", " ", "tuple", " ", "for", " ", "the", " ", 
-            "spring", " ", "constant", " ", "K", " ", "between", " ", "m1", 
-            " ", "in", " ", "the", " ", "origin", " ", "cell", " ", "to", " ",
-             "m2", " ", "in", " ", "the", " ", "lattice", " ", "cell", " ", 
+            "spring", " ", "constant", " ", "between", " ", "m1", " ", "in", 
+            " ", "the", " ", "origin", " ", "cell", " ", "to", " ", "m2", " ",
+             "in", " ", "the", " ", "lattice", " ", "cell", " ", 
             RowBox[{"{", 
              RowBox[{"n1", ",", "n2"}], "}"}]}], " ", ";"}]}], "*)"}], 
         "\[IndentingNewLine]", 
         RowBox[{
          RowBox[{"relativeDifferences", "[", " ", 
-          RowBox[{"r_List", ",", "mp_List", ",", " ", "ke_List"}], " ", "]"}],
-          " ", ":=", " ", 
+          RowBox[{"r_List", ",", "mp_List", ",", " ", 
+           RowBox[{"{", 
+            RowBox[{
+            "mIndex1_Integer", ",", " ", "mIndex2_Integer", ",", " ", 
+             "n_List"}], "}"}]}], "]"}], " ", ":=", " ", 
          RowBox[{"Module", "[", 
           RowBox[{
            RowBox[{"{", 
@@ -1594,23 +1593,14 @@ the list of the form: {{1,1,{-1,0}},0.5}} = {{m1, m2, {n1, n2}}, K}\>\""}]}],
            RowBox[{
             RowBox[{"pOrigin", " ", "=", " ", 
              RowBox[{"mp", "[", 
-              RowBox[{"[", " ", 
-               RowBox[{
-                RowBox[{"First", "[", "ke", "]"}], "[", 
-                RowBox[{"[", "1", "]"}], "]"}], " ", "]"}], "]"}]}], " ", ";",
-             "\[IndentingNewLine]", 
+              RowBox[{"[", " ", "mIndex1", " ", "]"}], "]"}]}], " ", ";", 
+            "\[IndentingNewLine]", 
             RowBox[{"pOther", " ", "=", " ", 
              RowBox[{
               RowBox[{"mp", "[", 
-               RowBox[{"[", " ", 
-                RowBox[{
-                 RowBox[{"First", "[", "ke", "]"}], "[", 
-                 RowBox[{"[", "2", "]"}], "]"}], " ", "]"}], "]"}], "+", " ", 
-              RowBox[{
-               RowBox[{
-                RowBox[{"First", "[", "ke", "]"}], "[", 
-                RowBox[{"[", "3", "]"}], "]"}], " ", ".", " ", "r"}]}]}], 
-            "  ", ";", "\[IndentingNewLine]", 
+               RowBox[{"[", " ", "mIndex2", " ", "]"}], "]"}], "+", " ", 
+              RowBox[{"n", " ", ".", " ", "r"}]}]}], "  ", ";", 
+            "\[IndentingNewLine]", 
             RowBox[{"d", " ", "=", " ", 
              RowBox[{"pOther", " ", "-", " ", "pOrigin"}]}], " ", ";", 
             "\[IndentingNewLine]", 
@@ -1618,10 +1608,7 @@ the list of the form: {{1,1,{-1,0}},0.5}} = {{m1, m2, {n1, n2}}, K}\>\""}]}],
              RowBox[{"d", " ", ".", "d"}]}], " ", ";", "\[IndentingNewLine]", 
             "\[IndentingNewLine]", 
             RowBox[{"{", "\[IndentingNewLine]", 
-             RowBox[{"dn", ",", " ", 
-              RowBox[{"(*", 
-               RowBox[{"d", ","}], "*)"}], " ", "pOrigin", ",", " ", "pOther",
-               ",", 
+             RowBox[{"dn", ",", " ", "pOrigin", ",", " ", "pOther", ",", 
               RowBox[{"(", 
                RowBox[{
                 RowBox[{"projOpU", "[", "d", "]"}], "/", "dn"}], "  ", 
@@ -1635,8 +1622,27 @@ the list of the form: {{1,1,{-1,0}},0.5}} = {{m1, m2, {n1, n2}}, K}\>\""}]}],
            ";", "\[IndentingNewLine]", 
           RowBox[{
            RowBox[{"calculateCouplings", "::", "usage"}], " ", "=", " ", 
+           
            "\"\<Returns a pair of sets for each origin m_i coupling:\
-\[IndentingNewLine]First has all the origin cell couplings for that mass.\
+\[IndentingNewLine]\nWith:\n\!\(\*SubscriptBox[OverscriptBox[\(p\), \(\
+\[RightVector]\)], \(k\)]\) for the position of the \
+\!\(\*SuperscriptBox[\(k\), \(th\)]\) mass in the origin cell, \nj for the \
+index of the neighbouring cell mass, \n\!\(\*OverscriptBox[\(m\), \(\
+\[RightVector]\)]\) for the cell index of the neighbouring cell,\n\nthis \
+function returns elements of the form:\[IndentingNewLine]{k, j, \
+\!\(\*OverscriptBox[\(m\), \(\[RightVector]\)]\), \!\(\*SubscriptBox[\(K\), \
+\(\*OverscriptBox[\(n\), \(\[RightVector]\)], k; \*OverscriptBox[\(m\), \(\
+\[RightVector]\)], j\)]\), \
+\!\(\*SuperscriptBox[SubscriptBox[OverscriptBox[\(a\), \(\[RightVector]\)], \
+\(\*OverscriptBox[\(m\), \(\[RightVector]\)], j; \*OverscriptBox[\(0\), \(\
+\[RightVector]\)], k\)], \(2\)]\), \!\(\*SubscriptBox[OverscriptBox[\(p\), \(\
+\[RightVector]\)], \(k\)]\), \!\(\*SubscriptBox[OverscriptBox[\(r\), \(\
+\[RightVector]\)], OverscriptBox[\(m\), \(\[RightVector]\)]]\) + \
+\!\(\*SubscriptBox[OverscriptBox[\(p\), \(\[RightVector]\)], \(j\)]\), \
+\!\(\*SubscriptBox[\(Proj\), SubscriptBox[OverscriptBox[\(a\), \(\
+\[RightVector]\)], \(\*OverscriptBox[\(m\), \(\[RightVector]\)], j; \
+\*OverscriptBox[\(0\), \(\[RightVector]\)], k\)]]\)}\n\nThere are two sets of \
+lists returned:\nFirst has all the origin cell couplings for that mass.\
 \[IndentingNewLine]Second has all the nn couplings for each mass sorted by \
 distance from mass.  Can use that to select up to num-interactions.\>\""}], 
           " ", ";"}], "*)"}], "\[IndentingNewLine]", 
@@ -1663,8 +1669,9 @@ distance from mass.  Can use that to select up to num-interactions.\>\""}],
                RowBox[{"Append", "[", 
                 RowBox[{"#", ",", " ", 
                  RowBox[{"relativeDifferences", "[", 
-                  RowBox[{"r", ",", " ", "mp", ",", " ", "#"}], "]"}]}], " ", 
-                "]"}], "&"}], "/@", " ", 
+                  RowBox[{"r", ",", " ", "mp", ",", " ", 
+                   RowBox[{"First", "[", "#", "]"}]}], "]"}]}], " ", "]"}], 
+               "&"}], "/@", " ", 
               RowBox[{"(", 
                RowBox[{"kArray", " ", "/.", " ", 
                 RowBox[{"Rule", " ", "\[Rule]", " ", "List"}]}], ")"}]}]}], 
@@ -3282,7 +3289,17 @@ locDependent[{1/2,1}, {1,1/2}, {{0.1,1.2} + {1/2,1} + {1,1/2}, {1.3, 0.5} - \
    3.6007831686480975`*^9}, {3.6007832171848736`*^9, 3.600783217935917*^9}, {
    3.6007832872168794`*^9, 3.6007833744788704`*^9}, {3.6007834163592663`*^9, 
    3.600783416930299*^9}, {3.600783481187974*^9, 3.6007835472517524`*^9}, {
-   3.6007835803186436`*^9, 3.600783666571577*^9}}],
+   3.6007835803186436`*^9, 3.600783666571577*^9}, {3.6008200252777348`*^9, 
+   3.6008200257507615`*^9}, {3.600820433137063*^9, 3.6008204931864977`*^9}, {
+   3.6008205391341257`*^9, 3.6008205680037766`*^9}, {3.600820617766623*^9, 
+   3.6008207715144167`*^9}, {3.60082083014077*^9, 3.600820896524567*^9}, 
+   3.6008211677890825`*^9, {3.6008212007259665`*^9, 3.600821263541559*^9}, {
+   3.6008213419600444`*^9, 3.6008214083228407`*^9}, {3.600821449850216*^9, 
+   3.6008214564235916`*^9}, {3.6008215345050573`*^9, 3.600821568661011*^9}, {
+   3.6008216009898605`*^9, 3.6008216606362715`*^9}, {3.600821705759853*^9, 
+   3.6008217829162655`*^9}, {3.6008218503741245`*^9, 3.600821867536106*^9}, {
+   3.6008222832558837`*^9, 3.6008225190433702`*^9}, {3.600822565887049*^9, 
+   3.6008225707343264`*^9}, {3.6008226458446226`*^9, 3.6008226629506006`*^9}}],
 
 Cell[BoxData[
  TagBox[
@@ -3848,7 +3865,7 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
     1, 0}, {0, 1}, {1, 1}, {1, -1}}, $CellContext`omegaIndex$$ = 
     1, $CellContext`parametersTab$$ = 3, $CellContext`primaryDisplaySize$$ = {
     380, 380}, $CellContext`qLoc$$ = {5.419714788039828, 
-    3.22}, $CellContext`qPlaneLoc$$ = {{-2.709857394019914, \
+    3.4277285997405107`}, $CellContext`qPlaneLoc$$ = {{-2.709857394019914, \
 -1.7138642998702553`}, {2.709857394019914, 
     1.7138642998702553`}}, $CellContext`scale$$ = 
     0.1, $CellContext`springColors$$ = {
@@ -3877,7 +3894,7 @@ Fw88j+UK84f8CPnKPfUZn/r7dPIl/wsr8eTQ
      RGBColor[0.33333333333333337`, 0, 0.33333333333333337`], {1, -1} -> 
      RGBColor[0, 
        Rational[2, 3], 
-       Rational[2, 3]]}, $CellContext`tabNumber$$ = 1, $CellContext`tau$$ = 
+       Rational[2, 3]]}, $CellContext`tabNumber$$ = 3, $CellContext`tau$$ = 
     0, $CellContext`textDisOffset$$ = {0.25, 0.25}, $CellContext`tick$$ = 
     False, $CellContext`u$$ = {{0.1, 1.3}, {1.9, 0.8}, {0.9, 0.7}, {0.4, 
     1.2}, {0.6, 1.7}}, $CellContext`windowHalfWidth$$ = 3, Typeset`show$$ = 
@@ -3966,7 +3983,7 @@ $CellContext`km2, $CellContext`km3, $CellContext`km4, $CellContext`km5}]},
        Hold[$CellContext`primaryDisplaySize$$], {380, 380}}, 0}, {{
        Hold[$CellContext`textDisOffset$$], {0.25, 0.25}}, 0}, {{
        Hold[$CellContext`nArray$$], {{1, 0}, {0, 1}, {1, 1}, {1, -1}}}, 0}}, 
-    Typeset`size$$ = {507., {249., 258.}}, Typeset`update$$ = 0, 
+    Typeset`size$$ = {515., {254., 261.}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
@@ -4116,7 +4133,7 @@ $CellContext`km2, $CellContext`km3, $CellContext`km4, $CellContext`km5}]},
       "Options" :> {
        TrackedSymbols :> {$CellContext`tick$$}, ControlPlacement -> Left}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{908., {289., 296.}},
+     ImageSizeCache->{916., {293., 300.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -4152,20 +4169,21 @@ $CellContext`a1; $CellContext`nd =
             
             Table[$CellContext`a1 - $CellContext`r1 + 
              Dot[$CellContext`r, {$CellContext`n1 + $CellContext`nd \
-$CellContext`f + $CellContext`t (1 - 
-                  2 $CellContext`f) $CellContext`nd, $CellContext`h 
-                Sin[2 Pi $CellContext`n $CellContext`t]}], {$CellContext`t, 0,
+$CellContext`f + ($CellContext`t (1 - 
+                   2 $CellContext`f)) $CellContext`nd, $CellContext`h 
+                Sin[((2 
+                    Pi) $CellContext`n) $CellContext`t]}], {$CellContext`t, 0,
                1, 0.01}], 
             
             Table[$CellContext`a1 - $CellContext`r1 + 
              Dot[$CellContext`r, {$CellContext`n1 + $CellContext`nd \
 $CellContext`f + (1 - 
-                  2 $CellContext`f) $CellContext`nd + $CellContext`t \
-$CellContext`f $CellContext`nd, 0}], {$CellContext`t, 0, 1, 0.01}], 
+                  2 $CellContext`f) $CellContext`nd + ($CellContext`t \
+$CellContext`f) $CellContext`nd, 0}], {$CellContext`t, 0, 1, 0.01}], 
             
             Table[$CellContext`a1 - $CellContext`r1 + 
-             Dot[$CellContext`r, {$CellContext`n1 + $CellContext`t \
-$CellContext`f $CellContext`nd, 0}], {$CellContext`t, 0, 1, 
+             Dot[$CellContext`r, {$CellContext`n1 + ($CellContext`t \
+$CellContext`f) $CellContext`nd, 0}], {$CellContext`t, 0, 1, 
               0.01}]}]; $CellContext`indexLabel = Subscript[
           Style[#, Italic], #2]& ; $CellContext`kLable = Style[
           $CellContext`indexLabel["k", #], FontColor -> 
@@ -4340,8 +4358,8 @@ $CellContext`latticeBasis$]& ,
             "numberLatticeLinesToDisplay" -> \
 $CellContext`numberLatticeLinesToDisplay$, 
             "reciprocalBasis" -> $CellContext`reciprocalBasis$, 
-            "reciprocalNorms" -> $CellContext`reciprocalNorms$, "qMaxVec" -> 
-            2 Pi $CellContext`reciprocalNorms$, 
+            "reciprocalNorms" -> $CellContext`reciprocalNorms$, 
+            "qMaxVec" -> (2 Pi) $CellContext`reciprocalNorms$, 
             "mObliqueComponents" -> $CellContext`mObliqueComponents$, 
             "mPosFirstCell" -> $CellContext`mPosFirstCell$, "pointsDataTable" -> 
             Map[$CellContext`pointsTable[
@@ -4364,20 +4382,19 @@ numberLatticeLinesToDisplay$, $CellContext`latticeBasis$, #]& ,
           Pattern[$CellContext`r, 
            Blank[List]], 
           Pattern[$CellContext`mp, 
-           Blank[List]], 
-          Pattern[$CellContext`ke, 
-           Blank[List]]] := 
+           Blank[List]], {
+           Pattern[$CellContext`mIndex1, 
+            Blank[Integer]], 
+           Pattern[$CellContext`mIndex2, 
+            Blank[Integer]], 
+           Pattern[$CellContext`n, 
+            Blank[List]]}] := 
         Module[{$CellContext`d, $CellContext`pOrigin, $CellContext`pOther}, \
-$CellContext`pOrigin = Part[$CellContext`mp, 
-             Part[
-              First[$CellContext`ke], 1]]; $CellContext`pOther = 
-           Part[$CellContext`mp, 
-              Part[
-               First[$CellContext`ke], 2]] + Dot[
-              Part[
-               First[$CellContext`ke], 
-               3], $CellContext`r]; $CellContext`d = $CellContext`pOther - \
-$CellContext`pOrigin; $CellContext`dn = 
+$CellContext`pOrigin = 
+           Part[$CellContext`mp, $CellContext`mIndex1]; $CellContext`pOther = 
+           Part[$CellContext`mp, $CellContext`mIndex2] + 
+            Dot[$CellContext`n, $CellContext`r]; $CellContext`d = \
+$CellContext`pOther - $CellContext`pOrigin; $CellContext`dn = 
            Dot[$CellContext`d, $CellContext`d]; {$CellContext`dn, \
 $CellContext`pOrigin, $CellContext`pOther, \
 $CellContext`projOpU[$CellContext`d]/$CellContext`dn}]; \
@@ -4389,7 +4406,8 @@ $CellContext`r$, $CellContext`mp$}, {$CellContext`r$, $CellContext`mp$} =
               "mPosFirstCell"}, $CellContext`ld$$]; $CellContext`t$ = 
            Map[Append[#, 
               $CellContext`relativeDifferences[$CellContext`r$, \
-$CellContext`mp$, #]]& , 
+$CellContext`mp$, 
+               First[#]]]& , 
              
              ReplaceAll[$CellContext`kArray$$, Rule -> 
               List]]; $CellContext`t$ = Map[Flatten[{
@@ -4518,7 +4536,6 @@ $CellContext`defaultMass$$],
               Part[$CellContext`locDefault$$, 1], 
               Part[$CellContext`u$$, 1]]; Part[$CellContext`u$$, 2] = If[Dot[
                 Part[$CellContext`u$$, 2], 
-                
                 Part[$CellContext`u$$, 
                  2]] < $CellContext`minSquaredDistanceFromOrigin$$, 
               Part[$CellContext`locDefault$$, 2], 
@@ -4654,7 +4671,6 @@ $CellContext`calculateCouplings; $CellContext`tick$$ =
              
              Dynamic[$CellContext`k4$$, ($CellContext`k4$$ = #; \
 $CellContext`kArray$$ = $CellContext`alterKArrayElements[
-                
                 4, $CellContext`k4$$]; $CellContext`couplingData$$ = \
 $CellContext`calculateCouplings; $CellContext`tick$$ = 
                Not[$CellContext`tick$$])& ], {0.25, 
@@ -4767,48 +4783,50 @@ $CellContext`kArray$$ = $CellContext`growKarray[$CellContext`n$];
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{{3.6007827611987925`*^9, 3.600782765768054*^9}, {
-  3.600782997316298*^9, 3.6007831095637183`*^9}, {3.600783170732217*^9, 
-  3.6007831939275436`*^9}, {3.600783379903181*^9, 3.600783427002875*^9}}]
+   3.600782997316298*^9, 3.6007831095637183`*^9}, {3.600783170732217*^9, 
+   3.6007831939275436`*^9}, {3.600783379903181*^9, 3.600783427002875*^9}, 
+   3.60082274073805*^9}]
 }, Open  ]],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
- RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"DynamicModule", "[", 
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
     RowBox[{
-     RowBox[{"{", 
-      RowBox[{"q", ",", " ", "x", ",", "y"}], "}"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{
+     RowBox[{"DynamicModule", "[", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"x", ",", "y"}], "}"}], " ", "=", " ", 
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"1", "/", "2"}], ",", 
-         RowBox[{"1", "/", "3"}]}], "}"}]}], " ", ";", "\[IndentingNewLine]", 
-      RowBox[{"q", " ", "=", " ", 
-       RowBox[{"{", 
-        RowBox[{"x", ",", " ", "y"}], "}"}]}], " ", ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      RowBox[{"LocatorPane", "[", 
+        RowBox[{"q", ",", " ", "x", ",", "y"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"Dynamic", "[", "qPlaneLoc", "]"}], ",", 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"Dynamic", "[", "\[IndentingNewLine]", 
-         RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"x", ",", "y"}], "}"}], " ", "=", " ", 
+         RowBox[{"{", 
           RowBox[{
+           RowBox[{"1", "/", "2"}], ",", 
+           RowBox[{"1", "/", "3"}]}], "}"}]}], " ", ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"q", " ", "=", " ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", " ", "y"}], "}"}]}], " ", ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"LocatorPane", "[", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "qPlaneLoc", "]"}], ",", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"Dynamic", "[", "\[IndentingNewLine]", 
            RowBox[{
-            RowBox[{"Graphics", "[", 
+            RowBox[{
              RowBox[{
-              RowBox[{"{", 
-               RowBox[{"Gray", ",", "\[IndentingNewLine]", 
-                RowBox[{"Polygon", "[", "\[IndentingNewLine]", 
-                 RowBox[{"(", 
-                  RowBox[{"{", 
-                   RowBox[{
+              RowBox[{"Graphics", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"Gray", ",", "\[IndentingNewLine]", 
+                  RowBox[{"Polygon", "[", "\[IndentingNewLine]", 
+                   RowBox[{"(", 
+                    RowBox[{"{", 
+                    RowBox[{
                     RowBox[{"{", 
                     RowBox[{
                     RowBox[{"-", 
@@ -4837,121 +4855,51 @@ Cell[BoxData[
                     RowBox[{"[", "1", "]"}], "]"}]}], ",", 
                     RowBox[{"#", "[", 
                     RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "}"}], " ", 
-                  ")"}], "\[IndentingNewLine]", " ", "]"}], ",", 
-                "\[IndentingNewLine]", "Black", ",", 
-                RowBox[{"Line", "[", "qPlaneLoc", "]"}]}], "}"}], ",", " ", 
-              "\[IndentingNewLine]", 
-              RowBox[{"PlotRange", " ", "\[Rule]", " ", 
-               RowBox[{"(", 
-                RowBox[{"{", 
-                 RowBox[{
+                    ")"}], "\[IndentingNewLine]", " ", "]"}], ",", 
+                  "\[IndentingNewLine]", "Black", ",", 
+                  RowBox[{"Line", "[", "qPlaneLoc", "]"}]}], "}"}], ",", " ", 
+                "\[IndentingNewLine]", 
+                RowBox[{"PlotRange", " ", "\[Rule]", " ", 
+                 RowBox[{"(", 
                   RowBox[{"{", 
                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
                     RowBox[{"-", 
                     RowBox[{"#", "[", 
                     RowBox[{"[", "1", "]"}], "]"}]}], ",", " ", 
                     RowBox[{"#", "[", 
                     RowBox[{"[", "1", "]"}], "]"}]}], "}"}], ",", 
-                  RowBox[{"{", 
-                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
                     RowBox[{"-", 
                     RowBox[{"#", "[", 
                     RowBox[{"[", "2", "]"}], "]"}]}], ",", " ", 
                     RowBox[{"#", "[", 
                     RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "}"}], " ", 
-                ")"}]}]}], " ", "\[IndentingNewLine]", "]"}], " ", "&"}], " ",
-            "@", " ", "q"}], " ", ",", "\[IndentingNewLine]", 
-          RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], 
-         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}]}], 
-    " ", "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
-   RowBox[{"{", 
-    RowBox[{
+                  ")"}]}]}], " ", "\[IndentingNewLine]", "]"}], " ", "&"}], 
+             " ", "@", " ", "q"}], " ", ",", "\[IndentingNewLine]", 
+            RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], 
+           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}]}], 
+      " ", "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
      RowBox[{"{", 
-      RowBox[{"qPlaneLoc", ",", 
+      RowBox[{
        RowBox[{"{", 
-        RowBox[{
+        RowBox[{"qPlaneLoc", ",", 
          RowBox[{"{", 
           RowBox[{
-           RowBox[{"1", "/", "2"}], ",", 
-           RowBox[{"1", "/", "3"}]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"-", "1"}], "/", "2"}], ",", 
-           RowBox[{
-            RowBox[{"-", "1"}], "/", "3"}]}], "}"}]}], "}"}]}], "}"}], ",", 
-     " ", "None"}], "}"}]}], "\[IndentingNewLine]", "]"}]], "Input",
- CellChangeTimes->{{3.6007780410268145`*^9, 3.6007780467821436`*^9}, {
-  3.600778104745459*^9, 3.6007782554210773`*^9}, {3.6007783208318186`*^9, 
-  3.60077832190588*^9}, {3.6007783582039557`*^9, 3.6007785185131254`*^9}, {
-  3.600778564468754*^9, 3.600778580789687*^9}, {3.6007787579978228`*^9, 
-  3.6007787889945955`*^9}, {3.600778878552718*^9, 3.6007789129676867`*^9}, {
-  3.6007802054666133`*^9, 3.600780300133028*^9}, {3.6007803500108805`*^9, 
-  3.60078044072707*^9}, {3.6007818252812614`*^9, 3.6007819717766404`*^9}, {
-  3.600782053815333*^9, 3.6007821997946825`*^9}}],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`qPlaneLoc$$ = {{0.5, 
-    0.07600000000000001}, {-0.476, -0.05099999999999999}}, Typeset`show$$ = 
-    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`qPlaneLoc$$], {{
-         Rational[1, 2], 
-         Rational[1, 3]}, {
-         Rational[-1, 2], 
-         Rational[-1, 3]}}}, 0}}, Typeset`size$$ = {488., {160., 168.}}, 
-    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, "Variables" :> {$CellContext`qPlaneLoc$$ = {{
-           Rational[1, 2], 
-           Rational[1, 3]}, {
-           Rational[-1, 2], 
-           Rational[-1, 3]}}}, "ControllerVariables" :> {}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, "Body" :> 
-      DynamicModule[{$CellContext`q, $CellContext`x, $CellContext`y}, \
-{$CellContext`x, $CellContext`y} = {
-          1/2, 1/3}; $CellContext`q = {$CellContext`x, $CellContext`y}; 
-        LocatorPane[
-          Dynamic[$CellContext`qPlaneLoc$$], 
-          Dynamic[
-           (Graphics[{Gray, 
-             Polygon[{{-Part[#, 1], -Part[#, 2]}, {
-                Part[#, 1], -Part[#, 2]}, {
-                Part[#, 1], 
-                Part[#, 2]}, {-Part[#, 1], 
-                Part[#, 2]}}], Black, 
-             Line[$CellContext`qPlaneLoc$$]}, PlotRange -> {{-Part[#, 1], 
-               Part[#, 1]}, {-Part[#, 2], 
-               Part[#, 2]}}]& )[$CellContext`q], ContinuousAction -> False]]],
-       "Specifications" :> {{{$CellContext`qPlaneLoc$$, {{
-            Rational[1, 2], 
-            Rational[1, 3]}, {
-            Rational[-1, 2], 
-            Rational[-1, 3]}}}, 0, ControlType -> None}}, "Options" :> {}, 
-      "DefaultOptions" :> {}],
-     ImageSizeCache->{551., {199., 206.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.600782134803965*^9, 3.600782138804194*^9}, 
-   3.6007821858308835`*^9}]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{"\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"1", "/", "2"}], ",", 
+             RowBox[{"1", "/", "3"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", "1"}], "/", "2"}], ",", 
+             RowBox[{
+              RowBox[{"-", "1"}], "/", "3"}]}], "}"}]}], "}"}]}], "}"}], ",", 
+       " ", "None"}], "}"}]}], "\[IndentingNewLine]", "]"}], "*)"}], 
+  "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{
     RowBox[{
@@ -5155,39 +5103,33 @@ Cell[BoxData[
             FractionBox["1", "1"]}], ",", 
            RowBox[{"-", 
             FractionBox["1", "1"]}]}], "}"}]}], "}"}], "]"}]}], "}"}], "]"}], 
-   "*)"}]}]], "Input",
- CellChangeTimes->{{3.600780943759841*^9, 3.6007810371561832`*^9}, {
-   3.6007812163384323`*^9, 3.600781293882867*^9}, {3.6007813449597883`*^9, 
-   3.600781536358736*^9}, {3.6007815797222166`*^9, 3.600781592792964*^9}, {
-   3.6007816357774224`*^9, 3.6007816891984777`*^9}, 3.6007817249895253`*^9, {
-   3.6007817765494742`*^9, 3.6007818083672943`*^9}, 3.6007828136157913`*^9}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Module", "[", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"a", ",", "b"}], "}"}], ",", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"a", " ", "=", " ", "3"}], " ", ";", "\[IndentingNewLine]", 
-    RowBox[{"b", " ", "=", " ", "4"}], " ", ";", "\[IndentingNewLine]", 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Module", "[", 
     RowBox[{
-     RowBox[{"(", 
-      RowBox[{
-       RowBox[{"300", " ", 
-        RowBox[{"#", "/", 
-         RowBox[{"Max", "[", "#", "]"}]}]}], " ", "&"}], ")"}], " ", "@", 
      RowBox[{"{", 
-      RowBox[{"a", ",", "b"}], "}"}]}]}]}], "\[IndentingNewLine]", 
-  "]"}]], "Input",
- CellChangeTimes->{{3.6007828274035797`*^9, 3.600782948802523*^9}}],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"225", ",", "300"}], "}"}]], "Output",
- CellChangeTimes->{{3.600782894579422*^9, 3.600782949342554*^9}}]
-}, Open  ]]
+      RowBox[{"a", ",", "b"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"a", " ", "=", " ", "3"}], " ", ";", "\[IndentingNewLine]", 
+      RowBox[{"b", " ", "=", " ", "4"}], " ", ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"300", " ", 
+          RowBox[{"#", "/", 
+           RowBox[{"Max", "[", "#", "]"}]}]}], " ", "&"}], ")"}], " ", "@", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "b"}], "}"}]}]}]}], "\[IndentingNewLine]", "]"}], 
+   "*)"}]}]], "Input",
+ CellChangeTimes->{{3.6007780410268145`*^9, 3.6007780467821436`*^9}, {
+  3.600778104745459*^9, 3.6007782554210773`*^9}, {3.6007783208318186`*^9, 
+  3.60077832190588*^9}, {3.6007783582039557`*^9, 3.6007785185131254`*^9}, {
+  3.600778564468754*^9, 3.600778580789687*^9}, {3.6007787579978228`*^9, 
+  3.6007787889945955`*^9}, {3.600778878552718*^9, 3.6007789129676867`*^9}, {
+  3.6007802054666133`*^9, 3.600780300133028*^9}, {3.6007803500108805`*^9, 
+  3.60078044072707*^9}, {3.6007818252812614`*^9, 3.6007819717766404`*^9}, {
+  3.600782053815333*^9, 3.6007821997946825`*^9}, {3.6008272573713865`*^9, 
+  3.6008272757474375`*^9}}]
 },
 WindowSize->{1584, 765},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -5206,18 +5148,10 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[579, 22, 157088, 3262, 17246, "Input"],
-Cell[157670, 3286, 78727, 1484, 607, "Output"]
+Cell[579, 22, 158747, 3279, 17500, "Input"],
+Cell[159329, 3303, 78818, 1484, 615, "Output"]
 }, Open  ]],
-Cell[CellGroupData[{
-Cell[236434, 4775, 4906, 115, 541, "Input"],
-Cell[241343, 4892, 2583, 57, 427, "Output"]
-}, Open  ]],
-Cell[243941, 4952, 7069, 210, 229, "Input"],
-Cell[CellGroupData[{
-Cell[251035, 5166, 640, 17, 141, "Input"],
-Cell[251678, 5185, 143, 3, 40, "Output"]
-}, Open  ]]
+Cell[238162, 4790, 12431, 341, 855, "Input"]
 }
 ]
 *)
