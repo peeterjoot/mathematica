@@ -1,19 +1,32 @@
-(* Content-type: application/vnd.wolfram.mathematica *)
+(* Content-type: application/vnd.wolfram.cdf.text *)
 
-(*** Wolfram Notebook File ***)
-(* http://www.wolfram.com/nb *)
+(*** Wolfram CDF File ***)
+(* http://www.wolfram.com/cdf *)
 
 (* CreatedBy='Mathematica 9.0' *)
+
+(*************************************************************************)
+(*                                                                       *)
+(*  The Mathematica License under which this file was created prohibits  *)
+(*  restricting third parties in receipt of this file from republishing  *)
+(*  or redistributing it by any means, including but not limited to      *)
+(*  rights management or terms of use, without the express consent of    *)
+(*  Wolfram Research, Inc. For additional information concerning CDF     *)
+(*  licensing and redistribution see:                                    *)
+(*                                                                       *)
+(*        www.wolfram.com/cdf/adopting-cdf/licensing-options.html        *)
+(*                                                                       *)
+(*************************************************************************)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       157,          7]
-NotebookDataLength[    302336,       5295]
-NotebookOptionsPosition[    301751,       5272]
-NotebookOutlinePosition[    302094,       5287]
-CellTagsIndexPosition[    302051,       5284]
+NotebookDataPosition[      1063,         20]
+NotebookDataLength[    306758,       5400]
+NotebookOptionsPosition[    307034,       5389]
+NotebookOutlinePosition[    307377,       5404]
+CellTagsIndexPosition[    307334,       5401]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -31,15 +44,16 @@ dual) basis for that subspace.  That basis in 3D is\n\n\
 \[Cross] a )^2|\n\n(We can compute the higher dimensional result using the \
 similar geometric algebra expression:\n\n\!\(\*SuperscriptBox[\(a\), \(*\)]\) \
 = b . (b \[Wedge] a )/|(b \[Wedge] a )^2|\n\!\(\*SuperscriptBox[\(b\), \(*\)]\
-\) = a . (a \[Wedge] b )/|(b \[Wedge] a )^2|\n)\n\nThis method returns the 3D \
-result.\n\nExample (returning {1,0,1,0}):\n\[IndentingNewLine]Module[{a,b,r},\
-\[IndentingNewLine]a = {\!\(\*SubscriptBox[\(f\), \(1\)]\), \
-\!\(\*SubscriptBox[\(f\), \(2\)]\), \!\(\*SubscriptBox[\(f\), \(3\)]\)} ;\
-\[IndentingNewLine]b = {\!\(\*SubscriptBox[\(g\), \(1\)]\), \
-\!\(\*SubscriptBox[\(g\), \(2\)]\), \!\(\*SubscriptBox[\(g\), \(3\)]\)} ;\
-\[IndentingNewLine]r = reciprocalsForTwoDimSubspace[{a,b}] ;\
-\[IndentingNewLine]Simplify[{a . r[[1]], a . r[[2]], b . r[[2]], b . r[[1]]},\
-\[IndentingNewLine]{\!\(\*SubscriptBox[\(f\), \(1\)]\), \
+\) = a . (a \[Wedge] b )/|(b \[Wedge] a )^2|\n)\n\n(This function returns the \
+3D result for a 2D subspace.)\n\nExample (returning {1,0,1,0}):\n\
+\[IndentingNewLine]Module[{a,b,r},\[IndentingNewLine]a = {\!\(\*SubscriptBox[\
+\(f\), \(1\)]\), \!\(\*SubscriptBox[\(f\), \(2\)]\), \
+\!\(\*SubscriptBox[\(f\), \(3\)]\)} ;\[IndentingNewLine]b = \
+{\!\(\*SubscriptBox[\(g\), \(1\)]\), \!\(\*SubscriptBox[\(g\), \(2\)]\), \!\(\
+\*SubscriptBox[\(g\), \(3\)]\)} ;\[IndentingNewLine]r = \
+reciprocalsForTwoDimSubspace[{a,b}] ;\[IndentingNewLine]Simplify[{a . r[[1]], \
+a . r[[2]], b . r[[2]], b . \
+r[[1]]},\[IndentingNewLine]{\!\(\*SubscriptBox[\(f\), \(1\)]\), \
 \!\(\*SubscriptBox[\(f\), \(2\)]\), \!\(\*SubscriptBox[\(f\), \
 \(3\)]\),\!\(\*SubscriptBox[\(g\), \(1\)]\), \!\(\*SubscriptBox[\(g\), \(2\)]\
 \), \!\(\*SubscriptBox[\(g\), \(3\)]\)} \[Element] Reals]\[IndentingNewLine]]\
@@ -268,7 +282,8 @@ Manipulator.\>\""}], " ", ";"}], "\[IndentingNewLine]",
    3.602874012602604*^9}, {3.60287433493404*^9, 3.602874516654434*^9}, {
    3.602874740911261*^9, 3.6028747524399204`*^9}, {3.6028757555742965`*^9, 
    3.6028757562923374`*^9}, {3.602876017933303*^9, 3.6028760200544243`*^9}, {
-   3.6028943929552555`*^9, 3.602894394661353*^9}}],
+   3.6028943929552555`*^9, 3.602894394661353*^9}, {3.602930790142725*^9, 
+   3.6029308030534635`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -329,7 +344,6 @@ Cell[BoxData[
      "\[IndentingNewLine]", "\[IndentingNewLine]", 
      RowBox[{"Column", "[", 
       RowBox[{"{", "\[IndentingNewLine]", 
-       RowBox[{"(*", "plot", "*)"}], "\[IndentingNewLine]", 
        RowBox[{"Show", "[", 
         RowBox[{"{", "\[IndentingNewLine]", 
          RowBox[{"plot", ",", "\[IndentingNewLine]", 
@@ -374,7 +388,21 @@ Cell[BoxData[
                    RowBox[{"scale", " ", 
                     RowBox[{"r", "[", 
                     RowBox[{"[", "2", "]"}], "]"}]}]}]}], "}"}], ",", 
-                "0.02"}], "]"}], "]"}]}], "\[IndentingNewLine]", "}"}], 
+                "0.02"}], "]"}], "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"Lighter", "[", "Gray", "]"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"Opacity", "[", "0.5", "]"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"Polygon", "[", 
+              RowBox[{"{", " ", 
+               RowBox[{
+                RowBox[{"fp", " ", "+", " ", "fup", " ", "+", " ", "fvp"}], 
+                ",", 
+                RowBox[{"fp", " ", "-", " ", "fup", " ", "+", " ", "fvp"}], 
+                ",", " ", 
+                RowBox[{"fp", " ", "-", " ", "fup", " ", "-", " ", "fvp"}], 
+                ",", " ", 
+                RowBox[{"fp", " ", "+", " ", "fup", " ", "-", " ", "fvp"}]}], 
+               " ", "}"}], "]"}]}], "\[IndentingNewLine]", "}"}], 
            "\[IndentingNewLine]", "]"}]}], "}"}], "]"}], 
        "\[IndentingNewLine]", "}"}], " ", "]"}]}], "\[IndentingNewLine]", ",",
      "\[IndentingNewLine]", 
@@ -592,10 +620,6 @@ Cell[BoxData[
     RowBox[{"ControlPlacement", "\[Rule]", "Left"}]}], "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{",", 
-     RowBox[{"SynchronousInitialization", "\[Rule]", "False"}]}], "*)"}], 
-   "\[IndentingNewLine]", 
-   RowBox[{"(*", 
-    RowBox[{",", 
      RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "*)"}], 
    "\[IndentingNewLine]", "]"}], " "}]], "Input",
  CellChangeTimes->{{3.6028486396694283`*^9, 3.602848766330673*^9}, {
@@ -652,17 +676,24 @@ Cell[BoxData[
    3.6028759490413623`*^9, {3.602894121669739*^9, 3.602894133861436*^9}, {
    3.6028944050019445`*^9, 3.6028945140381813`*^9}, {3.6028963428377824`*^9, 
    3.602896353563396*^9}, {3.602896656817741*^9, 3.6028966575237813`*^9}, {
-   3.6028967617857447`*^9, 3.6028967844800425`*^9}, 3.6028968507148314`*^9}],
+   3.6028967617857447`*^9, 3.6028967844800425`*^9}, 3.6028968507148314`*^9, {
+   3.6029297985940113`*^9, 3.6029298367221923`*^9}, {3.602930153092288*^9, 
+   3.6029302277115555`*^9}, {3.6029302619825163`*^9, 3.602930307720132*^9}, {
+   3.6029306128685856`*^9, 3.602930618780924*^9}, {3.6029306685997734`*^9, 
+   3.602930668771783*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`av$$ = 1, $CellContext`bRefreshPlot$$ = 
     False, $CellContext`bRefreshPointDependent$$ = False, $CellContext`bv$$ = 
-    1, $CellContext`fn$$ = 2, $CellContext`fp$$ = {0.47, -0.04999999999999993,
-     0.2234}, $CellContext`fup$$ = {1, 0, 0.94}, $CellContext`fvp$$ = {
-    0, 1, -0.09999999999999987}, $CellContext`p$$ = {
-    0.47, -0.04999999999999993}, $CellContext`plot$$ = Graphics3D[
+    1, $CellContext`fn$$ = 2, $CellContext`fp$$ = {
+    0.8049999999999999, -0.06999999999999995, 
+    0.6529249999999999}, $CellContext`fup$$ = {
+    1, 0, 1.6099999999999999`}, $CellContext`fvp$$ = {
+    0, 1, -0.1399999999999999}, $CellContext`p$$ = {
+    0.8049999999999999, -0.06999999999999995}, $CellContext`plot$$ = 
+    Graphics3D[
      GraphicsComplex[CompressedData["
 1:eJx1nHu0V1W1x4nwATocDsQ0NJ+kIobWEBVD5yhvXnxAXSmzrlJD8VGJGpGC
 pnS59hwaeEQ5JvYA35J6sYgr57bhQJiXVDjyPoCHI4fHATwI+ELtd717z8/c
@@ -1735,10 +1766,10 @@ enrRv3/e2/sd3c9lwYN6n34n/H8feE9i
        1.9999994285714693`}}, PlotRangePadding -> {
         Scaled[0.02], 
         Scaled[0.02], 
-        Scaled[0.02]}}], $CellContext`r$$ = {{0.5333755809040981, 
-    0.04964089564850015, 0.4964089564850021}, {0.04964089564850015, 
-    0.9947190536544149, -0.05280946345585122}}, $CellContext`scale$$ = 
-    0.3, $CellContext`tick$$ = True, Typeset`show$$ = True, 
+        Scaled[0.02]}}], $CellContext`r$$ = {{0.2823047318437301, 
+    0.06240828418750169, 0.4457734584821552}, {0.06240828418750169, 
+    0.9945731926793477, -0.038762909433230866`}}, $CellContext`scale$$ = 
+    0.432, $CellContext`tick$$ = False, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
@@ -1807,7 +1838,7 @@ $CellContext`a, $CellContext`b]]& ,
       Hold[$CellContext`r$$], 0}, {{
        Hold[$CellContext`p$$], {
         Rational[1, 2], 
-        Rational[1, 2]}}, 0}}, Typeset`size$$ = {400., {195.5, 202.5}}, 
+        Rational[1, 2]}}, 0}}, Typeset`size$$ = {400., {181.5, 188.5}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
@@ -1860,8 +1891,15 @@ $CellContext`scale$$ Part[$CellContext`r$$, 1]}, 0.02]],
               Arrow[
                
                Tube[{$CellContext`fp$$, $CellContext`fp$$ + \
-$CellContext`scale$$ Part[$CellContext`r$$, 2]}, 0.02]]}]}]}]), 
-      "Specifications" :> {
+$CellContext`scale$$ Part[$CellContext`r$$, 2]}, 0.02]], 
+              Lighter[Gray], 
+              Opacity[0.5], 
+              
+              Polygon[{$CellContext`fp$$ + $CellContext`fup$$ + \
+$CellContext`fvp$$, $CellContext`fp$$ - $CellContext`fup$$ + \
+$CellContext`fvp$$, $CellContext`fp$$ - $CellContext`fup$$ - \
+$CellContext`fvp$$, $CellContext`fp$$ + $CellContext`fup$$ - \
+$CellContext`fvp$$}]}]}]}]), "Specifications" :> {
         Grid[{{
            Slider2D[
             
@@ -1929,7 +1967,7 @@ $CellContext`a, $CellContext`b]]& ,
       "Options" :> {
        TrackedSymbols :> {$CellContext`tick$$}, ControlPlacement -> Left}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{826., {235., 242.}},
+     ImageSizeCache->{827., {221., 228.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1957,7 +1995,8 @@ $CellContext`a, $CellContext`b]]& ,
    3.602875777374543*^9}, 3.6028758604092927`*^9, {3.602875904875836*^9, 
    3.602875950680456*^9}, 3.602894136535589*^9, 3.6028963565115643`*^9, 
    3.602896660258938*^9, {3.6028967746474805`*^9, 3.602896785355093*^9}, 
-   3.602896852648942*^9}]
+   3.602896852648942*^9, 3.602930232748844*^9, {3.6029302630305758`*^9, 
+   3.60293027988354*^9}, 3.602930619715977*^9}]
 }, Open  ]],
 
 Cell[TextData[{
@@ -5268,7 +5307,85 @@ $CellContext`a, $CellContext`b]]& ,
    3.602875950680456*^9}, 3.602894136535589*^9, 3.6028963565115643`*^9, 
    3.602896660258938*^9, {3.6028967746474805`*^9, 3.602896785355093*^9}, 
    3.602896852648942*^9}]
-}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"fup", ",", " ", "fp", ",", " ", "fvp"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"fp", " ", "=", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], 
+       RowBox[{"(*", 
+        RowBox[{",", "0"}], "*)"}], "}"}]}], " ", ";", "\[IndentingNewLine]", 
+     RowBox[{"fup", " ", "=", " ", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "1"}], 
+       RowBox[{"(*", 
+        RowBox[{",", "1"}], "*)"}], "}"}]}], " ", ";", "\[IndentingNewLine]", 
+     RowBox[{"fvp", " ", "=", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", "0"}], 
+       RowBox[{"(*", 
+        RowBox[{",", "1"}], "*)"}], "}"}]}], " ", ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{"Black", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"Lighter", "[", "Gray", "]"}], ","}], "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"Opacity", "[", "0.5", "]"}], ","}], "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{"Polygon", "[", 
+          RowBox[{"{", " ", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"fp", " ", "+", " ", "fup", " ", "+", " ", "fvp"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"fp", " ", "-", " ", "fup", " ", "+", " ", "fvp"}], 
+             "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"fp", " ", "-", " ", "fup", " ", "-", " ", "fvp"}], 
+             "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"fp", " ", "+", " ", "fup", " ", "-", " ", "fvp"}], 
+             "}"}]}], " ", "}"}], "]"}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"Polygon", "[", 
+         RowBox[{"{", " ", 
+          RowBox[{
+           RowBox[{"fp", " ", "+", " ", "fup", " ", "+", " ", "fvp"}], ",", 
+           RowBox[{"fp", " ", "-", " ", "fup", " ", "+", " ", "fvp"}], ",", 
+           " ", 
+           RowBox[{"fp", " ", "-", " ", "fup", " ", "-", " ", "fvp"}], ",", 
+           " ", 
+           RowBox[{"fp", " ", "+", " ", "fup", " ", "-", " ", "fvp"}]}], " ", 
+          "}"}], "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", "}"}], 
+      RowBox[{"(*", 
+       RowBox[{",", "\[IndentingNewLine]", 
+        RowBox[{"PlotRange", " ", "\[Rule]", " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "}"}]}]}], "*)"}], 
+      "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.6029303447192483`*^9, 3.6029303951321316`*^9}, {
+  3.6029304361864796`*^9, 3.602930602258979*^9}}]
 },
 WindowSize->{1584, 765},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -5286,19 +5403,22 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 10443, 250, 1591, "Input"],
+Cell[1463, 33, 10519, 252, 1591, "Input"],
 Cell[CellGroupData[{
-Cell[11025, 274, 18288, 380, 2566, "Input"],
-Cell[29316, 656, 77108, 1303, 499, "Output"]
+Cell[12007, 289, 19066, 393, 2591, "Input"],
+Cell[31076, 684, 77622, 1314, 471, "Output"]
 }, Open  ]],
-Cell[106439, 1962, 593, 12, 40, "Text"],
+Cell[108713, 2001, 593, 12, 40, "Text"],
 Cell[CellGroupData[{
-Cell[107057, 1978, 4525, 103, 1016, "Input"],
-Cell[111585, 2083, 93893, 1571, 551, "Output"],
-Cell[205481, 3656, 96254, 1613, 491, "Output"]
-}, Open  ]]
+Cell[109331, 2017, 4525, 103, 1016, "Input"],
+Cell[113859, 2122, 93893, 1571, 551, "Output"],
+Cell[207755, 3695, 96254, 1613, 491, "Output"]
+}, Open  ]],
+Cell[304024, 5311, 3006, 76, 441, "Input"]
 }
 ]
 *)
 
 (* End of internal cache information *)
+
+(* NotebookSignature 2wTUxm1AGHxT1D1iKFPZiLe1 *)
