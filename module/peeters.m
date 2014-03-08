@@ -3,11 +3,13 @@
 Begin["peeters`"]
 
 (* copy this module to a directory in $Path.  Then invoke with <<peeters` *)
-ClearAll[exportForLatex, setGitDir];
+ClearAll[setGitDir];
 
 setGitDir::usage = "Peeter's home laptop: set working dir relative to physicsplay/ (like figures/phy487)" ;
 setGitDir[where_] := SetDirectory[ "C:/Users/Peeter/cygwin_home/physicsplay/" <> where ] ;
 
+
+ClearAll[exportForLatex];
 exportForLatex::usage = "peeters`exportForLatex[ filename, image, True/False] :: This seems to be the most compact way to export for latex that still retains good resolution.  Use the epstopdf program to convert the resulting .eps file.  Also generate a .png for wordpress posts at the same time. \[IndentingNewLine]Note that the .png displays with some software having a checkerboard background, but that doesn't show up in the eventual web view.\[IndentingNewLine]\[IndentingNewLine]This png file is generated with a different basename so that latex includegraphics doesn't find it.
 
 The last (optional) argument is for whether or not to allow rasterization.
@@ -15,7 +17,6 @@ The last (optional) argument is for whether or not to allow rasterization.
 
 (*
 https://plus.google.com/u/0/103302026148070112829/posts/YtM2TERTpob
-
 *)
 exportForLatex[filename_, image_, allowRast_ : False ]  := Module[{output, dir},
 
@@ -28,6 +29,31 @@ output =
 } ;
 {dir <> "/" <> output[[1]], dir <> "/" <> output[[2]] }
 ]
+
+
+ClearAll[ reciprocalsForTwoDimSubspace ] ;
+reciprocalsForTwoDimSubspace::usage = "For a surface spanned by vectors {a,b}, compute the reciprocal (or dual) basis for that subspace.  That basis in 3D is
+
+\!\(\*SuperscriptBox[\(a\), \(*\)]\) = -b \[CenterDot] (b \[Cross] a )/\[LeftBracketingBar]b \[Cross] a\!\(\*SuperscriptBox[\(\[RightBracketingBar]\), \(2\)]\)
+\!\(\*SuperscriptBox[\(b\), \(*\)]\) = -a \[CenterDot] (a \[Cross] b )/\[LeftBracketingBar]b \[Cross] a\!\(\*SuperscriptBox[\(\[RightBracketingBar]\), \(2\)]\)
+
+(We can compute the higher dimensional result using the similar geometric algebra expression:
+
+\!\(\*SuperscriptBox[\(a\), \(*\)]\) = b \[CenterDot] (b \[Wedge] a )/\[LeftBracketingBar](b \[Wedge] a \!\(\*SuperscriptBox[\()\), \(2\)]\)\[RightBracketingBar]
+\!\(\*SuperscriptBox[\(b\), \(*\)]\) = a \[CenterDot] (a \[Wedge] b )/\[LeftBracketingBar](b \[Wedge] a \!\(\*SuperscriptBox[\()\), \(2\)]\)\[RightBracketingBar]
+)
+
+(This function returns the 3D result for a 2D subspace.)
+
+Example (returning {1,0,1,0}):
+\[IndentingNewLine]Module[{a,b,r},\[IndentingNewLine]a = {\!\(\*SubscriptBox[\(f\), \(1\)]\), \!\(\*SubscriptBox[\(f\), \(2\)]\), \!\(\*SubscriptBox[\(f\), \(3\)]\)} ;\[IndentingNewLine]b = {\!\(\*SubscriptBox[\(g\), \(1\)]\), \!\(\*SubscriptBox[\(g\), \(2\)]\), \!\(\*SubscriptBox[\(g\), \(3\)]\)} ;\[IndentingNewLine]r = reciprocalsForTwoDimSubspace[{a,b}] ;\[IndentingNewLine]Simplify[{a . r[[1]], a . r[[2]], b . r[[2]], b . r[[1]]},\[IndentingNewLine]{\!\(\*SubscriptBox[\(f\), \(1\)]\), \!\(\*SubscriptBox[\(f\), \(2\)]\), \!\(\*SubscriptBox[\(f\), \(3\)]\),\!\(\*SubscriptBox[\(g\), \(1\)]\), \!\(\*SubscriptBox[\(g\), \(2\)]\), \!\(\*SubscriptBox[\(g\), \(3\)]\)} \[Element] Reals]\[IndentingNewLine]]
+" ;
+reciprocalsForTwoDimSubspace[{a_, b_}] := Module[{cross},
+cross = Cross[ a, b ] ;
+
+{Cross[ b, cross], Cross[cross, a]}/(cross . cross)
+] ;
+
 
 (* Based on a ListLinePlot version posted in: http://mathematica.stackexchange.com/a/37228/10 *)
 ClearAll[springPoints]
