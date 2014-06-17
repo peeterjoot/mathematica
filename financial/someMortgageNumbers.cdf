@@ -23,69 +23,16 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[      1063,         20]
-NotebookDataLength[     13067,        307]
-NotebookOptionsPosition[     13587,        302]
-NotebookOutlinePosition[     13930,        317]
-CellTagsIndexPosition[     13887,        314]
+NotebookDataLength[     13802,        326]
+NotebookOptionsPosition[     14371,        322]
+NotebookOutlinePosition[     14714,        337]
+CellTagsIndexPosition[     14671,        334]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-Cell[BoxData[{
- RowBox[{
-  RowBox[{
-   RowBox[{"ClearAll", "[", "  ", 
-    RowBox[{"f", ",", " ", "k"}], " ", "]"}], " ", ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"f", "[", " ", 
-    RowBox[{
-    "principle_", ",", "amount_", ",", " ", "interest_", ",", " ", "n_"}], 
-    "]"}], " ", "=", " ", 
-   RowBox[{
-    RowBox[{
-     RowBox[{
-      RowBox[{"(", 
-       RowBox[{
-        RowBox[{"-", "principle"}], " ", "+", " ", 
-        RowBox[{"amount", "/", "interest"}]}], ")"}], 
-      RowBox[{
-       RowBox[{"(", 
-        RowBox[{"1", " ", "+", " ", "interest"}], ")"}], "^", "n"}]}], " ", 
-     "-", " ", 
-     RowBox[{"amount", "/", 
-      RowBox[{"(", "interest", ")"}]}]}], " ", "//", " ", "Floor"}]}], " ", 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"k", "[", 
-    RowBox[{"principle_", ",", "amount_", ",", " ", "interest_"}], "]"}], " ",
-    "=", " ", "\[IndentingNewLine]", 
-   RowBox[{
-    RowBox[{"-", " ", 
-     RowBox[{"Log", "[", 
-      RowBox[{"1", " ", "-", " ", 
-       RowBox[{"interest", " ", 
-        RowBox[{"principle", "/", "amount"}]}]}], "]"}]}], "/", 
-    "\[IndentingNewLine]", 
-    RowBox[{"Log", "[", 
-     RowBox[{"1", " ", "+", " ", "interest"}], "]"}]}]}], " ", 
-  ";"}], "\[IndentingNewLine]"}], "Input",
- InitializationCell->True,
- CellChangeTimes->{{3.61187775687284*^9, 3.6118778278539*^9}, {
-  3.6118778922935853`*^9, 3.61187791039262*^9}, {3.6118785895884686`*^9, 
-  3.6118787908339787`*^9}, {3.611879035610979*^9, 3.6118790508448505`*^9}, {
-  3.6118790861778717`*^9, 3.6118791388838863`*^9}, {3.6118792123390875`*^9, 
-  3.6118792701243925`*^9}, {3.611880287342574*^9, 3.6118802888606615`*^9}, {
-  3.6120019741917143`*^9, 3.6120020180072203`*^9}, {3.6120020655749407`*^9, 
-  3.6120022974962063`*^9}, {3.612002333310254*^9, 3.612002374281598*^9}, {
-  3.612002406050415*^9, 3.6120026290091677`*^9}, {3.6120026696554923`*^9, 
-  3.61200292836329*^9}, {3.6120039340768127`*^9, 3.612003951171791*^9}, {
-  3.612004436378543*^9, 3.6120044509003735`*^9}}],
 
 Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
   RowBox[{
@@ -196,22 +143,71 @@ Cell[BoxData[
       RowBox[{
       "years", ",", " ", "5", ",", " ", "\"\<Years (for future value)\>\""}], 
       "}"}], ",", " ", "1", ",", " ", "30", ",", " ", "1", ",", " ", 
-     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}]}], 
-  "\[IndentingNewLine]", "]"}]], "Input",
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"f", ",", " ", "None"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", " ", "None"}], "}"}], ","}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "Initialization", " ", "\[RuleDelayed]", " ", "\[IndentingNewLine]", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"f", "[", " ", 
+        RowBox[{
+        "principle_", ",", "amount_", ",", " ", "interest_", ",", " ", "n_"}],
+         "]"}], " ", ":=", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "principle"}], " ", "+", " ", 
+            RowBox[{"amount", "/", "interest"}]}], ")"}], 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", " ", "+", " ", "interest"}], ")"}], "^", "n"}]}], 
+         " ", "-", " ", 
+         RowBox[{"amount", "/", 
+          RowBox[{"(", "interest", ")"}]}]}], " ", "//", " ", "Floor"}]}], 
+      " ", ";", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"k", "[", 
+        RowBox[{"principle_", ",", "amount_", ",", " ", "interest_"}], "]"}], 
+       " ", ":=", " ", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"-", " ", 
+         RowBox[{"Log", "[", 
+          RowBox[{"1", " ", "-", " ", 
+           RowBox[{"interest", " ", 
+            RowBox[{"principle", "/", "amount"}]}]}], "]"}]}], "/", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Log", "[", 
+         RowBox[{"1", " ", "+", " ", "interest"}], "]"}]}]}], " ", ";"}], 
+     "\[IndentingNewLine]", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellOpen->False,
  CellChangeTimes->{{3.612004010010156*^9, 3.6120042415063972`*^9}, 
    3.612004285114891*^9, {3.6120043162896743`*^9, 3.612004344766303*^9}, {
    3.612004490310628*^9, 3.612004739150861*^9}, {3.612004774001854*^9, 
-   3.6120047781060886`*^9}, {3.6120048168083024`*^9, 3.6120048247987595`*^9}}],
+   3.6120047781060886`*^9}, {3.6120048168083024`*^9, 
+   3.6120048247987595`*^9}, {3.612010601205151*^9, 3.6120106306038322`*^9}, {
+   3.612010683846878*^9, 3.612010713630581*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`discountFromPrime$$ = -0.005, \
-$CellContext`futureValue$$ = -149992, $CellContext`int$$ = 
+$CellContext`futureValue$$ = -15308, $CellContext`int$$ = 
     0.024999999999999998`, $CellContext`intMon$$ = 
     0.002083333333333333, $CellContext`mon$$ = 1200, $CellContext`prime$$ = 
     0.03, $CellContext`prin$$ = 200000, $CellContext`principleReduction$$ = 
-    50008, $CellContext`totalPaid$$ = 72000, $CellContext`years$$ = 5, 
+    184692, $CellContext`totalPaid$$ = 230400, $CellContext`years$$ = 16, 
     Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
     Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
     1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
@@ -226,11 +222,11 @@ $CellContext`futureValue$$ = -149992, $CellContext`int$$ =
        Hold[$CellContext`prin$$], 200000, "Principle"}, 50000, 400000}, {{
        Hold[$CellContext`mon$$], 1200, "Monthly payment"}, 800, 2000}, {{
        Hold[$CellContext`years$$], 5, "Years (for future value)"}, 1, 30, 1}},
-     Typeset`size$$ = {456., {58., 65.}}, Typeset`update$$ = 0, 
+     Typeset`size$$ = {452., {58., 65.}}, Typeset`update$$ = 0, 
     Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`prime$16279$$ = 
-    0, $CellContext`discountFromPrime$16280$$ = 0, $CellContext`prin$16281$$ =
-     0, $CellContext`mon$16282$$ = 0, $CellContext`years$16283$$ = 0}, 
+    False, $CellContext`prime$5081$$ = 
+    0, $CellContext`discountFromPrime$5082$$ = 0, $CellContext`prin$5083$$ = 
+    0, $CellContext`mon$5084$$ = 0, $CellContext`years$5085$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`discountFromPrime$$ = -0.005, \
@@ -239,12 +235,12 @@ $CellContext`futureValue$$ = 0, $CellContext`int$$ = 0, $CellContext`intMon$$ =
         0.03, $CellContext`prin$$ = 200000, $CellContext`principleReduction$$ = 
         0, $CellContext`totalPaid$$ = 0, $CellContext`years$$ = 5}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`prime$$, $CellContext`prime$16279$$, 0], 
+        Hold[$CellContext`prime$$, $CellContext`prime$5081$$, 0], 
         Hold[$CellContext`discountFromPrime$$, \
-$CellContext`discountFromPrime$16280$$, 0], 
-        Hold[$CellContext`prin$$, $CellContext`prin$16281$$, 0], 
-        Hold[$CellContext`mon$$, $CellContext`mon$16282$$, 0], 
-        Hold[$CellContext`years$$, $CellContext`years$16283$$, 0]}, 
+$CellContext`discountFromPrime$5082$$, 0], 
+        Hold[$CellContext`prin$$, $CellContext`prin$5083$$, 0], 
+        Hold[$CellContext`mon$$, $CellContext`mon$5084$$, 0], 
+        Hold[$CellContext`years$$, $CellContext`years$5085$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -289,6 +285,28 @@ $CellContext`principleReduction$$}}]),
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
+    Initialization:>({$CellContext`f[
+          Pattern[$CellContext`principle, 
+           Blank[]], 
+          Pattern[$CellContext`amount, 
+           Blank[]], 
+          Pattern[$CellContext`interest, 
+           Blank[]], 
+          Pattern[$CellContext`n, 
+           Blank[]]] := 
+        Floor[(-$CellContext`principle + \
+$CellContext`amount/$CellContext`interest) (
+             1 + $CellContext`interest)^$CellContext`n - \
+$CellContext`amount/$CellContext`interest]; $CellContext`k[
+          Pattern[$CellContext`principle, 
+           Blank[]], 
+          Pattern[$CellContext`amount, 
+           Blank[]], 
+          Pattern[$CellContext`interest, 
+           Blank[]]] := (-
+          Log[1 - $CellContext`interest \
+($CellContext`principle/$CellContext`amount)])/Log[1 + $CellContext`interest]; 
+       Null}; Typeset`initDone$$ = True),
     SynchronousInitialization->True,
     UnsavedVariables:>{Typeset`initDone$$},
     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
@@ -297,7 +315,9 @@ $CellContext`principleReduction$$}}]),
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{
   3.6120043730439205`*^9, 3.612004619811035*^9, 3.6120047404279337`*^9, 
-   3.612004778565115*^9, {3.612004825563803*^9, 3.612004854657467*^9}}]
+   3.612004778565115*^9, {3.612004825563803*^9, 3.612004854657467*^9}, 
+   3.612007361774866*^9, 3.6120076168984585`*^9, {3.612010660262529*^9, 
+   3.6120106696340647`*^9}, {3.6120107069011965`*^9, 3.612010714688642*^9}}]
 }, Open  ]]
 },
 WindowSize->{1134, 694},
@@ -316,11 +336,10 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[1463, 33, 2055, 51, 216, "Input",
- InitializationCell->True],
 Cell[CellGroupData[{
-Cell[3543, 88, 4864, 115, 666, "Input"],
-Cell[8410, 205, 5161, 94, 445, "Output"]
+Cell[1485, 35, 6707, 164, 25, "Input",
+ CellOpen->False],
+Cell[8195, 201, 6160, 118, 413, "Output"]
 }, Open  ]]
 }
 ]
@@ -328,4 +347,4 @@ Cell[8410, 205, 5161, 94, 445, "Output"]
 
 (* End of internal cache information *)
 
-(* NotebookSignature ex0M4vwONpuHLCwAKgrV#UKW *)
+(* NotebookSignature zxphxUxaFXKESA10YSDqAH#a *)
