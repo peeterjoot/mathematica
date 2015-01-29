@@ -1,19 +1,32 @@
-(* Content-type: application/vnd.wolfram.mathematica *)
+(* Content-type: application/vnd.wolfram.cdf.text *)
 
-(*** Wolfram Notebook File ***)
-(* http://www.wolfram.com/nb *)
+(*** Wolfram CDF File ***)
+(* http://www.wolfram.com/cdf *)
 
 (* CreatedBy='Mathematica 9.0' *)
+
+(*************************************************************************)
+(*                                                                       *)
+(*  The Mathematica License under which this file was created prohibits  *)
+(*  restricting third parties in receipt of this file from republishing  *)
+(*  or redistributing it by any means, including but not limited to      *)
+(*  rights management or terms of use, without the express consent of    *)
+(*  Wolfram Research, Inc. For additional information concerning CDF     *)
+(*  licensing and redistribution see:                                    *)
+(*                                                                       *)
+(*        www.wolfram.com/cdf/adopting-cdf/licensing-options.html        *)
+(*                                                                       *)
+(*************************************************************************)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       157,          7]
-NotebookDataLength[     22573,        523]
-NotebookOptionsPosition[     22249,        507]
-NotebookOutlinePosition[     22594,        522]
-CellTagsIndexPosition[     22551,        519]
+NotebookDataPosition[      1063,         20]
+NotebookDataLength[     22678,        526]
+NotebookOptionsPosition[     23259,        523]
+NotebookOutlinePosition[     23604,        538]
+CellTagsIndexPosition[     23561,        535]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -109,18 +122,20 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"thetaP", ",", " ", 
-       RowBox[{
-        RowBox[{"Pi", "/", "8"}], " ", "//", " ", "N"}], ",", " ", 
+      RowBox[{"thetaP", ",", " ", "0.5", " ", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"Pi", "/", "8"}], " ", "//", " ", "N"}], "*)"}], ",", " ", 
        "\"\<\[Theta]\>\""}], "}"}], ",", " ", "0", ",", " ", "Pi", ",", " ", 
      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], 
    "\[IndentingNewLine]", ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"phiP", ",", " ", 
-       RowBox[{
-        RowBox[{"Pi", "/", "8"}], " ", "//", " ", "N"}], ",", " ", 
+      RowBox[{"phiP", ",", " ", "1", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"Pi", "/", "8"}], " ", "//", " ", "N"}], "*)"}], ",", " ", 
        "\"\<\[Phi]\>\""}], "}"}], ",", " ", "0", ",", " ", 
      RowBox[{"2", " ", "Pi"}], ",", " ", 
      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], 
@@ -134,7 +149,7 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"{", 
       RowBox[{
-      "fIndex", ",", " ", "2", ",", " ", "\"\<f(\[Theta], \[Phi])\>\""}], 
+      "fIndex", ",", " ", "3", ",", " ", "\"\<U(\[Theta], \[Phi])\>\""}], 
       "}"}], ",", " ", 
      RowBox[{"{", 
       RowBox[{
@@ -361,21 +376,22 @@ Cell[BoxData[
    3.6314087218848486`*^9}, {3.631409457363279*^9, 3.6314094717896047`*^9}, {
    3.631409551248246*^9, 3.631409552839449*^9}, {3.6314108704738135`*^9, 
    3.631410893983257*^9}, 3.631495972692727*^9, {3.631496111096642*^9, 
-   3.6314961547911415`*^9}, {3.6314961865839596`*^9, 3.6314962039419527`*^9}}],
+   3.6314961547911415`*^9}, {3.6314961865839596`*^9, 
+   3.6314962039419527`*^9}, {3.6314962517966895`*^9, 3.631496328349068*^9}, 
+   3.6314963830781984`*^9}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`fIndex$$ = 2, $CellContext`phiP$$ = 
-    0.39269908169872414`, $CellContext`range$$ = 1.5, $CellContext`thetaP$$ = 
-    0.39269908169872414`, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+   DynamicModuleBox[{$CellContext`fIndex$$ = 3, $CellContext`phiP$$ = 
+    1, $CellContext`range$$ = 1.5, $CellContext`thetaP$$ = 0.5, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
     Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
     1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`thetaP$$], 0.39269908169872414`, "\[Theta]"}, 0, 
-      Pi}, {{
-       Hold[$CellContext`phiP$$], 0.39269908169872414`, "\[Phi]"}, 0, 2 Pi}, {{
+       Hold[$CellContext`thetaP$$], 0.5, "\[Theta]"}, 0, Pi}, {{
+       Hold[$CellContext`phiP$$], 1, "\[Phi]"}, 0, 2 Pi}, {{
        Hold[$CellContext`range$$], 1.5}, 1, 5}, {{
-       Hold[$CellContext`fIndex$$], 2, "f(\[Theta], \[Phi])"}, {
+       Hold[$CellContext`fIndex$$], 3, "U(\[Theta], \[Phi])"}, {
       1 -> TraditionalForm[
         Cos[$CellContext`\[Theta]]^2 Cos[$CellContext`\[Phi]]^2], 2 -> 
        TraditionalForm[Sin[$CellContext`\[Phi]]^2], 3 -> 
@@ -383,19 +399,18 @@ Cell[BoxData[
         Cos[$CellContext`\[Theta]]^2 Cos[$CellContext`\[Phi]]^2 + 
          Sin[$CellContext`\[Phi]]^2]}}}, Typeset`size$$ = {
     480., {251., 259.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = False, $CellContext`thetaP$7677$$ = 
-    0, $CellContext`phiP$7678$$ = 0, $CellContext`range$7679$$ = 
-    0, $CellContext`fIndex$7680$$ = False}, 
+    Typeset`skipInitDone$$ = False, $CellContext`thetaP$10211$$ = 
+    0, $CellContext`phiP$10212$$ = 0, $CellContext`range$10213$$ = 
+    0, $CellContext`fIndex$10214$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
-      "Variables" :> {$CellContext`fIndex$$ = 2, $CellContext`phiP$$ = 
-        0.39269908169872414`, $CellContext`range$$ = 
-        1.5, $CellContext`thetaP$$ = 0.39269908169872414`}, 
+      "Variables" :> {$CellContext`fIndex$$ = 3, $CellContext`phiP$$ = 
+        1, $CellContext`range$$ = 1.5, $CellContext`thetaP$$ = 0.5}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`thetaP$$, $CellContext`thetaP$7677$$, 0], 
-        Hold[$CellContext`phiP$$, $CellContext`phiP$7678$$, 0], 
-        Hold[$CellContext`range$$, $CellContext`range$7679$$, 0], 
-        Hold[$CellContext`fIndex$$, $CellContext`fIndex$7680$$, False]}, 
+        Hold[$CellContext`thetaP$$, $CellContext`thetaP$10211$$, 0], 
+        Hold[$CellContext`phiP$$, $CellContext`phiP$10212$$, 0], 
+        Hold[$CellContext`range$$, $CellContext`range$10213$$, 0], 
+        Hold[$CellContext`fIndex$$, $CellContext`fIndex$10214$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -432,11 +447,10 @@ $CellContext`thetacapPt$ $CellContext`vecOff$],
            Text[
            "\!\(\*OverscriptBox[\(\[Phi]\), \(^\)]\)", $CellContext`rcapPt$ + \
 $CellContext`phicapPt$ $CellContext`vecOff$]}]]], 
-      "Specifications" :> {{{$CellContext`thetaP$$, 0.39269908169872414`, 
-          "\[Theta]"}, 0, Pi, Appearance -> 
-         "Labeled"}, {{$CellContext`phiP$$, 0.39269908169872414`, "\[Phi]"}, 
-         0, 2 Pi, Appearance -> "Labeled"}, {{$CellContext`range$$, 1.5}, 1, 
-         5}, {{$CellContext`fIndex$$, 2, "f(\[Theta], \[Phi])"}, {
+      "Specifications" :> {{{$CellContext`thetaP$$, 0.5, "\[Theta]"}, 0, Pi, 
+         Appearance -> "Labeled"}, {{$CellContext`phiP$$, 1, "\[Phi]"}, 0, 2 
+         Pi, Appearance -> "Labeled"}, {{$CellContext`range$$, 1.5}, 1, 
+         5}, {{$CellContext`fIndex$$, 3, "U(\[Theta], \[Phi])"}, {
          1 -> TraditionalForm[
            Cos[$CellContext`\[Theta]]^2 Cos[$CellContext`\[Phi]]^2], 2 -> 
           TraditionalForm[Sin[$CellContext`\[Phi]]^2], 3 -> 
@@ -501,8 +515,10 @@ $CellContext`toff, 0, 0}],
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{3.6314111772341347`*^9, 3.6314118412271013`*^9, 
-  3.631441504957842*^9, 3.631496162090559*^9, 3.631496210508328*^9}]
+ CellChangeTimes->{
+  3.6314111772341347`*^9, 3.6314118412271013`*^9, 3.631441504957842*^9, 
+   3.631496162090559*^9, {3.631496210508328*^9, 3.631496255084878*^9}, {
+   3.6314963316932597`*^9, 3.6314963543745565`*^9}, 3.6314963868724155`*^9}]
 }, Open  ]]
 },
 WindowSize->{833, 637},
@@ -522,11 +538,13 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[579, 22, 14659, 341, 2081, "Input"],
-Cell[15241, 365, 6992, 139, 759, "Output"]
+Cell[1485, 35, 14820, 345, 2106, "Input"],
+Cell[16308, 382, 6935, 138, 759, "Output"]
 }, Open  ]]
 }
 ]
 *)
 
 (* End of internal cache information *)
+
+(* NotebookSignature YvDeam@39I0CQBga3D3fZyby *)
