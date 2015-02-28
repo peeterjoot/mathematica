@@ -5,4 +5,3 @@ index.html : ../METADATA ../../notes/METADATA
 
 clean::
 	rm -f index.html
-
