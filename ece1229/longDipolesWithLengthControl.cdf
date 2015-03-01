@@ -23,16 +23,14 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[      1063,         20]
-NotebookDataLength[      4944,        136]
-NotebookOptionsPosition[      5317,        125]
-NotebookOutlinePosition[      5876,        148]
-CellTagsIndexPosition[      5833,        145]
+NotebookDataLength[      2851,         92]
+NotebookOptionsPosition[      3336,         84]
+NotebookOutlinePosition[      3840,        106]
+CellTagsIndexPosition[      3797,        103]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-
-Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
   RowBox[{
@@ -81,52 +79,12 @@ Cell[BoxData[
            RowBox[{"Sin", "[", "#1", "]"}]}], ")"}], "^", "2"}], " ", "&"}]}],
        " ", ";"}], "\[IndentingNewLine]", "}"}]}], ",", "\[IndentingNewLine]", 
    RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
-  "]"}]], "Input", "PluginEmbeddedContent"],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`alpha$$ = 1, Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`alpha$$], 1, "\[Alpha] ; l = \[Alpha] \[Lambda]"}, 
-      0.1, 5}}, Typeset`size$$ = {480., {153., 162.}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    False, $CellContext`alpha$9429$$ = 0}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, "Variables" :> {$CellContext`alpha$$ = 1}, 
-      "ControllerVariables" :> {
-        Hold[$CellContext`alpha$$, $CellContext`alpha$9429$$, 0]}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, "Body" :> PolarPlot[
-        $CellContext`U[$CellContext`t, $CellContext`alpha$$], {$CellContext`t,
-          0, Pi}, PlotRange -> {{-4, 4}, {0, 5}}], 
-      "Specifications" :> {{{$CellContext`alpha$$, 1, 
-          "\[Alpha] ; l = \[Alpha] \[Lambda]"}, 0.1, 5, Appearance -> 
-         "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{543., {214., 221.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    Initialization:>({{$CellContext`U = ((Cos[(Pi #2) Cos[#]] - Cos[Pi #2])/
-           Sin[#])^2& }; {$CellContext`U = ((Cos[(Pi #2) Cos[#]] - Cos[
-             Pi #2])/Sin[#])^2& ; Null}}; Typeset`initDone$$ = True),
-    SynchronousInitialization->True,
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output", "PluginEmbeddedContent"]
-}, Open  ]]
+  "]"}]], "Input", "PluginEmbeddedContent",
+ CellOpen->False]
 },
-WindowSize->{624, 771},
-WindowMargins->{{480, Automatic}, {Automatic, 0}},
+WindowSize->{624, 321},
 Visible->True,
-AuthoredSize->{624., 771.11},
+AuthoredSize->{624, 321},
 ScrollingOptions->{"HorizontalScrollRange"->Fit,
 "VerticalScrollRange"->Fit},
 ShowCellBracket->False,
@@ -147,14 +105,12 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[CellGroupData[{
-Cell[1485, 35, 1851, 48, 346, "Input"],
-Cell[3339, 85, 1962, 37, 437, "Output"]
-}, Open  ]]
+Cell[1463, 33, 1869, 49, 25, "Input",
+ CellOpen->False]
 }
 ]
 *)
 
 (* End of internal cache information *)
 
-(* NotebookSignature MxDdaTPJGzFkOCKYX0nr@jmr *)
+(* NotebookSignature uv0fiQU165hUkCKVHJ6#YuMT *)
