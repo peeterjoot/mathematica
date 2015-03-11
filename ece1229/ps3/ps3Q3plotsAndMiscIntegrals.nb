@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    717359,      11986]
-NotebookOptionsPosition[    716304,      11946]
-NotebookOutlinePosition[    716649,      11961]
-CellTagsIndexPosition[    716606,      11958]
+NotebookDataLength[    722065,      12118]
+NotebookOptionsPosition[    720847,      12073]
+NotebookOutlinePosition[    721192,      12088]
+CellTagsIndexPosition[    721149,      12085]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -11942,6 +11942,133 @@ Cell[BoxData[
    ",", "\<\"C:\\\\Users\\\\Peeter\\\\cygwin_home\\\\physicsplay\\\\figures\\\
 \\ece1229/arrayFactorXYFig5pn.png\"\>"}], "}"}]], "Output",
  CellChangeTimes->{3.6350332147158422`*^9}]
+}, Open  ]],
+
+Cell["\<\
+
+
+Part (e).  Numerical calculations of the directivity.\
+\>", "Text",
+ CellChangeTimes->{{3.635034694209464*^9, 3.6350347084282775`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ClearAll", "[", 
+    RowBox[{
+    "Uccube", ",", " ", "dir", ",", " ", "aa", ",", " ", "Umax", ",", " ", 
+     "Prad"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Uccube", "[", 
+      RowBox[{"a_", ",", " ", "p_", ",", " ", "t_"}], "]"}], " ", "=", "  ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sin", "[", "t", "]"}], "^", "2"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"3", " ", "-", " ", 
+        RowBox[{"2", " ", 
+         RowBox[{"Cos", "[", " ", 
+          RowBox[{"2", " ", "Pi", " ", "a", " ", 
+           RowBox[{"Sin", "[", "t", "]"}], 
+           RowBox[{"Cos", "[", "p", "]"}]}], " ", "]"}]}], " ", "-", " ", 
+        RowBox[{"2", " ", 
+         RowBox[{"Cos", "[", " ", 
+          RowBox[{"2", " ", "Pi", " ", "a", " ", 
+           RowBox[{"Sin", "[", "t", "]"}], 
+           RowBox[{"Sin", "[", "p", "]"}]}], "]"}]}], " ", "+", " ", 
+        RowBox[{"2", " ", 
+         RowBox[{"Cos", "[", " ", 
+          RowBox[{"2", " ", "Pi", " ", "a", " ", 
+           RowBox[{"Sin", "[", "t", "]"}], 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Cos", "[", "p", "]"}], " ", "-", " ", 
+             RowBox[{"Sin", "[", "p", "]"}]}], ")"}]}], "]"}]}]}], " ", 
+       ")"}]}]}], " ", ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Umax", "[", "a_", "]"}], " ", ":=", " ", "\[IndentingNewLine]", 
+     RowBox[{"NMaximize", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Uccube", "[", 
+          RowBox[{"a", ",", " ", "p", ",", " ", "t"}], "]"}], ",", " ", 
+         RowBox[{"0", " ", "\[LessEqual]", " ", "p", " ", "\[LessEqual]", " ", 
+          RowBox[{"Pi", "/", "2"}]}], ",", "  ", 
+         RowBox[{
+         "0", " ", "\[LessEqual]", " ", "t", " ", "\[LessEqual]", " ", 
+          "Pi"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"p", ",", " ", "t"}], "}"}]}], "]"}]}], " ", ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Prad", "[", "a_", "]"}], " ", ":=", " ", 
+     RowBox[{"NIntegrate", "[", 
+      RowBox[{
+       RowBox[{"Uccube", "[", 
+        RowBox[{"a", ",", " ", "p", ",", " ", "t"}], "]"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"p", ",", " ", "0", ",", " ", 
+         RowBox[{"Pi", "/", "2"}]}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", " ", "0", ",", " ", "Pi"}], "}"}]}], "]"}]}], "  ", 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"dir", "[", "a_", "]"}], " ", ":=", " ", 
+     RowBox[{"4", " ", "Pi", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Umax", "[", "a", "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "/", 
+       RowBox[{"Prad", "[", "a", "]"}]}]}]}], "  ", ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"aa", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "/", "8"}], ",", " ", 
+       RowBox[{"1", "/", "4"}], ",", " ", 
+       RowBox[{"1", "/", "2"}]}], "}"}]}], " ", ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"uu", " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"Umax", "[", "#", "]"}], " ", "&"}], "/@", " ", "aa"}], " ", 
+       "\[IndentingNewLine]", "pr"}], " ", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Prad", "[", "#", "]"}], " ", "&"}], "/@", " ", "aa"}]}]}], 
+    " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"dir", "[", "#", "]"}], "&"}], "/@", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"1", "/", "8"}], ",", " ", 
+      RowBox[{"1", "/", "4"}], ",", " ", 
+      RowBox[{"1", "/", "2"}]}], "}"}], " "}]}]}]], "Input",
+ CellChangeTimes->{{3.6350341152503495`*^9, 3.635034190155634*^9}, {
+  3.635034494194024*^9, 3.6350345718024626`*^9}, {3.6350347178008137`*^9, 
+  3.6350347228050995`*^9}, {3.635035366774131*^9, 3.635035417444029*^9}, {
+  3.6350354504269156`*^9, 3.6350355153256273`*^9}, {3.6350366469867744`*^9, 
+  3.6350366523080792`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "6.349390670866248`", ",", "8.119168892141401`", ",", 
+   "10.38414632559469`"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6350346128498106`*^9, 3.6350353681272087`*^9, {3.635035430027749*^9, 
+   3.635035468985977*^9}, 3.6350355235620985`*^9, 3.635036655409257*^9}]
 }, Open  ]]
 },
 WindowSize->{707, 637},
@@ -11986,7 +12113,12 @@ Cell[452613, 7538, 263057, 4388, 523, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[715707, 11931, 247, 4, 39, "Input"],
-Cell[715957, 11937, 331, 6, 148, "Output"]
+Cell[715957, 11937, 331, 6, 116, "Output"]
+}, Open  ]],
+Cell[716303, 11946, 147, 5, 92, "Text"],
+Cell[CellGroupData[{
+Cell[716475, 11955, 4045, 106, 441, "Input"],
+Cell[720523, 12063, 308, 7, 40, "Output"]
 }, Open  ]]
 }
 ]
