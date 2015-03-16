@@ -23,10 +23,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[      1063,         20]
-NotebookDataLength[     13225,        319]
-NotebookOptionsPosition[     13795,        315]
-NotebookOutlinePosition[     14137,        330]
-CellTagsIndexPosition[     14094,        327]
+NotebookDataLength[     13300,        321]
+NotebookOptionsPosition[     13867,        317]
+NotebookOutlinePosition[     14212,        332]
+CellTagsIndexPosition[     14169,        329]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -129,7 +129,7 @@ Cell[BoxData[
            RowBox[{"Sin", "[", "t", "]"}], 
            RowBox[{"Cos", "[", 
             RowBox[{"p", " ", "-", " ", 
-             RowBox[{"Pi", "/", "4"}]}], "]"}]}], " ", "]"}]}], " ", "+", " ", 
+             RowBox[{"Pi", "/", "4"}]}], "]"}]}], " ", "]"}]}], " ", "-", " ", 
         RowBox[{"2", " ", 
          RowBox[{"Cos", "[", " ", 
           RowBox[{"2", " ", "Pi", " ", "a", " ", 
@@ -199,7 +199,8 @@ Cell[BoxData[
    RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
   "]"}]], "Input",
  CellOpen->False,
- CellChangeTimes->{{3.6354266415727215`*^9, 3.635426660801155*^9}}],
+ CellChangeTimes->{{3.6354266415727215`*^9, 3.635426660801155*^9}, {
+  3.6354629612721124`*^9, 3.635462962379714*^9}}],
 
 Cell[BoxData[
  TagBox[
@@ -214,15 +215,15 @@ Cell[BoxData[
        Hold[$CellContext`pg$$], "Quality", "Plot Rendering"}, {
       "Quality", "Speed"}}}, Typeset`size$$ = {348., {284., 292.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    False, $CellContext`range$1066$$ = 0, $CellContext`a$1067$$ = 
-    0, $CellContext`pg$1068$$ = False}, 
+    False, $CellContext`range$432$$ = 0, $CellContext`a$433$$ = 
+    0, $CellContext`pg$434$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`a$$ = 0.25, $CellContext`pg$$ = 
         "Quality", $CellContext`range$$ = 18}, "ControllerVariables" :> {
-        Hold[$CellContext`range$$, $CellContext`range$1066$$, 0], 
-        Hold[$CellContext`a$$, $CellContext`a$1067$$, 0], 
-        Hold[$CellContext`pg$$, $CellContext`pg$1068$$, False]}, 
+        Hold[$CellContext`range$$, $CellContext`range$432$$, 0], 
+        Hold[$CellContext`a$$, $CellContext`a$433$$, 0], 
+        Hold[$CellContext`pg$$, $CellContext`pg$434$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -283,9 +284,9 @@ $CellContext`range$$}}, PlotStyle -> Directive[
             Pattern[$CellContext`p, 
              Blank[]]] = 
           2 Cos[(((2 Pi) $CellContext`a) Sin[$CellContext`t]) 
-              Cos[$CellContext`p - Pi/4]] + 
-           2 Cos[(((2 Pi) $CellContext`a) Sin[$CellContext`t]) 
-              Cos[$CellContext`p + Pi/4]]; $CellContext`asz = 
+              Cos[$CellContext`p - Pi/4]] - 2 
+           Cos[(((2 Pi) $CellContext`a) Sin[$CellContext`t]) 
+             Cos[$CellContext`p + Pi/4]]; $CellContext`asz = 
           1.5; $CellContext`toff = 0.1; $CellContext`axes = Graphics3D[{Red, 
              Arrow[
               Tube[{{0, 0, 0}, {$CellContext`asz, 0, 0}}], 0.05], Blue, 
@@ -310,11 +311,12 @@ $CellContext`toff, 0, 0}],
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.6354266544583435`*^9, 3.635426662563958*^9}}]
+ CellChangeTimes->{{3.6354266544583435`*^9, 3.635426662563958*^9}, 
+   3.6354629670129223`*^9}]
 }, Open  ]]
 },
 WindowSize->{707, 637},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowMargins->{{343, Automatic}, {Automatic, 16}},
 FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->"Default.nb"
 ]
@@ -330,9 +332,9 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[1485, 35, 7030, 166, 25, "Input",
+Cell[1485, 35, 7081, 167, 25, "Input",
  CellOpen->False],
-Cell[8518, 203, 5261, 109, 789, "Output"]
+Cell[8569, 204, 5282, 110, 789, "Output"]
 }, Open  ]]
 }
 ]
@@ -340,4 +342,4 @@ Cell[8518, 203, 5261, 109, 789, "Output"]
 
 (* End of internal cache information *)
 
-(* NotebookSignature TxTFMqEdtPR9YDg5qTHIrb1n *)
+(* NotebookSignature qup3wdIKwQaF3Dgv4bhQZ8EO *)

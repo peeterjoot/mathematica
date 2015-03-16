@@ -23,10 +23,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[      1063,         20]
-NotebookDataLength[      6242,        151]
-NotebookOptionsPosition[      6685,        143]
-NotebookOutlinePosition[      7246,        166]
-CellTagsIndexPosition[      7203,        163]
+NotebookDataLength[      6235,        151]
+NotebookOptionsPosition[      6678,        143]
+NotebookOutlinePosition[      7239,        166]
+CellTagsIndexPosition[      7196,        163]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -44,15 +44,15 @@ Cell[BoxData[
        Hold[$CellContext`pg$$], "Quality", "Plot Rendering"}, {
       "Quality", "Speed"}}}, Typeset`size$$ = {348., {284., 292.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    False, $CellContext`range$1066$$ = 0, $CellContext`a$1067$$ = 
-    0, $CellContext`pg$1068$$ = False}, 
+    False, $CellContext`range$432$$ = 0, $CellContext`a$433$$ = 
+    0, $CellContext`pg$434$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`a$$ = 0.25, $CellContext`pg$$ = 
         "Quality", $CellContext`range$$ = 18}, "ControllerVariables" :> {
-        Hold[$CellContext`range$$, $CellContext`range$1066$$, 0], 
-        Hold[$CellContext`a$$, $CellContext`a$1067$$, 0], 
-        Hold[$CellContext`pg$$, $CellContext`pg$1068$$, False]}, 
+        Hold[$CellContext`range$$, $CellContext`range$432$$, 0], 
+        Hold[$CellContext`a$$, $CellContext`a$433$$, 0], 
+        Hold[$CellContext`pg$$, $CellContext`pg$434$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -113,9 +113,9 @@ $CellContext`range$$}}, PlotStyle -> Directive[
             Pattern[$CellContext`p, 
              Blank[]]] = 
           2 Cos[(((2 Pi) $CellContext`a) Sin[$CellContext`t]) 
-              Cos[$CellContext`p - Pi/4]] + 
-           2 Cos[(((2 Pi) $CellContext`a) Sin[$CellContext`t]) 
-              Cos[$CellContext`p + Pi/4]]; $CellContext`asz = 
+              Cos[$CellContext`p - Pi/4]] - 2 
+           Cos[(((2 Pi) $CellContext`a) Sin[$CellContext`t]) 
+             Cos[$CellContext`p + Pi/4]]; $CellContext`asz = 
           1.5; $CellContext`toff = 0.1; $CellContext`axes = Graphics3D[{Red, 
              Arrow[
               Tube[{{0, 0, 0}, {$CellContext`asz, 0, 0}}], 0.05], Blue, 
@@ -165,11 +165,11 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[1463, 33, 5218, 108, 769, "Output"]
+Cell[1463, 33, 5211, 108, 769, "Output"]
 }
 ]
 *)
 
 (* End of internal cache information *)
 
-(* NotebookSignature Ev0wGdwAzVcIzAKfJFTHegLw *)
+(* NotebookSignature QwDR2O13q9bjoC1eUhEAWuIv *)
