@@ -23,10 +23,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[      1063,         20]
-NotebookDataLength[      6235,        151]
-NotebookOptionsPosition[      6678,        143]
-NotebookOutlinePosition[      7239,        166]
-CellTagsIndexPosition[      7196,        163]
+NotebookDataLength[      6264,        152]
+NotebookOptionsPosition[      6707,        144]
+NotebookOutlinePosition[      7268,        167]
+CellTagsIndexPosition[      7225,        164]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -34,31 +34,31 @@ Notebook[{
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`a$$ = 0.25, $CellContext`pg$$ = 
+   DynamicModuleBox[{$CellContext`n$$ = 0.25, $CellContext`pg$$ = 
     "Quality", $CellContext`range$$ = 18, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`range$$], 18}, 1, 25}, {{
-       Hold[$CellContext`a$$], 0.25, "s/\[Lambda]"}, 0, 3}, {{
+       Hold[$CellContext`n$$], 0.25, "h/\[Lambda]"}, 0, 3}, {{
        Hold[$CellContext`pg$$], "Quality", "Plot Rendering"}, {
       "Quality", "Speed"}}}, Typeset`size$$ = {348., {284., 292.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    False, $CellContext`range$432$$ = 0, $CellContext`a$433$$ = 
-    0, $CellContext`pg$434$$ = False}, 
+    False, $CellContext`range$8367$$ = 0, $CellContext`n$8368$$ = 
+    0, $CellContext`pg$8369$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
-      "Variables" :> {$CellContext`a$$ = 0.25, $CellContext`pg$$ = 
+      "Variables" :> {$CellContext`n$$ = 0.25, $CellContext`pg$$ = 
         "Quality", $CellContext`range$$ = 18}, "ControllerVariables" :> {
-        Hold[$CellContext`range$$, $CellContext`range$432$$, 0], 
-        Hold[$CellContext`a$$, $CellContext`a$433$$, 0], 
-        Hold[$CellContext`pg$$, $CellContext`pg$434$$, False]}, 
+        Hold[$CellContext`range$$, $CellContext`range$8367$$, 0], 
+        Hold[$CellContext`n$$, $CellContext`n$8368$$, 0], 
+        Hold[$CellContext`pg$$, $CellContext`pg$8369$$, False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> Show[
-        ParametricPlot3D[{$CellContext`af[$CellContext`a$$, $CellContext`t, \
+        ParametricPlot3D[{$CellContext`afn[$CellContext`n$$, $CellContext`t, \
 $CellContext`p]^2 $CellContext`rcap[$CellContext`t, $CellContext`p]}, \
 {$CellContext`t, 0, Pi}, {$CellContext`p, 0, Pi/2}, 
          AxesLabel -> {$CellContext`x, $CellContext`y, $CellContext`z}, 
@@ -70,24 +70,24 @@ $CellContext`range$$}}, PlotStyle -> Directive[
           1.89531260223257}, 
          PerformanceGoal -> $CellContext`pg$$], $CellContext`axes], 
       "Specifications" :> {{{$CellContext`range$$, 18}, 1, 
-         25}, {{$CellContext`a$$, 0.25, "s/\[Lambda]"}, 0, 3, Appearance -> 
+         25}, {{$CellContext`n$$, 0.25, "h/\[Lambda]"}, 0, 3, Appearance -> 
          "Labeled"}, {{$CellContext`pg$$, "Quality", "Plot Rendering"}, {
          "Quality", "Speed"}}}, "Options" :> {}, "DefaultOptions" :> {}],
      ImageSizeCache->{490., {380., 387.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
-    Initialization:>({{$CellContext`af[
-           Pattern[$CellContext`a, 
+    Initialization:>({{$CellContext`afn[
+           Pattern[$CellContext`n, 
             Blank[]], 
            Pattern[$CellContext`t, 
             Blank[]], 
            Pattern[$CellContext`p, 
             Blank[]]] = 
-         2 Cos[(((2 $CellContext`a) Pi) Cos[$CellContext`p - Pi/4]) 
-             Sin[$CellContext`t]] + 
-          2 Cos[(((2 $CellContext`a) Pi) Cos[$CellContext`p + Pi/4]) 
-             Sin[$CellContext`t]], $CellContext`rcap = {
+         2 Cos[2 Sqrt[2] $CellContext`n Pi Cos[$CellContext`p - Pi/4] 
+             Sin[$CellContext`t]] - 2 
+          Cos[2 Sqrt[2] $CellContext`n Pi Cos[$CellContext`p + Pi/4] 
+            Sin[$CellContext`t]], $CellContext`rcap = {
           Sin[#] Cos[#2], Sin[#] Sin[#2], 
            Cos[#]}& , $CellContext`axes = Graphics3D[{
             RGBColor[1, 0, 0], 
@@ -105,16 +105,17 @@ $CellContext`range$$}}, PlotStyle -> Directive[
             "\!\(\*SubscriptBox[\(e\), \(3\)]\)", {
              0, 0, 1.6}]}]}; {$CellContext`rcap = {
            Sin[#] Cos[#2], Sin[#] Sin[#2], 
-            Cos[#]}& ; $CellContext`af[
-            Pattern[$CellContext`a, 
+            Cos[#]}& ; $CellContext`afn[
+            Pattern[$CellContext`n, 
              Blank[]], 
             Pattern[$CellContext`t, 
              Blank[]], 
             Pattern[$CellContext`p, 
              Blank[]]] = 
-          2 Cos[(((2 Pi) $CellContext`a) Sin[$CellContext`t]) 
+          2 Cos[2 Pi Sqrt[2] $CellContext`n Sin[$CellContext`t] 
               Cos[$CellContext`p - Pi/4]] - 2 
-           Cos[(((2 Pi) $CellContext`a) Sin[$CellContext`t]) 
+           Cos[
+            2 Pi Sqrt[2] $CellContext`n Sin[$CellContext`t] 
              Cos[$CellContext`p + Pi/4]]; $CellContext`asz = 
           1.5; $CellContext`toff = 0.1; $CellContext`axes = Graphics3D[{Red, 
              Arrow[
@@ -165,11 +166,11 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[1463, 33, 5211, 108, 769, "Output"]
+Cell[1463, 33, 5240, 109, 769, "Output"]
 }
 ]
 *)
 
 (* End of internal cache information *)
 
-(* NotebookSignature QwDR2O13q9bjoC1eUhEAWuIv *)
+(* NotebookSignature AvTXc2e08Ep0SCged#E0ZfdI *)
