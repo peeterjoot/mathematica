@@ -1,0 +1,453 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     18699,        444]
+NotebookOptionsPosition[     18375,        428]
+NotebookOutlinePosition[     18720,        443]
+CellTagsIndexPosition[     18677,        440]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ClearAll", "[", " ", 
+    RowBox[{
+    "x", ",", " ", "z", ",", " ", "m", ",", " ", "xnPrime", ",", " ", "R", 
+     ",", " ", "x0", ",", " ", "unPrime", ",", " ", "af", ",", "  ", "zN"}], 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"m", " ", "=", " ", "3"}], " ", ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"xnPrime", " ", "=", " ", 
+     RowBox[{"Solve", "[", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"ChebyshevT", "[", 
+         RowBox[{"m", ",", " ", "x"}], "]"}], " ", "\[Equal]", " ", "0"}], 
+       ",", " ", 
+       RowBox[{"{", "x", "}"}]}], " ", "]"}]}], " ", ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"xnPrime", " ", "=", " ", 
+     RowBox[{"(", 
+      RowBox[{"x", " ", "/.", " ", "xnPrime"}], ")"}]}], " ", ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"R", " ", "=", " ", "30"}], " ", ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"x0", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"Cosh", "[", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", "m"}], ")"}], " ", 
+        RowBox[{"ArcCosh", "[", " ", 
+         RowBox[{"10", "^", 
+          RowBox[{"(", 
+           RowBox[{"R", "/", "20"}], ")"}]}], " ", "]"}]}], " ", "]"}], " ", "//",
+       " ", "N"}]}], " ", ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"unPrime", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"2", " ", 
+          RowBox[{"ArcCos", "[", " ", 
+           RowBox[{"#", "/", "x0"}], " ", "]"}]}], " ", "&"}], "/@", " ", 
+        "xnPrime"}], ")"}], " ", "//", " ", "N"}]}], " ", ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"zN", " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"E", "^", 
+        RowBox[{"(", 
+         RowBox[{"I", " ", "#"}], ")"}]}], " ", "&"}], " ", "/@", " ", 
+      "unPrime"}]}], " ", ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"af", "[", "z_", "]"}], " ", "=", " ", 
+     RowBox[{
+      RowBox[{"Product", "[", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"z", " ", "-", " ", 
+          RowBox[{"zN", "[", 
+           RowBox[{"[", "i", "]"}], "]"}]}], ")"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", " ", 
+          RowBox[{"zN", " ", "//", " ", "Length"}]}], "}"}]}], "]"}], " ", "//",
+       " ", "Expand"}]}], " ", ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Column", "[", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"PolarPlot", "[", "  ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Abs", "[", 
+            RowBox[{"af", "[", " ", 
+             RowBox[{"E", "^", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"I", " ", "2", " ", "Pi", " ", "d", " ", 
+                 RowBox[{"Cos", "[", "t", "]"}]}], " ", "+", " ", 
+                RowBox[{"I", " ", "u0"}]}], ")"}]}], "]"}], "]"}], "^", "2"}],
+           " ", ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", " ", "0", ",", " ", "Pi"}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PolarAxesOrigin", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "max"}], "}"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"PolarGridLines", "\[Rule]", "Automatic"}], ",", 
+          RowBox[{"PolarAxes", "\[Rule]", "True"}], ",", 
+          RowBox[{"PolarTicks", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"N", "[", 
+                  RowBox[{
+                   RowBox[{"Pi", "/", "6"}], " ", "i"}], "]"}], ",", 
+                 RowBox[{
+                  RowBox[{"ToString", "[", 
+                   RowBox[{"30", " ", "i"}], "]"}], "<>", 
+                  "\"\<\[Degree]\>\""}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"i", ",", 
+                 RowBox[{"-", "5"}], ",", "6"}], "}"}]}], "]"}], ",", 
+             "Automatic"}], "}"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"PerformanceGoal", "\[Rule]", "perfgoal"}]}], 
+         "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"SphericalPlot3D", "[", " ", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Abs", "[", 
+              RowBox[{"af", "[", " ", 
+               RowBox[{"E", "^", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"I", " ", "2", " ", "Pi", " ", "d", " ", 
+                   RowBox[{"Cos", "[", "t", "]"}]}], " ", "+", " ", 
+                  RowBox[{"I", " ", "u0"}]}], ")"}]}], "]"}], "]"}], "^", 
+             "2"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", " ", "0", ",", " ", "Pi"}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"p", ",", " ", "0", ",", " ", 
+              RowBox[{"2", " ", "Pi"}]}], "}"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"PlotRange", " ", "\[Rule]", " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "max"}], ",", " ", "max"}], "}"}]}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"PerformanceGoal", "\[Rule]", "perfgoal"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"AxesLabel", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{"x", ",", "y", ",", "z"}], "}"}]}]}], 
+           "\[IndentingNewLine]", "]"}], ",", "axes"}], "]"}]}], 
+       "\[IndentingNewLine]", "}"}], "]"}], "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"d", ",", " ", 
+         RowBox[{"1", "/", "4"}], ",", " ", "\"\<d/\[Lambda]\>\""}], "}"}], 
+       ",", " ", "0.01", ",", " ", "2", " ", ",", " ", 
+       RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], 
+     "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "u0", ",", " ", "0", ",", " ", 
+         "\"\<\!\(\*SubscriptBox[\(u\), \(0\)]\)\>\""}], "}"}], ",", " ", "0",
+        ",", " ", 
+       RowBox[{"2", " ", "Pi"}], ",", " ", 
+       RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], 
+     "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "perfgoal", ",", " ", "\"\<Quality\>\"", ",", " ", 
+         "\"\<Performance Goal\>\""}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Quality\>\"", ",", " ", "\"\<Speed\>\""}], "}"}]}], 
+      "}"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{"max", ",", " ", "None"}], "}"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{"asz", ",", " ", "None"}], "}"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{"toff", ",", " ", "None"}], "}"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{"axes", ",", " ", "None"}], "}"}], "\[IndentingNewLine]", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Initialization", " ", "\[RuleDelayed]", "  ", 
+      RowBox[{"{", " ", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"max", " ", "=", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"NMaximize", "[", " ", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Abs", "[", 
+                RowBox[{"af", "[", " ", 
+                 RowBox[{"E", "^", 
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"I", " ", "2", " ", "Pi", " ", "d", " ", 
+                    RowBox[{"Cos", "[", "t", "]"}]}], " ", "+", " ", 
+                    RowBox[{"I", " ", "u0"}]}], ")"}]}], "]"}], "]"}], "^", 
+               "2"}], ",", " ", 
+              RowBox[{"t", " ", ">", " ", "0"}], ",", " ", 
+              RowBox[{"t", " ", "<", "  ", "Pi"}]}], "}"}], ",", 
+            RowBox[{"{", "t", "}"}]}], "]"}], " ", "//", " ", "First"}]}], 
+        " ", ";", " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"asz", " ", "=", " ", 
+         RowBox[{"max", " ", "/", "2"}]}], " ", ";", "\[IndentingNewLine]", 
+        RowBox[{"toff", " ", "=", " ", "0.1"}], " ", ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"axes", " ", "=", " ", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{"Red", ",", 
+            RowBox[{"Arrow", "[", 
+             RowBox[{
+              RowBox[{"Tube", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"asz", ",", "0", ",", "0"}], "}"}]}], "}"}], "]"}], 
+              " ", ",", " ", "0.05"}], "]"}], ",", "\[IndentingNewLine]", 
+            "Blue", ",", 
+            RowBox[{"Arrow", "[", 
+             RowBox[{
+              RowBox[{"Tube", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "asz", ",", "0"}], "}"}]}], "}"}], "]"}], 
+              " ", ",", " ", "0.05"}], "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"Darker", "[", 
+             RowBox[{"Green", ",", " ", ".8"}], "]"}], ",", 
+            RowBox[{"Arrow", "[", 
+             RowBox[{
+              RowBox[{"Tube", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "asz"}], "}"}]}], "}"}], "]"}], 
+              " ", ",", " ", "0.05"}], "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"Text", "[", " ", 
+             RowBox[{"\"\<\!\(\*SubscriptBox[\(e\), \(1\)]\)\>\"", ",", "  ", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"asz", " ", "+", " ", "toff"}], ",", "0", ",", "0"}], 
+               "}"}]}], " ", "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"Text", "[", " ", 
+             RowBox[{"\"\<\!\(\*SubscriptBox[\(e\), \(2\)]\)\>\"", ",", "  ", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", 
+                RowBox[{"asz", " ", "+", " ", "toff"}], ",", "0"}], "}"}]}], 
+             " ", "]"}], ",", "\[IndentingNewLine]", 
+            RowBox[{"Text", "[", " ", 
+             RowBox[{"\"\<\!\(\*SubscriptBox[\(e\), \(3\)]\)\>\"", ",", "  ", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0", ",", 
+                RowBox[{"asz", " ", "+", " ", "toff"}]}], "}"}]}], " ", 
+             "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], " ", ";"}], 
+       "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", ",", 
+     RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
+    "]"}], "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.636117541532469*^9, 3.6361177484353027`*^9}, {
+  3.636117816098173*^9, 3.636117872045373*^9}, {3.636117934213929*^9, 
+  3.6361179396112375`*^9}, {3.636117981574638*^9, 3.636118129592104*^9}, {
+  3.6361181709124675`*^9, 3.636118204129367*^9}, {3.636118237465274*^9, 
+  3.6361183466365185`*^9}, {3.636118392094118*^9, 3.636118477112981*^9}, {
+  3.6361185106238976`*^9, 3.636118607853459*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`asz$$ = 
+    22.189705962954182`, $CellContext`axes$$ = Graphics3D[{
+      RGBColor[1, 0, 0], 
+      Arrow[
+       Tube[{{0, 0, 0}, {22.189705962954182`, 0, 0}}], 0.05], 
+      RGBColor[0, 0, 1], 
+      Arrow[
+       Tube[{{0, 0, 0}, {0, 22.189705962954182`, 0}}], 0.05], 
+      RGBColor[0., 0.19999999999999996`, 0.], 
+      Arrow[
+       Tube[{{0, 0, 0}, {0, 0, 22.189705962954182`}}], 0.05], 
+      Text["\!\(\*SubscriptBox[\(e\), \(1\)]\)", {22.289705962954184`, 0, 0}], 
+      Text["\!\(\*SubscriptBox[\(e\), \(2\)]\)", {0, 22.289705962954184`, 0}], 
+      Text[
+      "\!\(\*SubscriptBox[\(e\), \(3\)]\)", {
+       0, 0, 22.289705962954184`}]}], $CellContext`d$$ = Rational[
+    1, 4], $CellContext`max$$ = 44.379411925908364`, $CellContext`perfgoal$$ =
+     "Quality", $CellContext`toff$$ = 0.1, $CellContext`u0$$ = 0, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`d$$], 
+       Rational[1, 4], "d/\[Lambda]"}, 0.01, 2}, {{
+       Hold[$CellContext`u0$$], 0, "\!\(\*SubscriptBox[\(u\), \(0\)]\)"}, 0, 
+      2 Pi}, {{
+       Hold[$CellContext`perfgoal$$], "Quality", "Performance Goal"}, {
+      "Quality", "Speed"}}, {
+      Hold[$CellContext`max$$], 0}, {
+      Hold[$CellContext`asz$$], 0}, {
+      Hold[$CellContext`toff$$], 0}, {
+      Hold[$CellContext`axes$$], 0}}, Typeset`size$$ = {240., {258., 265.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`d$8911$$ = 0, $CellContext`u0$8912$$ = 
+    0, $CellContext`perfgoal$8913$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`asz$$ = 0, $CellContext`axes$$ = 
+        0, $CellContext`d$$ = Rational[1, 4], $CellContext`max$$ = 
+        0, $CellContext`perfgoal$$ = "Quality", $CellContext`toff$$ = 
+        0, $CellContext`u0$$ = 0}, "ControllerVariables" :> {
+        Hold[$CellContext`d$$, $CellContext`d$8911$$, 0], 
+        Hold[$CellContext`u0$$, $CellContext`u0$8912$$, 0], 
+        Hold[$CellContext`perfgoal$$, $CellContext`perfgoal$8913$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         PolarPlot[Abs[
+            $CellContext`af[
+            E^(I 2 Pi $CellContext`d$$ Cos[$CellContext`t] + 
+              I $CellContext`u0$$)]]^2, {$CellContext`t, 0, Pi}, 
+          PolarAxesOrigin -> {0, $CellContext`max$$}, PolarGridLines -> 
+          Automatic, PolarAxes -> True, PolarTicks -> {
+            Table[{
+              N[(Pi/6) $CellContext`i], 
+              StringJoin[
+               ToString[30 $CellContext`i], 
+               "\[Degree]"]}, {$CellContext`i, -5, 6}], Automatic}, 
+          PerformanceGoal -> $CellContext`perfgoal$$], 
+         Show[
+          SphericalPlot3D[Abs[
+             $CellContext`af[
+             E^(I 2 Pi $CellContext`d$$ Cos[$CellContext`t] + 
+               I $CellContext`u0$$)]]^2, {$CellContext`t, 0, 
+            Pi}, {$CellContext`p, 0, 2 Pi}, 
+           PlotRange -> {-$CellContext`max$$, $CellContext`max$$}, 
+           PerformanceGoal -> $CellContext`perfgoal$$, 
+           AxesLabel -> {$CellContext`x, $CellContext`y, $CellContext`z}], \
+$CellContext`axes$$]}], "Specifications" :> {{{$CellContext`d$$, 
+          Rational[1, 4], "d/\[Lambda]"}, 0.01, 2, Appearance -> 
+         "Labeled"}, {{$CellContext`u0$$, 0, 
+          "\!\(\*SubscriptBox[\(u\), \(0\)]\)"}, 0, 2 Pi, Appearance -> 
+         "Labeled"}, {{$CellContext`perfgoal$$, "Quality", 
+          "Performance Goal"}, {"Quality", "Speed"}}, {$CellContext`max$$, 0, 
+         ControlType -> None}, {$CellContext`asz$$, 0, ControlType -> 
+         None}, {$CellContext`toff$$, 0, ControlType -> 
+         None}, {$CellContext`axes$$, 0, ControlType -> None}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{511., {354., 361.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({{$CellContext`af[
+           Pattern[$CellContext`z, 
+            Blank[]]] = (1. - 4.000204360710245*^-16 
+           I) + (2.3308937211320773` - 6.625878346402912*^-16 
+            I) $CellContext`z + (2.3308937211320773` - 
+            3.4450928483976665`*^-16 
+            I) $CellContext`z^2 + $CellContext`z^3}; {$CellContext`max$$ = 
+          First[
+            NMaximize[{Abs[
+                $CellContext`af[
+                E^(I 2 Pi $CellContext`d$$ Cos[$CellContext`t] + 
+                  I $CellContext`u0$$)]]^2, $CellContext`t > 
+              0, $CellContext`t < 
+              Pi}, {$CellContext`t}]]; $CellContext`asz$$ = \
+$CellContext`max$$/2; $CellContext`toff$$ = 0.1; $CellContext`axes$$ = 
+          Graphics3D[{Red, 
+             Arrow[
+              Tube[{{0, 0, 0}, {$CellContext`asz$$, 0, 0}}], 0.05], Blue, 
+             Arrow[
+              Tube[{{0, 0, 0}, {0, $CellContext`asz$$, 0}}], 0.05], 
+             Darker[Green, 0.8], 
+             Arrow[
+              Tube[{{0, 0, 0}, {0, 0, $CellContext`asz$$}}], 0.05], 
+             Text[
+             "\!\(\*SubscriptBox[\(e\), \(1\)]\)", {$CellContext`asz$$ + \
+$CellContext`toff$$, 0, 0}], 
+             Text[
+             "\!\(\*SubscriptBox[\(e\), \(2\)]\)", {
+              0, $CellContext`asz$$ + $CellContext`toff$$, 0}], 
+             Text[
+             "\!\(\*SubscriptBox[\(e\), \(3\)]\)", {
+              0, 0, $CellContext`asz$$ + $CellContext`toff$$}]}]; Null}}; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.636118579126816*^9, 3.6361186085675*^9}}]
+}, Open  ]]
+},
+WindowSize->{1107, 637},
+WindowMargins->{{72, Automatic}, {38, Automatic}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 11615, 276, 1341, "Input"],
+Cell[12197, 300, 6162, 125, 737, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
