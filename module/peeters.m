@@ -18,16 +18,25 @@ The last (optional) argument is for whether or not to allow rasterization.
 (*
 https://plus.google.com/u/0/103302026148070112829/posts/YtM2TERTpob
 *)
-exportForLatex[filename_, image_, allowRast_ : False ]  := Module[{output, dir},
+exportForLatex[filename_, image_, allowRast_ : False ]  := Module[{output, dir, sty},
 
 dir = Directory[] ;
+
+sty = CurrentValue[InputNotebook[], StyleDefinitions] ;
+
+If [ sty == "Default.nb", Null, SetOptions[InputNotebook[], StyleDefinitions->"Default.nb" ] ] ;
+
 output =
 {Export[filename  <> ".eps",First[ImportString[ExportString[image, "PDF", "AllowRasterization"-> allowRast, Background->None],"PDF"]]]
 
 ,Export[filename  <> "pn.png", image, "AllowRasterization"-> allowRast, Background->None, ImageResolution->72*4]
 (*,Export[filename  <> ".pdf", image]*)
 } ;
-{dir <> "/" <> output[[1]], dir <> "/" <> output[[2]] }
+{dir <> "/" <> output[[1]], dir <> "/" <> output[[2]] } ;
+
+If [ sty == "Default.nb", Null, SetOptions[InputNotebook[], StyleDefinitions-> sty ] ] ;
+
+output
 ]
 
 
