@@ -17,14 +17,15 @@ The last (optional) argument is for whether or not to allow rasterization.
 
 (*
 https://plus.google.com/u/0/103302026148070112829/posts/YtM2TERTpob
+http://mathematica.stackexchange.com/a/78532/10
 *)
 exportForLatex[filename_, image_, allowRast_ : False ]  := Module[{output, dir, sty},
 
 dir = Directory[] ;
 
-sty = CurrentValue[InputNotebook[], StyleDefinitions] ;
+sty = CurrentValue[ InputNotebook[], StyleDefinitions ] ;
 
-If [ sty == "Default.nb", Null, SetOptions[InputNotebook[], StyleDefinitions->"Default.nb" ] ] ;
+If [ sty == "Default.nb", Null, SetOptions[ InputNotebook[], StyleDefinitions->"Default.nb" ] ] ;
 
 output =
 {Export[filename  <> ".eps",First[ImportString[ExportString[image, "PDF", "AllowRasterization"-> allowRast, Background->None],"PDF"]]]
@@ -34,7 +35,7 @@ output =
 } ;
 {dir <> "/" <> output[[1]], dir <> "/" <> output[[2]] } ;
 
-If [ sty == "Default.nb", Null, SetOptions[InputNotebook[], StyleDefinitions-> sty ] ] ;
+If [ sty == "Default.nb", Null, SetOptions[ InputNotebook[], StyleDefinitions-> sty ] ] ;
 
 output
 ]
