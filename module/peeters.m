@@ -1,5 +1,10 @@
 (* ::Package:: *)
 
+(*
+Begin["`Private`"]
+End[]
+*)
+
 Begin["peeters`"]
 
 (* copy this module to a directory in $Path.  Then invoke with <<peeters` *)
@@ -63,6 +68,38 @@ cross = Cross[ a, b ] ;
 
 {Cross[ b, cross], Cross[cross, a]}/(cross . cross)
 ] ;
+
+
+
+(*
+ClearAll[ rcap, thetacap, phicap ]
+rcap = {Sin[#1] Cos[#2], Sin[#1] Sin[#2], Cos[#1]} & ;
+thetacap = {Cos[#1] Cos[#2], Cos[#1] Sin[#2], -Sin[#1]} &;
+phicap = {-Sin[#2], Cos[#2], 0 } & ;
+*)
+
+(*
+ClearAll[ spherical, rcap, thetacap, phicap ]
+spherical[t_, p_] := CoordinateTransformData["Spherical" -> "Cartesian", "OrthonormalBasisRotation", {1, t, p}]  ;
+rcap[t_, p_] = spherical[t, p] // First ;
+thetacap[t_, p_] = spherical[t, p] [[2]] ;
+phicap[t_, p_] = spherical[t, p] // Last ;
+*)
+(*
+rcap[\[Theta], \[Phi]]
+thetacap[\[Theta], \[Phi]]
+phicap[\[Theta], \[Phi]]
+*)
+
+(*checks*)
+(*{
+rcap[\[Theta], \[Phi]]. thetacap[\[Theta], \[Phi]]// Simplify,
+thetacap[\[Theta], \[Phi]]. phicap[\[Theta], \[Phi]],
+phicap[\[Theta], \[Phi]]. rcap[\[Theta], \[Phi]],
+rcap[\[Theta], \[Phi]]\[Cross] thetacap[\[Theta], \[Phi]] -phicap[\
+\[Theta], \[Phi]]// Simplify } // TableForm*)
+
+
 
 
 (* Based on a ListLinePlot version posted in: http://mathematica.stackexchange.com/a/37228/10 *)
