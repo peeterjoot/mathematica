@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     41691,       1016]
-NotebookOptionsPosition[     41206,        995]
-NotebookOutlinePosition[     41551,       1010]
-CellTagsIndexPosition[     41508,       1007]
+NotebookDataLength[     46869,       1117]
+NotebookOptionsPosition[     46382,       1096]
+NotebookOutlinePosition[     46727,       1111]
+CellTagsIndexPosition[     46684,       1108]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -22,8 +22,9 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{"ClearAll", "[", 
-  RowBox[{"spherical", ",", "rcap", ",", "thetacap", ",", "phicap"}], 
-  "]"}], "\n", 
+  RowBox[{
+  "spherical", ",", "rcap", ",", "thetacap", ",", "phicap", ",", " ", "t", 
+   ",", " ", "p"}], "]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{"spherical", "[", 
@@ -94,7 +95,7 @@ Cell[BoxData[{
         RowBox[{"Cos", "[", "#2", "]"}], ",", " ", "0"}], " ", "}"}], " ", 
       "&"}]}], " ", ";"}], "\[IndentingNewLine]", "*)"}], 
   "\[IndentingNewLine]", 
-  RowBox[{"(*", "checks", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", "checks", "*)"}], "\n", 
   RowBox[{"(*", 
    RowBox[{
     RowBox[{"{", "\[IndentingNewLine]", 
@@ -128,7 +129,7 @@ Cell[BoxData[{
         RowBox[{"phicap", "[", 
          RowBox[{"\[Theta]", ",", " ", "\[Phi]"}], "]"}]}], "//", " ", 
        "Simplify"}]}], " ", "}"}], " ", "//", " ", "TableForm"}], "*)"}], 
-  "\[IndentingNewLine]", "\n"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"ClearAll", "[", " ", 
@@ -453,7 +454,7 @@ Cell[BoxData[{
    3.6376166820998993`*^9, 3.637616682241907*^9}, {3.6376192579698296`*^9, 
    3.637619303215417*^9}, {3.637619843483017*^9, 3.637619864710231*^9}, {
    3.637619912565968*^9, 3.6376199528962746`*^9}, {3.6376204281194563`*^9, 
-   3.637620451734807*^9}}],
+   3.637620451734807*^9}, {3.6377671540441003`*^9, 3.637767155054158*^9}}],
 
 Cell[BoxData[
  FormBox[
@@ -545,7 +546,8 @@ Cell[BoxData[
  CellChangeTimes->{3.6375381205579705`*^9, 3.6375714540410347`*^9, 
   3.6376166067275877`*^9, 3.6376166529782333`*^9, 3.6376167463485737`*^9, 
   3.637619346330883*^9, 3.63761986924049*^9, 3.637619924518652*^9, 
-  3.6376199547793827`*^9, 3.637620455486021*^9}]
+  3.6376199547793827`*^9, 3.637620455486021*^9, 3.637767127895605*^9, 
+  3.637767211967413*^9, 3.6377957850470324`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -558,7 +560,8 @@ Cell[BoxData[
      RowBox[{"{", 
       RowBox[{
       "k", ",", " ", "c", ",", " ", "mv", ",", "m", " ", ",", "minDb", ",", 
-       " ", "r"}], "}"}], ",", "\[IndentingNewLine]", 
+       " ", "r", ",", " ", "tmax", ",", " ", "pmax"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
      RowBox[{
       RowBox[{"c", " ", "=", " ", 
        RowBox[{"3", " ", 
@@ -586,6 +589,29 @@ Cell[BoxData[
         "]"}]}], " ", ";", "\[IndentingNewLine]", 
       RowBox[{"m", " ", "=", " ", 
        RowBox[{"mv", " ", "//", " ", "First"}]}], " ", ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"tmax", "  ", "=", " ", 
+       RowBox[{"\[Theta]", " ", "/.", " ", 
+        RowBox[{"(", 
+         RowBox[{"mv", " ", "//", " ", "Last"}], ")"}]}]}], " ", ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"pmax", "  ", "=", " ", 
+       RowBox[{"\[Phi]", " ", "/.", " ", 
+        RowBox[{"(", 
+         RowBox[{"mv", " ", "//", " ", "Last"}], ")"}]}]}], " ", ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"kcap", " ", "=", " ", 
+       RowBox[{"rcap", "[", " ", 
+        RowBox[{"tmax", ",", " ", "pmax"}], " ", "]"}]}], " ", ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ecap", " ", "=", " ", 
+       RowBox[{"ef", "[", " ", 
+        RowBox[{
+        "tmax", ",", " ", "pmax", ",", " ", "k", ",", " ", "a", ",", " ", 
+         "b"}], "]"}]}], " ", ";", "\[IndentingNewLine]", 
+      RowBox[{"ncap", " ", "=", " ", 
+       RowBox[{"Cross", "[", 
+        RowBox[{"kcap", ",", " ", "ecap"}], "]"}]}], " ", ";", 
       "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"minDb", " ", "=", " ", 
        RowBox[{"-", "40"}]}], " ", ";", "\[IndentingNewLine]", 
@@ -626,13 +652,11 @@ Cell[BoxData[
                 RowBox[{
                  RowBox[{"Norm", "[", 
                   RowBox[{"ef", "[", 
-                   RowBox[{"#", ",", " ", 
-                    RowBox[{"\[Phi]", " ", "/.", " ", 
-                    RowBox[{"(", 
-                    RowBox[{"mv", " ", "//", " ", "Last"}], ")"}]}], ",", " ",
-                     "k", ",", " ", "a", ",", " ", "b"}], "]"}], "]"}], "/", 
-                 "m"}], " ", ")"}], "^", "2"}], "&"}], " ", "]"}], 
-            "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+                   RowBox[{
+                   "#", ",", " ", "pmax", ",", " ", "k", ",", " ", "a", ",", 
+                    " ", "b"}], "]"}], "]"}], "/", "m"}], " ", ")"}], "^", 
+               "2"}], "&"}], " ", "]"}], "\[IndentingNewLine]", ",", 
+            "\[IndentingNewLine]", 
             RowBox[{"PolarDbPlot", "[", " ", "\[IndentingNewLine]", 
              RowBox[{
               RowBox[{
@@ -656,36 +680,32 @@ Cell[BoxData[
                    RowBox[{"#", ",", " ", 
                     RowBox[{"Pi", "/", "2"}], ",", " ", "k", ",", " ", "a", 
                     ",", " ", "b"}], "]"}], "]"}], "/", "m"}], " ", ")"}], 
-               "^", "2"}], "&"}], " ", "]"}]}], "\[IndentingNewLine]", 
-           RowBox[{"(*", 
-            RowBox[{",", "\[IndentingNewLine]", 
-             RowBox[{"PolarPlot", "[", " ", 
+               "^", "2"}], "&"}], " ", "]"}], "\[IndentingNewLine]", ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"PolarPlot", "[", " ", 
+             RowBox[{
               RowBox[{
-               RowBox[{
-                RowBox[{"Norm", "[", 
-                 RowBox[{"ef", "[", 
-                  RowBox[{
-                   RowBox[{"\[Theta]", " ", "/.", " ", 
-                    RowBox[{"(", 
-                    RowBox[{"mv", " ", "//", " ", "Last"}], ")"}]}], ",", " ",
-                    "p", ",", " ", "k", ",", " ", "a", ",", " ", "b"}], "]"}],
-                  "]"}], "/", "m"}], ",", "\[IndentingNewLine]", 
-               RowBox[{"{", 
-                RowBox[{"p", ",", " ", "0", ",", " ", 
-                 RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
-               "\[IndentingNewLine]", 
-               RowBox[{"PolarAxesOrigin", "\[Rule]", 
-                RowBox[{"{", 
-                 RowBox[{"0", ",", "1"}], " ", "}"}]}], ",", 
-               "\[IndentingNewLine]", 
-               RowBox[{"PolarGridLines", "\[Rule]", "Automatic"}], ",", 
-               RowBox[{"PolarAxes", "\[Rule]", "True"}], ",", 
-               RowBox[{"PolarTicks", "\[Rule]", 
-                RowBox[{"{", 
+               RowBox[{"Norm", "[", 
+                RowBox[{"ef", "[", 
                  RowBox[{
-                  RowBox[{"Table", "[", 
-                   RowBox[{
-                    RowBox[{"{", 
+                 "tmax", ",", " ", "p", ",", " ", "k", ",", " ", "a", ",", 
+                  " ", "b"}], "]"}], "]"}], "/", "m"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{"p", ",", " ", "0", ",", " ", 
+                RowBox[{"2", " ", "Pi"}]}], "}"}], ",", "\[IndentingNewLine]", 
+              RowBox[{"PolarAxesOrigin", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "1"}], " ", "}"}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"PolarGridLines", "\[Rule]", "Automatic"}], ",", 
+              RowBox[{"PolarAxes", "\[Rule]", "True"}], ",", 
+              RowBox[{"PolarTicks", "\[Rule]", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Table", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
                     RowBox[{
                     RowBox[{"N", "[", 
                     RowBox[{
@@ -694,23 +714,54 @@ Cell[BoxData[
                     RowBox[{"ToString", "[", 
                     RowBox[{"30", " ", "i"}], "]"}], "<>", 
                     "\"\<\[Degree]\>\""}]}], "}"}], ",", 
-                    RowBox[{"{", 
+                   RowBox[{"{", 
                     RowBox[{"i", ",", 
                     RowBox[{"-", "5"}], ",", "6"}], "}"}]}], "]"}], ",", 
-                  "Automatic"}], "}"}]}]}], "\[IndentingNewLine]", "]"}]}], 
-            "*)"}], "\[IndentingNewLine]", "}"}], "]"}], 
+                 "Automatic"}], "}"}]}]}], "\[IndentingNewLine]", "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Plot", "[", " ", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Norm", "[", 
+                RowBox[{"ef", "[", 
+                 RowBox[{
+                 "tmax", ",", " ", "p", ",", " ", "k", ",", " ", "a", ",", 
+                  " ", "b"}], "]"}], "]"}], "/", "m"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{"p", ",", " ", "0", ",", " ", 
+                RowBox[{"2", " ", "Pi"}]}], "}"}], "\[IndentingNewLine]", ",", 
+              RowBox[{"Ticks", " ", "\[Rule]", " ", 
+               RowBox[{"{", 
+                RowBox[{"Table", "[", 
+                 RowBox[{
+                  RowBox[{"i", " ", 
+                   RowBox[{"Pi", "/", "2"}]}], ",", " ", 
+                  RowBox[{"{", 
+                   RowBox[{"i", ",", " ", "0", ",", " ", "4"}], "}"}]}], 
+                 "]"}], "}"}]}], "\[IndentingNewLine]", ",", " ", 
+              RowBox[{"Epilog", " ", "\[Rule]", " ", 
+               RowBox[{"{", 
+                RowBox[{"Point", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"pmax", ",", " ", 
+                   RowBox[{
+                    RowBox[{"Norm", "[", 
+                    RowBox[{"ef", "[", 
+                    RowBox[{
+                    "tmax", ",", "pmax", ",", " ", "k", ",", " ", "a", ",", 
+                    " ", "b"}], "]"}], "]"}], "/", "m"}]}], "}"}], "]"}], 
+                "}"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+           "\[IndentingNewLine]", "\[IndentingNewLine]", "}"}], "]"}], 
          "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
          RowBox[{"PolarPlot", "[", " ", 
           RowBox[{
            RowBox[{
             RowBox[{"Norm", "[", 
              RowBox[{"ef", "[", 
-              RowBox[{"t", ",", " ", 
-               RowBox[{"\[Phi]", " ", "/.", " ", 
-                RowBox[{"(", 
-                 RowBox[{"mv", " ", "//", " ", "Last"}], ")"}]}], ",", " ", 
-               "k", ",", " ", "a", ",", " ", "b"}], "]"}], "]"}], "/", "m"}], 
-           ",", "\[IndentingNewLine]", 
+              RowBox[{
+              "t", ",", " ", "pmax", ",", " ", "k", ",", " ", "a", ",", " ", 
+               "b"}], "]"}], "]"}], "/", "m"}], ",", "\[IndentingNewLine]", 
            RowBox[{"{", 
             RowBox[{"t", ",", " ", "0", ",", "  ", "Pi"}], "}"}], ",", 
            "\[IndentingNewLine]", 
@@ -741,31 +792,40 @@ Cell[BoxData[
                   RowBox[{"-", "5"}], ",", "6"}], "}"}]}], "]"}], ",", 
               "Automatic"}], "}"}]}], ",", "\[IndentingNewLine]", 
            RowBox[{"PlotStyle", "\[Rule]", "Thick"}]}], "\[IndentingNewLine]",
-           "]"}], "\[IndentingNewLine]", 
-         RowBox[{"(*", 
-          RowBox[{",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-           RowBox[{"SphericalPlot3D", "[", 
-            RowBox[{
+           "]"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{"SphericalPlot3D", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
              RowBox[{
-              RowBox[{"(", 
-               RowBox[{
-                RowBox[{"Norm", "[", 
-                 RowBox[{"ef", "[", 
-                  RowBox[{
-                  "\[Theta]", ",", " ", "\[Phi]", ",", " ", "k", ",", " ", 
-                   "a", ",", " ", "b"}], "]"}], "]"}], "/", "m"}], ")"}], "^",
-               "2"}], ",", 
-             RowBox[{"{", 
-              RowBox[{"\[Theta]", ",", "0", ",", "Pi"}], "}"}], ",", 
-             RowBox[{"{", 
-              RowBox[{"\[Phi]", ",", "0", ",", 
-               RowBox[{"2", "Pi"}]}], "}"}], ",", "\[IndentingNewLine]", 
-             RowBox[{"PlotRange", " ", "\[Rule]", " ", "Full"}], ",", 
-             "\[IndentingNewLine]", 
-             RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+              RowBox[{"Norm", "[", 
+               RowBox[{"ef", "[", 
+                RowBox[{
+                "\[Theta]", ",", " ", "\[Phi]", ",", " ", "k", ",", " ", "a", 
+                 ",", " ", "b"}], "]"}], "]"}], "/", "m"}], ")"}], "^", "2"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{"\[Theta]", ",", "0", ",", "Pi"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"\[Phi]", ",", "0", ",", 
+             RowBox[{"2", "Pi"}]}], "}"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"PlotRange", " ", "\[Rule]", " ", "Full"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+            RowBox[{"{", 
+             RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "}"}]}], 
+           "\[IndentingNewLine]", ",", 
+           RowBox[{"RegionFunction", "\[Rule]", 
+            RowBox[{"Function", "[", 
+             RowBox[{
               RowBox[{"{", 
-               RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "}"}]}]}], 
-            "\[IndentingNewLine]", "]"}]}], "*)"}], "\[IndentingNewLine]", 
+               RowBox[{"x", ",", "y", ",", "z"}], "}"}], ",", 
+              RowBox[{
+               RowBox[{"ncap", ".", 
+                RowBox[{"{", 
+                 RowBox[{"x", ",", "y", ",", "z"}], "}"}]}], "<", "0"}]}], 
+             "]"}]}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
          ",", "\[IndentingNewLine]", 
          RowBox[{"Show", "[", 
           RowBox[{
@@ -866,7 +926,14 @@ Cell[BoxData[
    3.6376170318859053`*^9}, {3.6376170830218306`*^9, 3.637617464015622*^9}, {
    3.6376175633073015`*^9, 3.6376175870486593`*^9}, {3.6376194541960526`*^9, 
    3.637619484493786*^9}, 3.637619556298893*^9, {3.637620080230558*^9, 
-   3.6376201280222917`*^9}, {3.6376201646503863`*^9, 3.6376201973872585`*^9}}],
+   3.6376201280222917`*^9}, {3.6376201646503863`*^9, 
+   3.6376201973872585`*^9}, {3.6377672574250135`*^9, 3.637767262815322*^9}, {
+   3.6377672979943337`*^9, 3.637767313788237*^9}, {3.637767349300268*^9, 
+   3.637767363932105*^9}, {3.6377673984140773`*^9, 3.6377674413935356`*^9}, {
+   3.6377674725563183`*^9, 3.637767552747905*^9}, {3.6377676175346107`*^9, 
+   3.6377676250960426`*^9}, {3.637767662143162*^9, 3.6377677055026417`*^9}, {
+   3.63776776631012*^9, 3.6377678676879187`*^9}, {3.637795789421282*^9, 
+   3.6377959140704117`*^9}}],
 
 Cell[BoxData[
  TagBox[
@@ -879,24 +946,24 @@ Cell[BoxData[
        Hold[$CellContext`a$$], 0.1}, 0.01, 1}, {{
        Hold[$CellContext`b$$], 0.1}, 0.01, 1}, {{
        Hold[$CellContext`f$$], 9.8, "f (GHz)"}, 1, 20}}, Typeset`size$$ = {
-    461., {328.5, 335.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`a$96751$$ = 
-    0, $CellContext`b$96752$$ = 0, $CellContext`f$96753$$ = 0}, 
+    3129., {478.5, 485.5}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`a$13527$$ = 
+    0, $CellContext`b$13528$$ = 0, $CellContext`f$13529$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`a$$ = 0.1, $CellContext`b$$ = 
         0.1, $CellContext`f$$ = 9.8}, "ControllerVariables" :> {
-        Hold[$CellContext`a$$, $CellContext`a$96751$$, 0], 
-        Hold[$CellContext`b$$, $CellContext`b$96752$$, 0], 
-        Hold[$CellContext`f$$, $CellContext`f$96753$$, 0]}, 
+        Hold[$CellContext`a$$, $CellContext`a$13527$$, 0], 
+        Hold[$CellContext`b$$, $CellContext`b$13528$$, 0], 
+        Hold[$CellContext`f$$, $CellContext`f$13529$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, "Body" :> 
       Module[{$CellContext`k$, $CellContext`c$, $CellContext`mv$, \
-$CellContext`m$, $CellContext`minDb$, $CellContext`r$}, $CellContext`c$ = 
-         3 10^8; $CellContext`k$ = 
+$CellContext`m$, $CellContext`minDb$, $CellContext`r$, $CellContext`tmax$, \
+$CellContext`pmax$}, $CellContext`c$ = 3 10^8; $CellContext`k$ = 
          2 Pi $CellContext`f$$ (10^9/$CellContext`c$); $CellContext`mv$ = 
          NMaximize[{
             Norm[
@@ -904,9 +971,17 @@ $CellContext`m$, $CellContext`minDb$, $CellContext`r$}, $CellContext`c$ =
 $CellContext`k$, $CellContext`a$$, $CellContext`b$$]], 
             0 <= $CellContext`\[Theta] <= Pi, 0 <= $CellContext`\[Phi] <= 
             2 Pi}, {$CellContext`\[Theta], $CellContext`\[Phi]}]; \
-$CellContext`m$ = 
-         First[$CellContext`mv$]; $CellContext`minDb$ = -40; $CellContext`r$ = 
-         1.2; Column[{
+$CellContext`m$ = First[$CellContext`mv$]; $CellContext`tmax$ = 
+         ReplaceAll[$CellContext`\[Theta], 
+           Last[$CellContext`mv$]]; $CellContext`pmax$ = 
+         ReplaceAll[$CellContext`\[Phi], 
+           
+           Last[$CellContext`mv$]]; $CellContext`kcap = \
+$CellContext`rcap[$CellContext`tmax$, $CellContext`pmax$]; $CellContext`ecap = \
+$CellContext`ef[$CellContext`tmax$, $CellContext`pmax$, $CellContext`k$, \
+$CellContext`a$$, $CellContext`b$$]; $CellContext`ncap = 
+         Cross[$CellContext`kcap, $CellContext`ecap]; $CellContext`minDb$ = \
+-40; $CellContext`r$ = 1.2; Column[{
            Row[{"max = ", 
              First[$CellContext`mv$], ", @(\[Theta],\[Phi]) = (", 
              ReplaceAll[$CellContext`\[Theta], 
@@ -915,10 +990,7 @@ $CellContext`m$ =
               Last[$CellContext`mv$]], ")"}], 
            Row[{
              $CellContext`PolarDbPlot[(Norm[
-                 $CellContext`ef[#, 
-                  ReplaceAll[$CellContext`\[Phi], 
-                   
-                   Last[$CellContext`mv$]], $CellContext`k$, \
+                 $CellContext`ef[#, $CellContext`pmax$, $CellContext`k$, \
 $CellContext`a$$, $CellContext`b$$]]/$CellContext`m$)^2& ], 
              $CellContext`PolarDbPlot[(Norm[
                  $CellContext`ef[#, 1/
@@ -927,21 +999,45 @@ $CellContext`b$$]]/$CellContext`m$)^2& ],
              $CellContext`PolarDbPlot[(Norm[
                  $CellContext`ef[#, Pi/
                   2, $CellContext`k$, $CellContext`a$$, \
-$CellContext`b$$]]/$CellContext`m$)^2& ]}], 
+$CellContext`b$$]]/$CellContext`m$)^2& ], 
+             PolarPlot[Norm[
+                $CellContext`ef[$CellContext`tmax$, $CellContext`p, \
+$CellContext`k$, $CellContext`a$$, $CellContext`b$$]]/$CellContext`m$, \
+{$CellContext`p, 0, 2 Pi}, PolarAxesOrigin -> {0, 1}, PolarGridLines -> 
+              Automatic, PolarAxes -> True, PolarTicks -> {
+                Table[{
+                  N[(Pi/6) $CellContext`i], 
+                  StringJoin[
+                   ToString[30 $CellContext`i], 
+                   "\[Degree]"]}, {$CellContext`i, -5, 6}], Automatic}], 
+             Plot[Norm[
+                $CellContext`ef[$CellContext`tmax$, $CellContext`p, \
+$CellContext`k$, $CellContext`a$$, $CellContext`b$$]]/$CellContext`m$, \
+{$CellContext`p, 0, 2 Pi}, Ticks -> {
+                Table[$CellContext`i (Pi/2), {$CellContext`i, 0, 4}]}, Epilog -> {
+                Point[{$CellContext`pmax$, Norm[
+                    $CellContext`ef[$CellContext`tmax$, $CellContext`pmax$, \
+$CellContext`k$, $CellContext`a$$, $CellContext`b$$]]/$CellContext`m$}]}]}], 
            PolarPlot[Norm[
-              $CellContext`ef[$CellContext`t, 
-               ReplaceAll[$CellContext`\[Phi], 
-                
-                Last[$CellContext`mv$]], $CellContext`k$, $CellContext`a$$, \
-$CellContext`b$$]]/$CellContext`m$, {$CellContext`t, 0, Pi}, 
-            PolarAxesOrigin -> {0, 1}, PolarGridLines -> Automatic, PolarAxes -> 
-            True, PolarTicks -> {
+              $CellContext`ef[$CellContext`t, $CellContext`pmax$, \
+$CellContext`k$, $CellContext`a$$, $CellContext`b$$]]/$CellContext`m$, \
+{$CellContext`t, 0, Pi}, PolarAxesOrigin -> {0, 1}, PolarGridLines -> 
+            Automatic, PolarAxes -> True, PolarTicks -> {
               Table[{
                 N[(Pi/6) $CellContext`i], 
                 StringJoin[
                  ToString[30 $CellContext`i], 
                  "\[Degree]"]}, {$CellContext`i, -5, 6}], Automatic}, 
             PlotStyle -> Thick], 
+           SphericalPlot3D[(Norm[
+               $CellContext`ef[$CellContext`\[Theta], $CellContext`\[Phi], \
+$CellContext`k$, $CellContext`a$$, $CellContext`b$$]]/$CellContext`m$)^2, \
+{$CellContext`\[Theta], 0, Pi}, {$CellContext`\[Phi], 0, 2 Pi}, PlotRange -> 
+            Full, AxesLabel -> {$CellContext`x, $CellContext`y, \
+$CellContext`z}, RegionFunction -> 
+            Function[{$CellContext`x, $CellContext`y, $CellContext`z}, 
+              Dot[$CellContext`ncap, {$CellContext`x, $CellContext`y, \
+$CellContext`z}] < 0]], 
            Show[
             SphericalPlot3D[
              $CellContext`logscale[(Norm[
@@ -950,13 +1046,14 @@ $CellContext`k$, $CellContext`a$$, $CellContext`b$$]]/$CellContext`m$)^2, \
 -40], {$CellContext`\[Theta], 0, Pi}, {$CellContext`\[Phi], 0, 2 Pi}, 
              PlotRange -> {{-$CellContext`r$, $CellContext`r$}, \
 {-$CellContext`r$, $CellContext`r$}, {-$CellContext`r$, $CellContext`r$}}, 
+             
              AxesLabel -> {$CellContext`x, $CellContext`y, $CellContext`z}], \
 $CellContext`axes]}]], 
       "Specifications" :> {{{$CellContext`a$$, 0.1}, 0.01, 
          1}, {{$CellContext`b$$, 0.1}, 0.01, 
          1}, {{$CellContext`f$$, 9.8, "f (GHz)"}, 1, 20}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{524., {426., 433.}},
+     ImageSizeCache->{3192., {576., 583.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -981,7 +1078,11 @@ $CellContext`axes]}]],
    3.637619350855142*^9, 3.6376194854818425`*^9, 3.637619532783548*^9, 
    3.637619573156857*^9, 3.6376198718166375`*^9, {3.6376199277438364`*^9, 
    3.6376199572265224`*^9}, 3.6376201143295083`*^9, {3.6376201770670967`*^9, 
-   3.637620199105357*^9}, 3.637620459881273*^9}]
+   3.637620199105357*^9}, 3.637620459881273*^9, 3.637767226876266*^9, 
+   3.6377673161413717`*^9, 3.637767368160347*^9, {3.637767417092146*^9, 
+   3.6377674431496363`*^9}, 3.6377675064832582`*^9, {3.637767541630269*^9, 
+   3.6377675547730207`*^9}, 3.6377677131160774`*^9, 3.6377678939204187`*^9, 
+   3.6377959157435074`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -1010,14 +1111,14 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[579, 22, 16144, 433, 1716, "Input"],
-Cell[16726, 457, 3398, 90, 168, "Output"]
+Cell[579, 22, 16226, 434, 1716, "Input"],
+Cell[16808, 458, 3469, 91, 168, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20161, 552, 14574, 316, 1666, "Input"],
-Cell[34738, 870, 5947, 113, 881, "Output"]
+Cell[20314, 554, 17427, 381, 1991, "Input"],
+Cell[37744, 937, 8117, 147, 1213, "Output"]
 }, Open  ]],
-Cell[40700, 986, 502, 7, 166, "Input"]
+Cell[45876, 1087, 502, 7, 166, "Input"]
 }
 ]
 *)
