@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     22704,        656]
-NotebookOptionsPosition[     22070,        631]
-NotebookOutlinePosition[     22415,        646]
-CellTagsIndexPosition[     22372,        643]
+NotebookDataLength[     48888,       1254]
+NotebookOptionsPosition[     48159,       1226]
+NotebookOutlinePosition[     48504,       1241]
+CellTagsIndexPosition[     48461,       1238]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -34,7 +34,8 @@ Cell[BoxData[{
    "psi", ",", " ", "r", ",", "a", ",", " ", "hbar", ",", " ", "m", ",", " ", 
     "eps", ",", " ", "inner", ",", " ", "psiSquared", ",", " ", 
     "expectationInverseRadial", ",", " ", "h", ",", " ", "e", ",", " ", 
-    "hPsi", ",", " ", "display", ",", " ", "energy"}], "]"}], 
+    "hPsi", ",", " ", "display", ",", " ", "energy", ",", "bohrRadius", ",", 
+    " ", "eSimplify", ",", " ", "bohrRadiusValue"}], "]"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
@@ -196,6 +197,55 @@ Cell[BoxData[{
       " ", "//", " ", "Simplify"}], ")"}]}], " ", ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
+  RowBox[{"bohrRadiusValue", " ", "=", " ", 
+   RowBox[{"4", " ", "Pi", " ", "eps", " ", 
+    RowBox[{
+     RowBox[{"hbar", "^", "2"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"m", " ", 
+       RowBox[{"e", "^", "2"}]}], ")"}]}]}]}], "  ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"bohrRadius", " ", "=", " ", 
+    RowBox[{"{", " ", 
+     RowBox[{"a", " ", "\[Rule]", "  ", "bohrRadiusValue"}], "}"}]}], " ", 
+   ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Solve", " ", 
+     RowBox[{
+      RowBox[{"\[PartialD]", "E"}], "/", 
+      RowBox[{"\[PartialD]", "a"}]}]}], " ", "\[Equal]", " ", "0"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"s", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"Solve", "[", 
+      RowBox[{
+       RowBox[{"0", " ", "\[Equal]", " ", 
+        RowBox[{"D", "[", 
+         RowBox[{"energy", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"a", ",", "1"}], "}"}]}], "]"}]}], ",", " ", 
+       RowBox[{"{", "a", "}"}]}], "]"}], " ", "//", " ", "Flatten"}]}], " ", 
+   ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"eSimplify", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"energy", " ", "/.", " ", "bohrRadius"}], " ", "//", " ", 
+      "Simplify"}]}], " ", ";"}], "*)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"eSimplify", "=", " ", 
+    RowBox[{
+     RowBox[{"energy", " ", "/.", " ", "s"}], " ", "//", " ", "Simplify"}]}], 
+   " ", ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
   RowBox[{
    RowBox[{
     RowBox[{"{", 
@@ -216,17 +266,32 @@ Cell[BoxData[{
      RowBox[{"{", 
       RowBox[{
       "\"\<<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>\>\"", ",", " ", "energy"}], 
-      "}"}]}], "\[IndentingNewLine]", "}"}]}], " ", "//", " ", 
-  "Grid"}]}], "Input",
- CellChangeTimes->{{3.6578915646420193`*^9, 3.6578918480637903`*^9}, {
-  3.6578919172611094`*^9, 3.657891918698654*^9}, {3.65789199667674*^9, 
-  3.657892017881939*^9}, {3.6578921245163174`*^9, 3.6578923122143946`*^9}, {
-  3.6578924464320803`*^9, 3.6578926887457714`*^9}, {3.6578929496443768`*^9, 
-  3.657893043593272*^9}, {3.6578931184000998`*^9, 3.657893137173698*^9}, {
-  3.6578932249475565`*^9, 3.6578933895003896`*^9}, {3.657893458290186*^9, 
-  3.6578934600668764`*^9}, {3.6578958192282333`*^9, 3.6578958215911655`*^9}, {
-  3.6578964347261024`*^9, 3.6578964445939264`*^9}, {3.6578990630681353`*^9, 
-  3.6578990633337703`*^9}}],
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<\!\(\*SubscriptBox[\(a\), \(min\)]\)\>\"", ",", 
+       RowBox[{"a", " ", "/.", "s"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>\!\(\*SubscriptBox[\(|\), \(a\\\  \
+= \\\ \*SubscriptBox[\(a\), \(min\)]\)]\)\>\"", ",", " ", "eSimplify"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>|a = \!\(\*SubscriptBox[\(a\), \
+\(min\)]\)\>\"", ",", " ", 
+       RowBox[{
+        RowBox[{"eSimplify", "   ", 
+         RowBox[{"bohrRadiusValue", "/", 
+          SubscriptBox["a", "0"]}]}], " ", "/.", " ", "display"}]}], "}"}]}], 
+    "\[IndentingNewLine]", "}"}]}], " ", "//", " ", "Grid"}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBmIQndM95e59h9eOk7iYGB8AaaboFZwgOiH6Gpi+vXyq
+MIi+YWEjBqLXtE5QBtFBd9isQfSsy2e9QXTMXfEsEL1n3pYuEC32p2gaiJ53
+9sx8EP2+T3URiE4KklsLog2ZNxwE0SaenqdA9C3lJjC9wTf940MgfeXVJjBt
+bRNu9whIFzFOtgfRWnqP2h4Daft1r8C0lr1h92cgLXehvA9EhwUzTwbRUbe9
+poHo6e7hc0D0F4OjK0G0q/GBxyA6bvNxMH1FldP5C5BeEurtAqITjr1IAdEr
++g+mgeg1fa0nQDRr0YGzIBoAraWjqw==
+  "]],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -264,18 +329,523 @@ Cell[BoxData[
         SuperscriptBox["a", "2"]],
        TraditionalForm],
       TraditionalForm,
+      Editable->True]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(a\\), \\(min\\)]\\)\"\>", "\<\" = \"\>", 
+     TagBox[
+      FormBox[
+       FractionBox[
+        RowBox[{"2", " ", "\[Pi]", " ", 
+         SubscriptBox["\[Epsilon]", "0"], " ", 
+         SuperscriptBox["\[HBar]", "2"]}], 
+        RowBox[{
+         SuperscriptBox["e", "2"], " ", "m"}]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True]},
+    {"\<\"<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>\\!\\(\\*SubscriptBox[\\(|\\), \
+\\(a\\\\  = \\\\ \\*SubscriptBox[\\(a\\), \\(min\\)]\\)]\\)\"\>", "\<\" = \
+\"\>", 
+     TagBox[
+      FormBox[
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["e", "4"], " ", "m"}], 
+         RowBox[{"4", " ", 
+          SuperscriptBox["\[Pi]", "2"], " ", 
+          SubsuperscriptBox["\[Epsilon]", "0", "2"], " ", 
+          SuperscriptBox["\[HBar]", "2"]}]]}],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True]},
+    {"\<\"<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>|a = \
+\\!\\(\\*SubscriptBox[\\(a\\), \\(min\\)]\\)\"\>", "\<\" = \"\>", 
+     TagBox[
+      FormBox[
+       RowBox[{"-", 
+        FractionBox[
+         SuperscriptBox["e", "2"], 
+         RowBox[{"\[Pi]", " ", 
+          SubscriptBox["a", "0"], " ", 
+          SubscriptBox["\[Epsilon]", "0"]}]]}],
+       TraditionalForm],
+      TraditionalForm,
       Editable->True]}
    },
    AutoDelete->False,
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
   "Grid"]], "Output",
  CellChangeTimes->{{3.657893327478629*^9, 3.6578933381723924`*^9}, 
-   3.6578934656772604`*^9, 3.657896449095622*^9, 3.657899077911972*^9}]
+   3.6578934656772604`*^9, 3.657896449095622*^9, 3.657899077911972*^9, 
+   3.657931898825117*^9, {3.657931941408702*^9, 3.657931957873003*^9}, {
+   3.657932088197628*^9, 3.6579321136494913`*^9}, 3.6579333537644396`*^9, 
+   3.6579336277081957`*^9, 3.6579344796286564`*^9}]
 }, Open  ]],
 
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.65789197044141*^9, 3.6578919749274464`*^9}, 
-   3.6578920352750726`*^9}],
+Cell[CellGroupData[{
+
+Cell["\<\
+(charge of an electron)^2/Pi/(Bohr radius)/(electric constant)\
+\>", "WolframAlphaLong",
+ CellChangeTimes->{{3.657933669532677*^9, 3.6579336938433833`*^9}, {
+  3.6579337451076574`*^9, 3.6579337452326508`*^9}}],
+
+Cell[BoxData[
+ NamespaceBox["WolframAlphaQueryResults",
+  DynamicModuleBox[{Typeset`q$$ = 
+   "(charge of an electron)^2/Pi/(Bohr radius)/(electric constant)", 
+   Typeset`opts$$ = {
+   AppearanceElements -> {
+     "Warnings", "Assumptions", "Brand", "Pods", "PodMenus", "Unsuccessful", 
+      "Sources"}, Asynchronous -> All, 
+    TimeConstraint -> {30, Automatic, Automatic, Automatic}, 
+    Method -> {
+     "Formats" -> {"cell", "minput", "msound", "dataformats"}, "Server" -> 
+      "http://api.wolframalpha.com/v1/"}}, Typeset`elements$$ = {
+   "Warnings", "Assumptions", "Brand", "Pods", "PodMenus", "Unsuccessful", 
+    "Sources"}, Typeset`pod1$$ = XMLElement[
+   "pod", {"title" -> "Input interpretation", "scanner" -> "Identity", "id" -> 
+     "Input", "position" -> "100", "error" -> "false", "numsubpods" -> "1"}, {
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement[
+       "minput", {}, {
+        "ParticleData[\"Electron\", \"Charge\"]^2/Pi/Quantity[1, \"BohrRadius\
+\"]/Quantity[1, \"ElectricConstant\"]"}], 
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            TagBox[
+             FractionBox[
+              TagBox[
+               FractionBox[
+                TagBox[
+                 FractionBox[
+                  SuperscriptBox[
+                   FormBox[
+                    TagBox[
+                    GridBox[{{
+                    PaneBox[
+                    StyleBox[
+                    TagBox[
+                    GridBox[{{
+                    StyleBox[
+                    StyleBox[
+                    TemplateBox[{
+                    TagBox[
+                    TagBox[
+                    StyleBox[
+                    
+                    TemplateBox[{"e", "-"}, "Superscript", SyntaxForm -> 
+                    SuperscriptBox], {
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0}, StripOnInput -> False], 
+                    $CellContext`TagBoxWrapper[
+                    "Entity" -> {ParticleData, "Electron"}]], Identity], 
+                    "\"  \"", 
+                    StyleBox[
+                    
+                    RowBox[{"\"(\"", "\[NoBreak]", "\"electron\"", 
+                    "\[NoBreak]", "\")\""}], {
+                    GrayLevel[0.6], 
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0}, StripOnInput -> False]}, "RowDefault"], LineIndent -> 
+                    0], {LineIndent -> 0, LineSpacing -> {0.9, 0, 1.5}}], 
+                    StyleBox[
+                    TemplateBox[{"\"electric charge\"", "\"  \"", 
+                    StyleBox[
+                    
+                    RowBox[{"\"(\"", "\[NoBreak]", "q", "\[NoBreak]", 
+                    "\")\""}], {FontFamily -> "Verdana", FontSize -> 10, 
+                    GrayLevel[0.5], 
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0}, StripOnInput -> False]}, "RowDefault"], LineIndent -> 
+                    0]}}, GridBoxBackground -> {"Columns" -> {
+                    GrayLevel[0.949], None}, "Rows" -> {{None}}}, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    ColumnsEqual -> False, RowsEqual -> False, 
+                    GridBoxDividers -> {"Columns" -> {
+                    GrayLevel[0.84], 
+                    GrayLevel[0.84], 
+                    GrayLevel[0.84]}, "Rows" -> {{
+                    GrayLevel[0.84]}}, 
+                    "RowsIndexed" -> {
+                    1 -> GrayLevel[0.84], -1 -> GrayLevel[0.84]}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {1, 1, 1}, "Rows" -> {{0.3}}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {{Left}}, "Rows" -> {{Baseline}}}, 
+                    AllowScriptLevelChange -> False, BaselinePosition -> 1], 
+                    $CellContext`TagBoxWrapper["Separator" -> " | "]], 
+                    LineSpacing -> {1, 0, 1.5}, LineIndent -> 0], 
+                    BaselinePosition -> Center]}}, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                    ColumnsEqual -> False, RowsEqual -> False, 
+                    GridBoxSpacings -> {"Columns" -> {{
+                    AbsoluteThickness[-1]}}, "Rows" -> {{0}}}, 
+                    AllowScriptLevelChange -> False], 
+                    $CellContext`TagBoxWrapper["Separator" -> " | "]], 
+                    TraditionalForm], "2"], "\[Pi]"], 
+                 PolynomialForm[#, TraditionalOrder -> False]& ], 
+                StyleBox[
+                 RowBox[{
+                   RowBox[{
+                    TagBox[
+                    RowBox[{
+                    StyleBox[
+                    SubscriptBox[
+                    StyleBox["\"a\"", Italic, StripOnInput -> False], "0"], 
+                    FontFamily -> "Helvetica", FontSize -> Smaller]}], 
+                    Identity], "  ", 
+                    StyleBox[
+                    
+                    RowBox[{
+                    "\"(\"", "\[NoBreak]", "\"Bohr radius\"", "\[NoBreak]", 
+                    "\")\""}], {
+                    FontFamily -> "Helvetica", FontSize -> Smaller, 
+                    GrayLevel[0.6], 
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0}, StripOnInput -> False]}], " ", 
+                   StyleBox[
+                    RowBox[{"\"(\"", "\[NoBreak]", 
+                    TagBox["\"radius\"", Identity], "\[NoBreak]", "\")\""}], {
+                    GrayLevel[0.6], 
+                    LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                    0}, StripOnInput -> False]}], 
+                 LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 0,
+                  ZeroWidthTimes -> False]], 
+               PolynomialForm[#, TraditionalOrder -> False]& ], 
+              StyleBox[
+               RowBox[{
+                 TagBox[
+                  RowBox[{
+                    StyleBox[
+                    SubscriptBox["\"\[CurlyEpsilon]\"", "0"], FontFamily -> 
+                    "Helvetica", FontSize -> Smaller]}], Identity], "  ", 
+                 StyleBox[
+                  
+                  RowBox[{
+                   "\"(\"", "\[NoBreak]", "\"electric constant\"", 
+                    "\[NoBreak]", "\")\""}], {
+                  FontFamily -> "Helvetica", FontSize -> Smaller, 
+                   GrayLevel[0.6], 
+                   LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 
+                   0}, StripOnInput -> False]}], 
+               LinebreakAdjustments -> {1, 100, 1, 0, 100}, LineIndent -> 0, 
+               ZeroWidthTimes -> False]], 
+             PolynomialForm[#, TraditionalOrder -> False]& ], 
+            TraditionalForm]], "Output", {}]}], 
+       XMLElement["dataformats", {}, {"plaintext,minput"}]}]}], 
+   Typeset`pod2$$ = XMLElement[
+   "pod", {"title" -> "Result", "scanner" -> "Data", "id" -> "Result", 
+     "position" -> "200", "error" -> "false", "numsubpods" -> "1", "primary" -> 
+     "true"}, {
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              RowBox[{
+                TagBox[
+                 TagBox[
+                  RowBox[{
+                    TagBox["0.3", 
+                    $CellContext`TagBoxWrapper["StringBoxes" -> "0.3"]], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    RowBox[{
+                    SuperscriptBox[
+                    StyleBox["\"e\"", Italic, StripOnInput -> False], "2"], 
+                    "\[NegativeMediumSpace]", "\"/(\"", "\[InvisibleSpace]", 
+                    SubscriptBox[
+                    StyleBox["\"a\"", Italic, StripOnInput -> False], "0"], 
+                    "\[ThinSpace]", 
+                    SubscriptBox["\"\[CurlyEpsilon]\"", "0"], 
+                    "\[InvisibleSpace]", "\")\""}], FontFamily -> "Helvetica",
+                     FontSize -> Smaller]}], Identity], #& , SyntaxForm -> 
+                 Dot], "  ", 
+                StyleBox[
+                 
+                 RowBox[{
+                  "\"(\"", "\[NoBreak]", 
+                   "\"elementary charges squared per Bohr radius electric \
+constant\"", "\[NoBreak]", "\")\""}], {
+                 FontFamily -> "Helvetica", FontSize -> Smaller, 
+                  GrayLevel[0.6], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+                   LineIndent -> 0}, StripOnInput -> False]}], "Unit", 
+              SyntaxForm -> Dot], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+              LineIndent -> 0, ZeroWidthTimes -> False], TraditionalForm]], 
+          "Output", {}]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,moutput,computabledata,formatteddata,numberdata,\
+quantitydata"}]}], 
+     XMLElement["states", {"count" -> "1"}, {
+       XMLElement[
+       "state", {
+        "name" -> "Show details", "input" -> "Result__Show details"}, {}]}]}],
+    Typeset`pod3$$ = XMLElement[
+   "pod", {"title" -> "Unit conversions", "scanner" -> "Unit", "id" -> 
+     "UnitConversion", "position" -> "300", "error" -> "false", "numsubpods" -> 
+     "5"}, {
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              RowBox[{
+                TagBox[
+                 TagBox[
+                  RowBox[{
+                    TagBox[
+                    RowBox[{"2", 
+                    StyleBox["\[Times]", 
+                    GrayLevel[0.5]], 
+                    SuperscriptBox["10", "-17"]}], 
+                    $CellContext`TagBoxWrapper[
+                    "StringBoxes" -> RowBox[{"2", "\[Times]", 
+                    SuperscriptBox["10", "-17"]}]], SyntaxForm -> CenterDot], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    
+                    RowBox[{
+                    "\"N\"", "\[InvisibleSpace]", "\"\[ThinSpace]\"", 
+                    "\[InvisibleSpace]", "\"m\""}], FontFamily -> "Helvetica",
+                     FontSize -> Smaller]}], Identity], #& , SyntaxForm -> 
+                 Dot], "  ", 
+                StyleBox[
+                 
+                 RowBox[{
+                  "\"(\"", "\[NoBreak]", "\"newton meters\"", "\[NoBreak]", 
+                   "\")\""}], {FontFamily -> "Helvetica", FontSize -> Smaller, 
+                  GrayLevel[0.6], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+                   LineIndent -> 0}, StripOnInput -> False]}], "Unit", 
+              SyntaxForm -> Dot], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+              LineIndent -> 0, ZeroWidthTimes -> False], TraditionalForm]], 
+          "Output", {}]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,computabledata,formatteddata,numberdata,quantitydata"}]}], 
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              RowBox[{
+                TagBox[
+                 TagBox[
+                  RowBox[{
+                    TagBox[
+                    RowBox[{"2", 
+                    StyleBox["\[Times]", 
+                    GrayLevel[0.5]], 
+                    SuperscriptBox["10", "-17"]}], 
+                    $CellContext`TagBoxWrapper[
+                    "StringBoxes" -> RowBox[{"2", "\[Times]", 
+                    SuperscriptBox["10", "-17"]}]], SyntaxForm -> CenterDot], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    "\"J\"", FontFamily -> "Helvetica", FontSize -> 
+                    Smaller]}], Identity], #& , SyntaxForm -> Dot], "  ", 
+                StyleBox[
+                 
+                 RowBox[{
+                  "\"(\"", "\[NoBreak]", "\"joules\"", "\[NoBreak]", 
+                   "\")\""}], {FontFamily -> "Helvetica", FontSize -> Smaller, 
+                  GrayLevel[0.6], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+                   LineIndent -> 0}, StripOnInput -> False]}], "Unit", 
+              SyntaxForm -> Dot], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+              LineIndent -> 0, ZeroWidthTimes -> False], TraditionalForm]], 
+          "Output", {}]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,computabledata,formatteddata,numberdata,quantitydata"}]}], 
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              RowBox[{
+                TagBox[
+                 TagBox[
+                  RowBox[{
+                    TagBox["110", 
+                    $CellContext`TagBoxWrapper["StringBoxes" -> "110"]], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    "\"eV\"", FontFamily -> "Helvetica", FontSize -> 
+                    Smaller]}], Identity], #& , SyntaxForm -> Dot], "  ", 
+                StyleBox[
+                 
+                 RowBox[{
+                  "\"(\"", "\[NoBreak]", "\"electronvolts\"", "\[NoBreak]", 
+                   "\")\""}], {FontFamily -> "Helvetica", FontSize -> Smaller, 
+                  GrayLevel[0.6], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+                   LineIndent -> 0}, StripOnInput -> False]}], "Unit", 
+              SyntaxForm -> Dot], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+              LineIndent -> 0, ZeroWidthTimes -> False], TraditionalForm]], 
+          "Output", {}]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,computabledata,formatteddata,numberdata,quantitydata"}]}], 
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              RowBox[{
+                TagBox[
+                 TagBox[
+                  RowBox[{
+                    TagBox["0.1", 
+                    $CellContext`TagBoxWrapper["StringBoxes" -> "0.1"]], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    "\"keV\"", FontFamily -> "Helvetica", FontSize -> 
+                    Smaller]}], Identity], #& , SyntaxForm -> Dot], "  ", 
+                StyleBox[
+                 
+                 RowBox[{
+                  "\"(\"", "\[NoBreak]", "\"kiloelectronvolts\"", 
+                   "\[NoBreak]", "\")\""}], {
+                 FontFamily -> "Helvetica", FontSize -> Smaller, 
+                  GrayLevel[0.6], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+                   LineIndent -> 0}, StripOnInput -> False]}], "Unit", 
+              SyntaxForm -> Dot], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+              LineIndent -> 0, ZeroWidthTimes -> False], TraditionalForm]], 
+          "Output", {}]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,computabledata,formatteddata,numberdata,quantitydata"}]}], 
+     XMLElement["subpod", {"title" -> ""}, {
+       XMLElement["cell", {"compressed" -> False, "string" -> True}, {
+         Cell[
+          BoxData[
+           FormBox[
+            StyleBox[
+             TagBox[
+              RowBox[{
+                TagBox[
+                 TagBox[
+                  RowBox[{
+                    TagBox[
+                    RowBox[{"2", 
+                    StyleBox["\[Times]", 
+                    GrayLevel[0.5]], 
+                    SuperscriptBox["10", "-20"]}], 
+                    $CellContext`TagBoxWrapper[
+                    "StringBoxes" -> RowBox[{"2", "\[Times]", 
+                    SuperscriptBox["10", "-20"]}]], SyntaxForm -> CenterDot], 
+                    "\[NoBreak]", 
+                    StyleBox[
+                    RowBox[{}], FontFamily -> "Helvetica", FontSize -> 
+                    Smaller], "\[InvisibleSpace]", "\[ThickSpace]", 
+                    "\[InvisibleSpace]", 
+                    StyleBox[
+                    SubscriptBox["\"BTU\"", "\"IT\""], FontFamily -> 
+                    "Helvetica", FontSize -> Smaller]}], Identity], #& , 
+                 SyntaxForm -> Dot], "  ", 
+                StyleBox[
+                 
+                 RowBox[{
+                  "\"(\"", "\[NoBreak]", "\"IT British thermal units\"", 
+                   "\[NoBreak]", "\")\""}], {
+                 FontFamily -> "Helvetica", FontSize -> Smaller, 
+                  GrayLevel[0.6], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+                   LineIndent -> 0}, StripOnInput -> False]}], "Unit", 
+              SyntaxForm -> Dot], LinebreakAdjustments -> {1, 100, 1, 0, 100},
+              LineIndent -> 0, ZeroWidthTimes -> False], TraditionalForm]], 
+          "Output", {}]}], 
+       XMLElement[
+       "dataformats", {}, {
+        "plaintext,computabledata,formatteddata,numberdata,quantitydata"}]}], 
+     XMLElement["states", {"count" -> "1"}, {
+       XMLElement[
+       "state", {
+        "name" -> "More", "input" -> "UnitConversion__More"}, {}]}]}], 
+   Typeset`aux1$$ = {True, False, {False}, True}, Typeset`aux2$$ = {
+   True, False, {False}, True}, Typeset`aux3$$ = {
+   True, False, {False, False, False, False, False}, True}, 
+   Typeset`asyncpods$$ = {}, Typeset`nonpods$$ = {
+    XMLElement["sources", {"count" -> "1"}, {
+      XMLElement[
+      "source", {
+       "url" -> 
+        "http://www.wolframalpha.com/sources/\
+ParticleDataSourceInformationNotes.html", "text" -> "Particle data"}, {}]}]}, 
+   Typeset`initdone$$ = True, Typeset`queryinfo$$ = {
+   "success" -> "true", "error" -> "false", "numpods" -> "3", "datatypes" -> 
+    "Math,Particle", "timedout" -> "", "timedoutpods" -> "", "timing" -> 
+    "2.38", "parsetiming" -> "1.1", "parsetimedout" -> "false", "recalculate" -> 
+    "", "id" -> "MSPa4571chi71eebceii6a4000034ec1f1677ah2f6e", "host" -> 
+    "http://www4b.wolframalpha.com", "server" -> "2", "related" -> 
+    "http://www4b.wolframalpha.com/api/v2/relatedQueries.jsp?id=\
+MSPa4581chi71eebceii6a40000288fd231ac548417&s=2", "version" -> "2.6"}, 
+   Typeset`sessioninfo$$ = {
+   "TimeZone" -> -5., 
+    "Date" -> {2015, 11, 30, 23, 42, 29.2351048`9.218479565066778}, "Line" -> 
+    211, "SessionID" -> 32779769490426222531}, Typeset`showpods$$ = {1, 2, 3},
+    Typeset`failedpods$$ = {}, Typeset`chosen$$ = {}, Typeset`open$$ = False, 
+   Typeset`newq$$ = 
+   "(charge of an electron)^2/Pi/(Bohr radius)/(electric constant)"}, 
+   DynamicBox[ToBoxes[
+     AlphaIntegration`FormatAlphaResults[
+      Dynamic[{
+       1, {Typeset`pod1$$, Typeset`pod2$$, Typeset`pod3$$}, {
+        Typeset`aux1$$, Typeset`aux2$$, Typeset`aux3$$}, Typeset`chosen$$, 
+        Typeset`open$$, Typeset`elements$$, Typeset`q$$, Typeset`opts$$, 
+        Typeset`nonpods$$, Typeset`queryinfo$$, Typeset`sessioninfo$$, 
+        Typeset`showpods$$, Typeset`failedpods$$, Typeset`newq$$}]], 
+     StandardForm],
+    ImageSizeCache->{1089., {225., 232.}},
+    TrackedSymbols:>{Typeset`showpods$$, Typeset`failedpods$$}],
+   DynamicModuleValues:>{},
+   Initialization:>If[
+     Not[Typeset`initdone$$], Null; WolframAlphaClient`Private`doAsyncUpdates[
+       Hold[{Typeset`pod1$$, Typeset`pod2$$, Typeset`pod3$$}], 
+       Typeset`asyncpods$$, 
+       Dynamic[Typeset`failedpods$$]]; Typeset`asyncpods$$ = {}; 
+     Typeset`initdone$$ = True],
+   SynchronousInitialization->False],
+  BaseStyle->{Deployed -> True},
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True]], "Print",
+ CellMargins->{{20, 10}, {Inherited, Inherited}},
+ CellChangeTimes->{3.6579337494851627`*^9}]
+}, Open  ]],
 
 Cell[BoxData[{
  RowBox[{
@@ -464,10 +1034,19 @@ Cell[BoxData[
       RowBox[{"{", 
        RowBox[{
        "\"\<\!\(\*SubscriptBox[\(E\), \(min\)]\)\>\"", ",", " ", "minE"}], 
-       "}"}]}], "\[IndentingNewLine]", "}"}]}], " ", "//", " ", 
-   "Grid"}]}]], "Input",
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>|a = \!\(\*SubscriptBox[\(a\), \
+\(min\)]\)\>\"", ",", " ", 
+        RowBox[{
+         RowBox[{"minE", "   ", 
+          RowBox[{"bohrRadiusValue", "/", 
+           SubscriptBox["a", "0"]}]}], " ", "/.", " ", "display"}]}], "}"}]}],
+      "\[IndentingNewLine]", "}"}]}], " ", "//", " ", "Grid"}]}]], "Input",
  CellChangeTimes->{{3.6579242370835047`*^9, 3.65792423721152*^9}, {
-  3.6579244366373806`*^9, 3.6579244568716893`*^9}}],
+  3.6579244366373806`*^9, 3.6579244568716893`*^9}, {3.6579344651798906`*^9, 
+  3.6579344700285196`*^9}}],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -565,72 +1144,88 @@ Cell[BoxData[
           SuperscriptBox["\[HBar]", "2"]}]]}],
        TraditionalForm],
       TraditionalForm,
+      Editable->True]},
+    {"\<\"<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>|a = \
+\\!\\(\\*SubscriptBox[\\(a\\), \\(min\\)]\\)\"\>", "\<\" = \"\>", 
+     TagBox[
+      FormBox[
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{"16", " ", 
+          SuperscriptBox["e", "2"]}], 
+         RowBox[{"\[Pi]", " ", 
+          SubscriptBox["a", "0"], " ", 
+          SubscriptBox["\[Epsilon]", "0"]}]]}],
+       TraditionalForm],
+      TraditionalForm,
       Editable->True]}
    },
    AutoDelete->False,
    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
   "Grid"]], "Output",
  CellChangeTimes->{{3.657924230882151*^9, 3.6579242386197624`*^9}, 
-   3.6579244512081156`*^9, 3.657925111204484*^9}]
+   3.6579244512081156`*^9, 3.657925111204484*^9, 3.657934514050911*^9}]
 }, Open  ]],
 
 Cell["scratch calculations", "Text",
  CellChangeTimes->{{3.6579257404591284`*^9, 3.6579257431054506`*^9}}],
 
 Cell[BoxData[
- RowBox[{"(*", 
-  RowBox[{
-   FractionBox["1", 
-    RowBox[{"2", " ", 
-     RowBox[{"\[Pi]", "^", "2"}]}]], " ", 
-   FractionBox[
-    RowBox[{
-     SuperscriptBox["e", "2"], " ", "4", " ", "\[Pi]"}], 
-    RowBox[{"4", " ", "\[Pi]", " ", 
-     SubscriptBox["\[Epsilon]", "0"]}]], "  ", 
+ RowBox[{
+  RowBox[{"(*", 
    RowBox[{
-    RowBox[{"(", " ", 
-     FractionBox[
-      RowBox[{"8", " ", "\[Pi]", " ", 
-       SuperscriptBox["a", "3"]}], 
-      SuperscriptBox[
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{
-          SuperscriptBox["a", "2"], " ", 
-          SuperscriptBox["k", "2"]}], "+", "1"}], ")"}], "2"]], ")"}], "^", 
-    "2"}], " ", "\[IndentingNewLine]", 
-   RowBox[{"Integrate", "[", 
-    RowBox[{
+    FractionBox["1", 
+     RowBox[{"2", " ", 
+      RowBox[{"\[Pi]", "^", "2"}]}]], " ", 
+    FractionBox[
      RowBox[{
-      FractionBox["1", 
-       RowBox[{"2", " ", 
-        RowBox[{"\[Pi]", "^", "2"}]}]], " ", 
+      SuperscriptBox["e", "2"], " ", "4", " ", "\[Pi]"}], 
+     RowBox[{"4", " ", "\[Pi]", " ", 
+      SubscriptBox["\[Epsilon]", "0"]}]], "  ", 
+    RowBox[{
+     RowBox[{"(", " ", 
       FractionBox[
-       RowBox[{
-        SuperscriptBox["e", "2"], " ", "4", " ", "\[Pi]"}], 
-       RowBox[{"4", " ", "\[Pi]", " ", 
-        SubscriptBox["\[Epsilon]", "0"]}]], "  ", 
+       RowBox[{"8", " ", "\[Pi]", " ", 
+        SuperscriptBox["a", "3"]}], 
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox["a", "2"], " ", 
+           SuperscriptBox["k", "2"]}], "+", "1"}], ")"}], "2"]], ")"}], "^", 
+     "2"}], " ", "\[IndentingNewLine]", 
+    RowBox[{"Integrate", "[", 
+     RowBox[{
       RowBox[{
-       RowBox[{"(", " ", 
-        FractionBox[
-         RowBox[{"8", " ", "\[Pi]", " ", 
-          SuperscriptBox["a", "3"]}], 
-         SuperscriptBox[
-          RowBox[{"(", 
-           RowBox[{
+       FractionBox["1", 
+        RowBox[{"2", " ", 
+         RowBox[{"\[Pi]", "^", "2"}]}]], " ", 
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["e", "2"], " ", "4", " ", "\[Pi]"}], 
+        RowBox[{"4", " ", "\[Pi]", " ", 
+         SubscriptBox["\[Epsilon]", "0"]}]], "  ", 
+       RowBox[{
+        RowBox[{"(", " ", 
+         FractionBox[
+          RowBox[{"8", " ", "\[Pi]", " ", 
+           SuperscriptBox["a", "3"]}], 
+          SuperscriptBox[
+           RowBox[{"(", 
             RowBox[{
-             SuperscriptBox["a", "2"], " ", 
-             SuperscriptBox["k", "2"]}], "+", "1"}], ")"}], "2"]], ")"}], "^",
-        "2"}]}], " ", ",", 
-     RowBox[{"{", 
-      RowBox[{"k", ",", " ", "0", ",", " ", "Infinity"}], "}"}]}], "]"}]}], 
-  "*)"}]], "Input",
+             RowBox[{
+              SuperscriptBox["a", "2"], " ", 
+              SuperscriptBox["k", "2"]}], "+", "1"}], ")"}], "2"]], ")"}], 
+        "^", "2"}]}], " ", ",", 
+      RowBox[{"{", 
+       RowBox[{"k", ",", " ", "0", ",", " ", "Infinity"}], "}"}]}], "]"}]}], 
+   "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]"}]], "Input",
  CellChangeTimes->{{3.6579245355570545`*^9, 3.6579246506505375`*^9}, {
-   3.657924689024001*^9, 3.657924700474695*^9}, 3.6579257473922896`*^9}]
+   3.657924689024001*^9, 3.657924700474695*^9}, 3.6579257473922896`*^9, {
+   3.6579342908264*^9, 3.657934297425785*^9}}]
 },
 WindowSize->{1168, 636},
-WindowMargins->{{Automatic, 59}, {45, Automatic}},
+WindowMargins->{{-6, Automatic}, {Automatic, 26}},
 FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
 StyleDefinitions->"Default.nb"
 ]
@@ -647,17 +1242,20 @@ CellTagsIndex->{}
 Notebook[{
 Cell[557, 20, 257, 5, 40, "Text"],
 Cell[CellGroupData[{
-Cell[839, 29, 7090, 199, 840, "Input"],
-Cell[7932, 230, 1339, 42, 131, "Output"]
+Cell[839, 29, 9310, 264, 1194, "Input"],
+Cell[10152, 295, 2898, 86, 257, "Output"]
 }, Open  ]],
-Cell[9286, 275, 121, 2, 39, "Input"],
-Cell[9410, 279, 5261, 141, 564, "Input"],
 Cell[CellGroupData[{
-Cell[14696, 424, 2054, 45, 368, "Input"],
-Cell[16753, 471, 3540, 102, 315, "Output"]
+Cell[13087, 386, 219, 4, 53, "WolframAlphaLong"],
+Cell[13309, 392, 21156, 454, 469, "Print"]
 }, Open  ]],
-Cell[20308, 576, 106, 1, 40, "Text"],
-Cell[20417, 579, 1649, 50, 130, "Input"]
+Cell[34480, 849, 5261, 141, 564, "Input"],
+Cell[CellGroupData[{
+Cell[39766, 994, 2450, 54, 393, "Input"],
+Cell[42219, 1050, 4009, 116, 325, "Output"]
+}, Open  ]],
+Cell[46243, 1169, 106, 1, 40, "Text"],
+Cell[46352, 1172, 1803, 52, 184, "Input"]
 }
 ]
 *)
