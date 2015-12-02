@@ -1,0 +1,422 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     14878,        413]
+NotebookOptionsPosition[     14554,        397]
+NotebookOutlinePosition[     14900,        412]
+CellTagsIndexPosition[     14857,        409]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", " ", 
+   RowBox[{
+   "m", ",", " ", "hbar", ",", " ", "eps", ",", " ", "e", " ", ",", " ", 
+    "theta", ",", " ", "phi", ",", " ", "zAtomic", ",", " ", "a", ",", " ", 
+    "psiSquared", ",", " ", "psi", ",", " ", "display", ",", " ", "inner", 
+    ",", " ", "hamiltonian", ",", " ", "energy", ",", " ", "hPsi", ",", " ", 
+    "aMin", ",", " ", "eMin", ",", " ", "hydrogenGroundStateEnergy", ",", " ",
+     "heliumGroundStateEnergy"}], " ", "]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "declare", " ", "various", " ", "variables", " ", "as", " ", "Real", " ", 
+     "and"}], " ", ">", " ", "0"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"$Assumptions", "=", 
+    RowBox[{"And", "@@", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"#", ">", "0"}], "&"}], ")"}], "/@", 
+      RowBox[{"{", 
+       RowBox[{
+       "m", ",", " ", "hbar", ",", " ", "eps", ",", " ", "e", ",", " ", 
+        "zAtomic", ",", " ", "a"}], "}"}]}]}]}], ";"}], "\[IndentingNewLine]",
+   "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"\[Psi]", 
+    RowBox[{"(", "r", ")"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psi", " ", ":=", " ", 
+    RowBox[{
+     RowBox[{"E", "^", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "#"}], "/", "a"}], ")"}]}], " ", "&"}]}], " ", ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "patterns", " ", "for", " ", "pretty", " ", "print", " ", "formatting"}], 
+   " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"display", " ", ":=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"hbar", " ", "\[Rule]", " ", "\[HBar]"}], ",", 
+      RowBox[{"eps", " ", "\[Rule]", " ", 
+       SubscriptBox["\[Epsilon]", "0"]}], ",", " ", 
+      RowBox[{"zAtomic", " ", "\[Rule]", " ", "Z"}]}], " ", "}"}]}], " ", 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"hamiltonian", "[", 
+     RowBox[{"f_", ",", " ", "r_"}], "]"}], " ", ":=", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"hbar", "^", "2"}]}], "/", 
+        RowBox[{"(", 
+         RowBox[{"2", " ", "m"}], ")"}]}], ")"}], 
+      RowBox[{"Laplacian", "[", 
+       RowBox[{
+        RowBox[{"f", "[", "r", "]"}], " ", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"r", ",", " ", "theta", ",", " ", "phi"}], "}"}], ",", " ", 
+        "\"\<Spherical\>\""}], "]"}]}], " ", "-", " ", 
+     RowBox[{"zAtomic", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"e", "^", "2"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"4", " ", "Pi", " ", "eps"}], ")"}]}], ")"}], " ", 
+      RowBox[{
+       RowBox[{"f", "[", "r", "]"}], "/", "r"}]}]}]}], " ", ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"<", "f"}], "|", 
+     RowBox[{"g", ">"}]}], ",", " ", 
+    RowBox[{
+    "for", " ", "real", " ", "eigenfunctions", " ", "that", " ", "have", " ", 
+     "only", " ", "radial", " ", 
+     RowBox[{"dependence", "."}]}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"inner", "[", 
+    RowBox[{"f_", ",", " ", "g_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"4", " ", "Pi", " ", 
+    RowBox[{"Integrate", "[", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"r", "^", "2"}], " ", 
+       RowBox[{"f", "[", "r", "]"}], " ", 
+       RowBox[{"g", "[", "r", "]"}]}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"r", ",", " ", "0", ",", " ", "Infinity"}], "}"}]}], "]"}]}]}],
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"<", "\[Psi]"}], "|", 
+    RowBox[{"\[Psi]", ">"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"psiSquared", " ", ":=", " ", 
+    RowBox[{"inner", "[", " ", 
+     RowBox[{"psi", ",", " ", "psi"}], " ", "]"}]}], " ", ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"<", "r"}], "|", "H", "|", 
+    RowBox[{"\[Psi]", ">"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"hPsi", "[", "r_", "]"}], " ", ":=", 
+    RowBox[{
+     RowBox[{"hamiltonian", "[", 
+      RowBox[{"psi", ",", " ", "r"}], "]"}], " ", "//", " ", "Simplify"}]}], 
+   "  ", ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"<", "\[Psi]"}], "|", "H", "|", 
+    RowBox[{"\[Psi]", ">", 
+     RowBox[{"/", 
+      RowBox[{"<", "\[Psi]"}]}]}], "|", 
+    RowBox[{"\[Psi]", ">"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"energy", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"inner", "[", " ", 
+      RowBox[{"psi", ",", " ", 
+       RowBox[{
+        RowBox[{"hPsi", "[", "#", "]"}], " ", "&"}]}], " ", "]"}], "/", 
+     "psiSquared"}]}], " ", ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Solve", " ", 
+     RowBox[{
+      RowBox[{"\[PartialD]", "E"}], "/", 
+      RowBox[{"\[PartialD]", "a"}]}]}], " ", "\[Equal]", " ", "0"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"s", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"Solve", "[", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"D", "[", 
+         RowBox[{"energy", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"a", ",", "1"}], "}"}]}], "]"}], " ", "\[Equal]", " ", 
+        "0"}], ",", 
+       RowBox[{"{", "a", "}"}]}], "]"}], " ", "//", " ", "First"}]}], " ", 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"aMin", " ", "=", " ", 
+   RowBox[{"a", " ", "/.", " ", "s"}]}], "  ", ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"eMin", " ", "=", " ", 
+    RowBox[{"energy", " ", "/.", " ", "s"}]}], "  ", ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"hydrogenGroundStateEnergy", " ", "=", " ", 
+   RowBox[{"eMin", " ", "/.", " ", 
+    RowBox[{"zAtomic", " ", "\[Rule]", " ", "1"}]}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"heliumGroundStateEnergy", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"2", " ", "eMin"}], " ", "/.", " ", 
+     RowBox[{"zAtomic", " ", "\[Rule]", " ", "2"}]}]}], " ", ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Results", ":"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"#1", ",", "\"\< = \>\"", ",", 
+       RowBox[{
+        RowBox[{"#2", "/.", " ", "display"}], " ", "//", " ", 
+        "TraditionalForm"}]}], " ", "}"}], " ", "&"}], "@@@", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<<r|H|\[Psi]>\>\"", ",", " ", 
+        RowBox[{"hPsi", "[", "r", "]"}]}], " ", "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>\>\"", ",", " ", "energy"}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<\!\(\*SubscriptBox[\(a\), \(min\)]\)\>\"", ",", "aMin"}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>|a = \!\(\*SubscriptBox[\(a\), \
+\(min\)]\)\>\"", ",", " ", "eMin"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<\!\(\*SubscriptBox[\(E\), \(H\)]\)\>\"", ",", " ", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<\!\(\*FractionBox[\(1\), \(4\\\ \[Pi]\\\ \*SubscriptBox[\(\
+\[Epsilon]\), \(0\)]\\\ \*SubscriptBox[\(a\), \(0\)]\)]\)(\>\"", " ", ",", 
+           RowBox[{
+           "hydrogenGroundStateEnergy", " ", "4", " ", "Pi", " ", "eps", " ", 
+            RowBox[{
+             RowBox[{"hbar", "^", "2"}], "/", 
+             RowBox[{"(", 
+              RowBox[{"m", " ", 
+               RowBox[{"e", "^", "2"}]}], ")"}]}], " ", "4", " ", "Pi", " ", 
+            "eps"}], ",", " ", "\"\<)\>\""}], "}"}], "]"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<\!\(\*SubscriptBox[\(E\), SubscriptBox[\(H\), \(e\)]]\)\>\"", ",",
+         " ", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<\!\(\*FractionBox[\(1\), \(4\\\ \[Pi]\\\ \*SubscriptBox[\(\
+\[Epsilon]\), \(0\)]\\\ \*SubscriptBox[\(a\), \(0\)]\)]\)(\>\"", " ", ",", 
+           RowBox[{
+           "heliumGroundStateEnergy", " ", "4", " ", "Pi", " ", "eps", " ", 
+            RowBox[{
+             RowBox[{"hbar", "^", "2"}], "/", 
+             RowBox[{"(", 
+              RowBox[{"m", " ", 
+               RowBox[{"e", "^", "2"}]}], ")"}]}], " ", "4", " ", "Pi", " ", 
+            "eps"}], ",", " ", "\"\<)\>\""}], "}"}], "]"}]}], "}"}]}], 
+     "\[IndentingNewLine]", "}"}]}], " ", "//", " ", "Grid"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.6580103288788567`*^9, 3.65801033215473*^9}, {
+  3.658010437981526*^9, 3.6580106468001175`*^9}, {3.658010685875491*^9, 
+  3.6580109265305758`*^9}, {3.6580109682503986`*^9, 3.658011199453493*^9}, {
+  3.6580112515649414`*^9, 3.6580112535662165`*^9}, {3.658011310665251*^9, 
+  3.658011319547328*^9}, {3.65801136213659*^9, 3.658011631718551*^9}, {
+  3.6580117830472965`*^9, 3.6580118708131843`*^9}, {3.6580119908871436`*^9, 
+  3.6580120624819007`*^9}, {3.658012114365845*^9, 3.6580123696805134`*^9}, {
+  3.6580124692949457`*^9, 3.658012520113043*^9}, {3.658012582457184*^9, 
+  3.6580125830992146`*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"<r|H|\[Psi]>\"\>", "\<\" = \"\>", 
+     TagBox[
+      FormBox[
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"-", 
+           FractionBox["r", "a"]}]], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{
+             SuperscriptBox["a", "2"], " ", 
+             SuperscriptBox["e", "2"], " ", "m", " ", "Z"}]}], "+", 
+           RowBox[{"4", " ", "\[Pi]", " ", "a", " ", 
+            SubscriptBox["\[Epsilon]", "0"], " ", 
+            SuperscriptBox["\[HBar]", "2"]}], "-", 
+           RowBox[{"2", " ", "\[Pi]", " ", "r", " ", 
+            SubscriptBox["\[Epsilon]", "0"], " ", 
+            SuperscriptBox["\[HBar]", "2"]}]}], ")"}]}], 
+        RowBox[{"4", " ", "\[Pi]", " ", 
+         SuperscriptBox["a", "2"], " ", "m", " ", "r", " ", 
+         SubscriptBox["\[Epsilon]", "0"]}]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True]},
+    {"\<\"<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>\"\>", "\<\" = \"\>", 
+     TagBox[
+      FormBox[
+       FractionBox[
+        RowBox[{
+         FractionBox[
+          RowBox[{"2", " ", 
+           SuperscriptBox["\[HBar]", "2"]}], "m"], "-", 
+         FractionBox[
+          RowBox[{"a", " ", 
+           SuperscriptBox["e", "2"], " ", "Z"}], 
+          RowBox[{"\[Pi]", " ", 
+           SubscriptBox["\[Epsilon]", "0"]}]]}], 
+        RowBox[{"4", " ", 
+         SuperscriptBox["a", "2"]}]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(a\\), \\(min\\)]\\)\"\>", "\<\" = \"\>", 
+     TagBox[
+      FormBox[
+       FractionBox[
+        RowBox[{"4", " ", "\[Pi]", " ", 
+         SubscriptBox["\[Epsilon]", "0"], " ", 
+         SuperscriptBox["\[HBar]", "2"]}], 
+        RowBox[{
+         SuperscriptBox["e", "2"], " ", "m", " ", "Z"}]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True]},
+    {"\<\"<\[Psi]|H|\[Psi]>/<\[Psi]|\[Psi]>|a = \
+\\!\\(\\*SubscriptBox[\\(a\\), \\(min\\)]\\)\"\>", "\<\" = \"\>", 
+     TagBox[
+      FormBox[
+       RowBox[{"-", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["e", "4"], " ", "m", " ", 
+          SuperscriptBox["Z", "2"]}], 
+         RowBox[{"32", " ", 
+          SuperscriptBox["\[Pi]", "2"], " ", 
+          SubsuperscriptBox["\[Epsilon]", "0", "2"], " ", 
+          SuperscriptBox["\[HBar]", "2"]}]]}],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(E\\), \\(H\\)]\\)\"\>", "\<\" = \"\>", 
+     TagBox[
+      FormBox[
+       TemplateBox[{
+        "\"\\!\\(\\*FractionBox[\\(1\\), \\(4\\\\ \[Pi]\\\\ \
+\\*SubscriptBox[\\(\[Epsilon]\\), \\(0\\)]\\\\ \\*SubscriptBox[\\(a\\), \
+\\(0\\)]\\)]\\)(\"",RowBox[{"-", 
+           FractionBox[
+            SuperscriptBox["e", "2"], "2"]}],"\")\""},
+        "RowDefault"],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True]},
+    {"\<\"\\!\\(\\*SubscriptBox[\\(E\\), SubscriptBox[\\(H\\), \\(e\\)]]\\)\"\
+\>", "\<\" = \"\>", 
+     TagBox[
+      FormBox[
+       TemplateBox[{
+        "\"\\!\\(\\*FractionBox[\\(1\\), \\(4\\\\ \[Pi]\\\\ \
+\\*SubscriptBox[\\(\[Epsilon]\\), \\(0\\)]\\\\ \\*SubscriptBox[\\(a\\), \
+\\(0\\)]\\)]\\)(\"",RowBox[{
+           RowBox[{"-", "4"}], " ", 
+           SuperscriptBox["e", "2"]}],"\")\""},
+        "RowDefault"],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{
+  3.658010454212555*^9, {3.6580108477649546`*^9, 3.6580108559992695`*^9}, {
+   3.658010916286459*^9, 3.658010927578758*^9}, {3.65801113602314*^9, 
+   3.658011155351256*^9}, 3.658011207134494*^9, 3.65801125530186*^9, 
+   3.658011320954842*^9, {3.658011363731779*^9, 3.65801142720844*^9}, {
+   3.6580115003277874`*^9, 3.6580115137127*^9}, {3.658011600981592*^9, 
+   3.658011637754121*^9}, 3.6580118729864454`*^9, {3.6580122038110266`*^9, 
+   3.65801221947663*^9}, 3.6580122745975695`*^9, {3.6580123115629005`*^9, 
+   3.6580123370425506`*^9}, 3.6580123718067746`*^9, 3.6580125904457483`*^9}]
+}, Open  ]]
+},
+WindowSize->{1017, 669},
+WindowMargins->{{Automatic, 280}, {42, Automatic}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 9753, 257, 1405, "Input"],
+Cell[10335, 281, 4203, 113, 288, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
