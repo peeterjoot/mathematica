@@ -1,4 +1,4 @@
-ClearAll[ inverseAbsoluteThirdOrder ]
+ClearAll[ inverseNormoluteThirdOrder ]
 
 (* 
 1/|x + r|
@@ -9,7 +9,7 @@ ClearAll[ inverseAbsoluteThirdOrder ]
 +3 (x^2/r^2 + 2 x . r)^2/8
 )
  *)
-inverseAbsoluteThirdOrder[x_, r_] := (1/Abs[r])(
+inverseNormoluteThirdOrder[x_, r_] := (1/Norm[r])(
 1 
 -((x.x)/(r.r) + 2 x . r)/2
 +3 ((x.x)/(r.r) + 2 x . r)^2/8
@@ -21,7 +21,13 @@ x2 = {y_1, y_2, y_3} ;
 r = {r_1, r_2, r_3} ;
 *)
 
-(1/Abs[r] 
-+ inverseAbsoluteThirdOrder[x1-x2,r]
-- inverseAbsoluteThirdOrder[x1,r]
-- inverseAbsoluteThirdOrder[x2,-r]) // Simplify
+(1/Norm[r] 
++ inverseNormoluteThirdOrder[x1-x2,r]
+- inverseNormoluteThirdOrder[x1,r]
+- inverseNormoluteThirdOrder[x2,-r]) // Simplify
+
+(* compare to *)
+x1 . x2/ Norm[r]^3 -
+3 (x1. r)(x2.r)/Norm[r]^5
+
+
