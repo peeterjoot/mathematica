@@ -1,0 +1,27 @@
+ClearAll[ inverseAbsoluteThirdOrder ]
+
+(* 
+1/|x + r|
+= (x^2 + r^2 + 2 x. r)^(-1/2) 
+= (1/|r|)(1 + x^2/r^2 + 2 x . r)^(-1/2) 
+\approx (1/|r|)(1 
+-(x^2/r^2 + 2 x . r)/2
++3 (x^2/r^2 + 2 x . r)^2/8
+)
+ *)
+inverseAbsoluteThirdOrder[x_, r_] := (1/Abs[r])(
+1 
+-((x.x)/(r.r) + 2 x . r)/2
++3 ((x.x)/(r.r) + 2 x . r)^2/8
+)
+
+(*
+x1 = {x_1, x_2, x_3} ;
+x2 = {y_1, y_2, y_3} ;
+r = {r_1, r_2, r_3} ;
+*)
+
+(1/Abs[r] 
++ inverseAbsoluteThirdOrder[x1-x2,r]
+- inverseAbsoluteThirdOrder[x1,r]
+- inverseAbsoluteThirdOrder[x2,-r]) // Simplify
