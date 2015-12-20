@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     41268,       1061]
-NotebookOptionsPosition[     40720,       1038]
-NotebookOutlinePosition[     41252,       1059]
-CellTagsIndexPosition[     41209,       1056]
+NotebookDataLength[     38415,        992]
+NotebookOptionsPosition[     37866,        969]
+NotebookOutlinePosition[     38398,        990]
+CellTagsIndexPosition[     38355,        987]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -23,12 +23,13 @@ Cell[TextData[{
  Cell[BoxData[
   FormBox[
    SubscriptBox["S", "z"], TraditionalForm]]],
- " matrix relative to a specific normal vector n.  This was for ps8 p4, \
-hyperfine interaction."
+ " matrix relative to a specific normal vector n.  This is based on \
+PauliMatrixSpinOperators.nb from ps8 p4, hyperfine interaction, but switched \
+up for the Fermion/Boson interaction final exam question p6."
 }], "Text",
  CellChangeTimes->{{3.6585437382269764`*^9, 3.658543760516015*^9}, {
   3.6585740758510685`*^9, 3.6585740873463316`*^9}, {3.6595757018746967`*^9, 
-  3.6595757098428745`*^9}}],
+  3.6595757098428745`*^9}, {3.65963806112921*^9, 3.6596381190914516`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -42,7 +43,7 @@ Cell[BoxData[{
    "szKets", ",", " ", "szPlus", ",", " ", "szMinus", ",", " ", "u", ",", " ",
     "uInverse", ",", " ", "spinMatrixInSzBasis", ",", " ", "nPlusSzBasis", 
    ",", " ", "nMinusSzBasis", ",", "h", ",", " ", "h0", ",", " ", "v", ",", 
-   " ", "a", ",", " ", "b", ",", " ", "fullfieldEnergies"}], 
+   " ", "a", ",", " ", "b", ",", " ", "fullfieldEnergies", ",", " ", "z2"}], 
   "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -98,10 +99,8 @@ Cell[BoxData[{
      RowBox[{"hbar", " ", "\[Rule]", " ", "\[HBar]"}], ",", " ", 
      RowBox[{"theta", " ", "\[Rule]", " ", "\[Theta]"}], ",", " ", 
      RowBox[{"phi", " ", "\[Rule]", " ", "\[Phi]"}], ",", " ", 
-     RowBox[{"a", " ", "\[Rule]", " ", "\"\<A\>\""}], ",", " ", 
-     RowBox[{
-     "b", "\[Rule]", " ", "\"\<\!\(\*SubscriptBox[\(B\), \(eff\)]\)\>\""}], 
-     ",", " ", 
+     RowBox[{"a", " ", "\[Rule]", " ", "\"\<J\>\""}], ",", " ", 
+     RowBox[{"b", "\[Rule]", " ", "\"\<B\>\""}], ",", " ", 
      RowBox[{"E", " ", "\[Rule]", " ", "\"\<e\>\""}], ",", " ", 
      RowBox[{
       RowBox[{"Complex", "[", 
@@ -337,23 +336,33 @@ Cell[BoxData[{
     ")"}], " ", "//", " ", "Assert"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"h0", " ", "=", " ", 
-   RowBox[{
-    RowBox[{"(", 
-     RowBox[{"a", " ", 
-      RowBox[{
-       RowBox[{"hbar", "^", "2"}], "/", "4"}]}], ")"}], " ", 
-    RowBox[{"ArrayFlatten", "[", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"PauliMatrix", "[", "3", "]"}], ",", "0"}], "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"0", ",", 
-         RowBox[{"-", 
-          RowBox[{"PauliMatrix", "[", "3", "]"}]}]}], "}"}]}], "}"}], 
-     "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"z2", " ", "=", " ", 
+   RowBox[{"DiagonalMatrix", "[", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0"}], "}"}], "]"}]}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"h0", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"a", " ", 
+       RowBox[{
+        RowBox[{"hbar", "^", "2"}], "/", "2"}]}], ")"}], " ", 
+     RowBox[{"ArrayFlatten", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"PauliMatrix", "[", "3", "]"}], ",", "z2", ",", " ", "z2"}],
+          "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"z2", ",", "z2", ",", "z2"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"z2", ",", "z2", ",", 
+          RowBox[{"-", 
+           RowBox[{"PauliMatrix", "[", "3", "]"}]}]}], "}"}]}], "}"}], 
+      "]"}]}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"v", " ", "=", " ", 
    RowBox[{"b", " ", 
@@ -361,10 +370,12 @@ Cell[BoxData[{
      RowBox[{"{", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"szSpinBasis", ",", "0"}], "}"}], ",", 
+        RowBox[{"szSpinBasis", ",", "z2", ",", " ", "z2"}], "}"}], ",", 
        RowBox[{"{", 
-        RowBox[{"0", ",", "szSpinBasis"}], "}"}]}], "}"}], "]"}]}]}], 
-  ";"}], "\n", 
+        RowBox[{"z2", ",", " ", "szSpinBasis", ",", " ", "z2"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"z2", ",", " ", "z2", ",", "szSpinBasis"}], "}"}]}], "}"}], 
+     "]"}]}]}], ";"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{"h", " ", "=", " ", 
@@ -395,19 +406,21 @@ Cell[BoxData[{
          RowBox[{"\"\<\!\(\*OverscriptBox[\(n\), \(^\)]\)\>\"", ",", " ", 
           RowBox[{"n", " ", "//", " ", "MatrixForm"}]}], "}"}], ",", 
         "\[IndentingNewLine]", 
-        RowBox[{"{", 
+        RowBox[{"(*", 
          RowBox[{
-         "\"\<\!\(\*OverscriptBox[\(S\), \(\[RightVector]\)]\) \[CenterDot] \
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<\!\(\*OverscriptBox[\(S\), \(\[RightVector]\)]\) \[CenterDot] \
 \!\(\*OverscriptBox[\(n\), \(^\)]\)\>\"", ",", " ", 
-          RowBox[{"Row", "[", 
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"hbar", "/", "2"}], ",", 
-             RowBox[{
-              RowBox[{"(", 
-               RowBox[{"s", " ", 
-                RowBox[{"2", "/", "hbar"}]}], ")"}], "//", " ", 
-              "MatrixForm"}]}], " ", "}"}], "]"}]}], "}"}], ",", 
+            RowBox[{"Row", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"hbar", "/", "2"}], ",", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"s", " ", 
+                  RowBox[{"2", "/", "hbar"}]}], ")"}], "//", " ", 
+                "MatrixForm"}]}], " ", "}"}], "]"}]}], "}"}], ","}], "*)"}], 
         "\[IndentingNewLine]", 
         RowBox[{"{", 
          RowBox[{
@@ -463,14 +476,16 @@ Cell[BoxData[{
 \[CenterDot] \!\(\*OverscriptBox[\(z\), \(^\)]\);->\>\"", ",", " ", 
           RowBox[{"szMinus", " ", "//", " ", "MatrixForm"}]}], "}"}], ",", 
         "\[IndentingNewLine]", 
-        RowBox[{"{", 
+        RowBox[{"(*", 
          RowBox[{
-         "\"\<U = [ |\!\(\*OverscriptBox[\(S\), \(\[RightVector]\)]\) \
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<U = [ |\!\(\*OverscriptBox[\(S\), \(\[RightVector]\)]\) \
 \[CenterDot] \!\(\*OverscriptBox[\(z\), \(^\)]\);+> \
 |\!\(\*OverscriptBox[\(S\), \(\[RightVector]\)]\) \[CenterDot] \
 \!\(\*OverscriptBox[\(z\), \(^\)]\);-> ]\>\"", ",", " ", 
-          RowBox[{"u", " ", "//", " ", "MatrixForm"}]}], "}"}], ",", 
-        "\[IndentingNewLine]", 
+            RowBox[{"u", " ", "//", " ", "MatrixForm"}]}], "}"}], ","}], 
+         "*)"}], "\[IndentingNewLine]", 
         RowBox[{"{", 
          RowBox[{"\"\<\!\(\*SubscriptBox[\(H\), \(0\)]\)\>\"", ",", " ", 
           RowBox[{"Row", "[", 
@@ -581,7 +596,9 @@ Cell[BoxData[{
    3.658615295301306*^9, 3.6586154262582603`*^9}, {3.658615465404114*^9, 
    3.6586154964339895`*^9}, {3.658615532135625*^9, 3.6586155328700333`*^9}, {
    3.6586589980687704`*^9, 3.658659152694193*^9}, {3.658659547137313*^9, 
-   3.658659547569118*^9}, {3.6586595877853947`*^9, 3.658659671317618*^9}}],
+   3.658659547569118*^9}, {3.6586595877853947`*^9, 3.658659671317618*^9}, {
+   3.6596377765273285`*^9, 3.6596378564323177`*^9}, {3.6596379337038736`*^9, 
+   3.659638056958643*^9}, {3.659638139281116*^9, 3.659638210192382*^9}}],
 
 Cell[BoxData[
  StyleBox[
@@ -617,42 +634,6 @@ Cell[BoxData[
            Column], "\[NoBreak]", ")"}],
          Function[BoxForm`e$, 
           MatrixForm[BoxForm`e$]]],
-        TraditionalForm],
-       TraditionalForm,
-       Editable->True]},
-     {"\<\"\\!\\(\\*OverscriptBox[\\(S\\), \\(\[RightVector]\\)]\\) \
-\[CenterDot] \\!\\(\\*OverscriptBox[\\(n\\), \\(^\\)]\\)\"\>", "\<\" = \"\>", 
-      TagBox[
-       FormBox[
-        TemplateBox[{FractionBox["\[HBar]", "2"],TagBox[
-           RowBox[{"(", "\[NoBreak]", 
-             GridBox[{{
-                RowBox[{"cos", "(", "\[Theta]", ")"}], 
-                RowBox[{
-                  RowBox[{"sin", "(", "\[Theta]", ")"}], " ", 
-                  SuperscriptBox["\"e\"", 
-                   RowBox[{
-                    RowBox[{"-", "i"}], " ", "\[Phi]"}]]}]}, {
-                RowBox[{
-                  RowBox[{"sin", "(", "\[Theta]", ")"}], " ", 
-                  SuperscriptBox["\"e\"", 
-                   RowBox[{"i", " ", "\[Phi]"}]]}], 
-                RowBox[{"-", 
-                  RowBox[{"cos", "(", "\[Theta]", ")"}]}]}}, 
-              GridBoxAlignment -> {
-               "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
-                "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
-              GridBoxSpacings -> {"Columns" -> {
-                  Offset[0.27999999999999997`], {
-                   Offset[0.7]}, 
-                  Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
-                "Rows" -> {
-                  Offset[0.2], {
-                   Offset[0.4]}, 
-                  Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
-           Function[BoxForm`e$, 
-            MatrixForm[BoxForm`e$]]]},
-         "RowDefault"],
         TraditionalForm],
        TraditionalForm,
        Editable->True]},
@@ -827,52 +808,18 @@ Cell[BoxData[
         TraditionalForm],
        TraditionalForm,
        Editable->True]},
-     {"\<\"U = [ |\\!\\(\\*OverscriptBox[\\(S\\), \\(\[RightVector]\\)]\\) \
-\[CenterDot] \\!\\(\\*OverscriptBox[\\(z\\), \\(^\\)]\\);+> \
-|\\!\\(\\*OverscriptBox[\\(S\\), \\(\[RightVector]\\)]\\) \[CenterDot] \\!\\(\
-\\*OverscriptBox[\\(z\\), \\(^\\)]\\);-> ]\"\>", "\<\" = \"\>", 
-      TagBox[
-       FormBox[
-        TagBox[
-         RowBox[{"(", "\[NoBreak]", GridBox[{
-            {
-             RowBox[{"-", 
-              RowBox[{"cos", "(", 
-               FractionBox["\[Theta]", "2"], ")"}]}], 
-             RowBox[{"sin", "(", 
-              FractionBox["\[Theta]", "2"], ")"}]},
-            {
-             RowBox[{"sin", "(", 
-              FractionBox["\[Theta]", "2"], ")"}], 
-             RowBox[{"cos", "(", 
-              FractionBox["\[Theta]", "2"], ")"}]}
-           },
-           
-           GridBoxAlignment->{
-            "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
-             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-           GridBoxSpacings->{"Columns" -> {
-               Offset[0.27999999999999997`], {
-                Offset[0.7]}, 
-               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-               Offset[0.2], {
-                Offset[0.4]}, 
-               Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
-         Function[BoxForm`e$, 
-          MatrixForm[BoxForm`e$]]],
-        TraditionalForm],
-       TraditionalForm,
-       Editable->True]},
      {"\<\"\\!\\(\\*SubscriptBox[\\(H\\), \\(0\\)]\\)\"\>", "\<\" = \"\>", 
       TagBox[
        FormBox[
         TemplateBox[{FractionBox[
-           RowBox[{"\"A\"", " ", 
+           RowBox[{"\"J\"", " ", 
              SuperscriptBox["\[HBar]", "2"]}], "4"],TagBox[
            RowBox[{"(", "\[NoBreak]", 
-             GridBox[{{"1", "0", "0", "0"}, {"0", 
-                RowBox[{"-", "1"}], "0", "0"}, {"0", "0", 
-                RowBox[{"-", "1"}], "0"}, {"0", "0", "0", "1"}}, 
+             GridBox[{{"2", "0", "0", "0", "0", "0"}, {"0", 
+                RowBox[{"-", "2"}], "0", "0", "0", "0"}, {
+               "0", "0", "0", "0", "0", "0"}, {
+               "0", "0", "0", "0", "0", "0"}, {"0", "0", "0", "0", 
+                RowBox[{"-", "2"}], "0"}, {"0", "0", "0", "0", "0", "2"}}, 
               GridBoxAlignment -> {
                "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
                 "Rows" -> {{Baseline}}, "RowsIndexed" -> {}}, 
@@ -894,22 +841,31 @@ Cell[BoxData[
       TagBox[
        FormBox[
         TemplateBox[{FractionBox[
-           
-           RowBox[{"\"\\!\\(\\*SubscriptBox[\\(B\\), \\(eff\\)]\\)\"", " ", 
-             "\[HBar]"}], "2"],TagBox[
+           RowBox[{"\"B\"", " ", "\[HBar]"}], "2"],TagBox[
            RowBox[{"(", "\[NoBreak]", 
              GridBox[{{
                 RowBox[{"cos", "(", "\[Theta]", ")"}], 
                 RowBox[{"-", 
+                  RowBox[{"sin", "(", "\[Theta]", ")"}]}], "0", "0", "0", 
+                "0"}, {
+                RowBox[{"-", 
+                  RowBox[{"sin", "(", "\[Theta]", ")"}]}], 
+                RowBox[{"-", 
+                  RowBox[{"cos", "(", "\[Theta]", ")"}]}], "0", "0", "0", 
+                "0"}, {"0", "0", 
+                RowBox[{"cos", "(", "\[Theta]", ")"}], 
+                RowBox[{"-", 
                   RowBox[{"sin", "(", "\[Theta]", ")"}]}], "0", "0"}, {
+               "0", "0", 
                 RowBox[{"-", 
                   RowBox[{"sin", "(", "\[Theta]", ")"}]}], 
                 RowBox[{"-", 
                   RowBox[{"cos", "(", "\[Theta]", ")"}]}], "0", "0"}, {
-               "0", "0", 
+               "0", "0", "0", "0", 
                 RowBox[{"cos", "(", "\[Theta]", ")"}], 
                 RowBox[{"-", 
-                  RowBox[{"sin", "(", "\[Theta]", ")"}]}]}, {"0", "0", 
+                  RowBox[{"sin", "(", "\[Theta]", ")"}]}]}, {
+               "0", "0", "0", "0", 
                 RowBox[{"-", 
                   RowBox[{"sin", "(", "\[Theta]", ")"}]}], 
                 RowBox[{"-", 
@@ -936,75 +892,62 @@ Cell[BoxData[
        FormBox[
         TagBox[GridBox[{
            {
-            RowBox[{
-             RowBox[{"-", 
-              FractionBox["1", "4"]}], " ", "\[HBar]", " ", 
-             SqrtBox[
-              RowBox[{
-               RowBox[{
-                SuperscriptBox["\<\"A\"\>", "2"], " ", 
-                SuperscriptBox["\[HBar]", "2"]}], "-", 
-               RowBox[{
-               "4", " ", "\<\"A\"\>", 
-                " ", "\<\"\\!\\(\\*SubscriptBox[\\(B\\), \\(eff\\)]\\)\"\>", 
-                " ", "\[HBar]", " ", 
-                RowBox[{"cos", "(", "\[Theta]", ")"}]}], "+", 
-               RowBox[{"4", " ", 
-                
-                SuperscriptBox["\<\"\\!\\(\\*SubscriptBox[\\(B\\), \\(eff\\)]\
-\\)\"\>", "2"]}]}]]}]},
+            RowBox[{"-", 
+             FractionBox[
+              RowBox[{"\<\"B\"\>", " ", "\[HBar]"}], "2"]}]},
            {
-            RowBox[{
-             FractionBox["1", "4"], " ", "\[HBar]", " ", 
-             SqrtBox[
-              RowBox[{
-               RowBox[{
-                SuperscriptBox["\<\"A\"\>", "2"], " ", 
-                SuperscriptBox["\[HBar]", "2"]}], "-", 
-               RowBox[{
-               "4", " ", "\<\"A\"\>", 
-                " ", "\<\"\\!\\(\\*SubscriptBox[\\(B\\), \\(eff\\)]\\)\"\>", 
-                " ", "\[HBar]", " ", 
-                RowBox[{"cos", "(", "\[Theta]", ")"}]}], "+", 
-               RowBox[{"4", " ", 
-                
-                SuperscriptBox["\<\"\\!\\(\\*SubscriptBox[\\(B\\), \\(eff\\)]\
-\\)\"\>", "2"]}]}]]}]},
+            FractionBox[
+             RowBox[{"\<\"B\"\>", " ", "\[HBar]"}], "2"]},
            {
             RowBox[{
              RowBox[{"-", 
-              FractionBox["1", "4"]}], " ", "\[HBar]", " ", 
+              FractionBox["1", "2"]}], " ", "\[HBar]", " ", 
              SqrtBox[
               RowBox[{
+               SuperscriptBox["\<\"B\"\>", "2"], "-", 
                RowBox[{
-                SuperscriptBox["\<\"A\"\>", "2"], " ", 
-                SuperscriptBox["\[HBar]", "2"]}], "+", 
-               RowBox[{
-               "4", " ", "\<\"A\"\>", 
-                " ", "\<\"\\!\\(\\*SubscriptBox[\\(B\\), \\(eff\\)]\\)\"\>", 
-                " ", "\[HBar]", " ", 
+               "2", " ", "\<\"B\"\>", " ", "\<\"J\"\>", " ", "\[HBar]", " ", 
                 RowBox[{"cos", "(", "\[Theta]", ")"}]}], "+", 
-               RowBox[{"4", " ", 
-                
-                SuperscriptBox["\<\"\\!\\(\\*SubscriptBox[\\(B\\), \\(eff\\)]\
-\\)\"\>", "2"]}]}]]}]},
+               RowBox[{
+                SuperscriptBox["\<\"J\"\>", "2"], " ", 
+                SuperscriptBox["\[HBar]", "2"]}]}]]}]},
            {
             RowBox[{
-             FractionBox["1", "4"], " ", "\[HBar]", " ", 
+             FractionBox["1", "2"], " ", "\[HBar]", " ", 
              SqrtBox[
               RowBox[{
+               SuperscriptBox["\<\"B\"\>", "2"], "-", 
                RowBox[{
-                SuperscriptBox["\<\"A\"\>", "2"], " ", 
-                SuperscriptBox["\[HBar]", "2"]}], "+", 
-               RowBox[{
-               "4", " ", "\<\"A\"\>", 
-                " ", "\<\"\\!\\(\\*SubscriptBox[\\(B\\), \\(eff\\)]\\)\"\>", 
-                " ", "\[HBar]", " ", 
+               "2", " ", "\<\"B\"\>", " ", "\<\"J\"\>", " ", "\[HBar]", " ", 
                 RowBox[{"cos", "(", "\[Theta]", ")"}]}], "+", 
-               RowBox[{"4", " ", 
-                
-                SuperscriptBox["\<\"\\!\\(\\*SubscriptBox[\\(B\\), \\(eff\\)]\
-\\)\"\>", "2"]}]}]]}]}
+               RowBox[{
+                SuperscriptBox["\<\"J\"\>", "2"], " ", 
+                SuperscriptBox["\[HBar]", "2"]}]}]]}]},
+           {
+            RowBox[{
+             RowBox[{"-", 
+              FractionBox["1", "2"]}], " ", "\[HBar]", " ", 
+             SqrtBox[
+              RowBox[{
+               SuperscriptBox["\<\"B\"\>", "2"], "+", 
+               RowBox[{
+               "2", " ", "\<\"B\"\>", " ", "\<\"J\"\>", " ", "\[HBar]", " ", 
+                RowBox[{"cos", "(", "\[Theta]", ")"}]}], "+", 
+               RowBox[{
+                SuperscriptBox["\<\"J\"\>", "2"], " ", 
+                SuperscriptBox["\[HBar]", "2"]}]}]]}]},
+           {
+            RowBox[{
+             FractionBox["1", "2"], " ", "\[HBar]", " ", 
+             SqrtBox[
+              RowBox[{
+               SuperscriptBox["\<\"B\"\>", "2"], "+", 
+               RowBox[{
+               "2", " ", "\<\"B\"\>", " ", "\<\"J\"\>", " ", "\[HBar]", " ", 
+                RowBox[{"cos", "(", "\[Theta]", ")"}]}], "+", 
+               RowBox[{
+                SuperscriptBox["\<\"J\"\>", "2"], " ", 
+                SuperscriptBox["\[HBar]", "2"]}]}]]}]}
           },
           DefaultBaseStyle->"Column",
           GridBoxAlignment->{"Columns" -> {{Left}}},
@@ -1021,19 +964,7 @@ Cell[BoxData[
    "Grid"], "Text",
   StripOnInput->False,
   FontSize->14]], "Output",
- CellChangeTimes->{
-  3.6585740453474865`*^9, 3.6585743698697677`*^9, 3.6585745170726643`*^9, 
-   3.658574926959818*^9, {3.6585750008871803`*^9, 3.6585750700217657`*^9}, 
-   3.658575153179986*^9, 3.6585760966722918`*^9, 3.6585773091633463`*^9, 
-   3.6585773774869194`*^9, 3.65857850760511*^9, 3.6585785682614717`*^9, 
-   3.658578604588917*^9, 3.658578785254855*^9, 3.6585790132388625`*^9, 
-   3.658579063803941*^9, {3.6586133943954115`*^9, 3.6586134025735245`*^9}, 
-   3.6586134597069626`*^9, 3.6586135633060713`*^9, 3.658613704074997*^9, 
-   3.658613749775729*^9, 3.65861456236241*^9, {3.6586152982245555`*^9, 
-   3.6586153430588675`*^9}, {3.658615378831314*^9, 3.658615426884513*^9}, 
-   3.658615497471979*^9, 3.6586155350052037`*^9, 3.6586194944029274`*^9, {
-   3.658659061677686*^9, 3.6586591211085267`*^9}, 3.658659153647352*^9, {
-   3.658659633695423*^9, 3.6586596720520425`*^9}}]
+ CellChangeTimes->{{3.659638182633787*^9, 3.659638211982328*^9}}]
 }, Open  ]]
 },
 PrintingStyleEnvironment->"Printout",
@@ -1058,10 +989,10 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 393, 10, 40, "Text"],
+Cell[557, 20, 553, 11, 66, "Text"],
 Cell[CellGroupData[{
-Cell[975, 34, 21824, 549, 2032, "Input"],
-Cell[22802, 585, 17902, 450, 933, "Output"]
+Cell[1135, 35, 22570, 565, 2082, "Input"],
+Cell[23708, 602, 14142, 364, 977, "Output"]
 }, Open  ]]
 }
 ]
