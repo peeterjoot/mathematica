@@ -11,7 +11,8 @@ Begin["peeters`"]
 ClearAll[setGitDir];
 
 setGitDir::usage = "Peeter's home laptop: set working dir relative to physicsplay/ (like figures/phy487)" ;
-setGitDir[where_] := SetDirectory[ "C:/Users/Peeter/cygwin_home/physicsplay/" <> where ] ;
+(*setGitDir[where_] := SetDirectory[ "C:/Users/Peeter/cygwin_home/physicsplay/" <> where ] ;*)
+setGitDir[where_] := SetDirectory[ "/Users/pjoot/physicsplay/" <> where ] ;
 
 
 ClearAll[exportForLatex];
@@ -33,8 +34,11 @@ sty = CurrentValue[ InputNotebook[], StyleDefinitions ] ;
 If [ sty == "Default.nb", Null, SetOptions[ InputNotebook[], StyleDefinitions->"Default.nb" ] ] ;
 
 output =
-{Export[filename  <> ".eps",First[ImportString[ExportString[image, "PDF", "AllowRasterization"-> allowRast, Background->None],"PDF"]]]
-
+{
+If[$VersionNumber >= 11,
+   Export[filename  <> ".eps", image],
+   Export[filename  <> ".eps",First[ImportString[ExportString[image, "PDF", "AllowRasterization"-> allowRast, Background->None],"PDF"]]]
+]
 ,Export[filename  <> "pn.png", image, "AllowRasterization"-> allowRast, Background->None, ImageResolution->72*4]
 (*,Export[filename  <> ".pdf", image]*)
 } ;
