@@ -1,0 +1,253 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8129,        245]
+NotebookOptionsPosition[      7503,        226]
+NotebookOutlinePosition[      7863,        242]
+CellTagsIndexPosition[      7820,        239]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Post to Mathematica SE.  How to get FullSimplify to act on scalars (-1, 0, 1, \
+...)  that are multiplied by potentially non-commutative symbols (operators, \
+block matrices, ...)?\
+\>", "Text",
+ CellChangeTimes->{{3.7500174072073936`*^9, 
+  3.750017465517544*^9}},ExpressionUUID->"03948c79-5b67-4b6a-a209-\
+3f8190b4a089"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.750017354900969*^9, 
+  3.750017401789049*^9}},ExpressionUUID->"2ccaabbd-d105-4fd0-bb6c-\
+a3fde1e0ad4b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", 
+   RowBox[{
+   "mdot", ",", "x", ",", "y", ",", "a", ",", "b", ",", "c", ",", "d", ",", 
+    "f", ",", "g"}], "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Unprotect", "[", "NonCommutativeMultiply", "]"}], ";", "\n", 
+    RowBox[{
+     RowBox[{"NonCommutativeMultiply", "[", 
+      RowBox[{"H__", ",", "c_", ",", "T__"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"c", " ", 
+        RowBox[{"NonCommutativeMultiply", "[", 
+         RowBox[{"H", ",", "T"}], "]"}]}], "/;", 
+       RowBox[{
+        RowBox[{"NumericQ", "[", "c", "]"}], "\n", 
+        RowBox[{"NonCommutativeMultiply", "[", 
+         RowBox[{"H___", ",", 
+          RowBox[{"Times", "[", 
+           RowBox[{"c_", ",", "factors__"}], "]"}], ",", "T___"}], "]"}]}]}], 
+      ":=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"c", " ", 
+         RowBox[{"NonCommutativeMultiply", "[", 
+          RowBox[{"H", ",", 
+           RowBox[{"Times", "[", "factors", "]"}], ",", "T"}], "]"}]}], "/;", 
+        
+        RowBox[{
+         RowBox[{"NumericQ", "[", "c", "]"}], "\n", 
+         RowBox[{"NonCommutativeMultiply", "[", 
+          RowBox[{"H___", ",", "0", ",", "T___"}], "]"}]}]}], ":=", "0"}]}]}],
+     ";", "\n", 
+    RowBox[{
+     RowBox[{"NonCommutativeMultiply", "[", 
+      RowBox[{"H___", ",", "1", ",", "T___"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"NonCommutativeMultiply", "[", 
+        RowBox[{"H", ",", "T"}], "]"}], "\n", 
+       RowBox[{"NonCommutativeMultiply", "[", 
+        RowBox[{"H___", ",", 
+         RowBox[{"Plus", "[", 
+          RowBox[{"a_", ",", "addends__"}], "]"}], ",", "T___"}], "]"}]}], ":=", 
+      RowBox[{
+       RowBox[{"NonCommutativeMultiply", "[", 
+        RowBox[{"H", ",", "a", ",", "T"}], "]"}], "+", 
+       RowBox[{"NonCommutativeMultiply", "[", 
+        RowBox[{"H", ",", 
+         RowBox[{"Plus", "[", "addends", "]"}], ",", "T"}], "]"}]}]}]}]}], 
+   "*)"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ClearAll", "[", "ExpandNCM", "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ExpandNCM", "[", "expr_", "]"}], ":=", 
+    RowBox[{"expr", "/.", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"h", ":", "NonCommutativeMultiply"}], ")"}], "[", 
+         RowBox[{"a___", ",", "b_Plus", ",", "c___"}], "]"}], 
+        "\[RuleDelayed]", 
+        RowBox[{"Distribute", "[", 
+         RowBox[{
+          RowBox[{"h", "[", 
+           RowBox[{"a", ",", "b", ",", "c"}], "]"}], ",", "Plus", ",", "h", 
+          ",", "Plus", ",", 
+          RowBox[{"ExpandNCM", "@*", "h"}]}], "]"}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"h", ":", "NonCommutativeMultiply"}], ")"}], "[", 
+         RowBox[{"a___", ",", "b_Times", ",", "c___"}], "]"}], 
+        "\[RuleDelayed]", 
+        RowBox[{
+         RowBox[{"Most", "[", "b", "]"}], " ", 
+         RowBox[{"ExpandNCM", "[", 
+          RowBox[{"h", "[", 
+           RowBox[{"a", ",", 
+            RowBox[{"Last", "[", "b", "]"}], ",", "c"}], "]"}], "]"}]}]}]}], 
+      "}"}]}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mdot", "[", 
+   RowBox[{"a_", ",", " ", "b_"}], "]"}], " ", ":=", " ", 
+  RowBox[{"Inner", "[", 
+   RowBox[{"NonCommutativeMultiply", ",", "a", ",", "b", ",", "Plus"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"x", " ", ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "/", 
+      RowBox[{"Sqrt", "[", "2", "]"}]}], ")"}], 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", ",", 
+        RowBox[{"-", "b"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"c", ",", "d"}], "}"}]}], "}"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"y", " ", ":=", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "/", 
+      RowBox[{"Sqrt", "[", "2", "]"}]}], ")"}], 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", " ", "f"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "g"}], ",", " ", "0"}], "}"}]}], "}"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"mdot", "[", 
+     RowBox[{"x", ",", " ", "y"}], "]"}], " ", "//", " ", "ExpandNCM"}], 
+   ")"}], " ", "//", " ", "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.750017237420669*^9, 3.750017339653652*^9}, {
+  3.7500177815038843`*^9, 3.750017783277742*^9}, {3.750017831608171*^9, 
+  3.750017846814377*^9}, {3.750020582523622*^9, 3.750020583921481*^9}, {
+  3.7500221064516706`*^9, 3.750022110656636*^9}, {3.750025620648861*^9, 
+  3.750025639408317*^9}},ExpressionUUID->"adfc77de-68c7-45cc-a5e3-\
+17fe8eec9f87"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{
+       FractionBox[
+        RowBox[{"a", "**", 
+         FractionBox["1", 
+          SqrtBox["2"]]}], 
+        SqrtBox["2"]], "+", 
+       FractionBox[
+        RowBox[{"b", "**", "g"}], "2"]}], 
+      RowBox[{
+       FractionBox[
+        RowBox[{"a", "**", "f"}], "2"], "-", 
+       FractionBox[
+        RowBox[{"b", "**", "0"}], 
+        SqrtBox["2"]]}]},
+     {
+      RowBox[{
+       FractionBox[
+        RowBox[{"c", "**", 
+         FractionBox["1", 
+          SqrtBox["2"]]}], 
+        SqrtBox["2"]], "-", 
+       FractionBox[
+        RowBox[{"d", "**", "g"}], "2"]}], 
+      RowBox[{
+       FractionBox[
+        RowBox[{"c", "**", "f"}], "2"], "+", 
+       FractionBox[
+        RowBox[{"d", "**", "0"}], 
+        SqrtBox["2"]]}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{{3.750017286754916*^9, 3.7500173408006287`*^9}, 
+   3.750017785196828*^9, 3.750017848650475*^9, 3.750020586070201*^9, 
+   3.750025640470928*^9},ExpressionUUID->"6a18dcb4-2c20-4051-a2c6-\
+18f56e775267"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{Automatic, 233}, {Automatic, 24}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 332, 7, 58, "Text",ExpressionUUID->"03948c79-5b67-4b6a-a209-3f8190b4a089"],
+Cell[893, 29, 152, 3, 30, "Input",ExpressionUUID->"2ccaabbd-d105-4fd0-bb6c-a3fde1e0ad4b"],
+Cell[CellGroupData[{
+Cell[1070, 36, 4884, 136, 514, "Input",ExpressionUUID->"adfc77de-68c7-45cc-a5e3-17fe8eec9f87"],
+Cell[5957, 174, 1530, 49, 108, "Output",ExpressionUUID->"6a18dcb4-2c20-4051-a2c6-18f56e775267"]
+}, Open  ]]
+}
+]
+*)
+
