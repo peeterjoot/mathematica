@@ -6,4 +6,5 @@
 #~/physicsplay/bin/mtcheck `find quantumchemistry -name "*.nb" -o -name "*.cdf"` | tee x
 #~/physicsplay/bin/mtcheck `find ece1228-emt -name "*.nb" -o -name "*.cdf"` | tee x
 #~/physicsplay/bin/mtcheck `find GAe* -name "*.nb" -o -name "*.cdf"` | tee x
-~/physicsplay/bin/mtcheck `find phy2403-quantum-field-theory -name "*.nb" -o -name "*.cdf"` | tee x
+#~/physicsplay/bin/mtcheck `find phy2403-quantum-field-theory -name "*.nb" -o -name "*.cdf"` | tee x
+~/physicsplay/bin/mtcheck `find GAelectrodynamics -name "*.nb" -o -name "*.cdf"` | tee x
