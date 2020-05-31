@@ -23,10 +23,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[      1063,         20]
-NotebookDataLength[     23776,        548]
-NotebookOptionsPosition[     24305,        543]
-NotebookOutlinePosition[     24648,        558]
-CellTagsIndexPosition[     24605,        555]
+NotebookDataLength[     24217,        552]
+NotebookOptionsPosition[     24545,        547]
+NotebookOutlinePosition[     24940,        563]
+CellTagsIndexPosition[     24897,        560]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -47,7 +47,8 @@ the value of the functions being plotted."
 }], "Text",
  CellChangeTimes->{{3.632400760708068*^9, 3.6324007629181943`*^9}, {
   3.632400823299648*^9, 3.6324009499118896`*^9}, {3.6324009831157885`*^9, 
-  3.632401051659709*^9}}],
+  3.632401051659709*^9}},ExpressionUUID->"58c71cd6-77ce-410e-bc92-\
+b07d4a8679d0"],
 
 Cell[CellGroupData[{
 
@@ -320,7 +321,6 @@ Cell[BoxData[
      "\[IndentingNewLine]", ",", " ", 
     RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
    "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]"}]], "Input",
- CellOpen->False,
  CellChangeTimes->{{3.6323543281210485`*^9, 3.632354355485614*^9}, {
    3.6323543899295835`*^9, 3.63235439003959*^9}, {3.6323544645488515`*^9, 
    3.632354631382394*^9}, {3.632354726369827*^9, 3.6323547931186447`*^9}, {
@@ -349,15 +349,17 @@ Cell[BoxData[
    3.6323991525610867`*^9}, {3.6323991865710325`*^9, 
    3.6323991875360875`*^9}, {3.632399377502953*^9, 3.6323994263777485`*^9}, {
    3.632399542044364*^9, 3.6323996220389395`*^9}, {3.6323996703847046`*^9, 
-   3.6323996866856375`*^9}, 3.632401075589078*^9}],
+   3.6323996866856375`*^9}, 3.632401075589078*^9, 
+   3.7999170047786083`*^9},ExpressionUUID->"75ae3b7b-7112-4f6f-9e59-\
+1787a3d18523"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`fIndex$$ = 1, $CellContext`kmax$$ = 
+   DynamicModuleBox[{$CellContext`fIndex$$ = 2, $CellContext`kmax$$ = 
     5, $CellContext`lower$$ = -5, $CellContext`rkConst$$ = 
     1, $CellContext`rmax$$ = 5, $CellContext`upper$$ = 
-    5, $CellContext`whichIndex$$ = 1, Typeset`show$$ = True, 
+    5, $CellContext`whichIndex$$ = 2, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
@@ -374,8 +376,8 @@ Cell[BoxData[
        Hold[$CellContext`kmax$$], 5, "k max"}, 0, 20}, {{
        Hold[$CellContext`rmax$$], 5, "r max"}, 0, 20}, {{
        Hold[$CellContext`rkConst$$], 1, "r * k constant contour"}, 0.001, 
-      20}}, Typeset`size$$ = {467., {208.5, 215.5}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+      20}}, Typeset`size$$ = {350., {184.634033203125, 190.365966796875}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
     False, $CellContext`whichIndex$19796$$ = 
     False, $CellContext`fIndex$19797$$ = False, $CellContext`upper$19798$$ = 
     0, $CellContext`lower$19799$$ = 0, $CellContext`kmax$19800$$ = 
@@ -432,7 +434,7 @@ $CellContext`krmin$, $CellContext`rmax$$},
          "Labeled"}, {{$CellContext`rkConst$$, 1, "r * k constant contour"}, 
          0.001, 20, Appearance -> "Labeled"}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{535., {380., 387.}},
+     ImageSizeCache->{395., {314., 320.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -448,22 +450,24 @@ $CellContext`wTheta, $CellContext`pAv}, $CellContext`hPhi[
            Pattern[$CellContext`k, 
             Blank[]], 
            Pattern[$CellContext`r, 
-            Blank[]]] = (
-           I $CellContext`k (1 - I/($CellContext`k $CellContext`r)))/(
-          E^(I $CellContext`k $CellContext`r) $CellContext`r), $CellContext`eR[
+            Blank[]]] = ((I $CellContext`k) (1 - 
+            I/($CellContext`k $CellContext`r)))/(
+          E^((I $CellContext`k) $CellContext`r) $CellContext`r), \
+$CellContext`eR[
            Pattern[$CellContext`k, 
             Blank[]], 
            Pattern[$CellContext`r, 
             Blank[]]] = (1 - I/($CellContext`k $CellContext`r))/(
-          E^(I $CellContext`k $CellContext`r) $CellContext`r^2), \
+          E^((I $CellContext`k) $CellContext`r) $CellContext`r^2), \
 $CellContext`eTheta[
            Pattern[$CellContext`k, 
             Blank[]], 
            Pattern[$CellContext`r, 
-            Blank[]]] = (
-           I $CellContext`k (1 - 1/($CellContext`k^2 $CellContext`r^2) - 
+            Blank[]]] = ((I $CellContext`k) (1 - 
+            1/($CellContext`k^2 $CellContext`r^2) - 
             I/($CellContext`k $CellContext`r)))/(
-          E^(I $CellContext`k $CellContext`r) $CellContext`r), $CellContext`wR[
+          E^((I $CellContext`k) $CellContext`r) $CellContext`r), \
+$CellContext`wR[
            Pattern[$CellContext`k, 
             Blank[]], 
            Pattern[$CellContext`r, 
@@ -473,8 +477,7 @@ $CellContext`wTheta[
            Pattern[$CellContext`k, 
             Blank[]], 
            Pattern[$CellContext`r, 
-            Blank[]]] = (
-           I $CellContext`k (1 + 
+            Blank[]]] = ((I $CellContext`k) (1 + 
             1/($CellContext`k^2 $CellContext`r^2)))/$CellContext`r^3, \
 $CellContext`pAv[
            Pattern[$CellContext`k, 
@@ -485,23 +488,23 @@ $CellContext`pAv[
             Pattern[$CellContext`k, 
              Blank[]], 
             Pattern[$CellContext`r, 
-             Blank[]]] = 
-          I $CellContext`k (1 + 1/(I $CellContext`k $CellContext`r)) (
-            E^((-I) $CellContext`k $CellContext`r)/$CellContext`r); \
+             Blank[]]] = ((I $CellContext`k) (1 + 
+             1/((I $CellContext`k) $CellContext`r))) (
+            E^(((-I) $CellContext`k) $CellContext`r)/$CellContext`r); \
 $CellContext`eR[
             Pattern[$CellContext`k, 
              Blank[]], 
             Pattern[$CellContext`r, 
-             Blank[]]] = (1 + 1/(I $CellContext`k $CellContext`r)) (
-            E^((-I) $CellContext`k $CellContext`r)/$CellContext`r^2); \
+             Blank[]]] = (1 + 1/((I $CellContext`k) $CellContext`r)) (
+            E^(((-I) $CellContext`k) $CellContext`r)/$CellContext`r^2); \
 $CellContext`eTheta[
             Pattern[$CellContext`k, 
              Blank[]], 
             Pattern[$CellContext`r, 
-             Blank[]]] = 
-          I $CellContext`k (1 + 1/(I $CellContext`k $CellContext`r) - 
-            1/($CellContext`k $CellContext`r)^2) (
-            E^((-I) $CellContext`k $CellContext`r)/$CellContext`r); \
+             Blank[]]] = ((I $CellContext`k) (1 + 
+             1/((I $CellContext`k) $CellContext`r) - 
+             1/($CellContext`k $CellContext`r)^2)) (
+            E^(((-I) $CellContext`k) $CellContext`r)/$CellContext`r); \
 $CellContext`wR[
             Pattern[$CellContext`k, 
              Blank[]], 
@@ -512,8 +515,8 @@ $CellContext`wTheta[
             Pattern[$CellContext`k, 
              Blank[]], 
             Pattern[$CellContext`r, 
-             Blank[]]] = 
-          I $CellContext`k ((1 + 
+             Blank[]]] = (
+            I $CellContext`k) ((1 + 
              1/($CellContext`k $CellContext`r)^2)/$CellContext`r^3); \
 $CellContext`pAv[
             Pattern[$CellContext`k, 
@@ -538,13 +541,15 @@ $CellContext`wTheta, $CellContext`pAv}; $CellContext`fLabels = {
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{
   3.63239962292599*^9, {3.63239967746811*^9, 3.6323996875306854`*^9}, 
-   3.6324010777472014`*^9}]
+   3.6324010777472014`*^9},ExpressionUUID->"e56df899-1874-4c94-b115-\
+88942326c74b"]
 }, Open  ]]
 },
-WindowSize->{1584, 765},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
-FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
-StyleDefinitions->"Default.nb"
+WindowSize->{1273, 700},
+WindowMargins->{{38, Automatic}, {Automatic, 36}},
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (March 13, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"7dfd21ef-6218-4557-bb6a-f0c61e152ad5"
 ]
 (* End of Notebook Content *)
 
@@ -557,16 +562,13 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[1463, 33, 958, 16, 119, "Text"],
+Cell[1463, 33, 1015, 17, 104, "Text",ExpressionUUID->"58c71cd6-77ce-410e-bc92-b07d4a8679d0"],
 Cell[CellGroupData[{
-Cell[2446, 53, 12608, 298, 25, "Input",
- CellOpen->False],
-Cell[15057, 353, 9232, 187, 789, "Output"]
+Cell[2503, 54, 12675, 299, 776, "Input",ExpressionUUID->"75ae3b7b-7112-4f6f-9e59-1787a3d18523"],
+Cell[15181, 355, 9348, 189, 653, "Output",ExpressionUUID->"e56df899-1874-4c94-b115-88942326c74b"]
 }, Open  ]]
 }
 ]
 *)
 
-(* End of internal cache information *)
-
-(* NotebookSignature KwTAytPE5siTKDwyimS8HfyW *)
+(* NotebookSignature gxpTVMxBQEt##BKaV9060l80 *)
