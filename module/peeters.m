@@ -12,9 +12,9 @@ ClearAll[setGitDir];
 
 setGitDir::usage = "Peeter's home laptop: set working dir relative to physicsplay/ (like figures/phy487)" ;
 (*setGitDir[where_] := SetDirectory[ "C:/Users/Peeter/cygwin_home/physicsplay/" <> where ] ;*)
-(*setGitDir[where_] := SetDirectory[ "/Users/pjoot/physicsplay/" <> where ] ;*)
+setGitDir[where_] := SetDirectory[ "/Users/pjoot/physicsplay/" <> where ] ;
 (*setGitDir[where_] := SetDirectory[ "\\\\wsl$\\Ubuntu\\home\\pjoot\\physicsplay\\" <> where ] ;*)
-setGitDir[where_] := SetDirectory[ "\\\\wsl.localhost\\Ubuntu-20.04\\home\\pjoot\\project\\" <> where ] ;
+(*setGitDir[where_] := SetDirectory[ "\\\\wsl.localhost\\Ubuntu-20.04\\home\\pjoot\\project\\" <> where ] ;*)
 
 ClearAll[exportForLatex];
 exportForLatex::usage = "peeters`exportForLatex[ filename, image, True/False] :: This seems to be the most compact way to export for latex that still retains good resolution.  Use the epstopdf program to convert the resulting .eps file.  Also generate a .png for wordpress posts at the same time. \[IndentingNewLine]Note that the .png displays with some software having a checkerboard background, but that doesn't show up in the eventual web view.\[IndentingNewLine]\[IndentingNewLine]This png file is generated with a different basename so that latex includegraphics doesn't find it.
