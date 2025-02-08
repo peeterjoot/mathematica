@@ -1,0 +1,677 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     29632,        669]
+NotebookOptionsPosition[     26180,        608]
+NotebookOutlinePosition[     26619,        625]
+CellTagsIndexPosition[     26576,        622]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.943553188539338*^9, 3.943553194049375*^9}, {
+   3.9435532661452017`*^9, 3.9435532784344053`*^9}, {3.943553323416988*^9, 
+   3.943553323960466*^9}, {3.9435533723537893`*^9, 3.94355337285489*^9}, 
+   3.9435534423794127`*^9, {3.94355354546154*^9, 3.94355354667273*^9}, 
+   3.9435537041127377`*^9, {3.943553770992436*^9, 3.9435537836769114`*^9}, {
+   3.948033180635229*^9, 3.948033219437443*^9}},
+ CellID->718794589,ExpressionUUID->"af1e30a1-cb75-45fe-a787-f17db2100061"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<CUDALink`\>\"", "]"}]], "Input",
+ CellChangeTimes->{
+  3.9480330390980377`*^9, {3.9480331409506454`*^9, 3.9480331624598827`*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"f01f867a-23ba-9f45-bb5d-37d07814d234"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"InstallCUDA", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.948033197740309*^9, 3.948033197740309*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"dff3f4b2-c186-3747-b64b-dba5a5f87432"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["Success",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    TemplateBox[{
+      PaneSelectorBox[{False -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxOpener"]], 
+              ButtonFunction :> (Typeset`open$$ = True), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            FrameBox[
+             StyleBox["\"\[Checkmark]\"", 
+              Directive[
+               RGBColor[
+               0.3607843137254902, 0.596078431372549, 0.3803921568627451], 
+               25], StripOnInput -> False], ContentPadding -> False, 
+             FrameStyle -> None, FrameMargins -> {{0, 0}, {0, 0}}, 
+             StripOnInput -> False], 
+            GridBox[{{
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Message\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"CUDALink installation complete.\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"DefaultDevice\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox["\"NVIDIA GeForce GTX 1660 Ti\"", "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            PaneBox[
+             ButtonBox[
+              DynamicBox[
+               FEPrivate`FrontEndResource["FEBitmaps", "SummaryBoxCloser"]], 
+              ButtonFunction :> (Typeset`open$$ = False), Appearance -> None, 
+              BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+              "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
+             Dynamic[{
+               Automatic, 
+                3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                 Magnification])}]], 
+            FrameBox[
+             StyleBox["\"\[Checkmark]\"", 
+              Directive[
+               RGBColor[
+               0.3607843137254902, 0.596078431372549, 0.3803921568627451], 
+               25], StripOnInput -> False], ContentPadding -> False, 
+             FrameStyle -> None, FrameMargins -> {{0, 0}, {0, 0}}, 
+             StripOnInput -> False], 
+            GridBox[{{
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Message\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"CUDALink installation complete.\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"DefaultDevice\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox["\"NVIDIA GeForce GTX 1660 Ti\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  
+                  TemplateBox[{"\"ComputeCapability\"", "\": \""}, 
+                   "RowDefault"], "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["7.5`", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  
+                  TemplateBox[{"\"CUDADriverAPIVersion\"", "\": \""}, 
+                   "RowDefault"], "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["12.6`", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"NVCC\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"C:\\\\Program Files\\\\NVIDIA GPU Computing \
+Toolkit\\\\CUDA\\\\v11.3\\\\bin\\\\nvcc.exe\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  
+                  TemplateBox[{"\"LibrariesLoaded\"", "\": \""}, 
+                   "RowDefault"], "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox[
+                  RowBox[{"{", 
+                    
+                    RowBox[{
+                    "\"C:\\\\Program Files\\\\NVIDIA GPU Computing \
+Toolkit\\\\CUDA\\\\v11.3\\\\bin\\\\cudart64_110.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\NVIDIA GPU Computing \
+Toolkit\\\\CUDA\\\\v11.3\\\\bin\\\\cufft64_10.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\NVIDIA GPU Computing \
+Toolkit\\\\CUDA\\\\v11.3\\\\bin\\\\curand64_10.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\NVIDIA GPU Computing \
+Toolkit\\\\CUDA\\\\v11.3\\\\bin\\\\cublasLt64_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\NVIDIA GPU Computing \
+Toolkit\\\\CUDA\\\\v11.3\\\\bin\\\\cublas64_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\NVIDIA GPU Computing \
+Toolkit\\\\CUDA\\\\v11.3\\\\bin\\\\cusparse64_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\NVIDIA GPU Computing \
+Toolkit\\\\CUDA\\\\v11.3\\\\bin\\\\nvrtc64_112_0.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\NVIDIA GPU Computing \
+Toolkit\\\\CUDA\\\\v11.3\\\\bin\\\\nvrtc-builtins64_113.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\NVIDIA GPU Computing \
+Toolkit\\\\CUDA\\\\v11.3\\\\bin\\\\cusolver64_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\Wolfram \
+Research\\\\Wolfram\\\\14.2\\\\SystemFiles\\\\Components\\\\CUDACompileTools\\\
+\\LibraryResources\\\\Windows-x86-64\\\\CUDAExtensions_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\Wolfram \
+Research\\\\Wolfram\\\\14.2\\\\SystemFiles\\\\Components\\\\CUDACompileTools\\\
+\\LibraryResources\\\\Windows-x86-64\\\\CUDAFold_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\Wolfram \
+Research\\\\Wolfram\\\\14.2\\\\SystemFiles\\\\Components\\\\CUDACompileTools\\\
+\\LibraryResources\\\\Windows-x86-64\\\\CUDAInterface_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\Wolfram \
+Research\\\\Wolfram\\\\14.2\\\\SystemFiles\\\\Components\\\\CUDACompileTools\\\
+\\LibraryResources\\\\Windows-x86-64\\\\CUDARandom_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\Wolfram \
+Research\\\\Wolfram\\\\14.2\\\\SystemFiles\\\\Components\\\\CUDACompileTools\\\
+\\LibraryResources\\\\Windows-x86-64\\\\CUDARunKernel_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\Wolfram \
+Research\\\\Wolfram\\\\14.2\\\\SystemFiles\\\\Components\\\\CUDACompileTools\\\
+\\LibraryResources\\\\Windows-x86-64\\\\CUDASort_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\Wolfram \
+Research\\\\Wolfram\\\\14.2\\\\SystemFiles\\\\Components\\\\CUDACompileTools\\\
+\\LibraryResources\\\\Windows-x86-64\\\\CUDATranspose_11.dll\"", ",", 
+                    "\"C:\\\\Program Files\\\\Wolfram \
+Research\\\\Wolfram\\\\14.2\\\\SystemFiles\\\\Components\\\\CUDACompileTools\\\
+\\LibraryResources\\\\Windows-x86-64\\\\CUSolverLibrary_11.dll\""}], "}"}], 
+                  "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"CUDALink\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox[
+                 "\"C:\\\\Program Files\\\\Wolfram \
+Research\\\\Wolfram\\\\14.2\\\\SystemFiles\\\\Links\\\\GPUTools\\\\\
+LibraryResources\\\\Windows-x86-64\\\\CUDALink_11.dll\"", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  
+                  TemplateBox[{"\"DriverCompatible\"", "\": \""}, 
+                   "RowDefault"], "SummaryItemAnnotation"], 
+                 "\[InvisibleSpace]", 
+                 TagBox["True", "SummaryItem"]}]}, {
+               RowBox[{
+                 TagBox[
+                  TemplateBox[{"\"Tag\"", "\": \""}, "RowDefault"], 
+                  "SummaryItemAnnotation"], "\[InvisibleSpace]", 
+                 TagBox["\"CUDALinkLoaded\"", "SummaryItem"]}]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+          AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  Success[
+  "CUDALinkLoaded", <|
+   "MessageTemplate" :> "CUDALink installation complete.", "DefaultDevice" -> 
+    "NVIDIA GeForce GTX 1660 Ti", "ComputeCapability" -> 7.5, 
+    "CUDADriverAPIVersion" -> 12.6, "NVCC" -> 
+    "C:\\Program Files\\NVIDIA GPU Computing \
+Toolkit\\CUDA\\v11.3\\bin\\nvcc.exe", 
+    "LibrariesLoaded" -> {
+     "C:\\Program Files\\NVIDIA GPU Computing \
+Toolkit\\CUDA\\v11.3\\bin\\cudart64_110.dll", 
+      "C:\\Program Files\\NVIDIA GPU Computing \
+Toolkit\\CUDA\\v11.3\\bin\\cufft64_10.dll", 
+      "C:\\Program Files\\NVIDIA GPU Computing \
+Toolkit\\CUDA\\v11.3\\bin\\curand64_10.dll", 
+      "C:\\Program Files\\NVIDIA GPU Computing \
+Toolkit\\CUDA\\v11.3\\bin\\cublasLt64_11.dll", 
+      "C:\\Program Files\\NVIDIA GPU Computing \
+Toolkit\\CUDA\\v11.3\\bin\\cublas64_11.dll", 
+      "C:\\Program Files\\NVIDIA GPU Computing \
+Toolkit\\CUDA\\v11.3\\bin\\cusparse64_11.dll", 
+      "C:\\Program Files\\NVIDIA GPU Computing \
+Toolkit\\CUDA\\v11.3\\bin\\nvrtc64_112_0.dll", 
+      "C:\\Program Files\\NVIDIA GPU Computing \
+Toolkit\\CUDA\\v11.3\\bin\\nvrtc-builtins64_113.dll", 
+      "C:\\Program Files\\NVIDIA GPU Computing \
+Toolkit\\CUDA\\v11.3\\bin\\cusolver64_11.dll", 
+      "C:\\Program Files\\Wolfram \
+Research\\Wolfram\\14.2\\SystemFiles\\Components\\CUDACompileTools\\\
+LibraryResources\\Windows-x86-64\\CUDAExtensions_11.dll", 
+      "C:\\Program Files\\Wolfram \
+Research\\Wolfram\\14.2\\SystemFiles\\Components\\CUDACompileTools\\\
+LibraryResources\\Windows-x86-64\\CUDAFold_11.dll", 
+      "C:\\Program Files\\Wolfram \
+Research\\Wolfram\\14.2\\SystemFiles\\Components\\CUDACompileTools\\\
+LibraryResources\\Windows-x86-64\\CUDAInterface_11.dll", 
+      "C:\\Program Files\\Wolfram \
+Research\\Wolfram\\14.2\\SystemFiles\\Components\\CUDACompileTools\\\
+LibraryResources\\Windows-x86-64\\CUDARandom_11.dll", 
+      "C:\\Program Files\\Wolfram \
+Research\\Wolfram\\14.2\\SystemFiles\\Components\\CUDACompileTools\\\
+LibraryResources\\Windows-x86-64\\CUDARunKernel_11.dll", 
+      "C:\\Program Files\\Wolfram \
+Research\\Wolfram\\14.2\\SystemFiles\\Components\\CUDACompileTools\\\
+LibraryResources\\Windows-x86-64\\CUDASort_11.dll", 
+      "C:\\Program Files\\Wolfram \
+Research\\Wolfram\\14.2\\SystemFiles\\Components\\CUDACompileTools\\\
+LibraryResources\\Windows-x86-64\\CUDATranspose_11.dll", 
+      "C:\\Program Files\\Wolfram \
+Research\\Wolfram\\14.2\\SystemFiles\\Components\\CUDACompileTools\\\
+LibraryResources\\Windows-x86-64\\CUSolverLibrary_11.dll"}, "CUDALink" -> 
+    "C:\\Program Files\\Wolfram \
+Research\\Wolfram\\14.2\\SystemFiles\\Links\\GPUTools\\LibraryResources\\\
+Windows-x86-64\\CUDALink_11.dll", "DriverCompatible" -> True|>],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{3.9480331991662025`*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"31e6461e-a729-b74f-9a3d-918b46665fce"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"v", "=", 
+  RowBox[{"GPUArray", "[", 
+   RowBox[{"RandomReal", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", "10000000"}], "]"}], 
+   "]"}]}]], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"286c992d-f831-7241-95ce-b3f2167c8283"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "LibraryFunctionLoad", "noform", 
+   "\"\\!\\(\\*RowBox[{\\\"\\\\\\\"CUDAArrays_Arithmetic\\\\\\\"\\\"}]\\) \
+cannot be loaded as a structured library created by the Wolfram Compiler.\"", 
+   2, 7, 6, 24613542269085064350, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480332227112617`*^9},
+ CellLabel->
+  "During evaluation of \
+In[7]:=",ExpressionUUID->"6f504266-1ebe-e64b-bfde-d72ea96b712c"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "LibraryFunctionLoad", "noform", 
+   "\"\\!\\(\\*RowBox[{\\\"\\\\\\\"CUDAArrays_Arrays\\\\\\\"\\\"}]\\) cannot \
+be loaded as a structured library created by the Wolfram Compiler.\"", 2, 7, 
+   7, 24613542269085064350, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480332227322617`*^9},
+ CellLabel->
+  "During evaluation of \
+In[7]:=",ExpressionUUID->"c97f16aa-5656-364c-9c7d-301a39f446ca"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "LibraryFunctionLoad", "noform", 
+   "\"\\!\\(\\*RowBox[{\\\"\\\\\\\"CUDAArrays_Base\\\\\\\"\\\"}]\\) cannot be \
+loaded as a structured library created by the Wolfram Compiler.\"", 2, 7, 8, 
+   24613542269085064350, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.948033222747263*^9},
+ CellLabel->
+  "During evaluation of \
+In[7]:=",ExpressionUUID->"c64b8fc0-9992-c24d-b145-a6c61e9ab92f"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General", "stop", 
+   "\"Further output of \
+\\!\\(\\*StyleBox[RowBox[{\\\"LibraryFunctionLoad\\\", \\\"::\\\", \\\"noform\
+\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"", 2, 7, 9, 24613542269085064350, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480332227622623`*^9},
+ CellLabel->
+  "During evaluation of \
+In[7]:=",ExpressionUUID->"1cfefc75-033a-9a43-9975-ef12d603115c"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "GPUArray", "nogpu", "\"No supported GPUs were detected on the system.\"", 
+   2, 7, 10, 24613542269085064350, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.948033222853266*^9},
+ CellLabel->
+  "During evaluation of \
+In[7]:=",ExpressionUUID->"a76c8389-11e8-874f-bd8d-4f922e199fa9"],
+
+Cell[BoxData[
+ TemplateBox[<|"shortenedBoxes" -> TagBox[
+     RowBox[{"{", 
+       RowBox[{
+         RowBox[{"-", "0.9477878990806277`"}], ",", "0.45144127625583064`", 
+         ",", 
+         RowBox[{"-", "0.6545234329182055`"}], ",", 
+         RowBox[{"-", "0.3132945846822075`"}], ",", "0.9519720276004842`", 
+         ",", "0.8355396215768538`", ",", 
+         RowBox[{"-", "0.41364316780949606`"}], ",", 
+         RowBox[{"-", "0.5804621245882493`"}], ",", 
+         RowBox[{"-", "0.07051491847241964`"}], ",", 
+         TemplateBox[{"9999983"}, "OutputSizeLimit`Skeleton"], ",", 
+         RowBox[{"-", "0.6972428209140253`"}], ",", "0.5628812550567233`", 
+         ",", "0.8266749481958393`", ",", 
+         RowBox[{"-", "0.8033529006264089`"}], ",", 
+         RowBox[{"-", "0.3444845251590527`"}], ",", "0.7349925984201584`", 
+         ",", "0.10085351686727595`", ",", 
+         RowBox[{"-", "0.6709701126857639`"}]}], "}"}], Short[#, 8]& ], 
+   "line" -> 7, "sessionID" -> 24613542269085064350, "byteCount" -> 80000200, 
+   "size" -> 8, "stored" -> False, "expr" -> Missing["NotStored"], "wrap" -> 
+   OutputSizeLimit`Defer, "version" -> 1|>,
+  "OutputSizeLimitTemplate"]], "Output",
+ CellChangeTimes->{3.9480332459503098`*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"955deb71-e582-5d44-87f6-b7e4864dc58c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CUDAToolkitCompatibilityInformation", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.948033241596714*^9, 3.948033241596714*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"df4d7c82-2b81-9946-860d-bb0618cbf1fa"],
+
+Cell[BoxData[
+ RowBox[{"CUDAToolkitCompatibilityInformation", "[", "]"}]], "Output",
+ CellChangeTimes->{3.948033246027378*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"077b15c8-1b4c-2a4e-a6a8-a3ba62a8a6d1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CUDAQ", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.9480332667118073`*^9, 3.9480332667118073`*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"5519de34-ae2e-a94a-9148-11dfaa67d199"],
+
+Cell[BoxData["True"], "Output",
+ CellChangeTimes->{3.9480332676547985`*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"5222a1c0-1819-df4b-b6cb-567a13b9fd5c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CUDACCompilers", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.9480332890594425`*^9, 3.9480332890594425`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"325b89a1-50b8-334d-a55b-574c5b00563f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"Name\"\>", "\[Rule]", "\<\"Visual Studio\"\>"}], ",", 
+     RowBox[{"\<\"Compiler\"\>", "\[Rule]", 
+      "CCompilerDriver`VisualStudioCompiler`VisualStudioCompiler"}], ",", 
+     RowBox[{"\<\"CompilerInstallation\"\>", 
+      "\[Rule]", "\<\"C:\\\\Program Files (x86)\\\\Microsoft Visual \
+Studio\\\\2019\\\\Community\"\>"}], ",", 
+     RowBox[{"\<\"CompilerName\"\>", "\[Rule]", "Automatic"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\<\"Name\"\>", "\[Rule]", "\<\"Visual Studio\"\>"}], ",", 
+     RowBox[{"\<\"Compiler\"\>", "\[Rule]", 
+      "CCompilerDriver`VisualStudioCompiler`VisualStudioCompiler"}], ",", 
+     RowBox[{"\<\"CompilerInstallation\"\>", 
+      "\[Rule]", "\<\"C:\\\\Program Files\\\\Microsoft Visual \
+Studio\\\\2022\\\\Community\"\>"}], ",", 
+     RowBox[{"\<\"CompilerName\"\>", "\[Rule]", "Automatic"}]}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.9480332899680862`*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"d98b7894-561a-a84f-8453-55af875ef89d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CUDAResourcesInformation", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.948033501798847*^9, 3.948033501798847*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"52e2aef3-88e1-8549-a463-c0d514d9643e"],
+
+Cell[BoxData[
+ RowBox[{"CUDAResourcesInformation", "[", "]"}]], "Output",
+ CellChangeTimes->{3.948033502813772*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"023eb917-292b-7744-9d2c-0dd14f13a569"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CUDAResourcesInstall", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.9480335314347343`*^9, 3.9480335314347343`*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"e421630c-1fd2-2c44-9b26-83a3f24a3273"],
+
+Cell[BoxData[
+ RowBox[{"CUDAResourcesInstall", "[", "]"}]], "Output",
+ CellChangeTimes->{3.948033532447687*^9},
+ CellLabel->"Out[12]=",ExpressionUUID->"1a8f8442-bfe9-0940-953e-33f0fc05d83d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<OpenCLLink`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.9480342398296146`*^9, 3.9480342398296146`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"73eb50bb-0b91-8646-adc0-b66bd5df6097"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"NVCCCompiler\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"NVCCCompiler\\\", \\\"[\\\", \\\"\\\\\\\"Available\\\\\\\
+\"\\\", \\\"]\\\"}]\\) is Protected.\"", 2, 1, 1, 24613569591060661173, 
+   "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480342410341625`*^9, 3.948034305697735*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"4894e8d4-9c34-4445-bfd6-1a8c17a54d1f"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"NVCCCompiler\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"NVCCCompiler\\\", \\\"[\\\", \
+\\\"\\\\\\\"Name\\\\\\\"\\\", \\\"]\\\"}], \\\"[\\\", \\\"]\\\"}]\\) is \
+Protected.\"", 2, 1, 2, 24613569591060661173, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480342410341625`*^9, 3.9480343057597294`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b12bb96b-20ce-4241-87bc-bc9965a26c0e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SetDelayed", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"NVCCCompiler\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"NVCCCompiler\\\", \\\"[\\\", \
+\\\"\\\\\\\"Installations\\\\\\\"\\\", \\\"]\\\"}], \\\"[\\\", \\\"]\\\"}]\\) \
+is Protected.\"", 2, 1, 3, 24613569591060661173, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480342410341625`*^9, 3.9480343057697296`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"c08be2dd-7edd-6442-be5f-5e97ebbc8e69"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General", "stop", 
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"SetDelayed\\\", \
+\\\"::\\\", \\\"write\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
+during this calculation.\"", 2, 1, 4, 24613569591060661173, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480342410341625`*^9, 3.948034305780731*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"29dd783e-7a10-4b44-a0ab-6ff1ab7b0d7f"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"NVCCCompiler\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"Options\\\", \\\"[\\\", \\\"NVCCCompiler\\\", \
+\\\"]\\\"}]\\) is Protected.\"", 2, 1, 5, 24613569591060661173, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480342410341625`*^9, 3.9480343058737316`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"c4c7d8e6-cac0-5f4a-bfdb-9ccb72a6f5a6"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Table", "iterb", 
+   "\"Iterator \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"CCompilerDriver`CCompilerDriverRegistry`Private`installation\\\", \
+\\\",\\\", RowBox[{RowBox[{\\\"NVCCCompiler\\\", \\\"[\\\", \
+\\\"\\\\\\\"Installations\\\\\\\"\\\", \\\"]\\\"}], \\\"[\\\", \\\"]\\\"}]}], \
+\\\"}\\\"}]\\) does not have appropriate bounds.\"", 2, 1, 6, 
+   24613569591060661173, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480342410341625`*^9, 3.948034306333729*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"729c4068-9581-d74f-9f3d-7f06041f3a53"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Table", "iterb", 
+   "\"Iterator \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"CCompilerDriver`CCompilerDriverRegistry`Private`installation\\\", \
+\\\",\\\", RowBox[{RowBox[{\\\"NVCCCompiler\\\", \\\"[\\\", \
+\\\"\\\\\\\"Installations\\\\\\\"\\\", \\\"]\\\"}], \\\"[\\\", \\\"]\\\"}]}], \
+\\\"}\\\"}]\\) does not have appropriate bounds.\"", 2, 1, 7, 
+   24613569591060661173, "Local"},
+  "MessageTemplate",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480342410341625`*^9, 3.9480343063497334`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b5704d41-0390-1f4a-ac16-ec1890f572af"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "NVCCCompiler", "shdw", 
+   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"NVCCCompiler\\\\\\\"\\\"}]\\) \
+appears in multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"\\\\\\\"CUDALink`NVCCCompiler`\\\\\\\"\\\", \\\",\\\", \\\"\\\\\\\
+\"CUDALink`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \
+\\!\\(\\*RowBox[{\\\"\\\\\\\"CUDALink`NVCCCompiler`\\\\\\\"\\\"}]\\) may \
+shadow or be shadowed by other definitions.\"", 2, 1, 8, 24613569591060661173,
+    "Local", "CUDALink`NVCCCompiler`NVCCCompiler"},
+  "MessageTemplate2",
+  BaseStyle->"MSG"]], "Message",
+ CellChangeTimes->{3.9480342410341625`*^9, 3.9480343064327316`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"a97afb5c-43b1-3c4b-a0e0-36190688932a"]
+}, Open  ]]
+},
+WindowSize->{571.8, 524.4},
+WindowMargins->{{284.4, Automatic}, {12, Automatic}},
+Magnification:>1.2 Inherited,
+FrontEndVersion->"14.2 for Microsoft Windows (64-bit) (December 26, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"99b05df7-27ea-574c-a145-f8415c554af5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 516, 7, 33, "Input",ExpressionUUID->"af1e30a1-cb75-45fe-a787-f17db2100061",
+ CellID->718794589],
+Cell[1073, 29, 249, 4, 33, "Input",ExpressionUUID->"f01f867a-23ba-9f45-bb5d-37d07814d234"],
+Cell[CellGroupData[{
+Cell[1347, 37, 203, 3, 33, "Input",ExpressionUUID->"dff3f4b2-c186-3747-b64b-dba5a5f87432"],
+Cell[1553, 42, 12750, 250, 70, "Output",ExpressionUUID->"31e6461e-a729-b74f-9a3d-918b46665fce"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14340, 297, 312, 9, 33, "Input",ExpressionUUID->"286c992d-f831-7241-95ce-b3f2167c8283"],
+Cell[14655, 308, 465, 11, 53, "Message",ExpressionUUID->"6f504266-1ebe-e64b-bfde-d72ea96b712c"],
+Cell[15123, 321, 461, 11, 53, "Message",ExpressionUUID->"c97f16aa-5656-364c-9c7d-301a39f446ca"],
+Cell[15587, 334, 457, 11, 53, "Message",ExpressionUUID->"c64b8fc0-9992-c24d-b145-a6c61e9ab92f"],
+Cell[16047, 347, 480, 12, 53, "Message",ExpressionUUID->"1cfefc75-033a-9a43-9975-ef12d603115c"],
+Cell[16530, 361, 351, 9, 31, "Message",ExpressionUUID->"a76c8389-11e8-874f-bd8d-4f922e199fa9"],
+Cell[16884, 372, 1314, 24, 155, "Output",ExpressionUUID->"955deb71-e582-5d44-87f6-b7e4864dc58c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18235, 401, 227, 3, 33, "Input",ExpressionUUID->"df4d7c82-2b81-9946-860d-bb0618cbf1fa"],
+Cell[18465, 406, 204, 3, 38, "Output",ExpressionUUID->"077b15c8-1b4c-2a4e-a6a8-a3ba62a8a6d1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18706, 414, 201, 3, 33, "Input",ExpressionUUID->"5519de34-ae2e-a94a-9148-11dfaa67d199"],
+Cell[18910, 419, 153, 2, 38, "Output",ExpressionUUID->"5222a1c0-1819-df4b-b6cb-567a13b9fd5c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19100, 426, 211, 3, 33, "Input",ExpressionUUID->"325b89a1-50b8-334d-a55b-574c5b00563f"],
+Cell[19314, 431, 1091, 23, 221, "Output",ExpressionUUID->"d98b7894-561a-a84f-8453-55af875ef89d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20442, 459, 217, 3, 33, "Input",ExpressionUUID->"52e2aef3-88e1-8549-a463-c0d514d9643e"],
+Cell[20662, 464, 194, 3, 38, "Output",ExpressionUUID->"023eb917-292b-7744-9d2c-0dd14f13a569"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20893, 472, 217, 3, 33, "Input",ExpressionUUID->"e421630c-1fd2-2c44-9b26-83a3f24a3273"],
+Cell[21113, 477, 190, 3, 38, "Output",ExpressionUUID->"1a8f8442-bfe9-0940-953e-33f0fc05d83d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21340, 485, 224, 3, 33, "Input",ExpressionUUID->"73eb50bb-0b91-8646-adc0-b66bd5df6097"],
+Cell[21567, 490, 501, 12, 53, "Message",ExpressionUUID->"4894e8d4-9c34-4445-bfd6-1a8c17a54d1f"],
+Cell[22071, 504, 528, 12, 53, "Message",ExpressionUUID->"b12bb96b-20ce-4241-87bc-bc9965a26c0e"],
+Cell[22602, 518, 537, 12, 53, "Message",ExpressionUUID->"c08be2dd-7edd-6442-be5f-5e97ebbc8e69"],
+Cell[23142, 532, 490, 11, 53, "Message",ExpressionUUID->"29dd783e-7a10-4b44-a0ab-6ff1ab7b0d7f"],
+Cell[23635, 545, 474, 11, 31, "Message",ExpressionUUID->"c4c7d8e6-cac0-5f4a-bfdb-9ccb72a6f5a6"],
+Cell[24112, 558, 638, 14, 97, "Message",ExpressionUUID->"729c4068-9581-d74f-9f3d-7f06041f3a53"],
+Cell[24753, 574, 640, 14, 97, "Message",ExpressionUUID->"b5704d41-0390-1f4a-ac16-ec1890f572af"],
+Cell[25396, 590, 768, 15, 97, "Message",ExpressionUUID->"a97afb5c-43b1-3c4b-a0e0-36190688932a"]
+}, Open  ]]
+}
+]
+*)
+
